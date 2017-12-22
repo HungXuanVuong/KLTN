@@ -1,0 +1,14 @@
+#featureJob{
+    padding-top: 75px;
+}
+.navbar-brand {
+    padding: 0px;
+}
+.navbar-brand>img {
+    height: 100%;
+    padding: 0px;
+    width: auto;
+}
+.main-content {
+    margin-top: 75px;
+}

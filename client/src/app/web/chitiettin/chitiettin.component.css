@@ -1,0 +1,26 @@
+/*calltoaction*/
+#calltoaction .jumbotron {
+	height: 70vh;
+    /* width: 100vw; */
+	padding: 150px 0;
+	text-align: center;
+	/* background: #63AFC7 url('./../../../assets/web/img/imgtin/7.jpg') top no-repeat; */
+	background-size: cover;
+	margin-bottom: 0;
+}
+#calltoaction .jumbotron h1,
+#calltoaction .jumbotron p {
+	color:#FFFFFF;
+	text-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+}
+#calltoaction .jumbotron .btn-feature {
+	color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+}
+#calltoaction .jumbotron .btn-feature:hover {
+	color: #F1F1F1;
+}
+.content .row {
+	padding-bottom: 5px;
+	font-size: 20px;
+}

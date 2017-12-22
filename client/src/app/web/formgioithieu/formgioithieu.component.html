@@ -1,0 +1,69 @@
+<div class="container main-content">
+  <form class="form-horizontal">
+    <fieldset>
+      <legend style="text-align:center">Nhập thông tin ứng viên</legend>
+      <div class="col-md-8 col-md-offset-2">
+        <div class="form-group">
+          <label for="name" class="col-md-2 control-label">Họ và tên (*)</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" id="name" placeholder="Họ và tên">
+          </div>
+        </div>   
+        <div class="form-group">
+          <label class="col-md-2 control-label" for="sex">Giới tính (*)</label>
+          <div class="col-md-10">
+            <div class="radio">
+              <label>
+                <input type="radio" name="sex" id="sex" value="male" checked>
+                Nam
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="sex" id="sex" value="female">
+                Nữ
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail" class="col-md-2 control-label">Email (*)</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="school" class="col-md-2 control-label">Trường (*)</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" id="school" placeholder="Trường">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="faculty" class="col-md-2 control-label">Khoa (*)</label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" id="faculty" placeholder="Khoa">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tel" class="col-md-2 control-label">SĐT</label>
+          <div class="col-md-10">
+            <input type="tel" class="form-control" id="tel" placeholder="Số điện thoại">
+          </div>
+        </div>   
+        <div class="form-group">
+          <label for="cv" class="col-md-2 control-label">CV/Résume (*)</label>
+          <div class="col-md-10">
+            <input type="file" id="cv">
+            <span class="help-block">Định dạng: .PDF, .DOC, .DOCX</span>
+            <span class="help-block">Kích thước tối đa: 2MB</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-2">
+            <button type="submit" class="btn btn-primary">Giới thiệu/Ứng tuyển</button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div> <!-- End container-->

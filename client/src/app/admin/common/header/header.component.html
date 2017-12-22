@@ -1,0 +1,27 @@
+<ul class="nav navbar-nav navbar-right" style="padding-right:90px;">
+    <li>
+        <a routerLink='/admin'>Admin</a>
+    </li>
+    <li>
+        <a routerLink="/jobdashboard">Job dashboad</a>
+    </li>
+    <li>
+        <a routerLink='/shopping'>Shopping</a>
+    </li>
+
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw" style="color:#006699"></i> <i class="fa fa-caret-down" style="color:#006699"></i>
+          </a>
+        <ul class="dropdown-menu dropdown-user">
+            <li><a href="userProfile.html"><i class="fa fa-user fa-fw"></i> Thông tin</a>
+            </li>
+            <!-- <li><a onclick="window.location.href='file:///E:/HOC%20TAP/HK7/TLCN/TL/admin/index.html'"><i class="fa fa-user-secret fa-fw"></i> Quản trị</a>
+          </li> -->
+            <li class="divider"></li>
+            <li><a routerLink="/login"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+            </li>
+        </ul>
+        <!-- /.dropdown-user -->
+    </li>
+</ul>

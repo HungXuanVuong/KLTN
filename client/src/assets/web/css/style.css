@@ -1,0 +1,356 @@
+/*Navbar*/
+#header nav {
+	background: #FFFFFF;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-transform: uppercase;
+	text-align: center;
+	/*box-shadow: 10px 10px 5px #888888;*/
+	box-shadow:0px 2px 2px rgba(0,0,0,0.2);
+}
+/*calltoaction*/
+
+/* .imgChiTiet{
+	
+	text-align: center;
+	background: url('../img/hometd3.jpg') top no-repeat;
+	background-size: cover;
+	margin-bottom: 0;
+} */
+#calltoaction .jumbotron {
+	padding: 150px 0;
+	text-align: center;
+	background: url('../img/hometd3.jpg') top no-repeat;
+	background-size: cover;
+	margin-bottom: 0;
+
+}
+#calltoaction .jumbotron h1,
+#calltoaction .jumbotron p {
+	color:#FFFFFF;
+	text-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+}
+#calltoaction .jumbotron .btn-feature {
+	color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+}
+#calltoaction .jumbotron .btn-feature:hover {
+	color: #F1F1F1;
+}
+/*feature1*/
+#feature1 {
+	background: #ECF0F1;
+	color: #2C3E50;
+	text-align: center;
+}
+
+#feature1 .glyphicon {
+	font-size: 50px;
+}
+
+/*feature2*/
+#feature2 {
+	/* background: #34495E; */
+	background: #f5f5f0;li_point
+	/* color: #FFFFFF; */
+	text-align: center;
+}
+#feature2 p {
+	color: #BDC3CF;
+}
+/*feature3*/
+/* #feature3 .row {
+	padding: 20px 0;
+} */
+/*feature4*/
+
+#feature4 {
+	background: #ECF0F1;
+}
+
+/*footer*/
+#footer {
+	background: #34495E;
+}
+#footer a {
+	color: #FFFFFF;
+	text-transform: uppercase;
+}
+
+footer {
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 300px;
+	background-color: #f5f5f5;
+}
+footer {
+	color: #fff;
+}
+footer h3 {
+	margin-bottom: 30px;
+}
+footer .footer-above {
+	padding-top: 50px;
+	background-color: #2c3e50;
+}
+footer .footer-col {
+	margin-bottom: 50px;
+}
+footer .footer-below {
+	padding-top: 80px;
+	background-color: #233140;
+}
+
+/* #feature1 {
+	padding: 10px 0;
+	} */
+	#feature2,
+	#feature3,
+	#feature4{
+		padding: 30px 0;
+	}
+/* 	#footer {
+		padding-top: 30px;
+	} */
+	/* Highest points Widget */
+	.widget_highest_points ul li {
+		padding-bottom: 10px;
+	}
+	.li_point {
+		list-style-type:none;
+		padding-bottom:15px;
+	}
+	.widget_highest_points li h6 {
+		margin: 10px 0 5px;
+		font-weight: bold;
+	}
+	.widget_highest_points li h6 a:hover {
+		color: #2f3239;
+	}
+	.widget_highest_points .comment {
+		padding: 0;
+		border-bottom: 0;
+		color: #2f3239;
+		font-size: 13px;
+	}
+	.author-img {
+		float: left;
+		display: block;
+		overflow: hidden;
+		width: 71px;
+		height: 71px;
+		position: relative;
+		margin-right: 20px;
+		overflow: hidden;
+		padding: 2px;
+		border: 1px solid #dedede;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		border-radius: 50%;
+	}
+	.author-img img {
+		display: block;
+		float: left;
+		width: 65px;
+		height: 65px;
+		overflow: hidden;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		border-radius: 50%;
+	}
+	.widget_highest_points a:before {
+		position: absolute;
+		width: 65px;
+		height: 65px;
+		top: 2px;
+		z-index: 99;
+		display: block;
+		font-family: "FontAwesome";
+		text-align: center;
+		line-height: 65px;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		border-radius: 50%;
+	}
+	.widget_highest_points .author-img a:hover:before {
+		content: "\f0fe";
+		opacity: 0.9;
+		filter: alpha(opacity=90);
+	}
+
+	/* icon social */
+	#socialicons {
+		text-align: center;
+	}
+	#socialicons .icon{
+		color: MAIN_COLOR;
+		border: 1px solid #CFCFCF;
+		display: inline-block;
+		font-size: 18px;
+		width: 34px;
+		height: 34px;
+		line-height: 34px;
+		text-align: center;
+		vertical-align: middle;
+		margin: 0 1px 8px;
+	}
+	#socialicons .icon:hover{
+		color: HOVER_COLOR;
+		border: 1px solid #CFCFCF;
+	}
+
+	/* icon tin */
+	.icon_right .icon{
+
+		color: MAIN_COLOR;
+		border: 1px solid #CFCFCF;
+		display: inline-block;
+		font-size: 18px;
+		width: 34px;
+		height: 34px;
+		line-height: 34px;
+		text-align: center;
+		vertical-align: middle;
+		/*  margin: 0 1px 8px; */
+		float:right;
+	}
+	.li_block_tin{
+		list-style-type:none;
+	}
+
+	/* Load more question */
+	.load-questions {
+		background-color: #d85a11;
+		color: #f9f7f9;
+		font-size: 16px;
+		font-weight: bold;
+		padding: 12px 10px;
+		display: block;
+		border-radius: 2px;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		text-align: center;
+	}
+	.load-questions i {
+		margin-right: 10px;
+	}
+	.load-questions:hover {
+		background-color: #d37a96;
+	}
+
+	/*  */
+	
+	/* Blocks */
+/* line 4, ../scss/modules/_blocks.scss */
+.block, .block-primary, .block-secondary, .block-light, .block-dark {
+  padding: 15px;
+  margin-bottom: 15px;
+}
+/* line 8, ../scss/modules/_blocks.scss */
+.block h3, .block-primary h3, .block-secondary h3, .block-light h3, .block-dark h3 {
+  margin-top: 0;
+  padding-top: 0;
+}
+/* line 13, ../scss/modules/_blocks.scss */
+.block iframe, .block-primary iframe, .block-secondary iframe, .block-light iframe, .block-dark iframe {
+  width: 100%;
+}
+
+/* line 18, ../scss/modules/_blocks.scss */
+.block-primary {
+  background: #00aff0;
+  color: #ffffff;
+}
+
+/* line 23, ../scss/modules/_blocks.scss */
+.block-secondary {
+  background: #7fba00;
+  color: #ffffff;
+}
+
+/* line 28, ../scss/modules/_blocks.scss */
+.block-light {
+  background: #e4eef2;
+  color: #666666;
+}
+
+/* line 33, ../scss/modules/_blocks.scss */
+.block-dark {
+  background: #2b5464;
+  color: #ffffff;
+}
+
+/* line 38, ../scss/modules/_blocks.scss */
+.block-center {
+  text-align: center !important;
+}
+
+/* line 42, ../scss/modules/_blocks.scss */
+.block-image img {
+  width: 100%;
+}
+
+/* line 46, ../scss/modules/_blocks.scss */
+.block-border {
+  border: 1px solid #cccccc;
+}
+
+/* line 51, ../scss/modules/_blocks.scss */
+.block-primary-head h3 {
+  padding: 15px 5px 15px 10px;
+  background: #00aff0;
+  color: #ffffff;
+  margin: 0;
+  font-size: 18px;
+}
+/* line 58, ../scss/modules/_blocks.scss */
+.block-primary-head .block-content {
+  border: 1px solid #00aff0;
+  padding: 10px;
+}
+
+/* line 65, ../scss/modules/_blocks.scss */
+.block-icon h3 {
+  padding: 0;
+  margin: 0;
+}
+/* line 70, ../scss/modules/_blocks.scss */
+.block-icon .icon {
+  float: left;
+  width: 20%;
+  margin-top: 10px;
+}
+/* line 76, ../scss/modules/_blocks.scss */
+.block-icon .icon-content {
+  float: left;
+  width: 70%;
+}
+
+/* Searchbox */
+/* line 3, ../scss/modules/_forms.scss */
+.search {
+  width: 100%;
+}
+/* line 6, ../scss/modules/_forms.scss */
+.search h3 {
+  margin-top: 0;
+  padding-top: 0;
+}
+/* line 11, ../scss/modules/_forms.scss */
+.search input[type="search"] {
+  border: 0;
+  height: 50px;
+  width: 80%;
+  border: 2px solid #00aff0;
+  font-size: 18px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+/* line 21, ../scss/modules/_forms.scss */
+.search button {
+  border: 0;
+  background: none;
+  padding: 0;
+  vertical-align: top;
+  margin-left: -4px;
+}
