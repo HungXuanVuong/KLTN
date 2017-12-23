@@ -1,26 +1,46 @@
 <ul class="nav" id="side-menu">
-        <li class="sidebar-search">
-            <div class="input-group custom-search-form">
-                  <a class="btn btn-block btn-social btn-instagram">
-                          <i class="fa fa-hand-o-right"></i> Group H2K
-                      </a>
-            </div>
-            <!-- /input-group -->
-        </li>
-        <li>
-            <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-        </li>
-        <li>
-            <a routerLink="/listphongban" [routerLinkActive]="['router-link-active']" ><i class="fa fa-archive fa-fw"></i> Phòng ban</a>
-            <!-- /.nav-second-level -->
-        </li>
-        <li>
-            <a routerLink="/listchucvu" [routerLinkActive]="['router-link-active']"><i class="fa fa-edit fa-fw"></i> Chức vụ</a>
-        </li>
-        <li>
-            <a routerLink="/listnhanvien" [routerLinkActive]="['router-link-active']" ><i class="fa fa-user fa-fw"></i> Nhân viên</a>
-        </li>
-        <li>
-            <a routerLink="/listnhanthan" [routerLinkActive]="['router-link-active']" ><i class="fa fa-users fa-fw"></i> Nhân thân</a>
-        </li>
-      </ul>
+    <li class="sidebar-search">
+        <div class="input-group custom-search-form">
+            <input type="text" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button">
+                <i class="fa fa-search"></i>
+            </button>
+        </span>
+        </div>
+    </li>
+    <li>
+        <a routerLink="/admin/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-book fa-fw"></i> Quản lí tin tuyển dụng<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a routerLink="/admin/listnews">Danh sách tin tuyển dụng</a>
+            </li>
+            <li>
+                <a routerLink="/admin/formnews">Đăng tin tuyển dụng</a>
+            </li>
+        </ul>
+        <!-- /.nav-second-level -->
+    </li>
+    <li>
+        <a routerLink="/admin/listcandidate"><i class="fa fa-user"></i> Quản lí ứng viên</a>
+    </li>
+    <li>
+        <a routerLink="/admin/listuser"><i class="fa fa-users fa-fw"></i> Quản lí người dùng</a>
+    </li>
+
+    <li>
+        <a href="#"><i class="fa fa-support fa-fw"></i> Quản lí Point thưởng<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a routerLink="/admin/listchinhsach">Chính sách point thưởng</a>
+            </li>
+            <li>
+                <a routerLink="/admin/listshared">Danh sách point thưởng đã chi</a>
+            </li>
+        </ul>
+        <!-- /.nav-second-level -->
+    </li>
+</ul>

@@ -16,6 +16,9 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.1.0",
-    "mongose": "0.0.2-security"
+    "mongoose": "^4.13.7",
+    "mongose": "0.0.2-security",
+    "mydatepicker": "^2.6.1",
+    "ng2-datetime": "^1.4.0"
   }
 }

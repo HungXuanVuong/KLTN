@@ -8,7 +8,6 @@ import { HeaderComponent } from './common/header/header.component';
 import { SlidebarComponent } from './common/slidebar/slidebar.component';
 
 
-
 @NgModule({
     imports: [
         CommonModule,

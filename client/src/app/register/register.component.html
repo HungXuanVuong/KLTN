@@ -8,46 +8,75 @@
 					<!--pan-->
 					<h4>Đăng ký tài khoản</h4><br>
 					<div class="panel-body">
-						<form action="login.html">
-
-							<div class="form-group">
-								<input type="email" name="" class="form-control" placeholder="Nhập vào email(*)...">
+						<div class="row show-hide-message">
+							<div [ngClass]="messageClass">
+								{{message}}
 							</div>
+						</div>
+						<form [formGroup]="form" (submit)="onRegisterSubmit()">
 
-							<div class="form-group">
-								<input type="password" name="" class="form-control" placeholder="Nhập vào mật khẩu(*)...">
+							<div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty) || (!emailValid && form.controls.email.dirty), 'has-success': !form.controls.email.errors && emailValid}"
+							 class="form-group">
+								<input class="form-control" placeholder="E-mail" name="email" type="email" formControlName="email" (blur)="checkEmail()">
+								<ul class="help-block">
+									<li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">Trường này là bắt buộc</li>
+									<li *ngIf="(form.controls.email.errors?.minlength || form.controls.email.error?.maxlength) && form.controls.email.dirty">ít nhất là 3, tối đa là 30 ký tự</li>
+									<li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">Email không hợp lệ</li>
+									<li *ngIf="emailMessage">{{emailMessage}}</li>
+								</ul>
 							</div>
-							<div class="form-group">
-								<input type="password" name="" class="form-control" placeholder="Xác nhận lại mật khẩu(*)...">
+							<div [ngClass]="{'has-error': (form.controls.password.errors && form.controls.password.dirty), 'has-success': !form.controls.password.errors}"
+							 class="form-group">
+								<input class="form-control" placeholder="Password" name="password" type="password" value="" formControlName="password">
+								<ul class="help-block">
+									<li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">Trường này là bắt buộc</li>
+									<li *ngIf="(form.controls.password.errors?.minlength || form.controls.password.errors?.maxlength) && form.controls.password.dirty">ít nhất: 8 và tối đa là: 35</li>
+									<li *ngIf="form.controls.password.errors?.validatePassword && form.controls.password.dirty">Password phải có ít nhất 8 ký tự, 1 In hoa, thường, ký tự, số nhưng không quá 35 ký tự</li>
+								</ul>
 							</div>
+							<div [ngClass]="{'has-error': (form.controls.confirm.errors && form.controls.confirm.dirty)||form.errors?.matchingPassword && form.controls.confirm.dirty, 'has-success': !form.controls.confirm.errors}"
+							 class="form-group">
+								<input class="form-control" placeholder="Xác nhận lại mật khẩu" name="confirm" type="password" value="" formControlName="confirm">
+								<ul class="help-block">
+									<li *ngIf="form.controls.confirm.errors?.required && form.controls.confirm.dirty">Trường này bắt buộc</li>
+									<li *ngIf="form.errors?.matchingPassword && form.controls.confirm.dirty">Password không chính xác</li>
+								</ul>
+							</div>
+							<div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty), 'has-success': !form.controls.username.errors}" class="form-group">
 
-							<div class="form-group">
 								<!--form-->
-								<input type="hoten" name="" class="form-control" placeholder="Nhập vào họ và tên...">
+								<input type="username" name="" class="form-control" placeholder="Nhập vào họ và tên..." formControlName="username">
 							</div>
-							<div class="form-group">
-								<!--form-->
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="fa fa-calendar">
-											</i>
-									</div>
-									<input class="form-control" id="date" name="date" type="text" placeholder="Nhập vào ngày sinh..." />
-								</div>
+							<div [ngClass]="{'has-error': (form.controls.dateOfBirth.errors && form.controls.dateOfBirth.dirty), 'has-success': !form.controls.dateOfBirth.errors}" class="form-group">
+								<my-date-picker name="dateOfBirth" [options]="myDatePickerOptions" placeholder="Nhập vào ngày sinh..."
+								formControlName="dateOfBirth"></my-date-picker>
 							</div>
 							<div class="form-group">
 								<label>Giới tính(*)</label>
 								<input type="radio" value="Nam" name="GioiTinhNGT" />Nam
 								<input type="radio" value="Nu" name="GioiTinhNGT" /> Nữ
 							</div>
-							<div class="form-group">
-								<input type="diachi" name="" class="form-control" placeholder="Nhập vào địa chỉ...">
+
+							<div [ngClass]="{'has-error': (form.controls.address.errors && form.controls.address.dirty), 'has-success': !form.controls.address.errors}">
+								<input type="text" name="address" class="form-control" autocomplete="off" placeholder="Nhập vào địa chỉ" formControlName="address"
+								/>
+								<!-- Validation -->
+								<ul class="help-block">
+									<li *ngIf="(form.controls.address.errors?.minlength || form.controls.address.errors?.maxlength) && form.controls.address.dirty">Tên ít nhất có 10 ký tự , tối đa 50</li>
+								</ul>
 							</div>
-							<div class="form-group">
-								<input type="sdt" name="" class="form-control" placeholder="Nhập vào số điện thoại...">
+
+							<div [ngClass]="{'has-error': (form.controls.phone.errors && form.controls.phone.dirty), 'has-success': !form.controls.phone.errors}">
+								<input type="text" name="phone" class="form-control" autocomplete="off" placeholder="Nhập vào số điện thoại" formControlName="phone"
+								/>
+								<!-- Validation -->
+								<ul class="help-block">
+									<li *ngIf="form.controls.phone.errors?.validatePhone && myForm.controls.phone.dirty">Sdt không hợp lệ</li>
+								</ul>
 							</div>
+
 							<div class="form-group">
-								<button type="submit" name="btnLogin" class="btn btn-success btn-lg btn-block"><i class="fa fa-pencil-square" aria-hidden="true"></i> Đăng ký</button>
+								<button [disabled]="processing || !emailValid" type="submit" name="btnLogin" class="btn btn-success btn-lg btn-block"><i class="fa fa-pencil-square" aria-hidden="true"></i> Đăng ký</button>
 							</div>
 							<a routerLink="/login">Đăng nhập(Nếu đã có tài khoản)</a>
 						</form>

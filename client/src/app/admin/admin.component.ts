@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef } from '@angular/core';
+
+declare var jQuery:any;
+
 
 @Component({
   selector: 'app-admin',
@@ -10,6 +13,10 @@ export class AdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // $(function() {
+    //   jQuery('#side-menu').metisMenu();
+    // });
+    jQuery('#side-menu').metisMenu();
   }
 
 }

@@ -8,6 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { AuthServiceService } from './service/auth-service.service';
+
+
 
 @NgModule({
   declarations: [
@@ -21,9 +24,12 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
-  providers: [],
+  providers: [
+    AuthServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
