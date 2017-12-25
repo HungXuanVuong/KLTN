@@ -167,6 +167,36 @@ const checkToken = (req, res, next) =>{
     }
 };
 
+const getAllUsers = function(req, res){
+    UserModel.find({}, function(err, users){
+        if(err){
+            res.json({success: false, message: 'Lỗi: ' + err});
+        }else{
+            if(!users){
+                res.json({success: false, message: 'Rỗng'});
+            }else{
+                var count = 0;
+                count = users.length;
+                res.json({success: true, countusers: count, listUsers: users});
+            }
+        }
+    });
+}
+
+const getTop4Users = function(req, res){
+    UserModel.find({}).sort({uvNumber: 'desc'}).limit(4).exec(function(err, users){
+        if(err){
+            res.json({success: false, message: err});
+        }else{
+            if(!users){
+                res.json({success: false, message: 'Danh sách rỗng'});
+            }else{
+                res.json({success: true, listUsers: users});
+            }
+        }
+    });
+};
+
 module.exports = {
     register,
     login,
@@ -174,5 +204,7 @@ module.exports = {
     getUserProfile,
     updatePasswordUser,
     findUserById,
-    checkToken
+    checkToken,
+    getAllUsers,
+    getTop4Users
 }

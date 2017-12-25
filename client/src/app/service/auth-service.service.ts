@@ -67,7 +67,13 @@ export class AuthServiceService {
    
   }
   getAllUser() {
-    return this.http.get(this.domain + 'user').map(res => res.json());
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'authentication/user/getall').map(res => res.json());
+  }
+
+  getTop4User() {
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'authentication/user/gettop4').map(res => res.json());
   }
 
   changePassword(user){

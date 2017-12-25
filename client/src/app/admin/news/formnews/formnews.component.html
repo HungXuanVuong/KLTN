@@ -1,3 +1,119 @@
-<p>
-  formnews works!
-</p>
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">Thêm tin tuyển dụng </h1>
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Đăng Tin Tuyển Dụng
+      </div>
+      <div class="panel-body">
+        <div class="row">
+
+          <form role="form">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="cv" class="col-md-2 control-label">Hình</label>
+                <div class="col-md-10">
+                  <input type="file" id="cv">
+                  <span class="help-block">Định dạng: .JPG, .PNG</span>
+                  <span class="help-block">Kích thước tối đa: 2MB</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="name" class="control-label">Tiêu đề</label>
+                <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
+              </div>
+              <div class="form-group">
+                  <label for="name" class="control-label">Địa điểm</label>
+                  <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
+                </div>
+                <div class="form-group">
+                    <label for="name" class="control-label">Lương</label>
+                    <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
+                  </div>
+              <div class="form-group">
+                <label for="inputtt" class="control-label">Nội dung tin tóm tắt</label>
+                <textarea class="form-control" placeholder="Nhập nội dụng tóm tắt..."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="ngaydang" class="control-label">Ngày đăng</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input class="form-control" id="date" name="date" type="text" />
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <label for="ngaydang" class="control-label">Hạn nộp</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input class="form-control" id="date" name="date" type="text" />
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <label for="vitri" class="control-label">Vị trí tuyển dụng</label>
+                  <input type="text" class="form-control" id="vitri" placeholder="Nhập vị trí">
+              </div>
+
+              <!-- <div class="form-group">
+                <label for="diadiem" class="control-label">Địa điểm</label>
+                  <input type="text" class="form-control" id="diadiem" placeholder="Nhập địa điểm">
+              </div> -->
+
+              <div class="form-group">
+                <label for="soluong" class="control-label">Số lượng</label>
+                  <input type="text" class="form-control" id="soluong" placeholder="Nhập số lượng">
+              </div>
+
+              <div class="form-group">
+                <label for="motacv" class="control-label">Nội dung </label>
+                  <textarea class="form-control"placeholder="Nhập nội dung" ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="loaics" class="control-label">Loại chính sách point thưởng</label>
+                  <select class="form-control">
+                  <option>Chính sách 1</option>
+                  <option>Chính sách 2</option>
+                  <option>Chính sách 3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="tinhtrang" class="control-label">Tình trạng </label>
+                  <input type="text" class="form-control" id="tinhtrang" placeholder="Nhập tình trạng">
+              </div>
+
+              <div class="form-group">
+
+                <div class="pull-left">
+                  <input class="btn btn-success" value="Trở lại" routerLink="/admin/listnews">
+                </div>
+                <div class="pull-right">
+
+                  <input class="btn btn-default" type="submit" value="Xóa trống" id="clear_message">
+                  <input class="btn btn-default" type="submit" value="Đăng tin" id="send_message">
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <!-- /.row (nested) -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->

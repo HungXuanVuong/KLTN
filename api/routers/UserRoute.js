@@ -14,15 +14,24 @@ router.get('/checkEmail/:email', UserController.checkEmail);
 
 
 router.post('/login', UserController.login);
-router.use(UserController.checkToken);
+
+
+router.route('/user/getall')
+      .get(UserController.getAllUsers);
+
+router.route('/user/gettop4')
+      .get(UserController.getTop4Users);
 
 router.route('/user/:id')
-.get(UserController.findUserById)
-.put(UserController.updatePasswordUser);
+      .get(UserController.findUserById)
+      .put(UserController.updatePasswordUser);
 
 router.route('/edit')
-.put(UserController.updatePasswordUser);
+      .put(UserController.updatePasswordUser);
 
- router.get('/profile', UserController.getUserProfile);
+router.use(UserController.checkToken);
+router.get('/profile', UserController.getUserProfile);
+
+
 
 module.exports = router;

@@ -50,7 +50,9 @@ app.get('/', (req, res) => {
 /*1. UserRouter */
 const UserRouter = require('./api/routers/UserRoute');
 app.use('/authentication', UserRouter);
-
+/*2. NewsRouter */
+const NewsRouter = require('./api/routers/NewsRoute');
+app.use('/news', NewsRouter);
 
 app.listen(port, function(){
     console.log('listening on port : ' + port);

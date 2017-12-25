@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from '../../service/auth-service.service';
+
+
 
 @Component({
   selector: 'app-jobdashboad',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JobdashboadComponent implements OnInit {
 
-  constructor() { }
+  user;
+  urlHinh;
+  username;
+  point;
+  uvNumber;
+
+  constructor(
+    private authService: AuthServiceService
+  ) { }
 
   ngOnInit() {
+    this.authService.getProfile().subscribe(data =>{
+      this.urlHinh = data.user.urlHinh;
+      this.username = data.user.username;
+      this.point = data.user.point;
+      this.uvNumber = data.user.uvNumber;
+    });
   }
 
 }

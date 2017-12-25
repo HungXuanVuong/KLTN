@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     this.authService.getProfile().subscribe(profile => {
       if(profile){
         this.users = profile.user;
-        console.log(this.users);
+        //console.log(this.users);
         this.role = profile.user.role;
        //  console.log(profile.user.role);
       }else{

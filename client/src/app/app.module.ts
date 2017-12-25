@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AuthServiceService } from './service/auth-service.service';
+import { NewsService } from './service/news.service';
 
 
 
@@ -28,7 +29,8 @@ import { AuthServiceService } from './service/auth-service.service';
 
   ],
   providers: [
-    AuthServiceService
+    AuthServiceService,
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

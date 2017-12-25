@@ -11,10 +11,19 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard'},
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
+            //catagory
+            { path: 'listcatagory', loadChildren: './catagory/listcatagory/listcatagory.module#ListcatagoryModule'},
+            { path: 'formcatagory', loadChildren: './catagory/formcatagory/formcatagory.module#FormcatagoryModule'},
+            { path: 'editcatagory', loadChildren: './catagory/editcatagory/editcatagory.module#EditcatagoryModule'},
+            //product
+            { path: 'listproduct', loadChildren: './product/listproduct/listproduct.module#ListproductModule'},
+            { path: 'formproduct', loadChildren: './product/formproduct/formproduct.module#FormproductModule'},
+            { path: 'editproduct', loadChildren: './product/editproduct/editproduct.module#EditproductModule'},
             //user
             { path: 'listuser', loadChildren: './users/listuser/listuser.module#ListuserModule'},
             { path: 'formuser', loadChildren: './users/formuser/formuser.module#FormuserModule'},
             { path: 'edituser', loadChildren: './users/edituser/edituser.module#EdituserModule'},
+            
             //shared
             { path: 'listshared', loadChildren: './pointshared/listshared/listshared.module#ListsharedModule'},
             { path: 'formshared', loadChildren: './pointshared/formshared/formshared.module#FormsharedModule'},
@@ -23,6 +32,7 @@ const routes: Routes = [
             { path: 'listnews', loadChildren: './news/listnews/listnews.module#ListnewsModule'},
             { path: 'formnews', loadChildren: './news/formnews/formnews.module#FormnewsModule'},
             { path: 'editnews', loadChildren: './news/editnews/editnews.module#EditnewsModule'},
+            { path: 'listuv', loadChildren: './news/listuv/listuv.module#ListuvModule'},
             // candidate
             { path: 'listcandidate', loadChildren: './candidate/listcandidate/listcandidate.module#ListcandidateModule'},
             { path: 'formcandidate', loadChildren: './candidate/formcandidate/formcandidate.module#FormcandidateModule'},
