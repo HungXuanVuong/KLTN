@@ -12,7 +12,7 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'home'},
             { path: 'home', loadChildren: './home/home.module#HomeModule'},
-            { path: 'chitiettin', loadChildren: './chitiettin/chitiettin.module#ChitiettinModule'},
+            { path: 'chitiettin/:id', loadChildren: './chitiettin/chitiettin.module#ChitiettinModule'},
             { path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
             { path: 'formgioithieu', loadChildren: './formgioithieu/formgioithieu.module#FormgioithieuModule'},
             { path: 'shopping', loadChildren: './shopping/shopping.module#ShoppingModule'},

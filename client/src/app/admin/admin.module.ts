@@ -13,6 +13,7 @@ import { ListproductComponent } from './product/listproduct/listproduct.componen
 import { FormproductComponent } from './product/formproduct/formproduct.component';
 import { EditproductComponent } from './product/editproduct/editproduct.component';
 import { ListuvComponent } from './news/listuv/listuv.component';
+import { FormupdateuvComponent } from './news/formupdateuv/formupdateuv.component';
 
 
 @NgModule({

@@ -33,6 +33,7 @@ const routes: Routes = [
             { path: 'formnews', loadChildren: './news/formnews/formnews.module#FormnewsModule'},
             { path: 'editnews', loadChildren: './news/editnews/editnews.module#EditnewsModule'},
             { path: 'listuv', loadChildren: './news/listuv/listuv.module#ListuvModule'},
+            { path: 'formupdateuv', loadChildren: './news/formupdateuv/formupdateuv.module#FormupdateuvModule'},
             // candidate
             { path: 'listcandidate', loadChildren: './candidate/listcandidate/listcandidate.module#ListcandidateModule'},
             { path: 'formcandidate', loadChildren: './candidate/formcandidate/formcandidate.module#FormcandidateModule'},

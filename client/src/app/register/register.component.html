@@ -1,8 +1,11 @@
 <div class="container-register">
 	<div class="container">
+		<div class="row" style="padding-top:5px;">
+			<a routerLink="/home"><span><i class="fa fa-home fa-3x"></i></span></a>
+		</div>
 		<div class="row">
 			<!--row-->
-			<div class="col-md-4 col-md-offset-4" style="margin-top: 20px;">
+			<div class="col-md-4 col-md-offset-4">
 				<!--col-->
 				<div class="panel panel-default">
 					<!--pan-->
@@ -42,14 +45,15 @@
 									<li *ngIf="form.errors?.matchingPassword && form.controls.confirm.dirty">Password không chính xác</li>
 								</ul>
 							</div>
-							<div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty), 'has-success': !form.controls.username.errors}" class="form-group">
+							<div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty), 'has-success': !form.controls.username.errors}"
+							 class="form-group">
 
 								<!--form-->
 								<input type="username" name="" class="form-control" placeholder="Nhập vào họ và tên..." formControlName="username">
 							</div>
-							<div [ngClass]="{'has-error': (form.controls.dateOfBirth.errors && form.controls.dateOfBirth.dirty), 'has-success': !form.controls.dateOfBirth.errors}" class="form-group">
-								<my-date-picker name="dateOfBirth" [options]="myDatePickerOptions" placeholder="Nhập vào ngày sinh..."
-								formControlName="dateOfBirth"></my-date-picker>
+							<div [ngClass]="{'has-error': (form.controls.dateOfBirth.errors && form.controls.dateOfBirth.dirty), 'has-success': !form.controls.dateOfBirth.errors}"
+							 class="form-group">
+								<my-date-picker name="dateOfBirth" [options]="myDatePickerOptions" placeholder="Nhập vào ngày sinh..." formControlName="dateOfBirth"></my-date-picker>
 							</div>
 							<div class="form-group">
 								<label>Giới tính(*)</label>
@@ -82,9 +86,6 @@
 						</form>
 					</div>
 					<!--pan-->
-
-					<div class="label">Form đăng kýp</div>
-					<div class="label2"></div>
 				</div>
 				<!--pan-->
 			</div>

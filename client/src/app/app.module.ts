@@ -10,12 +10,17 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AuthServiceService } from './service/auth-service.service';
 import { NewsService } from './service/news.service';
+import { Register1Component } from './register1/register1.component';
+import { FogotpasswordComponent } from './fogotpassword/fogotpassword.component';
+
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    
     // HeaderComponent
 
   ],

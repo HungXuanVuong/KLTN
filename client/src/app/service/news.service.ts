@@ -17,5 +17,11 @@ export class NewsService {
   getAllNews() {
     return this.http.get(this.domain + 'news/getall').map(res => res.json());
   }
-  
+  getTop6News() {
+    return this.http.get(this.domain + 'news/gettop6').map(res => res.json());
+  }
+
+  getSingleNews(id){
+    return this.http.get(this.domain + 'news/news/' + id).map( res => res.json());
+  }
 }

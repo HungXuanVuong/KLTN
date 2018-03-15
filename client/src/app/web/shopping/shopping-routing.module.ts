@@ -5,7 +5,7 @@ const routes: Routes = [
     { 
         path: '', component: ShoppingComponent,
         children: [
-            { path: '', redirectTo: 'noel'},
+            { path: '', redirectTo: 'gau'},
             { path: 'noel', loadChildren: './noel/noel.module#NoelModule'},
             { path: 'gau', loadChildren: './gau/gau.module#GauModule'}
         ]

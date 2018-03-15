@@ -1,7 +1,8 @@
 .container-register{
-  height: 100vh;
+  height: 150vh;
   width: 100vw;
-  background: url("./../../assets/admin/img/background1.jpg"); 
+  /* background: url("./../../assets/web/img/fa.jpg"); */
+  background: #848484;
   background-size: cover; 
 
 }

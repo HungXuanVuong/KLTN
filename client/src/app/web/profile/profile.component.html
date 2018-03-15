@@ -7,39 +7,40 @@
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="./../../../assets/web/img/imguser/{{urlHinh}}" class="img-circle img-responsive"> </div>
+              <!-- ./../../../assets/web/img/imguser/{{user.urlHinh}} -->
+            <div class="col-md-3 col-lg-3 col-sm-3" align="center"> <img alt="User Pic" [src]="netImage" class="img-circle img-responsive"> </div>
             <!-- <input type="file" id="selectImg" style="padding-top:80px;"> -->
             <table class="table table-user-information">
               <tbody>
                 <tr>
                   <td>Họ và tên</td>
-                  <td>{{username}}</td>
+                  <td>{{user.username}}</td>
                 </tr>
                 <tr>
                   <td>Ngày tham gia</td>
-                  <td>{{register_date}}</td>
+                  <td>{{user.register_date | date: 'MM/dd/yyyy'}}</td>
                 </tr>
                 <tr>
                   <td>Ngày sinh</td>
-                  <td>{{dateOfBirth}}</td>
+                  <td>{{user.dateOfBirth | date: 'MM/dd/yyyy'}}</td>
                 </tr>
 
                 <!-- <tr> -->
                 <tr>
                   <td>Giới tính</td>
-                  <td>{{sex}}</td>
+                  <td>{{user.sex}}</td>
                 </tr>
                 <tr>
                   <td>Địa chỉ</td>
-                  <td>{{address}}</td>
+                  <td>{{user.address}}</td>
                 </tr>
                 <tr>
                   <td>Email</td>
-                  <td><a href="#">{{email}}</a></td>
+                  <td><a href="#">{{user.email}}</a></td>
                 </tr>
                 <tr>
                   <td>Số điện thoại</td>
-                  <td>{{phone}}</td>
+                  <td>{{user.phone}}</td>
                 </tr>
                 <!-- </tr> -->
                 <tr>

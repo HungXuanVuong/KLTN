@@ -6,6 +6,9 @@ const jsonwebtoken = require('jsonwebtoken');
 const path = require('path');
 const cors = require('cors');
 
+const passport = require('passport');
+var social = require('./api/controllers/PassportSocial')(app, passport);
+
 const config = require('./api/config/db');
 
 // init mongodb
