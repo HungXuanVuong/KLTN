@@ -10,6 +10,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AuthServiceService } from './service/auth-service.service';
 import { NewsService } from './service/news.service';
+import { GiftService } from './service/gift.service';
+import { TypeGiftService } from './service/type-gift.service';
 
 
 
@@ -30,7 +32,9 @@ import { NewsService } from './service/news.service';
   ],
   providers: [
     AuthServiceService,
-    NewsService
+    NewsService,
+    GiftService,
+    TypeGiftService
   ],
   bootstrap: [AppComponent]
 })

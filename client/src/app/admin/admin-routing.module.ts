@@ -15,6 +15,7 @@ const routes: Routes = [
             { path: 'listcatagory', loadChildren: './catagory/listcatagory/listcatagory.module#ListcatagoryModule'},
             { path: 'formcatagory', loadChildren: './catagory/formcatagory/formcatagory.module#FormcatagoryModule'},
             { path: 'editcatagory', loadChildren: './catagory/editcatagory/editcatagory.module#EditcatagoryModule'},
+            { path: 'deletecatagory/:id', loadChildren: './catagory/deletecatagory/deletecatagory.module#DeletecatagoryModule'},
             //product
             { path: 'listproduct', loadChildren: './product/listproduct/listproduct.module#ListproductModule'},
             { path: 'formproduct', loadChildren: './product/formproduct/formproduct.module#FormproductModule'},

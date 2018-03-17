@@ -7,6 +7,7 @@ import { ShoppingComponent } from './shopping.component';
 import { SlidebarComponent } from './slidebar/slidebar.component';
 import { NoelComponent } from './noel/noel.component';
 import { GauComponent } from './gau/gau.component';
+import { ChitietspComponent } from './chitietsp/chitietsp.component';
 
 @NgModule({
     imports: [

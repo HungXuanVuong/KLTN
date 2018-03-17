@@ -29,10 +29,9 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr class="odd gradeX">
-                          
-                          <td>Sinh nhật</td>
-                          <td>Được áp dụng quanh năm. Gồm những sản phẩm như đồng hồ, gấu bông,...Bạn có thể dùng để tặng người thân trong ngày sinh nhật của họ.</td>
+                    <tr *ngFor="let type of typegift;">
+                          <td>{{ type.type_name }}</td>
+                          <td>{{ type.type_infor }}</td>
                           <td class="center">
                               <div class="dropdown text-center">
                                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -41,53 +40,13 @@
                                   <ul class="dropdown-menu dropdown-user">
                                       <li><a routerLink="/admin/editcatagory"><i class="fa fa-pencil fa-fw"></i> Edit</a>
                                       </li>
-                                      <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
+                                      <li><a [routerLink]="['/admin/deletetypegift/', type._id]"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
                                       </li>
                                   </ul>
                               <!-- /.dropdown-user -->
                               </div>
                           </td>
                       </tr>
-                      <tr class="even gradeC">
-                          
-                          <td>Noel</td>
-                          <td>Được áp dụng vào tháng 12. Sản phẩm gồm quần áo, đồng hồ, vật trang trí,... được dùng cho chủ đề giáng sinh. Bạn có thể tặng bạn bè, người thân trong dịp giáng sinh.</td>
-                          <td class="center">
-                              <div class="dropdown text-center">
-                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                      <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
-                                  </a>
-                                  <ul class="dropdown-menu dropdown-user">
-                                      <li><a routerLink="/admin/editcatagory"><i class="fa fa-pencil fa-fw"></i> Edit</a>
-                                      </li>
-                                      <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
-                                      </li>
-                                  </ul>
-                              <!-- /.dropdown-user -->
-                              </div>
-                          </td>
-                      </tr>
-                      <tr class="odd gradeA">
-                          
-                         <td>Valentine</td>
-                          <td>Được áp dụng trong 2 tháng 1,2. Bạn có thể dành tặng người yêu, vợ trong ngày valentine ngọt ngào.</td>
-                          <td class="center">
-                              <div class="dropdown text-center">
-                                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                      <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
-                                  </a>
-                                  <ul class="dropdown-menu dropdown-user">
-                                      <li><a routerLink="/admin/editcatagory"><i class="fa fa-pencil fa-fw"></i> Edit</a>
-                                      </li>
-                                      <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
-                                      </li>
-                                  </ul>
-                              <!-- /.dropdown-user -->
-                              </div>
-                          </td>
-                      </tr>
-                      
-                      
                   </tbody>
               </table>
               <!-- /.table-responsive -->
