@@ -11,28 +11,51 @@
       <div class="panel-heading">
         Form nhập thông tin
       </div>
+
       <div class="panel-body">
+          <div class="row show-hide-message">
+              <div [ngClass]="messageClass">
+                {{message}}
+              </div>
+    
+            </div>
         <div class="row">
 
-          <form role="form">
+          <form [formGroup]="form" (submit)="addTypeGift()" role="form">
             <div class="col-lg-12">
               <div class="form-group">
-                <label for="tentheloai">Tên thể loại</label>
-                <input class="form-control" placeholder="Nhập vào tên thể loại" name="tentheloai">
+                <label>Tên thể loại</label>
+                <div [ngClass]="{'has-error': (form.controls.type_name.errors && form.controls.type_name.dirty), 'has-success': !form.controls.type_name.errors}">
+                    <input type="text" name="type_name" class="form-control" autocomplete="off" placeholder="Enter text" formControlName="type_name"
+                    />
+                    <!-- Validation -->
+                    <ul class="help-block">
+                      <li *ngIf="form.controls.type_name.errors?.required && form.controls.type_name.dirty">Trường này bắt buộc nhập</li>
+                      <li *ngIf="form.controls.type_name.errors?.minlength && form.controls.type_name.dirty || form.controls.type_name.errors?.maxlength && form.controls.type_name.dirty ">ký tự ít nhất là 5, không quá 50 ký tự</li>
+  
+                    </ul>
+                  </div>
+  
               </div>
 
               <div class="form-group">
                 <label for="mota">Mô tả</label>
-                
-                <textarea class="form-control" name="description" placeholder="Mô tả"></textarea>
+                <div [ngClass]="{'has-error': (form.controls.type_infor.errors && form.controls.type_infor.dirty), 'has-success': !form.controls.type_infor.errors}">
+                    <textarea name="type_infor" rows="8" cols="80" class="form-control" placeholder="*Enter text" formControlName="type_infor"></textarea>
+                    <ul class="help-block">
+                      <li *ngIf="form.controls.type_infor.errors?.required && form.controls.type_infor.dirty">Trường này bắt buộc nhập</li>
+                      <li *ngIf="form.controls.type_infor.errors?.minlength && form.controls.type_infor.dirty || form.controls.type_infor.errors?.maxlength && form.controls.type_infor.dirty ">ký tự ít nhất là 50, không quá 500 ký tự</li>
+  
+                    </ul>
+                  </div>
               </div>
               <div class="form-group">
                 <div class="pull-left">
-                  <input class="btn btn-success" routerLin="/admin/listcatagory" value="Trở lại">
+                  <button class="btn btn-success" routerLink ="/admin/listcatagory"> Trở vể </button>
                 </div>
                 <div class="pull-right">
-                  <button type="submit" class="btn btn-default">Lưu</button>
-                  <button type="reset" class="btn btn-default">Xóa trống</button>
+                  <button type="submit" class="btn btn-default"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
+                  <button type="reset" (onclick)="clearAllFields()" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i> Xóa trống</button>
                 </div>
               </div>
 

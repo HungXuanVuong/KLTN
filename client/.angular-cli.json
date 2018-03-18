@@ -23,7 +23,8 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/metismenu/dist/metisMenu.js"
+        "../node_modules/metismenu/dist/metisMenu.js",
+        "../node_modules/a/3.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

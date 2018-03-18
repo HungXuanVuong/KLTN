@@ -10,17 +10,14 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { AuthServiceService } from './service/auth-service.service';
 import { NewsService } from './service/news.service';
-import { Register1Component } from './register1/register1.component';
-import { FogotpasswordComponent } from './fogotpassword/fogotpassword.component';
-
-
+import { GiftService } from './service/gift.service';
+import { TypeGiftService } from './service/type-gift.service';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    
     // HeaderComponent
 
   ],
@@ -35,7 +32,9 @@ import { FogotpasswordComponent } from './fogotpassword/fogotpassword.component'
   ],
   providers: [
     AuthServiceService,
-    NewsService
+    NewsService,
+    GiftService,
+    TypeGiftService
   ],
   bootstrap: [AppComponent]
 })

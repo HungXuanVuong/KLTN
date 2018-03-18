@@ -1,20 +1,10 @@
 .container-login{
     height: 100vh;
     width: 100vw;
-    /* background: url("./../../assets/web/img/fa.jpg"); */
-    background:#848484;
+    background: url("./../../assets/web/img/lock.jpg");
     background-size: cover; 
 
 }
-
-.showerr {
-  height: 30px;
-  /* background: #DF0101; */
-  text-align: center;
-  color: white;
-  font-size: 18px;
-}
-
 .panel{
       border: 0px;
       background: rgba(0,0,0,0.5);

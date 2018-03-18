@@ -5,9 +5,10 @@ const routes: Routes = [
     { 
         path: '', component: ShoppingComponent,
         children: [
-            { path: '', redirectTo: 'gau'},
+            { path: '', redirectTo: 'noel'},
             { path: 'noel', loadChildren: './noel/noel.module#NoelModule'},
-            { path: 'gau', loadChildren: './gau/gau.module#GauModule'}
+            { path: 'gau', loadChildren: './gau/gau.module#GauModule'},
+            { path: 'chitietsp', loadChildren: './chitietsp/chitietsp.module#ChitietspModule'}
         ]
     }
 ];

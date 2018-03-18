@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   messageClass; 
   message;
   processing = false;
-  messageRedirect = true;
 
   constructor(
     private formBuilder: FormBuilder,

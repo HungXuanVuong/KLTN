@@ -6,9 +6,6 @@ const jsonwebtoken = require('jsonwebtoken');
 const path = require('path');
 const cors = require('cors');
 
-const passport = require('passport');
-var social = require('./api/controllers/PassportSocial')(app, passport);
-
 const config = require('./api/config/db');
 
 // init mongodb
@@ -56,6 +53,12 @@ app.use('/authentication', UserRouter);
 /*2. NewsRouter */
 const NewsRouter = require('./api/routers/NewsRoute');
 app.use('/news', NewsRouter);
+/*3. GiftRouter */
+const GiftRouter = require('./api/routers/GiftRoute');
+app.use('/gift', GiftRouter);
+/*4. Type_giftRouter */
+const Type_giftRouter = require('./api/routers/Type_giftRoute');
+app.use('/typegift', Type_giftRouter);
 
 app.listen(port, function(){
     console.log('listening on port : ' + port);
