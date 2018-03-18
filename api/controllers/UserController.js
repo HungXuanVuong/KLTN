@@ -6,8 +6,8 @@ const Custompassword = require('../Helper/Custompassword');
 
 const nodemailer = require('nodemailer');
 
-email = process.env.MAILER_EMAIL_ID || 'hungxuanvuong@gmail.com',
-    pass = process.env.MAILER_PASSWORD || '0947925583Hung';
+email = process.env.MAILER_EMAIL_ID || 'devmrhung@gmail.com',
+    pass = process.env.MAILER_PASSWORD || 'Hunglv2018';
 
 const client = nodemailer.createTransport({
     service: 'Gmail',
