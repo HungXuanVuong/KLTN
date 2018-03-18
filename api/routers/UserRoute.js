@@ -9,6 +9,8 @@ const UserController = require('../controllers/UserController');
 
 router.post('/register', UserController.register);
 
+router.post('/registerwithMail', UserController.registerWithMail);
+
 
 router.get('/checkEmail/:email', UserController.checkEmail);
 

@@ -48,7 +48,7 @@
 <div id="feature2">
     <div class="container">
         <div class="row">
-            <div *ngFor="let new of news;" class="col-lg-4">
+            <div *ngFor="let new of news | paginate: { itemsPerPage:6, currentPage: p}" class="col-lg-4">
                 <div class="panel panel-primary">
                     <div class="panel-heading no-padding center">
                         <p class="text-center" style="color:white; font-size:16px; ">{{new.title}}</p>
@@ -106,10 +106,7 @@
             <!-- .col-lg-6 -->
 
             <div class="col-lg-12">
-                <a href="#" class="load-questions" id="load-more-noanswers">
-                             <img src="#" id="noanswers-gif" style="display: none;"> 
-                             Tải thêm
-                           </a>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
             <!-- .col-lg-12 -->
         </div>
@@ -123,8 +120,24 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header heading-secondary-a" style="color:#2ECCFA">Gương mặt tiêu biểu tháng {{month}}</h2>
-            </div>
+
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <h2 class="page-header heading-secondary-a">Gương mặt tiêu biểu tháng {{month}}</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div *ngFor="let user of users" class="col-md-3">
+                            <div class="block block-light block-center block-image block-border">
+                                <img src="./../../../assets/web/img/imguser/{{user.urlHinh}}">
+                                <h4>{{user.username}}</h4>
+                                <p>
+                                    Point tích lũy: {{user.point}} <br /> Đã giới thiệu: {{user.uvNumber}}
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            <!-- <h2 class="page-header heading-secondary-a" style="color:#2ECCFA">Gương mặt tiêu biểu tháng {{month}}</h2>
             <div *ngFor="let user of users" class="col-md-3">
                 <div class="block block-light block-center block-image block-border">
                     <img src="./../../../assets/web/img/imguser/{{user.urlHinh}}">
@@ -132,9 +145,10 @@
                     <p>
                         Point tích lũy: {{user.point}} <br /> Đã giới thiệu: {{user.uvNumber}}
                 </div>
-            </div>
-            <!-- .row -->
-        </div>
-        <!-- .container -->
-    </div>
+            </div> -->
+            
+          </div>  <!--col-12 -->
+        </div> <!-- .row -->
+    </div><!-- .container -->
+</div>
     <!-- #feature3 -->
