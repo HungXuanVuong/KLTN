@@ -1,3 +1,4 @@
+import { FilterJobPipe } from './pipeSearchNewsByJob.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,14 +10,16 @@ import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         HomeRoutingModule,
         ReactiveFormsModule,
         NgxPaginationModule,
-        FormsModule
+        
         
     ],
     declarations: [
-        HomeComponent
+        HomeComponent,
+        FilterJobPipe
     ]
 })
 

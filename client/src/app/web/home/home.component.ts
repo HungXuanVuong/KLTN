@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { NewsService } from '../../service/news.service';
+import { User } from "../../models/user";
+import { News } from "../../models/news";
 
 
 
@@ -11,8 +13,13 @@ import { NewsService } from '../../service/news.service';
 })
 export class HomeComponent implements OnInit {
 
-  users;
-  news;
+  month = 0;
+  news: Array<News> = [];
+  users: Array<User> = [];
+  user: User;
+
+  searchKey = "";
+  searchName = "";
 
   constructor(
     private authService: AuthServiceService,
@@ -20,15 +27,33 @@ export class HomeComponent implements OnInit {
 
   ) { }
 
-  ngOnInit() {
+  OnclickSearch(){
+    this.searchKey = this.searchName;
+  }
 
+  ngOnInit() {
     this.newsService.getAllNews().subscribe(data =>{
       this.news = data.listNews;
       console.log(this.news);
     });
     this.authService.getTop4User().subscribe(data =>{
+      //this.users = data.listUsers;
       this.users = data.listUsers;
       console.log(this.users);
+      var d = new Date();
+      this.month = d.getMonth();
+      if(this.month == 0){
+        this.month = 12;
+      }
+      console.log(this.month);
+    });
+
+    this.authService.getProfile().subscribe(profile => {
+      if(profile){
+        this.user = profile.user;
+      }else{
+        return;
+      }
     });
 
   }

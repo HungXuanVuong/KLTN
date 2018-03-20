@@ -77,7 +77,7 @@ const userModelSchema = new Schema({
     sex: {type: String},
     address: {type: String},
     phone: {type: String},
-    urlHinh: {type: String},
+    urlHinh: {type: String, default: "4.png"},
     cvFile: {type: String},
     point: {type: Number},
     uvNumber: {type: Number, default: 0},

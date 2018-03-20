@@ -16,7 +16,7 @@
 								{{message}}
 							</div>
 						</div>
-						<form [formGroup]="form">
+						<form [formGroup]="form" (submit)="onRegisterSubmit()">
 
 							<div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty) || (!emailValid && form.controls.email.dirty), 'has-success': !form.controls.email.errors && emailValid}"
 							 class="form-group">

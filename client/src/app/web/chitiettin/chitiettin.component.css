@@ -4,7 +4,7 @@
     /* width: 100vw; */
 	padding: 150px 0;
 	text-align: center;
-	/* background: #63AFC7 url('./../../../assets/web/img/imgtin/7.jpg') top no-repeat; */
+	/* background: #63AFC7 url('./../../../assets/web/img/imgtin/hometd3.jpg'); */
 	background-size: cover;
 	margin-bottom: 0;
 }
@@ -17,10 +17,16 @@
 	color: #FFFFFF;
 	border: 1px solid #FFFFFF;
 }
+.img_Chitiet{
+
+}
 #calltoaction .jumbotron .btn-feature:hover {
 	color: #F1F1F1;
 }
-.content .row {
+/* .content .row {
 	padding-bottom: 5px;
 	font-size: 20px;
+} */
+.chitiet{
+	padding-top: 80px;
 }

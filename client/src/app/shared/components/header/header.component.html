@@ -9,18 +9,18 @@
       </button>
       <a class="navbar-brand" routerLink="/home"><img src="./../../../../assets/web/img/HKGroup.png" alt="Dispute Bills" ></a>
     </div>
-    <div *ngIf="users">
+    <div *ngIf="user">
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">
 
-          <li *ngIf="role==='admin'">
-            <a routerLink='/admin'>Admin</a>
+          <li *ngIf="user.role ==='admin'">
+            <a routerLink='/admin'>Quản trị</a>
           </li>
           <li>
             <a routerLink="/jobdashboard">Job dashboad</a>
           </li>
           <li>
-            <a routerLink='/shopping'>Shopping</a>
+            <a routerLink='/shopping'>Đổi quà</a>
           </li>
 
           <li class="dropdown">
@@ -46,14 +46,14 @@
     <ng-container *ngIf="foo >= 4 && foo <= 6; then t46"></ng-container>
     <ng-container *ngIf="foo >= 7; else t7"></ng-container> -->
 
-    <div *ngIf="!users">
+    <div *ngIf="!user">
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a routerLink='/shopping'>Shopping</a>
+            <a routerLink='/shopping'>Đổi quà</a>
           </li>
           <li><a routerLink="/login">Đăng nhập</a></li>
-          <a routerLink="/register" class="btn btn-success navbar-btn navbar-right">Đăng ký</a>
+          <a routerLink="/register1" class="btn btn-success navbar-btn navbar-right">Đăng ký</a>
         </ul>
       </div>
     </div>

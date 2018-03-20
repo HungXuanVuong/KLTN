@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthServiceService } from '../service/auth-service.service';
 
 @Component({
   selector: 'app-register1',
@@ -16,7 +17,9 @@ export class Register1Component implements OnInit {
   emailValid;
   emailMessage;
 
-  constructor( private formBuilder: FormBuilder,
+  constructor( 
+    private formBuilder: FormBuilder,
+    private authService: AuthServiceService,
     private router: Router
   ) { this.createForm() }
 
@@ -55,6 +58,54 @@ validateEmail(controls) {
   } else {
     return { 'validateEmail': true }
   }
+}
+
+
+checkEmail() {
+  this.authService.checkEmail(this.form.get('email').value).subscribe(data => {
+    if (!data.success) {
+      // set trang thai
+      this.emailValid = false;
+      // set message api
+      this.emailMessage = data.message;
+    } else {
+      this.emailValid = true;
+      this.emailMessage = data.message;
+    }
+  });
+}
+disableForm() {
+  this.form.controls['email'].disable();
+  this.form.controls['username'].disable();
+}
+
+enableForm() {
+  this.form.controls['email'].enable();
+  this.form.controls['username'].enable();
+}
+onRegisterSubmit() {
+  
+  this.processing = true;
+  this.disableForm();
+  const user = {
+    email: this.form.get('email').value,
+    username: this.form.get('username').value,
+    phone: this.form.get('phone').value
+  }
+  this.authService.registerUserWithEmail(user).subscribe(data => {
+    if (!data.success) {
+      this.messageClass = "alert alert-danger";
+      this.message = data.message;
+      this.processing = false;
+      this.enableForm();
+    } else {
+      this.messageClass = "alert alert-success";
+      this.message = data.message;
+      setTimeout(() => {
+        this.router.navigate(['/login']);
+      }, 2000);
+    }
+  });
 }
   ngOnInit() {
     

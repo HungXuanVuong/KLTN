@@ -114,6 +114,7 @@ const registerWithMail = function (req, res) {
                         client.sendMail(email, function (err, info) {
                             if (err) {
                                 console.log(err); // If error with sending e-mail, log to console/terminal
+                                res.json({ success: false, message: 'Kiểm tra lại kết nối mạng ', err });
                             } else {
                                 console.log(info); // Log success message to console if sent
                                 console.log(user.email); // Display e-mail that it was sent to

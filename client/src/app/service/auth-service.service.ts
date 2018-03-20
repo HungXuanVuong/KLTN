@@ -49,6 +49,9 @@ export class AuthServiceService {
   registerUser(user) {
     return this.http.post(this.domain + 'authentication/register', user).map(res => res.json());
   }
+  registerUserWithEmail(user) {
+    return this.http.post(this.domain + 'authentication/registerwithMail', user).map(res => res.json());
+  }
 
   checkUsername(username) {
     return this.http.get(this.domain + 'authentication/checkUsername/' + username).map(res => res.json());
