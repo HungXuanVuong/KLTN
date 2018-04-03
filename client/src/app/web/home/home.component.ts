@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   RedirectUnregister(){
-    this.router.navigate(['/redirectpage'],
+    this.router.navigate(['/login'],
     {queryParams: {mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger"}});
   }
 
