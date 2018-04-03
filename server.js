@@ -59,6 +59,11 @@ app.use('/gift', GiftRouter);
 /*4. Type_giftRouter */
 const Type_giftRouter = require('./api/routers/Type_giftRoute');
 app.use('/typegift', Type_giftRouter);
+/*5. PolicyRouter */
+const PolicyRouter = require('./api/routers/PolicyRoute');
+app.use('/policy', PolicyRouter);
+
+
 
 app.listen(port, function(){
     console.log('listening on port : ' + port);

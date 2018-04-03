@@ -1,3 +1,4 @@
+import { DataTablesModule } from 'angular-datatables';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +11,8 @@ import { ListchinhsachComponent } from './listchinhsach.component';
         CommonModule,
         ListchinhsachRoutingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        DataTablesModule
 
     ],
     declarations: [

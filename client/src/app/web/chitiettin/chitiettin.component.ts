@@ -49,6 +49,10 @@ export class ChitiettinComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${image})`);
 }
 
+RedirectUnregister(){
+  this.router.navigate(['/login'],
+  {queryParams: {mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger"}});
+}
   ngOnInit() {
 
     this.currentUrl = this.activatedRoute.snapshot.params;

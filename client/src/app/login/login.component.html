@@ -1,76 +1,75 @@
-
 <div class="container-login">
-  <div class="container">
-    <div class="row" style="padding-top:5px;">
-      <a routerLink="/home"><span><i class="fa fa-home fa-3x"></i></span></a>
-    </div>
-      <!-- <div class="row showerr show-hide-message">
-          <div [ngClass]="messageClass">
-            <h5>{{message}}</h5> 
-          </div>
-        </div> -->
-    <div class="row">
-      <!--row-->
-      <div class="col-md-4 col-md-offset-4" style="padding-top: 50px;">
-        <!--col-->
-        <div class="panel panel-default">
+    <div class="container">
+      <div class="row" style="padding-top:5px;">
+        <a routerLink="/home"><span><i class="fa fa-home fa-3x"></i></span></a>
+      </div>
+        <!-- <div class="row showerr show-hide-message">
+            <div [ngClass]="messageClass">
+              <h5>{{message}}</h5> 
+            </div>
+          </div> -->
+      <div class="row">
+        <!--row-->
+        <div class="col-md-4 col-md-offset-4" style="padding-top: 50px;">
+          <!--col-->
+          <div class="panel panel-default">
+             
+            <!--pan-->
+            <h4>Đăng nhập với</h4><br>
+            <a href="/auth/facebook" target="_blank"><span><i class="fa fa-facebook"></i></span></a>
+            <a href="#"><span><i class="fa fa-google-plus"></i></span></a>
+            <br>
+            <hr>
+            <h4>Hoặc</h4>
            
-          <!--pan-->
-          <h4>Đăng nhập với</h4><br>
-          <a href="/auth/facebook" target="_blank"><span><i class="fa fa-facebook"></i></span></a>
-          <a href="#"><span><i class="fa fa-google-plus"></i></span></a>
-          <br>
-          <hr>
-          <h4>Hoặc</h4>
-         
-          <div class="panel-body">
-              <div class="row show-hide-message">
-                  <div [ngClass]="messageClass">
-                    {{message}}
+            <div class="panel-body">
+                <div class="row show-hide-message">
+                    <div [ngClass]="messageClass">
+                      {{message}}
+                    </div>
+                  </div>
+              <!--pan-->
+              <form [formGroup]="form" (submit)="onLoginSubmit()">
+                <div class="form-group">
+                  <!--form-->
+                  <div [ngClass]="{'has-error': form.controls.email.errors && form.controls.email.dirty,
+                  'has-success': form.controls.email.valid && form.controls.email.dirty}" class="form-group">
+                    <input type="email" name="" class="form-control" placeholder="Nhập vào email..." autofocus formControlName="email">
+                    <ul class="help-block">
+                      <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">Trường này bắt buộc</li>
+                    </ul>
                   </div>
                 </div>
+  
+                <div class="form-group">
+                  <div [ngClass]="{'has-error': form.controls.password.errors && form.controls.password.dirty,
+                    'has-success': form.controls.password.valid && form.controls.password.dirty}" class="form-group">
+                    <input type="password" name="" class="form-control" placeholder="Nhập vào password..." formControlName="password">
+                    <ul class="help-block">
+                      <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">Trường này bắt buộc</li>
+                    </ul>
+                  </div>
+                </div>
+  
+                <div class="form-group">
+                  <button type="submit" name="btnLogin" class="btn btn-success btn-lg btn-block"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập</button>
+                </div>
+  
+                <div class="form-group">
+                  <a routerLink="/forgotpassword">Quên mật khẩu</a><br>
+                  <a routerLink="/register1">Đăng ký( nếu chưa có tài khoản)</a>
+                </div>
+  
+              </form>
+            </div>
             <!--pan-->
-            <form [formGroup]="form" (submit)="onLoginSubmit()">
-              <div class="form-group">
-                <!--form-->
-                <div [ngClass]="{'has-error': form.controls.email.errors && form.controls.email.dirty,
-                'has-success': form.controls.email.valid && form.controls.email.dirty}" class="form-group">
-                  <input type="email" name="" class="form-control" placeholder="Nhập vào email..." autofocus formControlName="email">
-                  <ul class="help-block">
-                    <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">Trường này bắt buộc</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div [ngClass]="{'has-error': form.controls.password.errors && form.controls.password.dirty,
-                  'has-success': form.controls.password.valid && form.controls.password.dirty}" class="form-group">
-                  <input type="password" name="" class="form-control" placeholder="Nhập vào password..." formControlName="password">
-                  <ul class="help-block">
-                    <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">Trường này bắt buộc</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <button type="submit" name="btnLogin" class="btn btn-success btn-lg btn-block"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập</button>
-              </div>
-
-              <div class="form-group">
-                <a routerLink="/forgotpassword">Quên mật khẩu</a><br>
-                <a routerLink="/register1">Đăng ký( nếu chưa có tài khoản)</a>
-              </div>
-
-            </form>
+            <div class="lock"><i class="fa fa-lock fa-3x"></i></div>
           </div>
           <!--pan-->
-          <div class="lock"><i class="fa fa-lock fa-3x"></i></div>
         </div>
-        <!--pan-->
+        <!--col-->
       </div>
-      <!--col-->
+      <!--row-->
     </div>
-    <!--row-->
+    <!--con-->
   </div>
-  <!--con-->
-</div>

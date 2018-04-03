@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Thêm tin tuyển dụng </h1>
+    <h4 class="page-header">Thêm tin tuyển dụng </h4>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -29,18 +29,15 @@
                 <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
               </div>
               <div class="form-group">
-                  <label for="name" class="control-label">Địa điểm</label>
-                  <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
-                </div>
-                <div class="form-group">
-                    <label for="name" class="control-label">Lương</label>
-                    <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
-                  </div>
-              <div class="form-group">
-                <label for="inputtt" class="control-label">Nội dung tin tóm tắt</label>
-                <textarea class="form-control" placeholder="Nhập nội dụng tóm tắt..."></textarea>
+                <label for="name" class="control-label">Địa điểm</label>
+                <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
               </div>
               <div class="form-group">
+                <label for="name" class="control-label">Lương</label>
+                <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
+              </div>
+
+              <!-- <div class="form-group">
                 <label for="ngaydang" class="control-label">Ngày đăng</label>
                   <div class="input-group">
                     <div class="input-group-addon">
@@ -48,21 +45,24 @@
                     </div>
                     <input class="form-control" id="date" name="date" type="text" />
                   </div>
-              </div>
+              </div> -->
 
               <div class="form-group">
                 <label for="ngaydang" class="control-label">Hạn nộp</label>
-                  <div class="input-group">
+                <!-- <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
                     <input class="form-control" id="date" name="date" type="text" />
-                  </div>
+                  </div> -->
+                <form #myForm="ngForm" novalidate>
+                  <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+                </form>
               </div>
 
               <div class="form-group">
                 <label for="vitri" class="control-label">Vị trí tuyển dụng</label>
-                  <input type="text" class="form-control" id="vitri" placeholder="Nhập vị trí">
+                <input type="text" class="form-control" id="vitri" placeholder="Nhập vị trí">
               </div>
 
               <!-- <div class="form-group">
@@ -72,17 +72,20 @@
 
               <div class="form-group">
                 <label for="soluong" class="control-label">Số lượng</label>
-                  <input type="text" class="form-control" id="soluong" placeholder="Nhập số lượng">
+                <input type="text" class="form-control" id="soluong" placeholder="Nhập số lượng">
               </div>
 
               <div class="form-group">
                 <label for="motacv" class="control-label">Nội dung </label>
-                  <textarea class="form-control"placeholder="Nhập nội dung" ></textarea>
+                <!-- <textarea class="form-control"placeholder="Nhập nội dung" ></textarea> -->
+                <!-- <editor apiKey="zampqj962soas6fhh3ub8hut4tqkepk0uwetpewkhp9n91p8" cloudChannel="dev"  [init]="{plugins: 'link'}"></editor> -->
+                <ckeditor [(ngModel)]="ckeditorContent" [ngModelOptions]="{standalone: true}" debounce="500" (change)="onChange($event)">
+                </ckeditor>
               </div>
 
               <div class="form-group">
                 <label for="loaics" class="control-label">Loại chính sách point thưởng</label>
-                  <select class="form-control">
+                <select class="form-control">
                   <option>Chính sách 1</option>
                   <option>Chính sách 2</option>
                   <option>Chính sách 3</option>
@@ -90,18 +93,19 @@
               </div>
               <div class="form-group">
                 <label for="tinhtrang" class="control-label">Tình trạng </label>
-                  <input type="text" class="form-control" id="tinhtrang" placeholder="Nhập tình trạng">
+                <input type="text" class="form-control" id="tinhtrang" placeholder="Nhập tình trạng">
               </div>
 
               <div class="form-group">
 
                 <div class="pull-left">
-                  <input class="btn btn-success" value="Trở lại" routerLink="/admin/listnews">
+                  <input class="btn btn-info" value="Trở lại" routerLink="/admin/listnews">
+                  <input class="btn btn-default" value="Xóa trống" id="clear_message">
                 </div>
                 <div class="pull-right">
 
-                  <input class="btn btn-default" type="submit" value="Xóa trống" id="clear_message">
-                  <input class="btn btn-default" type="submit" value="Đăng tin" id="send_message">
+
+                  <input class="btn btn-success" value="Đăng tin" id="send_message">
                 </div>
               </div>
 

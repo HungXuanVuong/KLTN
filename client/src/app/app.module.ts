@@ -1,3 +1,4 @@
+import { PolicyService } from './service/policy.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -34,7 +35,8 @@ import { TypeGiftService } from './service/type-gift.service';
     AuthServiceService,
     NewsService,
     GiftService,
-    TypeGiftService
+    TypeGiftService,
+    PolicyService
   ],
   bootstrap: [AppComponent]
 })

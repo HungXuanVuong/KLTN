@@ -1,0 +1,101 @@
+<!-- <div class="row">
+  <ul class="nav nav-tabs">
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/admin/detailnews/thongtinchung">Thông tin chung</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/admin/detailnews/xuli">Xử lý tuyển dụng</a></li>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/admin/detailnews/chiphixuli">Chi phí xử lí</a></li>
+  </ul>
+</div>
+<div class="row">
+  <router-outlet></router-outlet>
+</div> -->
+<!-- <div class="container"> -->
+
+<!-- <h4>Theo dõi tình trạng tin tuyển dụng</h4> -->
+<div class="row">
+    <div class="col-lg-12">
+      <h4 class="page-header">Theo dõi tình trạng tin tuyển dụng</h4>
+    </div>
+  </div>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Thông tin chung</a></li>
+  <li><a data-toggle="tab" href="#menu1">Xử lí tuyển dụng</a></li>
+  <li><a data-toggle="tab" href="#menu2">Chi phí xử lí</a></li>
+
+</ul>
+
+<div class="tab-content">
+
+    <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>Some content.</p>
+    </div>
+    
+    <div id="menu1" class="tab-pane fade">
+      <h3>Menu 1</h3>
+      <p>Some content in menu 1.</p>
+      <div class="row">
+
+        <div class="col-md-6">
+          <div class="panel panel-info">
+            <div class="panel-heading">Danh sách ứng tuyển</div>
+            <div class="panel-body">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                  <tr>
+                      <th>Tên</th>
+                      <th>Số điện thoại</th>
+                      <th>Email</th>
+                      <th>CV</th>    
+                  </tr>
+
+                </thead>
+                <tbody>
+                  <tr>
+                      <td>Vương Xuân Hùng</td>
+                      <td>0123456987</td>
+                      <td>hungvx@gmail.com</td>
+                      <td><a>hungvx_CV.pdf</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+              <div class="panel-heading">Danh sách ứng tuyển</div>
+              <div class="panel-body">
+                <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>CV</th>    
+                    </tr>
+  
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>Vương Xuân Hùng</td>
+                        <td>0123456987</td>
+                        <td>hungvx@gmail.com</td>
+                        <td><a>hungvx_CV.pdf</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+    <div id="menu2" class="tab-pane fade">
+      <h3>Menu 2</h3>
+      <p>Some content in menu 2.</p>
+    </div>
+
+  </div> 

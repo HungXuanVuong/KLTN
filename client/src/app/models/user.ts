@@ -13,19 +13,6 @@ export class User{
     uvNumber: Number;
     role: String;
     register_date: Date;
-    // email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
-    // password: { type: String, required: true, validate: passwordValidators },
-    // username: {type: String},
-    // dateOfBirth: {type: Date},
-    // sex: {type: String},
-    // address: {type: String},
-    // phone: {type: String},
-    // urlHinh: {type: String, default: '2.png'},
-    // cvFile: {type: String},
-    // point: {type: Number},
-    // uvNumber: {type: Number, default: 0},
-    // role: {type: String, default: 'user'},
-    // register_date: {type: Date, default: Date.now}
     
     constructor(){
         this.id = 0;

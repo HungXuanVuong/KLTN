@@ -24,8 +24,8 @@
           <div class="row">
             <div class="">
               <div *ngIf="!user">
-                  <a routerLink="/redirectpage" class="btn btn-primary">Ứng tuyển</a>
-                  <a routerLink="/redirectpage" class="btn btn-success">Giới thiệu</a>
+                  <a (click)="RedirectUnregister()" class="btn btn-primary">Ứng tuyển</a>
+                  <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
               </div>
               <div *ngIf="user">
                   <a routerLink="/profile" class="btn btn-primary">Ứng tuyển</a>
@@ -81,8 +81,8 @@
           </div>
           <div class="cw_job_action_apply">
               <div *ngIf="!user">
-                  <a routerLink="/redirectpage" class="btn btn-primary">Ứng tuyển</a>
-                  <a routerLink="/redirectpage" class="btn btn-success">Giới thiệu</a>
+                  <a (click)="RedirectUnregister()" class="btn btn-primary">Ứng tuyển</a>
+                  <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
               </div>
               <div *ngIf="user">
                   <a routerLink="/profile" class="btn btn-primary">Ứng tuyển</a>

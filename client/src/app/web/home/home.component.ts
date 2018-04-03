@@ -4,6 +4,8 @@ import { NewsService } from '../../service/news.service';
 import { User } from "../../models/user";
 import { News } from "../../models/news";
 
+// import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,18 +23,26 @@ export class HomeComponent implements OnInit {
   searchKey = "";
   searchName = "";
 
+
   constructor(
     private authService: AuthServiceService,
-    private newsService: NewsService
+    private newsService: NewsService,
+    private router: Router
+  ) {
 
-  ) { }
+   }
 
   OnclickSearch(){
     this.searchKey = this.searchName;
   }
 
+  RedirectUnregister(){
+    this.router.navigate(['/redirectpage'],
+    {queryParams: {mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger"}});
+  }
+
   ngOnInit() {
-    this.newsService.getAllNews().subscribe(data =>{
+    this.newsService.getTop6News().subscribe(data =>{
       this.news = data.listNews;
       console.log(this.news);
     });
@@ -45,7 +55,6 @@ export class HomeComponent implements OnInit {
       if(this.month == 0){
         this.month = 12;
       }
-      console.log(this.month);
     });
 
     this.authService.getProfile().subscribe(profile => {

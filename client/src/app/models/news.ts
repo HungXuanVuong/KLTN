@@ -9,14 +9,12 @@ export class News{
     create_date: Date;
     exp_date: Date;
     point_uv: Number;
-    // title: {type: String, required: true},
-    // urlHinh: {type: String, required: true},
-    // place: {type: String, required: true},
-    // salary: {type: String, required: true},
-    // position: {type: String, required: true},
-    // create_date: {type: Date, default: Date.now},
-    // exp_date: {type: Date},
-    // point_uv: {type: Number}
+    content: String;
+    numberOf: Number;
+    status: String;
+    newsPolicy: Object;
+    employee: Object;
+
     constructor(){
         this.id = 0;
         this.title = "";
@@ -27,5 +25,11 @@ export class News{
         this.create_date = new Date();
         this.exp_date = new Date();
         this.point_uv = 0;
+        this.content = "";
+        this.numberOf = 0;
+        this.status = "";
+        this.newsPolicy = "";
+        this.employee = "";
+
     }
 }

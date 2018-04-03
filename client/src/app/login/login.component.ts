@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthServiceService } from '../service/auth-service.service';
 
 
@@ -17,10 +17,14 @@ export class LoginComponent implements OnInit {
   message;
   processing = false;
 
+  messageRedirect;
+  messageClassRedirect
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthServiceService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.createForm();
    }
@@ -67,6 +71,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams
+    .subscribe(params => {
+        this.message = params['mess'];
+        this.messageClass = params['messclas'];
+    });
   }
 
 }

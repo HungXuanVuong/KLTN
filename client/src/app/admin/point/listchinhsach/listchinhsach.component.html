@@ -10,7 +10,8 @@
         <a routerLink="/admin/formchinhsach" class="btn btn-danger"><span class="fa fa-plus"></span> Thêm chính sách</a>
     </div>
     <!-- /.col-lg-12 -->
-</div>  <!-- /.row -->
+</div>
+<!-- /.row -->
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
@@ -20,24 +21,23 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>
-        
+
                             <th>Tên chính sách</th>
                             <th>Điểm vòng hồ sơ</th>
                             <th>Điểm vòng phỏng vấn</th>
                             <th>Điểm khi ứng viên ký hợp đồng </th>
-        <th>Option</th>
+                            <th>Option</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="odd gradeX">
-                            
-                            <td>Chính sách 1</td>
-                            <td>5</td>
-                            <td>15</td>
-                            <td>25</td>
+                        <tr *ngFor="let policy of policys" class="odd gradeX">
+                            <td>{{policy.pName}}</td>
+                            <td>{{policy.pointFile}}</td>
+                            <td>{{policy.pointInterview}}</td>
+                            <td>{{policy.pointSign}}</td>
                             <td class="center">
                                 <div class="dropdown text-center">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -49,58 +49,14 @@
                                         <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
                                         </li>
                                     </ul>
-                                <!-- /.dropdown-user -->
+                                    <!-- /.dropdown-user -->
                                 </div>
                             </td>
                         </tr>
-                        <tr class="even gradeC">
-                            
-                            <td>Chính sách 2</td>
-                            <td>10</td>
-                            <td>20</td>
-                            <td>35</td>
-                            <td class="center">
-                                <div class="dropdown text-center">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a routerLink="/admin/editchinhsach"><i class="fa fa-pencil fa-fw"></i> Edit</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
-                                        </li>
-                                    </ul>
-                                <!-- /.dropdown-user -->
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="odd gradeA">
-                            
-                            <td>Chính sách 3</td>
-                            <td>15</td>
-                            <td>25</td>
-                            <td>40</td>
-                            <td class="center">
-                                <div class="dropdown text-center">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-user">
-                                        <li><a routerLink="/admin/editchinhsach"><i class="fa fa-pencil fa-fw"></i> Edit</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
-                                        </li>
-                                    </ul>
-                                <!-- /.dropdown-user -->
-                                </div>
-                            </td>
-                        </tr>
-                        
-                        
                     </tbody>
                 </table>
                 <!-- /.table-responsive -->
-                
+
             </div>
             <!-- /.panel-body -->
         </div>

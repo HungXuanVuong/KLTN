@@ -50,7 +50,9 @@
     <div class="container">
         <div class="row">
             <div *ngFor="let new of news | filter : searchKey | paginate: { itemsPerPage:6, currentPage: p}" class="col-lg-4">
-                <div class="panel panel-primary">
+
+              
+                <div class="panel panel-green">
                     <div class="panel-heading no-padding center">
                         <p class="text-center" style="color:white; font-size:16px; ">{{new.title}}</p>
                     </div>
@@ -92,8 +94,8 @@
                         </div>
                         <div class="pull-left">
                             <div *ngIf="!user">
-                                <a routerLink="/redirectpage" class="btn btn-primary">Ứng tuyển</a>
-                                <a routerLink="/redirectpage" class="btn btn-success">Giới thiệu</a>
+                                <a (click)="RedirectUnregister()" class="btn btn-primary">Ứng tuyển</a>
+                                <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
                             </div>
                             <div *ngIf="user">
                                 <a routerLink="/profile" class="btn btn-primary">Ứng tuyển</a>
@@ -106,8 +108,11 @@
             </div>
             <!-- .col-lg-6 -->
 
+
             <div class="col-lg-12">
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                <div *ngIf="true">
+                    <pagination-controls autoHide="true" (pageChange)="p = $event"></pagination-controls>
+                </div>
             </div>
             <!-- .col-lg-12 -->
         </div>
@@ -123,9 +128,10 @@
 
             <div class="col-lg-12">
 
-                <div class="panel panel-red">
+                <div class="panel panel-defaul" style="background:#99CCFF">
                     <div class="panel-heading">
-                        <h2 class="page-header heading-secondary-a">Gương mặt tiêu biểu tháng {{month}}</h2>
+                        <!-- <p>Gương mặt tiêu biểu tháng {{month}}</p> -->
+                        <h3>Gương mặt tiêu biểu tháng {{month}}</h3>
                     </div>
                     <div class="panel-body">
                         <div *ngFor="let user of users" class="col-md-3">

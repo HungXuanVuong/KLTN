@@ -11,6 +11,7 @@ import { ListproductComponent } from './product/listproduct/listproduct.componen
 import { FormproductComponent } from './product/formproduct/formproduct.component';
 import { EditproductComponent } from './product/editproduct/editproduct.component';
 import { ListuvComponent } from './news/listuv/listuv.component';
+import { DetailnewsComponent } from './news/detailnews/detailnews.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ListuvComponent } from './news/listuv/listuv.component';
     declarations: [
         AdminComponent,
         HeaderComponent,
-        SlidebarComponent
+        SlidebarComponent,
+    
     ]
 })
 
