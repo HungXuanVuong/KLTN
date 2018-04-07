@@ -32,6 +32,7 @@
     "metismenu": "^2.7.1",
     "mydatepicker": "^2.6.1",
     "ng2-ckeditor": "^1.2.0",
+    "ng2-opd-popup": "^1.1.21",
     "ngx-pagination": "^3.1.0",
     "rxjs": "^5.5.8",
     "zone.js": "^0.8.14"

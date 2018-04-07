@@ -89,6 +89,7 @@ const addNews = function (req, res) {
                                         content: req.body.content,
                                         newsPolicy: req.body.newsPolicy,
                                         employee: req.body.employee,
+                                        point_uv: req.body.point_uv,
                                         status: 'Hoạt động'
                                     });
                                     news.save(function (err) {

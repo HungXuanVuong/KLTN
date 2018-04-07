@@ -14,7 +14,7 @@
       <div class="panel-body">
         <div class="row">
 
-          <form role="form">
+          <form [formGroup]="myForm" (submit)="addNews()" role="form">
             <div class="col-lg-12">
               <div class="form-group">
                 <label for="cv" class="col-md-2 control-label">Hình</label>
@@ -25,16 +25,39 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="name" class="control-label">Tiêu đề</label>
-                <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
+                <label for="title" class="control-label">Tiêu đề</label>
+                <div [ngClass]="{'has-error': (myForm.controls.title.errors && myForm.controls.title.dirty), 'has-success': !myForm.controls.title.errors}">
+                  <input type="text" name="title" class="form-control" autocomplete="off" formControlName="title" placeholder="Nhập tiêu đề..."
+                  />
+                  <!-- Validation -->
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.title.errors?.required && myForm.controls.title.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="(myForm.controls.title.errors?.minlength || myForm.controls.title.errors?.maxlength) && myForm.controls.title.dirty">Tiêu đề ít nhất có 8 ký tự , tối đa 40</li>
+                  </ul>
+                </div>
               </div>
               <div class="form-group">
-                <label for="name" class="control-label">Địa điểm</label>
-                <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
+                <label for="place" class="control-label">Địa điểm</label>
+                <div [ngClass]="{'has-error': (myForm.controls.place.errors && myForm.controls.place.dirty), 'has-success': !myForm.controls.place.errors}">
+                  <input type="text" name="place" class="form-control" autocomplete="off" formControlName="place" placeholder="Nhập địa điểm..."
+                  />
+                  <!-- Validation -->
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.place.errors?.required && myForm.controls.place.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="(myForm.controls.place.errors?.minlength || myForm.controls.place.errors?.maxlength) && myForm.controls.place.dirty">Địa điểm ít nhất có 2 ký tự , tối đa 15</li>
+                  </ul>
+                </div>
               </div>
               <div class="form-group">
-                <label for="name" class="control-label">Lương</label>
-                <input type="text" class="form-control" id="tieude" placeholder="Nhập tiêu đề...">
+                <label for="salary" class="control-label">Lương</label>
+                <div [ngClass]="{'has-error': (myForm.controls.salary.errors && myForm.controls.salary.dirty), 'has-success': !myForm.controls.salary.errors}">
+                  <input type="text" name="salary" class="form-control" autocomplete="off" formControlName="salary" placeholder="Nhập lương..."
+                  />
+                  <!-- Validation -->
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.salary.errors?.required && myForm.controls.salary.dirty">Trường này bắt buộc</li>
+                  </ul>
+                </div>
               </div>
 
               <!-- <div class="form-group">
@@ -55,14 +78,26 @@
                     </div>
                     <input class="form-control" id="date" name="date" type="text" />
                   </div> -->
-                <form #myForm="ngForm" novalidate>
-                  <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+                <form novalidate>
+                  <my-date-picker (dateChanged)="onDateChanged($event)" [ngModelOptions]="{standalone: true}" name="mydate" [options]="myDatePickerOptions"
+                    [(ngModel)]="model" required></my-date-picker>
                 </form>
+                <!-- <form [formGroup]="myForm" novalidate>
+                  <my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
+                </form> -->
               </div>
 
               <div class="form-group">
-                <label for="vitri" class="control-label">Vị trí tuyển dụng</label>
-                <input type="text" class="form-control" id="vitri" placeholder="Nhập vị trí">
+                <label for="position" class="control-label">Vị trí tuyển dụng</label>
+                <div [ngClass]="{'has-error': (myForm.controls.position.errors && myForm.controls.position.dirty), 'has-success': !myForm.controls.position.errors}">
+                  <input type="text" name="position" class="form-control" autocomplete="off" formControlName="position" placeholder="Nhập vị trí..."
+                  />
+                  <!-- Validation -->
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.position.errors?.required && myForm.controls.position.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="(myForm.controls.position.errors?.minlength || myForm.controls.position.errors?.maxlength) && myForm.controls.position.dirty">Tên vị trí ít nhất có 2 ký tự , tối đa 8</li>
+                  </ul>
+                </div>
               </div>
 
               <!-- <div class="form-group">
@@ -71,8 +106,17 @@
               </div> -->
 
               <div class="form-group">
-                <label for="soluong" class="control-label">Số lượng</label>
-                <input type="text" class="form-control" id="soluong" placeholder="Nhập số lượng">
+                <label for="numberOf" class="control-label">Số lượng</label>
+                <div [ngClass]="{'has-error': (myForm.controls.numberOf.errors && myForm.controls.numberOf.dirty), 'has-success': !myForm.controls.numberOf.errors}">
+                  <input type="text" name="numberOf" class="form-control" autocomplete="off" formControlName="numberOf" placeholder="Nhập vào số lượng..."
+                  />
+                  <!-- Validation -->
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.numberOf.errors?.required && myForm.controls.numberOf.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="myForm.controls.numberOf.errors?.min && myForm.controls.numberOf.dirty">Số lượng tối thiểu là 1</li>
+                    <li *ngIf="myForm.controls.numberOf.errors?.validateNumberOf && myForm.controls.numberOf.dirty">"Số lượng" phải là số</li>
+                  </ul>
+                </div>
               </div>
 
               <div class="form-group">
@@ -85,27 +129,24 @@
 
               <div class="form-group">
                 <label for="loaics" class="control-label">Loại chính sách point thưởng</label>
-                <select class="form-control">
-                  <option>Chính sách 1</option>
-                  <option>Chính sách 2</option>
-                  <option>Chính sách 3</option>
-                </select>
+                <select [(ngModel)]="selectedPolicy" (change)="selectPolicyHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control">
+                  <option *ngFor="let policy of policyList" value="{{policy._id}}">{{policy.pName}}</option>
+            </select>
               </div>
               <div class="form-group">
                 <label for="tinhtrang" class="control-label">Tình trạng </label>
-                <input type="text" class="form-control" id="tinhtrang" placeholder="Nhập tình trạng">
+                <input type="text" class="form-control" id="tinhtrang" placeholder="Hoạt động">
               </div>
 
               <div class="form-group">
 
                 <div class="pull-left">
-                  <input class="btn btn-info" value="Trở lại" routerLink="/admin/listnews">
-                  <input class="btn btn-default" value="Xóa trống" id="clear_message">
+                  <button type="reset" routerLink="/admin/listnews" class="btn btn-info pull-right"><i class="fa fa-arrow-left" aria-hidden="true"></i> Quay lại</button>
+
                 </div>
                 <div class="pull-right">
-
-
-                  <input class="btn btn-success" value="Đăng tin" id="send_message">
+                  <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i> Đăng tin</button>
+                  <button type="reset" class="btn btn-default" (click)="clearAllFields()"><i class="fa fa-refresh" aria-hidden="true"></i> Xóa trống</button>
                 </div>
               </div>
 
@@ -121,3 +162,50 @@
   <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+
+<!-- Modal -->
+<!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-notify modal-success">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="row show-hide-message">
+          <div [ngClass]="messageClass">
+            {{message}}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>  -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-success">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h1><i class="fa fa-info-circle"></i> Thông báo</h1>
+      </div>
+      <div class="modal-body">
+        <div class="row show-hide-message">
+          <div [ngClass]="messageClass">
+            {{message}}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-right" (onclick)="clearAllFields()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

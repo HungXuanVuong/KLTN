@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -25,7 +26,7 @@ export class ChitiettinComponent implements OnInit {
 
   news = new News();
 
-  user;
+  user = new User();
 
   // urlHinh;
   // title;

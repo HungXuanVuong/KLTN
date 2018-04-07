@@ -19,21 +19,45 @@ export class ListnewsComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
 
   news : Array<News> = [];
+
+  message;
+  messageClass;
+  processing = false;
+
   constructor(
     private newsService : NewsService
   ) { }
+
+  newsId = '';
+
+  deleteNews(id){
+    this.newsService.deleteNews(id).subscribe(data =>{
+      if(!data.success){
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      }else{
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.getAllNews();
+      }
+    });
+  }
+
+  getAllNews(){
+    this.newsService.getTop6News().subscribe(data => {
+      this.news = data.listNews;
+      this.dtTrigger.next();
+      console.log(data.listNews);
+    });
+  }
 
   ngOnInit() {
    
     this.dtOptions = {
       pagingType: 'full_numbers',
     };
-
-    this.newsService.getTop6News().subscribe(data => {
-      this.news = data.listNews;
-      this.dtTrigger.next();
-      console.log(data.listNews);
-    });
+    this.getAllNews();
+    
 
     // this.policyService.getAll().subscribe(data =>{
     //   console.log(data);

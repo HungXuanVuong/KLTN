@@ -2,7 +2,7 @@ const UserModel = require('../models/UserModel');
 const jwt = require('jsonwebtoken');
 
 const config = require('../config/db');
-const Custompassword = require('../Helper/Custompassword');
+const Custompassword = require('../Util/Custompassword');
 
 const nodemailer = require('nodemailer');
 
@@ -175,6 +175,24 @@ const checkEmail = function (req, res) {
         });
     }
 };
+const checkExitsEmail = function (req, res) {
+    if (!req.params.email) {
+        res.json({ success: false, massage: 'Chưa nhập E-mail' });
+    } else {
+        console.log(req.params.email);
+        UserModel.findOne({ email: req.params.email }, function (err, user) {
+            if (err) {
+                res.json({ success: false, message: err });
+            } else {
+                if (!user) {
+                    res.json({ success: false, message: 'E-mail không tồn tại trong hệ thống.' });
+                } else {
+                    res.json({ success: true});
+                }
+            }
+        });
+    }
+};
 const findUserById = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'id user chưa được cung cấp.' });
@@ -286,5 +304,6 @@ module.exports = {
     findUserById,
     checkToken,
     getAllUsers,
-    getTop4Users
+    getTop4Users,
+    checkExitsEmail
 }

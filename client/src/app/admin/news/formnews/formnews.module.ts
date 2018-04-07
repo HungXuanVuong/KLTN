@@ -8,15 +8,18 @@ import { FormnewsComponent } from './formnews.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 
 import { CKEditorModule } from 'ng2-ckeditor';
+
 @NgModule({
     imports: [
+        
         CommonModule,
         FormnewsRoutingModule,
         ReactiveFormsModule,
         FormsModule,
         EditorModule,
         CKEditorModule,
-        MyDatePickerModule 
+        MyDatePickerModule,
+        
 
     ],
     declarations: [

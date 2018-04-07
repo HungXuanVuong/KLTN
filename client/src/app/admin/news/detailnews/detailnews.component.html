@@ -12,10 +12,10 @@
 
 <!-- <h4>Theo dõi tình trạng tin tuyển dụng</h4> -->
 <div class="row">
-    <div class="col-lg-12">
-      <h4 class="page-header">Theo dõi tình trạng tin tuyển dụng</h4>
-    </div>
+  <div class="col-lg-12">
+    <h4 class="page-header">Theo dõi tình trạng tin tuyển dụng</h4>
   </div>
+</div>
 
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#home">Thông tin chung</a></li>
@@ -26,76 +26,195 @@
 
 <div class="tab-content">
 
-    <div id="home" class="tab-pane fade in active">
-      <h3>HOME</h3>
-      <p>Some content.</p>
-    </div>
-    
-    <div id="menu1" class="tab-pane fade">
-      <h3>Menu 1</h3>
-      <p>Some content in menu 1.</p>
-      <div class="row">
+  <div id="home" class="tab-pane fade in active">
 
-        <div class="col-md-6">
-          <div class="panel panel-info">
-            <div class="panel-heading">Danh sách ứng tuyển</div>
-            <div class="panel-body">
-              <table class="table table-striped table-bordered table-hover">
-                <thead>
-                  <tr>
-                      <th>Tên</th>
-                      <th>Số điện thoại</th>
-                      <th>Email</th>
-                      <th>CV</th>    
-                  </tr>
-
-                </thead>
-                <tbody>
-                  <tr>
-                      <td>Vương Xuân Hùng</td>
-                      <td>0123456987</td>
-                      <td>hungvx@gmail.com</td>
-                      <td><a>hungvx_CV.pdf</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="panel panel-info">
-              <div class="panel-heading">Danh sách ứng tuyển</div>
-              <div class="panel-body">
-                <table class="table table-striped table-bordered table-hover">
-                  <thead>
-                    <tr>
-                        <th>Tên</th>
-                        <th>Số điện thoại</th>
-                        <th>Email</th>
-                        <th>CV</th>    
-                    </tr>
-  
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td>Vương Xuân Hùng</td>
-                        <td>0123456987</td>
-                        <td>hungvx@gmail.com</td>
-                        <td><a>hungvx_CV.pdf</a></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+    <div class="row" style="padding-top:10px;" *ngIf="foundNews">
+      <div class="col-md-6">
+        <u>Người đăng tin:</u> <b>{{user.username}}</b>
+      </div>
+      <div class="col-md-6">
+        <u>Tiểu Đề:</u>  <b>{{news.title}}</b>
+      </div>
+      <div class="col-md-12" style="padding-top:5px;">
+        Nội Dung: 
+      </div>
+      <div class="col-md-12" style="padding-top:10px;" [innerHTML]="news.content">
 
       </div>
     </div>
+  </div>
 
-    <div id="menu2" class="tab-pane fade">
-      <h3>Menu 2</h3>
-      <p>Some content in menu 2.</p>
+  <div id="menu1" class="tab-pane fade">
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">Danh sách giới thiệu</div>
+          <div class="panel-body">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Tên</th>
+                  <th>Số điện thoại</th>
+                  <th>Email</th>
+                  <th>CV</th>
+                  <th>Tình trạng</th>
+                  <th>Xử lý</th>
+                </tr>
+
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Vương Xuân Hùng</td>
+                  <td>0123456987</td>
+                  <td>hungvx@gmail.com</td>
+                  <td><a>hungvx_CV.pdf</a></td>
+                  <td>Hồ sơ</td>
+                  <td class="center">
+                    <div class="dropdown text-center">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-gear fa-fw"></i> 
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                      <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-file-text-o fa-fw"></i> Hồ sơ</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-question-circle fa-fw"></i> Phỏng vấn</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-pencil-square-o fa-fw"></i> Hợp đồng</a>
+                        </li>
+                      </ul>
+                      <!-- /.dropdown-user -->
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">Danh sách ứng tuyển</div>
+          <div class="panel-body">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Tên</th>
+                  <th>Số điện thoại</th>
+                  <th>Email</th>
+                  <th>CV</th>
+                  <th>Tình trạng</th>
+                  <th>Xử lý</th>
+                </tr>
+
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Vương Xuân Hùng</td>
+                  <td>0123456987</td>
+                  <td>hungvx@gmail.com</td>
+                  <td><a>hungvx_CV.pdf</a></td>
+                  <td>Hồ sơ</td>
+                  <td class="center">
+                    <div class="dropdown text-center">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-gear fa-fw"></i> 
+                        <i class="fa fa-caret-down"></i>
+                      </a>
+                      <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-file-text-o fa-fw"></i> Hồ sơ</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-question-circle fa-fw"></i> Phỏng vấn</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-pencil-square-o fa-fw"></i> Hợp đồng</a>
+                        </li>
+                      </ul>
+                      <!-- /.dropdown-user -->
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <div id="menu2" class="tab-pane fade">
+
+    <div class="row" style="padding-top:10px;">
+
+      <div class="col-md-6">
+        <div class="panel panel-danger">
+          <div class="panel-heading">Thống kê</div>
+          <div class="panel-body">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Loại tình trạng</th>
+                  <th class="text-right">Số lượng</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Hồ sơ</td>
+                  <td align="right">32</td>
+                </tr>
+                <tr>
+                  <td>Phỏng vấn</td>
+                  <td align="right">23</td>
+                </tr>
+                <tr>
+                  <td>Hợp đồng</td>
+                  <td align="right">13</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
-  </div> 
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">Danh sách chi</div>
+          <div class="panel-body">
+            <table class="table table-striped table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Tên</th>
+                  <th>Số điện thoại</th>
+                  <th>Email</th>
+                  <th>CV</th>
+                  <th>Tình trạng</th>
+                  <th>point chi</th>
+                </tr>
+
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Vương Xuân Hùng</td>
+                  <td>0123456987</td>
+                  <td>hungvx@gmail.com</td>
+                  <td><a>hungvx_CV.pdf</a></td>
+                  <td>Hồ sơ</td>
+                  <td>12</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

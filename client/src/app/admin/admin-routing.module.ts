@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -33,8 +34,9 @@ const routes: Routes = [
             { path: 'listnews', loadChildren: './news/listnews/listnews.module#ListnewsModule'},
             { path: 'formnews', loadChildren: './news/formnews/formnews.module#FormnewsModule'},
             { path: 'editnews', loadChildren: './news/editnews/editnews.module#EditnewsModule'},
+            { path: 'deletenews/:id', loadChildren: './news/deletenews/deletenews.module#DeletenewsModule'},
             { path: 'listuv', loadChildren: './news/listuv/listuv.module#ListuvModule'},
-            { path: 'detailnews', loadChildren: './news/detailnews/detailnews.module#DetailnewsModule'},
+            { path: 'detailnews/:id', loadChildren: './news/detailnews/detailnews.module#DetailnewsModule'},
             // candidate
             { path: 'listcandidate', loadChildren: './candidate/listcandidate/listcandidate.module#ListcandidateModule'},
             { path: 'formcandidate', loadChildren: './candidate/formcandidate/formcandidate.module#FormcandidateModule'},

@@ -13,6 +13,7 @@ router.post('/registerwithMail', UserController.registerWithMail);
 
 
 router.get('/checkEmail/:email', UserController.checkEmail);
+router.get('/checkExitsEmail/:email', UserController.checkExitsEmail);
 
 
 router.post('/login', UserController.login);

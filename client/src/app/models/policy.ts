@@ -2,9 +2,9 @@ export class Policy{
 
     id: Object;
     pName: String;
-    pointFile: Number;
-    pointInterView: Number;
-    pointSign: Number;
+    pointFile: number;
+    pointInterView: number;
+    pointSign: number;
 
     constructor(){
         this.id = 0;
