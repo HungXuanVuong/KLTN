@@ -53,12 +53,20 @@ export class AuthServiceService {
     return this.http.post(this.domain + 'authentication/registerwithMail', user).map(res => res.json());
   }
 
+  resetPasswordSendMail(email){
+    return this.http.put(this.domain + 'authentication/resetpassword', email).map(res => res.json());
+  }
+
   checkUsername(username) {
     return this.http.get(this.domain + 'authentication/checkUsername/' + username).map(res => res.json());
   }
 
   checkEmail(email) {
     return this.http.get(this.domain + 'authentication/checkEmail/' + email).map(res => res.json());
+  }
+
+  checkExitsEmail(email){
+    return this.http.get(this.domain+ 'authentication/checkExitsEmail/' + email).map(res => res.json());
   }
 
   login(user) {

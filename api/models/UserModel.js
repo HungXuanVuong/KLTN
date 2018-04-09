@@ -71,7 +71,7 @@ const passwordValidators = [
 
 const userModelSchema = new Schema({
     email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
-    password: { type: String, required: true, validate: passwordValidators },
+    password: { type: String, required: true }, //, required: true, validate: passwordValidators
     username: {type: String},
     dateOfBirth: {type: Date},
     sex: {type: String},

@@ -15,6 +15,8 @@ router.post('/registerwithMail', UserController.registerWithMail);
 router.get('/checkEmail/:email', UserController.checkEmail);
 router.get('/checkExitsEmail/:email', UserController.checkExitsEmail);
 
+router.put('/resetpassword', UserController.resetPasswordGmail);
+
 
 router.post('/login', UserController.login);
 
@@ -27,10 +29,18 @@ router.route('/user/gettop4')
 
 router.route('/user/:id')
       .get(UserController.findUserById)
-      .put(UserController.updatePasswordUser);
+      
 
-router.route('/edit')
-      .put(UserController.updatePasswordUser);
+router.route('/user/editpoint')
+      .put(UserController.editPointUser);
+
+router.route('/user/edit')
+      .put(UserController.editUser);
+
+
+
+// router.route('password/edit')
+//       .put(UserController.updatePasswordUser);
 
 router.use(UserController.checkToken);
 router.get('/profile', UserController.getUserProfile);

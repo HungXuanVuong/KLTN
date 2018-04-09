@@ -106,7 +106,7 @@ const registerWithMail = function (req, res) {
                         var email = {
                             from: 'Admin HKGroup',
                             to: [user.email],
-                            subject: 'Phát sinh Password',
+                            subject: '[Phát_sinh_Password]',
                             text: 'Chào bạn: ' + user.username + ', Mật khẩu của bạn là : ' + password
                             // html: 'Hello<strong> </strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="http://www.herokutestapp3z24.com/activate/">http://www.herokutestapp3z24.com/activate/</a>'
                         };
@@ -126,6 +126,55 @@ const registerWithMail = function (req, res) {
                 });
             }
         }
+    }
+}
+
+const resetPasswordGmail = function(req, res){
+    if (!req.body.email) {
+        res.json({ success: false, message: 'cần phải nhập vào e-mail' });
+    }else{
+        UserModel.findOne({ email: req.body.email.toLowerCase() }, function (err, user) {
+            if(err){
+                res.json({ success: false, message: 'Đây không phải là mail hợp lệ !' }); 
+            }else{
+                if(!user){
+                    res.json({ success: false, message: 'Không tìm thấy user này.' }); // Return error message
+                }else{
+                    var password = Custompassword.generatorPass();
+                    user.password = password;
+                    user.save((err)=>{
+                        if(err){
+                            if(err.errors){
+                                res.json({ success: false, message: 'Đảm bảo rằng mail này là đúng' });
+                            }else{
+                                res.json({ success: false, message: err }); // Return error message
+                            }
+                        }else{
+                             // Create e-mail object to send to user
+                        var email = {
+                            from: 'Admin HKGroup',
+                            to: [user.email],
+                            subject: '[Resert_Password]',
+                            text: 'Chào bạn: ' + user.username + ', Mật khẩu mới của bạn là : ' + password
+                            // html: 'Hello<strong> </strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="http://www.herokutestapp3z24.com/activate/">http://www.herokutestapp3z24.com/activate/</a>'
+                        };
+                        // Function to send e-mail to the user
+                        client.sendMail(email, function (err, info) {
+                            if (err) {
+                                console.log(err); // If error with sending e-mail, log to console/terminal
+                                res.json({ success: false, message: 'Kiểm tra lại kết nối mạng ', err });
+                            } else {
+                                console.log(info); // Log success message to console if sent
+                                console.log(user.email); // Display e-mail that it was sent to
+                            }
+                        });
+                        res.json({ success: true, message: 'Reset mật khẩu thành công!, Vui lòng check mail để nhận mật khẩu' });
+                        return;
+                        }
+                    });
+                }
+            }
+        })
     }
 }
 
@@ -228,7 +277,7 @@ const updatePasswordUser = function (req, res) {
     if (!req.body._id) {
         res.json({ success: false, message: 'id user chưa được cung cấp' });
     } else {
-        User.findOne({ _id: req.body._id }, (err, user) => {
+        UserModel.findOne({ _id: req.body._id }, (err, user) => {
             if (err) {
                 res.json({ success: false, message: 'id user không hợp lệ' });
             } else {
@@ -294,16 +343,84 @@ const getTop4Users = function (req, res) {
     });
 };
 
+
+const editUser = function(req, res){
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id user' });
+    } else {
+        UserModel.findOne({ _id: req.body._id }, (err, user) => {
+            if (err) {
+                res.json({ success: false, message: 'id user không hợp lệ' });
+            } else {
+                if (!user) {
+                    res.json({ success: false, message: 'Không tìm thấy user có id này.' });
+                } else {
+                    user.username = req.body.username,
+                    user.dateOfBirth = req.body.dateOfBirth,
+                    user.sex = req.body.sex,
+                    user.address = req.body.address,
+                    user.phone = req.body.phone,
+                    user.urlHinh = req.body.urlHinh,
+                    user.cvFile = req.body.cvFile,
+                    user.point = req.body.point,
+                    user.uvNumber = req.body.uvNumber,
+                    user.role = req.body.role,
+                    user.save((err) => {
+                        if (err) {
+                            res.json({ success: false, message: err });
+                        } else {
+                            res.json({ success: true, message: 'Cập nhật thành công' });
+                        }
+                    });
+                }
+            }
+        });
+    }
+};
+
+const editPointUser = function(req, res){
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id user' });
+    }else{
+        if(!req.body.point){
+            res.json({ success: false, message: 'Chưa có số point cập nhật' });
+        }else{
+            UserModel.findOne({ _id: req.body._id }, (err, user) => {
+                if (err) {
+                    res.json({ success: false, message: 'id user không hợp lệ' });
+                } else {
+                    if (!user) {
+                        res.json({ success: false, message: 'Không tìm thấy user có id này.' });
+                    } else {
+                        user.point = req.body.point,
+                        console.log(req.body.point);
+                        user.save((err) => {
+                            if (err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                res.json({ success: true, message: 'Cập nhật point thành công' });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
+};
+
 module.exports = {
     register,
     registerWithMail,
     login,
     checkEmail,
     getUserProfile,
-    updatePasswordUser,
+    // updatePasswordUser,
     findUserById,
     checkToken,
     getAllUsers,
     getTop4Users,
-    checkExitsEmail
+    checkExitsEmail,
+    resetPasswordGmail,
+    editPointUser,
+    editUser
 }

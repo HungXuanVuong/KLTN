@@ -1,3 +1,4 @@
+import { AuthServiceService } from './../service/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,7 +17,10 @@ export class FogotpasswordComponent implements OnInit {
   emailValid;
   emailMessage;
 
+  email = '';
+
   constructor(
+    private authService: AuthServiceService,
     private formBuilder: FormBuilder,
     private router: Router
   ) { this.createForm() }
@@ -37,6 +41,70 @@ validateEmail(controls) {
   } else {
     return { 'validateEmail': true }
   }
+}
+
+checkExitsEmail() {
+  this.authService.checkExitsEmail(this.form.get('email').value).subscribe(data => {
+    if (!data.success) {
+      // set trang thai
+      this.emailValid = false;
+      // set message api
+      this.emailMessage = data.message;
+    } else {
+      this.emailValid = true;
+      this.emailMessage = data.message;
+    }
+  });
+}
+
+disableForm() {
+  this.form.controls['email'].disable();
+}
+
+enableForm() {
+  this.form.controls['email'].enable();
+}
+
+test(){
+  const user = {
+    email : this.form.get('email').value
+  }
+  console.log(user.email);
+  this.authService.resetPasswordSendMail(user).subscribe(data =>{
+    // Check if PUT request was a success or not
+    if (!data.success) {
+      this.messageClass = 'alert alert-danger'; // Set error bootstrap class
+      this.message = data.message; // Set error message
+      this.processing = false; // Unlock form fields
+    } else {
+      this.messageClass = 'alert alert-success'; // Set success bootstrap class
+      this.message = data.message; // Set success message
+      // After two seconds, navigate back to blog page
+      setTimeout(() => {
+        this.router.navigate(['/login']); // Navigate back to route page
+      }, 4000);
+    }
+  });
+}
+
+resetPassword(){
+  this.processing = true;
+  this.disableForm();
+  this.authService.resetPasswordSendMail(this.email).subscribe(data =>{
+    // Check if PUT request was a success or not
+    if (!data.success) {
+      this.messageClass = 'alert alert-danger'; // Set error bootstrap class
+      this.message = data.message; // Set error message
+      this.processing = false; // Unlock form fields
+    } else {
+      this.messageClass = 'alert alert-success'; // Set success bootstrap class
+      this.message = data.message; // Set success message
+      // After two seconds, navigate back to blog page
+      setTimeout(() => {
+        this.router.navigate(['/login']); // Navigate back to route page
+      }, 2000);
+    }
+  });
 }
   ngOnInit() {
     
