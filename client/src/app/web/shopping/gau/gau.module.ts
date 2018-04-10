@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GauRoutingModule } from './gau-routing.module';
@@ -9,7 +10,8 @@ import { GauComponent } from './gau.component';
         CommonModule,
         GauRoutingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        NgxPaginationModule
     ],
     declarations: [
         GauComponent

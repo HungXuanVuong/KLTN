@@ -3,53 +3,55 @@
   <!-- feature1 -->
 <div class="product">
   <div class="row">
-      <div *ngFor="let g of gift;" class="col-lg-4">
+      <div *ngFor="let g of gift | paginate: { itemsPerPage:6, currentPage: p }" class="col-lg-4">
               <div class="panel-body">
                   <a href="product.html"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive"></a>
                 <div class="panel-heading no-padding center">
                   <p class="text-center" style="color:green; font-size:16px; ">{{g.product_name}}</p>
               </div>
                   <div class="text">
-                      <div class="hang">
-                          <div class="col-md-7">Quy đổi:</div>
-                          <a class="career_link_location">{{g.point_sp}} Point</a>
+                      <div class="row">
+                        <div class="col-md-6">Quy đổi:</div>
+                        <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">Số lượng còn:</div>
+                        <a class="col-md-6 career_link_location">{{g.amount}}</a>
                       </div>
                   </div>
 
               </div>
-              <div class="buttons">
-                <a routerLink="/shopping/chitietsp" class="btn btn-default"> 
-                  <i class="fa fa-eye"></i>Xem chi tiết
-                </a>
-                <a routerLink="/giohang" class="btn btn-primary"> 
-                  <i class="fa fa-shopping-cart"></i>Thêm vào giỏ
-                </a>
+              <div class="pull-left">
+                <div *ngIf="!user">
+                    <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default"> 
+                      <i class="fa fa-eye"></i> Xem chi tiết
+                    </a>
+                    <a (click)="RedirectUnregister()" class="btn btn-primary"> 
+                      <i class="fa fa-shopping-cart"></i> Đổi ngay
+                    </a>
                 </div>
+                <div *ngIf="user">
+                    <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default"> 
+                      <i class="fa fa-eye"></i> Xem chi tiết
+                    </a>
+                    <a [routerLink]="['/giohang/', g._id]" class="btn btn-primary"> 
+                      <i class="fa fa-shopping-cart"></i> Đổi ngay
+                    </a>
+                </div>
+              </div>
           <!-- .panel -->
       </div>
       <!-- .col-lg-6 -->
 
   </div>
   <!-- .row -->
+  <div class="rowt text-center" style="padding-top:25px">
+    <div class="col-md-12">
+      <pagination-controls (pageChange)="p =$event"></pagination-controls>
+    </div>
+  </div>
 <!-- .container -->
 </div>
 <!-- .feature2 -->
-  <div class="pages">
-    <ul class="pagination">
-      <li><a href="#">&laquo;</a>
-      </li>
-      <li class="active"><a href="#">1</a>
-      </li>
-      <li><a href="#">2</a>
-      </li>
-      <li><a href="#">3</a>
-      </li>
-      <li><a href="#">4</a>
-      </li>
-      <li><a href="#">5</a>
-      </li>
-      <li><a href="#">&raquo;</a>
-      </li>
-    </ul>
-  </div>
+  
 </div>

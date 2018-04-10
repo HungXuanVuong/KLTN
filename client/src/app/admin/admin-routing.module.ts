@@ -17,6 +17,11 @@ const routes: Routes = [
             { path: 'formcatagory', loadChildren: './catagory/formcatagory/formcatagory.module#FormcatagoryModule'},
             { path: 'editcatagory', loadChildren: './catagory/editcatagory/editcatagory.module#EditcatagoryModule'},
             { path: 'deletecatagory/:id', loadChildren: './catagory/deletecatagory/deletecatagory.module#DeletecatagoryModule'},
+            //Transaction history
+            { path: 'listtransaction', loadChildren: './transactionhistory/listtransaction/listtransaction.module#ListtransactionModule'},
+            //{ path: 'formtransaction', loadChildren: './transactionhistory/formtransaction/formtransaction.module#FormtransactionModule'},
+            //{ path: 'edittransaction', loadChildren: './transactionhistory/edittransaction/edittransaction.module#EdittransactionModule'},
+            //{ path: 'deletetransaction/:id', loadChildren: './transactionhistory/deletetransaction/deletetransaction.module#DeletetransactionModule'},
             //product
             { path: 'listproduct', loadChildren: './product/listproduct/listproduct.module#ListproductModule'},
             { path: 'formproduct', loadChildren: './product/formproduct/formproduct.module#FormproductModule'},

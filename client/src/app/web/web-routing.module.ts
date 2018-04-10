@@ -17,7 +17,7 @@ const routes: Routes = [
             { path: 'formgioithieu', loadChildren: './formgioithieu/formgioithieu.module#FormgioithieuModule'},
             { path: 'shopping', loadChildren: './shopping/shopping.module#ShoppingModule'},
             { path: 'jobdashboard', loadChildren: './jobdashboad/jobdashboard.module#JobdashboadModule'},
-            { path: 'giohang', loadChildren: './giohang/giohang.module#GiohangModule'},
+            { path: 'giohang/:id', loadChildren: './giohang/giohang.module#GiohangModule'},
             { path: 'giaohang', loadChildren: './giaohang/giaohang.module#GiaohangModule'}
             
         ]

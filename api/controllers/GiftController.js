@@ -18,7 +18,7 @@ const getAllGift = function(req, res){
         }
     });
 };
-var themGift = function (req, res) {
+var insertGift = function (req, res) {
     if (!req.body.product_name) {
         res.json({ success: false, message: 'Bạn cần bổ xung tên sản phẩm' });
     } else {
@@ -66,8 +66,100 @@ var themGift = function (req, res) {
         }
     }
 };
+var editGift = function (req, res) {
+    if (!req.body._id) {
+        res.json({ success: false, message: 'No gift id provided' });
+    } else {
+        GiftModel.findOne({ _id: req.body._id }, (err, gift) => {
+            if (err) {
+                res.json({ success: false, message: 'Not a valid gift id' });
+            } else {
+                if (!gift) {
+                    res.json({ success: false, message: 'Gift id was not found.' });
+                } else {
+                    gift.product_name = req.body.product_name;
+                    gift.urlHinh = req.body.urlHinh;
+                    gift.trademark=req.body.trademark;
+                    gift.amount=req.body.amount;
+                    gift.point_sp=req.body.point_sp;
+                    gift.product_infor=req.body.product_infor;
+                    gift.save((err) => {
+                        if (err) {
+                            res.json({ success: false, message: err });
+                        } else {
+                            res.json({ success: true, message: 'Cập nhật thành công' });
+                        }
+                    });
+                }
+            }
+        });
+    }
+};
 
+
+var deleteGift = function (req, res) {
+    if (!req.params.id) {
+        res.json({ success: false, message: 'No id provided' });
+    } else {
+        GiftModel.findOne({ _id: req.params.id }, (err, gift) => {
+            if (err) {
+                res.json({ success: false, message: 'Invalid id' });
+            } else {
+                if (!gift) {
+                    res.json({ success: false, messasge: 'không tìm thấy sản phẩm này' });
+                } else {
+                    gift.remove((err) => {
+                        if (err) {
+                            res.json({ success: false, message: err });
+                        } else {
+                            res.json({ success: true, message: 'Xóa thành công!' });
+                        }
+                    });
+                }
+            }
+        });
+    }
+};
+var giftById = function (req, res) {
+    if (!req.params.id) {
+        res.json({ success: false, message: 'No ID was provided.' });
+    } else {
+        GiftModel.findOne({ _id: req.params.id }, (err, gift) => {
+            if (err) {
+                res.json({ success: false, message: 'Not a valid id' }); // Return error message
+            } else {
+                if (!gift) {
+                    res.json({ success: false, message: 'Gift not found.' });
+                } else {
+                    res.json({ success: true, gift: gift });
+                }
+            }
+        });
+    }
+};
+var giftListByTypeofGift = function (req, res) {
+    var type_giftID = req.param('type_giftID');
+
+    Type_giftModel.findById(type_giftID, function (err, type_gift) {
+        if (err) res.send(err);
+        GiftModel.find({ "type_giftID": type_gift._id }, function (err, gift) {
+            if (err) {
+                res.json({ success: false, message: 'Not a valid id' }); // Return error message
+            } else {
+                if (!gift) {
+                    res.json({ success: false, message: 'type gift not found.' });
+                } else {
+                    res.json({ success: true, gift: gift });
+                }
+            }
+        });
+    });
+};
 module.exports = {
     getAllGift,
-    themGift
+    insertGift,
+    deleteGift,
+    editGift,
+    giftById,
+    giftListByTypeofGift
 }

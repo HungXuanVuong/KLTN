@@ -1,156 +1,57 @@
+
 <div class="row products">
+  <!-- feature1 -->
+<div class="product">
+  <div class="row">
+      <div *ngFor="let g of gift | paginate: { itemsPerPage:6, currentPage: p }" class="col-lg-4">
+              <div class="panel-body">
+                  <a href="product.html"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive"></a>
+                <div class="panel-heading no-padding center">
+                  <p class="text-center" style="color:green; font-size:16px; ">{{g.product_name}}</p>
+              </div>
+                  <div class="text">
+                      <div class="row">
+                          <div class="col-md-6">Quy đổi:</div>
+                          <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">Số lượng còn:</div>
+                        <a class="col-md-6 career_link_location">{{g.amount}}</a>
+                      </div>
+                  </div>
 
-  <div class="col-md-4 col-sm-6">
-    <div class="product">
-      <a href="product.html">
-                    <img src="./../../../assets/web/img/imgShop/shopnoel1.jpg" alt="Product" class="img-responsive">
-                  </a>
-      <div class="text">
-        <h3><a href="product.html">Nón</a></h3>
-        <p class="price">310 <i style="color:red">Point</i></p>
-        <p class="buttons">
-          <a routerLink="/shopping/chitietsp" class="btn btn-default"> 
-                        <i class="fa fa-eye"></i>Xem chi tiết
+              </div>
+                <div class="pull-left">
+                  <div *ngIf="!user">
+                        <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default">
+                          <i class="fa fa-eye"></i> Xem chi tiết
+                        </a>
+                          <a (click)="RedirectUnregister()" class="btn btn-primary"> 
+                            <i class="fa fa-shopping-cart"></i> Đổi ngay
+                          </a>
+                        </div>
+                  <div *ngIf="user">
+                      <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default">
+                        <i class="fa fa-eye"></i> Xem chi tiết
                       </a>
-          <a routerLink="/giohang" class="btn btn-primary"> 
-                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ
-                      </a>
-        </p>
+                    <a [routerLink]="['/giohang/', g._id]" class="btn btn-primary"> 
+                      <i class="fa fa-shopping-cart"></i> Đổi ngay
+                    </a>
+                  </div>
+                </div>
+          <!-- .panel -->
       </div>
-      <!-- /.text -->
-    </div>
-    <!-- /.product -->
-  </div>
+      <!-- .col-lg-6 -->
 
-  <div class="col-md-4 col-sm-6">
-    <div class="product">
-      <a href="product.html">
-                    <img src="./../../../assets/web/img/imgShop/shopnoel.jpg" alt="Product" class="img-responsive">
-                  </a>
-      <div class="text">
-        <h3><a href="product.html">Móc trang trí</a></h3>
-        <p class="price">530 <i style="color:red">Point</i></p>
-        <p class="buttons">
-          <a href="product.html" class="btn btn-default"> 
-                        <i class="fa fa-eye"></i>Xem chi tiết
-                      </a>
-          <a routerLink="/giohang" class="btn btn-primary"> 
-                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ
-                      </a>
-        </p>
-      </div>
-      <!-- /.text -->
+  </div>
+  <!-- .row -->
+  <div class="rowt text-center" style="padding-top:25px">
+    <div class="col-md-12">
+      <pagination-controls (pageChange)="p =$event"></pagination-controls>
     </div>
-    <!-- /.product -->
   </div>
-
-  <div class="col-md-4 col-sm-6">
-    <div class="product">
-      <a href="product.html">
-                    <img src="./../../../assets/web/img/imgShop/shopnoel3.jpg" alt="Product" class="img-responsive">
-                  </a>
-      <div class="text">
-        <h3><a href="product.html">Đồng hồ</a></h3>
-        <p class="price">310 <i style="color:red">Point</i></p>
-        <p class="buttons">
-          <a href="product.html" class="btn btn-default"> 
-                        <i class="fa fa-eye"></i>Xem chi tiết
-                      </a>
-          <a routerLink="/giohang" class="btn btn-primary"> 
-                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ
-                      </a>
-        </p>
-      </div>
-      <!-- /.text -->
-    </div>
-    <!-- /.product -->
-  </div>
-
-  <div class="col-md-4 col-sm-6">
-    <div class="product">
-      <a href="product.html">
-                    <img src="./../../../assets/web/img/imgShop/shopnoel6.jpg" alt="Product" class="img-responsive">
-                  </a>
-      <div class="text">
-        <h3><a href="product.html">Set đồ nam</a></h3>
-        <p class="price">415 <i style="color:red">Point</i></p>
-        <p class="buttons">
-          <a href="product.html" class="btn btn-default"> 
-                        <i class="fa fa-eye"></i>Xem chi tiết
-                      </a>
-          <a routerLink="/giohang" class="btn btn-primary"> 
-                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ
-                      </a>
-        </p>
-
-      </div>
-      <!-- /.text -->
-    </div>
-    <!-- /.product -->
-  </div>
-
-  <div class="col-md-4 col-sm-6">
-    <div class="product">
-      <a href="product.html">
-                    <img src="./../../../assets/web/img/imgShop/shopnoel2.jpg" alt="Product" class="img-responsive">
-                  </a>
-      <div class="text">
-        <h3><a href="product.html">Túi noel</a></h3>
-        <p class="price">310 <i style="color:red">Point</i></p>
-        <p class="buttons">
-          <a href="product.html" class="btn btn-default"> 
-                        <i class="fa fa-eye"></i>Xem chi tiết
-                      </a>
-          <a routerLink="/giohang" class="btn btn-primary"> 
-                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ
-                      </a>
-        </p>
-      </div>
-      <!-- /.text -->
-    </div>
-    <!-- /.product -->
-  </div>
-
-  <div class="col-md-4 col-sm-6">
-    <div class="product">
-      <a href="product.html">
-                    <img src="./../../../assets/web/img/imgShop/shopnoel5.jpg" alt="Product" class="img-responsive">
-                  </a>
-      <div class="text">
-        <h3><a href="product.html">Kẹp tóc</a></h3>
-        <p class="price">310 <i style="color:red">Point</i></p>
-        <p class="buttons">
-          <a href="product.html" class="btn btn-default"> 
-                        <i class="fa fa-eye"></i>Xem chi tiết
-                      </a>
-          <a routerLink="/giohang" class="btn btn-primary"> 
-                        <i class="fa fa-shopping-cart"></i>Thêm vào giỏ
-                      </a>
-        </p>
-      </div>
-      <!-- /.text -->
-    </div>
-    <!-- /.product -->
-  </div>
-  <!-- /.col-md-4 -->
-  <!-- /.products -->
-  <div class="pages">
-    <ul class="pagination">
-      <li><a href="#">&laquo;</a>
-      </li>
-      <li class="active"><a href="#">1</a>
-      </li>
-      <li><a href="#">2</a>
-      </li>
-      <li><a href="#">3</a>
-      </li>
-      <li><a href="#">4</a>
-      </li>
-      <li><a href="#">5</a>
-      </li>
-      <li><a href="#">&raquo;</a>
-      </li>
-    </ul>
-  </div>
+ 
+<!-- .container -->
 </div>
-<!-- /.products -->
+<!-- .feature2 -->
+</div>

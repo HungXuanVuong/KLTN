@@ -16,7 +16,7 @@ export class TypeGiftService {
       return this.http.get(this.domain + 'typegift/getalltype').map(res => res.json());
     }
     getDetailTypeGift(id){
-      return this.http.get(this.domain + 'typegift/getalltype' + id).map(res => res.json());
+      return this.http.get(this.domain + 'typegift/getalltype/' + id).map(res => res.json());
     }
     addTypeGift(typegift){
       return this.http.post(this.domain + 'typegift/getalltype', typegift).map(res => res.json());

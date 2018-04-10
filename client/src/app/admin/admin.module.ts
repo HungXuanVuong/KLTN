@@ -20,8 +20,6 @@ import { SlidebarComponent } from './common/slidebar/slidebar.component';
         AdminComponent,
         HeaderComponent,
         SlidebarComponent,
-        
-    
     ]
 })
 

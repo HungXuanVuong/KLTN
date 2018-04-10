@@ -13,6 +13,7 @@ import { AuthServiceService } from './service/auth-service.service';
 import { NewsService } from './service/news.service';
 import { GiftService } from './service/gift.service';
 import { TypeGiftService } from './service/type-gift.service';
+import { OrderService } from './service/order.service';
 
 
 
@@ -36,7 +37,8 @@ import { TypeGiftService } from './service/type-gift.service';
     NewsService,
     GiftService,
     TypeGiftService,
-    PolicyService
+    PolicyService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

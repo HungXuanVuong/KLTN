@@ -1,16 +1,17 @@
-<div class="panel panel-danger sidebar-menu">
+<div class="panel panel-default sidebar-menu">
   <div class="panel-heading">
     <h3 class="panel-title">Thể loại</h3>
   </div>
   <div class="panel-body">
-    <ul class="nav nav-pills nav-stacked category-menu">
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/shopping/gau">Sinh nhật</a></li>
-      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/shopping/noel">Noel</a></li>
-
-      <li *ngFor="let item of [1,2,3]" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a href="category.html">Valitine</a></li>
-
-
+    <div class="nav nav-pills nav-stacked category-menu">
+    <ul *ngFor="let tg of typegift" class="nav nav-pills nav-stacked category-menu">
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+        <a [routerLink]="['/shopping/loaiqua/', tg._id]" >{{ tg.type_name }}</a>
+      </li>
     </ul>
+    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+      <a routerLink="/shopping/tatca">Tất cả</a>
+    </li>
+    </div>
   </div>
 </div>
-
