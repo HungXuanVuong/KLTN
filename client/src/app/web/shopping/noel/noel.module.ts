@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NoelRoutingModule } from './noel-routing.module';
@@ -9,7 +10,8 @@ import { NoelComponent } from './noel.component';
         CommonModule,
         NoelRoutingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        NgxPaginationModule
     ],
     declarations: [
         NoelComponent

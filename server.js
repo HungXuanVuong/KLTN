@@ -62,6 +62,9 @@ app.use('/typegift', Type_giftRouter);
 /*5. PolicyRouter */
 const PolicyRouter = require('./api/routers/PolicyRoute');
 app.use('/policy', PolicyRouter);
+/*6. OrderRouter */
+const OrderRouter = require('./api/routers/OrderRoute');
+app.use('/order', OrderRouter);
 
 
 

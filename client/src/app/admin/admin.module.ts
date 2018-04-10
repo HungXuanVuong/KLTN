@@ -12,6 +12,11 @@ import { FormproductComponent } from './product/formproduct/formproduct.componen
 import { EditproductComponent } from './product/editproduct/editproduct.component';
 import { ListuvComponent } from './news/listuv/listuv.component';
 import { DetailnewsComponent } from './news/detailnews/detailnews.component';
+import { TransactionhistoryComponent } from './transactionhistory/transactionhistory.component';
+import { ListtransactionComponent } from './transactionhistory/listtransaction/listtransaction.component';
+import { FormtransactionComponent } from './transactionhistory/formtransaction/formtransaction.component';
+import { EdittransactionComponent } from './transactionhistory/edittransaction/edittransaction.component';
+import { DeletetransactionComponent } from './transactionhistory/deletetransaction/deletetransaction.component';
 
 
 @NgModule({
@@ -24,8 +29,7 @@ import { DetailnewsComponent } from './news/detailnews/detailnews.component';
     declarations: [
         AdminComponent,
         HeaderComponent,
-        SlidebarComponent,
-    
+        SlidebarComponent
     ]
 })
 

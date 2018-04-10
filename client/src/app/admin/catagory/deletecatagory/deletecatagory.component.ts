@@ -6,7 +6,8 @@ import { routerTransition } from '../../../router.animations';
 @Component({
   selector: 'app-deletecatagory',
   templateUrl: './deletecatagory.component.html',
-  styleUrls: ['./deletecatagory.component.css']
+  styleUrls: ['./deletecatagory.component.css'],
+  animations: [routerTransition()]
 })
 export class DeletecatagoryComponent implements OnInit {
   message;
