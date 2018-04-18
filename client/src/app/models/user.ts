@@ -1,5 +1,5 @@
 export class User{
-    id: Object;
+    _id: Object;
     email: String;
     username: String;
     password: String;
@@ -15,7 +15,7 @@ export class User{
     register_date: Date;
     
     constructor(){
-        this.id = 0;
+        this._id = 0;
         this.email = "";
         this.password = "";
         this.username = "";

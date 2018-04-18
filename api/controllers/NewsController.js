@@ -120,18 +120,19 @@ const editNews = function (req, res) {
                 if (!news) {
                     res.json({ success: false, message: 'news id was not found.' });
                 } else {
-                    news.urlHinh = req.body.urlHinh,
-                    news.title = req.body.title,
-                    news.place = req.body.place,
-                    news.salary = req.body.salary,
+                    news.urlHinh = req.body.urlHinh;
+                    news.title = req.body.title;
+                    news.place = req.body.place;
+                    news.salary = req.body.salary;
                     // news.create_date = new.create_date,
-                    news.exp_date = req.body.exp_date,
-                    news.position = req.body.position,
-                    news.numberOf = req.body.numberOf,
-                    news.content = req.body.content,
-                    news.newsPolicy = req.body.newsPolicy,
-                    news.status = req.body.status,
-                    news.employee = req.body.employee
+                    news.exp_date = req.body.exp_date;
+                    news.position = req.body.position;
+                    news.numberOf = req.body.numberOf;
+                    news.content = req.body.content;
+                    news.newsPolicy = req.body.newsPolicy;
+                    news.status = req.body.status;
+                    news.employee = req.body.employee;
+                    news.point_uv = req.body.point_uv;
                     news.save((err) => {
                         if (err) {
                             res.json({ success: false, message: err });

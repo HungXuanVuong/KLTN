@@ -16,7 +16,8 @@ import { DataTablesModule } from 'angular-datatables';
 
     ],
     declarations: [
-        ListnewsComponent
+        ListnewsComponent,
+        
     ]
 })
 

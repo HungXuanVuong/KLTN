@@ -123,7 +123,7 @@
                 <label for="motacv" class="control-label">Nội dung </label>
                 <!-- <textarea class="form-control"placeholder="Nhập nội dung" ></textarea> -->
                 <!-- <editor apiKey="zampqj962soas6fhh3ub8hut4tqkepk0uwetpewkhp9n91p8" cloudChannel="dev"  [init]="{plugins: 'link'}"></editor> -->
-                <ckeditor [(ngModel)]="ckeditorContent" [ngModelOptions]="{standalone: true}" debounce="500" (change)="onChange($event)">
+                <ckeditor [(ngModel)]="ckeditorContent" [ngModelOptions]="{standalone: true}" debounce="500" > <!--(change)="onChange($event)"-->
                 </ckeditor>
               </div>
 

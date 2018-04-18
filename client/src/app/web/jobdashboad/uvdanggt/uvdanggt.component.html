@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="panel panel-red">
+    <div class="panel panel-info">
       <div class="panel-heading">
         Danh sách ứng viên đang giới thiệu
       </div>
@@ -11,9 +11,9 @@
             <tr>
               
               <th>Họ tên</th>
-              <th>Email</th>
-              <th>SĐT</th>
               <th>Giới tính</th>
+              <th>SĐT</th>
+              <th>Email</th>
               <th>CvFile</th>
               <th>Trường</th>
               <th>Khoa</th>
@@ -21,38 +21,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="odd gradeX">
-              
-              <td>Nguyễn thị Hoa</td>
-              <td>hoant@gmail.com</td>
-              <td>098794851</td>
-              <td>Nữ</td>
-              <td><a>CV</a></td>
-              <td>HCMUS</td>
-              <td>CNTT</td>
-              <td><a routerLink="/jobdashboard/trangthaiuv">Hồ sơ</a></td>
-            </tr>
-            <tr class="even gradeC">
-              
-              <td>Nguyễn Văn Mạnh</td>
-              <td>manhnv@gmail.com</td>
-              <td>090984781</td>
-              <td>Nam</td>
-              <td><a>CV</a></td>
-              <td>HCMUTE</td>
-              <td>CNTT</td>
-              <td><a routerLink="/jobdashboard/trangthaiuv">Phỏng Vấn</a></td>
-            </tr>
-            <tr class="odd gradeA">
-              
-              <td>Lê Văn Học</td>
-              <td>hoclv@gmail.com</td>
-              <td>098948145</td>
-              <td>Nam</td>
-              <td><a>CV</a></td>
-              <td>HCMUTE</td>
-              <td>CNTT</td>
-              <td><a routerLink="/jobdashboard/trangthaiuv">Ký hợp đồng</a></td>
+            <tr *ngFor="let newcandidate of news_candidte">
+              <td>{{newcandidate.candidate.username}}</td>
+              <td>{{newcandidate.candidate.sex}}</td>
+              <td>{{newcandidate.candidate.phone}}</td>
+              <td>{{newcandidate.candidate.email}}</td>
+              <td><a href='../../../../assets/web/cv/VuongXuanHung_CV.pdf' download>{{newcandidate.candidate.cvFile}}</a></td>
+              <td>{{newcandidate.candidate.school}}</td>
+              <td>{{newcandidate.candidate.faculty}}</td>
+              <td><a routerLink="/jobdashboard/trangthaiuv">{{newcandidate.status}}</a></td>
             </tr>
           </tbody>
         </table>

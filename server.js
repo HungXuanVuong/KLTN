@@ -65,8 +65,15 @@ app.use('/policy', PolicyRouter);
 /*6. OrderRouter */
 const OrderRouter = require('./api/routers/OrderRoute');
 app.use('/order', OrderRouter);
-
-
+/*7. CandidateRouter */
+const CandidateRouter = require('./api/routers/CandidateRoute');
+app.use('/candidate', CandidateRouter);
+/*8. NewsCandidateRouter */
+const NewsCandidateRouter = require('./api/routers/News_CandidateRoute');
+app.use('/newscandidate', NewsCandidateRouter);
+/*9. NewsUserRouter */
+const NewsUserRouter = require('./api/routers/News_UserRoute');
+app.use('/newsuser', NewsUserRouter);
 
 app.listen(port, function(){
     console.log('listening on port : ' + port);

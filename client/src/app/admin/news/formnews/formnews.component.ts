@@ -82,12 +82,14 @@ export class FormnewsComponent implements OnInit {
   
   pointRefer(){
     this.policyService.getSingle(this.newsPolicy).subscribe(data =>{
-     return parseInt(data.policy.pointFile.toString()) + parseInt(data.policy.pointInterview.toString()) + parseInt(data.policy.pointSign.toString());
+    this.pointUv =  data.policy.pointFile + data.policy.pointInterview + data.policy.pointSign;
+    console.log(data.policy.pointFile + data.policy.pointInterview + data.policy.pointSign);
     });
   }
   selectPolicyHandle(event: any){
     this.newsPolicy = event.target.value;
     this.pointRefer();
+    
   }
   onDateChanged(event: IMyDateModel) {
     this.expDate = event.jsdate;
@@ -178,11 +180,12 @@ export class FormnewsComponent implements OnInit {
   }
 
   addNews(){
-    console.log(this.newsPolicy)
+    this.pointRefer();
+    console.log(this.pointUv);
     this.processing = true;
     this.disableForm();
     const news ={
-      urlHinh: 'hometd10.jpg',
+      urlHinh: 'hometd12.jpeg',
       title: this.myForm.get('title').value,
       place: this.myForm.get('place').value,
       salary: this.myForm.get('salary').value,
@@ -191,7 +194,7 @@ export class FormnewsComponent implements OnInit {
       exp_date: this.expDate,
       newsPolicy: this.newsPolicy,
       employee: this.userId,
-      point_uv: this.pointRefer(),
+      point_uv: this.pointUv,
       content: this.ckeditorContent
     }
     console.log(news);
@@ -225,10 +228,10 @@ export class FormnewsComponent implements OnInit {
   }
   
 
-  onChange() {
-    console.log('Change');
-    console.log(this.ckeditorContent);
-  }
+  // onChange() {
+  //   console.log('Change');
+  //   console.log(this.ckeditorContent);
+  // }
 
 
 }

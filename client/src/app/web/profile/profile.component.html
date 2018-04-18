@@ -1,6 +1,6 @@
 <div class="container main-content">
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+    <div class="col-md-8">
       <div class="panel panel-info">
         <div class="panel-heading">
           <h3 class="panel-title">Thông tin cá nhân</h3>
@@ -17,11 +17,11 @@
                 </tr>
                 <tr>
                   <td>Ngày tham gia</td>
-                  <td>{{register_date}}</td>
+                  <td>{{register_date | date: 'MM/dd/yyyy'}}</td>
                 </tr>
                 <tr>
                   <td>Ngày sinh</td>
-                  <td>{{dateOfBirth}}</td>
+                  <td>{{dateOfBirth | date: 'MM/dd/yyyy'}}</td>
                 </tr>
 
                 <!-- <tr> -->
@@ -54,9 +54,66 @@
         </div>
       </div>
       <div class="panel-footer">
-        <a class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa thông tin</a>
+        <a class="btn btn-danger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa thông tin</a>
+        <a class="btn btn-primary"> Ứng tuyển</a>
       </div>
 
     </div>
+    <div class="col-md-4">
+      <div class="panel panel-green">
+        <div class="panel-heading no-padding center">
+          <p class="text-center" style="color:white; font-size:16px; ">{{news.title}}</p>
+        </div>
+        <div class="panel-body">
+
+          <a [routerLink]="['/chitiettin/', news._id]"><img src="./../../../assets/web/img/imgtin/{{news.urlHinh}}" alt="java" class="img-responsive"></a>
+          <div class="row" style="padding:10px 5px;">
+            <div class="hang">
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Địa điểm</div>
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:blue;">{{news.place}}</div>
+            </div>
+            <div class="hang1">
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Lương</div>
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:lightsalmon;">{{news.salary}}</div>
+            </div>
+            <div class="hang2">
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Vị trí</div>
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:lightsalmon;">{{news.position}}</div>
+            </div>
+            <div class="hang3">
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Ngày đăng</div>
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left"> {{news.create_date | date:'dd/MM/yyyy'}}</div>
+            </div>
+            <div class="hang4">
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Hạn nộp hồ sơ</div>
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{news.exp_date | date:'dd/MM/yyyy'}}</div>
+            </div>
+            <div class="hang5">
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Point thưởng</div>
+              <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:red;font-weight: bold;">{{news.point_uv}}</div>
+            </div>
+          </div>
+
+        </div>
+        <!-- <div class="text-center panel-footer" style="height: 52px;">
+          <div class="pull-right">
+            <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+            <a class="btn btn-social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>
+          </div>
+          <div class="pull-left">
+            <div *ngIf="!user">
+              <a (click)="RedirectUnregister()" class="btn btn-primary">Ứng tuyển</a>
+              <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
+            </div>
+            <div *ngIf="user">
+              <a routerLink="/profile" class="btn btn-primary">Ứng tuyển</a>
+              <a routerLink="/formgioithieu" class="btn btn-success">Giới thiệu</a>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+
   </div>
 </div>

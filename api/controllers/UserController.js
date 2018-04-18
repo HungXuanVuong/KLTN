@@ -355,16 +355,16 @@ const editUser = function(req, res){
                 if (!user) {
                     res.json({ success: false, message: 'Không tìm thấy user có id này.' });
                 } else {
-                    user.username = req.body.username,
-                    user.dateOfBirth = req.body.dateOfBirth,
-                    user.sex = req.body.sex,
-                    user.address = req.body.address,
-                    user.phone = req.body.phone,
-                    user.urlHinh = req.body.urlHinh,
-                    user.cvFile = req.body.cvFile,
-                    user.point = req.body.point,
-                    user.uvNumber = req.body.uvNumber,
-                    user.role = req.body.role,
+                    user.username = req.body.username;
+                    user.dateOfBirth = req.body.dateOfBirth;
+                    user.sex = req.body.sex;
+                    user.address = req.body.address;
+                    user.phone = req.body.phone;
+                    user.urlHinh = req.body.urlHinh;
+                    user.cvFile = req.body.cvFile;
+                    user.point = req.body.point;
+                    user.uvNumber = req.body.uvNumber;
+                    user.role = req.body.role;
                     user.save((err) => {
                         if (err) {
                             res.json({ success: false, message: err });

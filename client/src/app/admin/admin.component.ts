@@ -36,7 +36,7 @@ export class AdminComponent implements OnInit {
         }
       }
     });
-    jQuery('#side-menu').metisMenu();
+     jQuery('#side-menu').metisMenu();
   }
 
 }

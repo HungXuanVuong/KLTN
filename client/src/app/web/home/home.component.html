@@ -98,8 +98,8 @@
                                 <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
                             </div>
                             <div *ngIf="user">
-                                <a routerLink="/profile" class="btn btn-primary">Ứng tuyển</a>
-                                <a routerLink="/formgioithieu" class="btn btn-success">Giới thiệu</a>
+                                <a [routerLink]="['/profile/', new._id]" class="btn btn-primary">Ứng tuyển</a>
+                                <a [routerLink]="['/formgioithieu/', new._id]" class="btn btn-success">Giới thiệu</a>
                             </div>
                         </div>
                     </div>

@@ -1,3 +1,5 @@
+import { NewsuserService } from './service/newsuser.service';
+import { NewscandidateService } from './service/newscandidate.service';
 import { PolicyService } from './service/policy.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -38,7 +40,9 @@ import { OrderService } from './service/order.service';
     GiftService,
     TypeGiftService,
     PolicyService,
-    OrderService
+    OrderService,
+    NewscandidateService,
+    NewsuserService
   ],
   bootstrap: [AppComponent]
 })
