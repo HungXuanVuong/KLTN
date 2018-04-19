@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { DataTablesModule } from 'angular-datatables';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,8 +11,8 @@ import { ListproductComponent } from './listproduct.component';
         CommonModule,
         ListproductRoutingModule,
         ReactiveFormsModule,
-        FormsModule
-
+        FormsModule,
+        DataTablesModule
     ],
     declarations: [
         ListproductComponent

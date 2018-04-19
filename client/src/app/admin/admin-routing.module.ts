@@ -15,17 +15,18 @@ const routes: Routes = [
             //catagory
             { path: 'listcatagory', loadChildren: './catagory/listcatagory/listcatagory.module#ListcatagoryModule'},
             { path: 'formcatagory', loadChildren: './catagory/formcatagory/formcatagory.module#FormcatagoryModule'},
-            { path: 'editcatagory', loadChildren: './catagory/editcatagory/editcatagory.module#EditcatagoryModule'},
+            { path: 'editcatagory/:id', loadChildren: './catagory/editcatagory/editcatagory.module#EditcatagoryModule'},
             { path: 'deletecatagory/:id', loadChildren: './catagory/deletecatagory/deletecatagory.module#DeletecatagoryModule'},
             //Transaction history
-            { path: 'listtransaction', loadChildren: './transactionhistory/listtransaction/listtransaction.module#ListtransactionModule'},
-            //{ path: 'formtransaction', loadChildren: './transactionhistory/formtransaction/formtransaction.module#FormtransactionModule'},
-            //{ path: 'edittransaction', loadChildren: './transactionhistory/edittransaction/edittransaction.module#EdittransactionModule'},
-            //{ path: 'deletetransaction/:id', loadChildren: './transactionhistory/deletetransaction/deletetransaction.module#DeletetransactionModule'},
+              { path: 'listtransaction', loadChildren: './transactionhistory/listtransaction/listtransaction.module#ListtransactionModule'},
+              { path: 'formtransaction', loadChildren: './transactionhistory/formtransaction/formtransaction.module#FormtransactionModule'},
+              { path: 'edittransaction', loadChildren: './transactionhistory/edittransaction/edittransaction.module#EdittransactionModule'},
+              { path: 'deletetransaction/:id', loadChildren: './transactionhistory/deletetransaction/deletetransaction.module#DeletetransactionModule'},
             //product
             { path: 'listproduct', loadChildren: './product/listproduct/listproduct.module#ListproductModule'},
             { path: 'formproduct', loadChildren: './product/formproduct/formproduct.module#FormproductModule'},
-            { path: 'editproduct', loadChildren: './product/editproduct/editproduct.module#EditproductModule'},
+            { path: 'editproduct/:id', loadChildren: './product/editproduct/editproduct.module#EditproductModule'},
+            { path: 'deleteproduct/:id', loadChildren: './product/editproduct/editproduct.module#EditproductModule'},
             //user
             { path: 'listuser', loadChildren: './users/listuser/listuser.module#ListuserModule'},
             { path: 'formuser', loadChildren: './users/formuser/formuser.module#FormuserModule'},

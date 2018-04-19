@@ -1,5 +1,5 @@
 const OrderModel = require('../models/OrderModel');
-const GCodeOrder = require('../Helper/GCodeOrder');
+const GCodeOrder = require('../Util/GCodeOrder');
 
 const config = require('../config/db');
 
@@ -46,17 +46,17 @@ const addOrder = function (req, res) {
         productName: req.body.productName,
         point_qd: req.body.point_qd,
         orderDay: req.body.orderDay,
-        // create_date: Date.now,
-        receivedDate: req.body.receivedDate,
+        receivedDay: req.body.receivedDay,
         placeOfReceipt: req.body.placeOfReceipt,
         employee: req.body.employee,
         status: 'Đang chờ'
     });
+    //console.log(order);
     order.save(function (err) {
         if (err) {
             res.json({ success: false, message: err });
         } else {
-            res.json({ success: true, message: 'Lưu thành công!' });
+            res.json({ success: true, order: order ,message: 'Lưu thành công!' });
         }
     });     
 };
@@ -77,7 +77,7 @@ const editOrder = function (req, res) {
                     order.point_qd = req.body.point_qd,
                     order.orderDay = req.body.orderDay,
                     // create_date: Date.now,
-                    order.receivedDate = req.body.receivedDate,
+                    order.receivedDay = req.body.receivedDate,
                     order.placeOfReceipt = req.body.placeOfReceipt,
                     order.status = req.body.status,
                     order.employee = req.body.employee
@@ -117,11 +117,41 @@ const deleteOrder = function(req, res){
         });
       }
 }
-
+const editStatusAndDay = function(req, res){
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id đơn hàng' });
+    }else{
+        if(!req.body.status){
+            res.json({ success: false, message: 'Chưa có tình trạng cập nhật' });
+        }else{
+            OrderModel.findOne({ _id: req.body._id }, (err, order) => {
+                if (err) {
+                    res.json({ success: false, message: 'id đơn hàng không hợp lệ' });
+                } else {
+                    if (!order) {
+                        res.json({ success: false, message: 'Không tìm thấy đơn hàng có id này.' });
+                    } else {
+                        order.status = req.body.status,
+                        order.receivedDay = new Date()
+                        console.log(order);
+                        order.save((err) => {
+                            if (err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                res.json({ success: true, message: 'Cập nhật point thành công' });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
+};
 module.exports = {
     getAllOrder,
     getOrderByID,
     addOrder,
     editOrder,
-    deleteOrder
+    deleteOrder,
+    editStatusAndDay
 }

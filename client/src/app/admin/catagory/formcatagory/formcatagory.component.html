@@ -41,7 +41,7 @@
               <div class="form-group">
                 <label for="mota">Mô tả</label>
                 <div [ngClass]="{'has-error': (form.controls.type_infor.errors && form.controls.type_infor.dirty), 'has-success': !form.controls.type_infor.errors}">
-                    <textarea name="type_infor" rows="8" cols="80" class="form-control" placeholder="*Enter text" formControlName="type_infor"></textarea>
+                    <textarea name="type_infor" id="type_infor" rows="8" cols="80" class="form-control" placeholder="*Enter text" formControlName="type_infor"></textarea>
                     <ul class="help-block">
                       <li *ngIf="form.controls.type_infor.errors?.required && form.controls.type_infor.dirty">Trường này bắt buộc nhập</li>
                       <li *ngIf="form.controls.type_infor.errors?.minlength && form.controls.type_infor.dirty || form.controls.type_infor.errors?.maxlength && form.controls.type_infor.dirty ">ký tự ít nhất là 50, không quá 500 ký tự</li>
