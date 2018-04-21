@@ -7,44 +7,44 @@
         </div>
         <div class="panel-body">
           <div class="row">
-            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="./../../../assets/web/img/imguser/{{urlHinh}}" class="img-circle img-responsive"> </div>
+            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="./../../../assets/web/img/imguser/{{user.urlHinh}}" class="img-circle img-responsive"> </div>
             <!-- <input type="file" id="selectImg" style="padding-top:80px;"> -->
             <table class="table table-user-information">
               <tbody>
                 <tr>
                   <td>Họ và tên</td>
-                  <td>{{username}}</td>
+                  <td>{{user.username}}</td>
                 </tr>
                 <tr>
                   <td>Ngày tham gia</td>
-                  <td>{{register_date | date: 'MM/dd/yyyy'}}</td>
+                  <td>{{user.register_date | date: 'MM/dd/yyyy'}}</td>
                 </tr>
                 <tr>
                   <td>Ngày sinh</td>
-                  <td>{{dateOfBirth | date: 'MM/dd/yyyy'}}</td>
+                  <td>{{user.dateOfBirth | date: 'MM/dd/yyyy'}}</td>
                 </tr>
 
                 <!-- <tr> -->
                 <tr>
                   <td>Giới tính</td>
-                  <td>{{sex}}</td>
+                  <td>{{user.sex}}</td>
                 </tr>
                 <tr>
                   <td>Địa chỉ</td>
-                  <td>{{address}}</td>
+                  <td>{{user.address}}</td>
                 </tr>
                 <tr>
                   <td>Email</td>
-                  <td><a href="#">{{email}}</a></td>
+                  <td><a href="#">{{user.email}}</a></td>
                 </tr>
                 <tr>
                   <td>Số điện thoại</td>
-                  <td>{{phone}}</td>
+                  <td>{{user.phone}}</td>
                 </tr>
                 <!-- </tr> -->
                 <tr>
                   <td>CV</td>
-                  <td><input type="file" id="cv">
+                  <td>{{user.cvFile}}</td>
                     <!-- <span class="help-block">Định dạng: .PDF, .DOC, .DOCX</span>
                     <span class="help-block">Kích thước tối đa: 2MB</span></td> -->
                 </tr>
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="panel-footer">
-        <a class="btn btn-danger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa thông tin</a>
+        <a class="btn btn-danger" [routerLink]="['/formprofile/', user._id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa thông tin</a>
         <a class="btn btn-primary"> Ứng tuyển</a>
       </div>
 
