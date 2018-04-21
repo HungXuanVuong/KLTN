@@ -5,9 +5,9 @@
   <!-- /.col-lg-12 -->
 </div> <!-- /.row -->
 <div class="row" style="padding-bottom:5px">
-  <div class="col-lg-12">
+  <!--<div class="col-lg-12">
       <a routerLink="/admin/formtransaction" class="btn btn-danger"><span class="fa fa-plus"></span> Thêm giao dịch</a>
-  </div>
+  </div> -->
   <!-- /.col-lg-12 -->
 </div>  <!-- /.row -->
 <!-- /.row -->
@@ -44,10 +44,10 @@
                           <td>{{ o.orderDay | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                           <td>
                             <div *ngIf="o.status==='Hoàn thành'">
-                              <button [disabled]="loadingBlogs"  (click)="toggle(o._id, o.status)" class="btn btn-primary">{{o.status}}</button>
+                              <button [disabled]="loadingBlogs" (click)="toggle(o._id, o.status)" class="btn btn-primary">{{o.status}}</button>
                             </div>
                             <div *ngIf="o.status==='Đang chờ'">
-                                    <button [disabled]="loadingBlogs"  (click)="toggle(o._id, o.status)" class="btn btn-danger">{{o.status}}</button>
+                                    <button [disabled]="loadingBlogs"  (click)="toggle(o._id, o.status)" class="btn btn-danger">{{o.status}} <i class="fa fa-exchange"></i></button>
 
                             </div>
                           </td>

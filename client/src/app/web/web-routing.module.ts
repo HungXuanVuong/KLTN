@@ -18,7 +18,7 @@ const routes: Routes = [
             { path: 'shopping', loadChildren: './shopping/shopping.module#ShoppingModule'},
             { path: 'jobdashboard', loadChildren: './jobdashboad/jobdashboard.module#JobdashboadModule'},
             { path: 'giohang/:id', loadChildren: './giohang/giohang.module#GiohangModule'},
-            { path: 'giaohang', loadChildren: './giaohang/giaohang.module#GiaohangModule'}
+            { path: 'giaohang/:id', loadChildren: './giaohang/giaohang.module#GiaohangModule'}
             
         ]
     }

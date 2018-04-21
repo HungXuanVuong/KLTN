@@ -24,10 +24,10 @@
             <!-- Botones de compra -->
             <div class="section" style="padding-bottom:20px;">
               <div *ngIf="!user">
-                <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true" (click)="RedirectUnregister()"></span> Đổi ngay </button>
+                <button class="btn btn-success" (click)="RedirectUnregister()"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" ></span> Đổi ngay </button>
               </div>
               <div *ngIf="user">
-                <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Đổi ngay </button>
+                <button class="btn btn-success" [routerLink]="['/giohang/', gift._id]"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" ></span> Đổi ngay </button>
               </div>
             </div>                                        
         </div>                              
