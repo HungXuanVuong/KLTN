@@ -1,3 +1,71 @@
-<p>
-  deletetransaction works!
-</p>
+<div [@routerTransition] class="container" style="padding-top:100px;">
+  
+    <!-- Custom Success/Error Message -->
+    <div class="row show-hide-message" *ngIf="message">
+      <div [ngClass]="messageClass">
+        {{ message }}
+      </div>
+    </div>
+  
+    <!-- Modal Confirmation Window -->
+    <div class="col-md-6 col-md-push-3" *ngIf="foundOrder">
+      <!-- Model Outer Layer -->
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <!-- Close Button -->
+          <button type="button" name="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- Modal Title -->
+          <h4 class="modal-title">Xác nhận</h4>
+        </div>
+  
+        <!-- Modal Body -->
+        <div class="modal-body">
+          <p>Bạn có chắc sẽ xóa giao dịch này không ?</p>
+        </div>
+  
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <!-- Yes Button -->
+          <button [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="deleteTransaction()">Đồng ý</button>
+          <!-- No Button -->
+          <a routerLink="/admin/listtransaction"><button [disabled]="processing" type="button" name="button" class="btn btn-danger">Không</button></a>
+        </div>
+      </div>
+  
+      <br />
+  
+      <!-- Panel -->
+      <div class="panel panel-yellow">
+        <!-- Panel Heading -->
+        <div class="panel-heading">
+          <!-- Panel Title -->
+          <h3 class="panel-title">Mã đơn hàng: {{ order.codeOrder }}</h3>
+        </div>
+  
+        <!-- Panel Body -->
+        <div class="panel-body">
+          Tên món quà quy đổi: {{ order.productName }}
+        </div>
+        <div class="panel-body">
+          Số point quy đổi tương ứng: {{ order.point_qd }}
+        </div>
+        <div class="panel-body">
+          Ngày đổi quà: {{ order.orderDay | date: 'dd/MM/yyyy hh:mm:ss'}}
+        </div>
+        <div class="panel-body">
+          Ngày nhận quà: {{ order.receivedDay | date: 'dd/MM/yyyy hh:mm:ss'}}
+        </div>
+        <div class="panel-body">
+          Người thực hiện giao dịch: {{ order.employee.username }}
+        </div>
+        <div class="panel-body">
+          Địa điểm đến nhận quà: {{ order.placeOfReceipt }}
+        </div>
+        <div class="panel-body">
+          Trạng thái giao dịch:{{ order.status }}
+        </div>
+      </div>
+  
+    </div>
+  </div>

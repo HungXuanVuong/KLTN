@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../../service/auth-service.service';
 
 import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 import { GiftService } from '../../../service/gift.service';
 import {Gift} from '../../../models/gift';
 import { User } from "../../../models/user";
@@ -39,9 +39,8 @@ export class GauComponent implements OnInit {
     this.router.navigate(['/login'],
     {queryParams: {mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger"}});
   }
-  ngOnInit() {
-    this.currentUrl = this.activatedRoute.snapshot.params;
-    this.giftService.getAllGiftByType(this.currentUrl.id).subscribe(data =>{
+  getAllGift(id){
+    this.giftService.getAllGiftByType(id).subscribe(data =>{
       if (!data.success) {
         this.messageClass = 'alert alert-danger'; // Set bootstrap error class
         this.message = data.message; // Set error message
@@ -51,5 +50,20 @@ export class GauComponent implements OnInit {
         this.loading = false; // Allow loading of blog form
       }
     });
+  }
+  ngOnInit() {
+    this.activatedRoute.params.forEach((params: Params) => {
+      console.log(params.id);
+      //call your function, like getUserInfo()
+      this.getAllGift(params.id);
+});
+this.authService.getProfile().subscribe(profile => {
+  if(profile){
+    this.user = profile.user;
+  }else{
+    return;
+  }
+});
+    
   }
 }

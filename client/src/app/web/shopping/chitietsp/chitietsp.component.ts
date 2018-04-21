@@ -17,7 +17,6 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 export class ChitietspComponent implements OnInit {
   message;
   messageClass;
-  users: Array<User> = [];
   user: User;
   
   processing = false;
@@ -50,6 +49,13 @@ export class ChitietspComponent implements OnInit {
             this.gift = data.gift; 
             console.log(this.gift);
             this.loading = false; // Allow loading of blog form
+          }
+        });
+        this.authService.getProfile().subscribe(profile => {
+          if(profile){
+            this.user = profile.user;
+          }else{
+            return;
           }
         });
       }

@@ -31,6 +31,9 @@ var insertGift = function (req, res) {
                 if (!req.body.amount) {
                     res.json({ success: false, message: 'Bạn cần bổ xung số lượng quà tồn' });
                 } else {
+                if (!req.body.create_date) {
+                    res.json({ success: false, message: 'Bạn cần bổ xung ngày nhập kho quà' });
+                }else{
                     if (!req.body.point_sp) {
                         res.json({ success: false, message: 'Bạn cần bổ xung điểm quy đổi quà tương ứng' });
                     } else {
@@ -46,6 +49,7 @@ var insertGift = function (req, res) {
                             urlHinh: req.body.urlHinh,
                             trademark: req.body.trademark,
                             amount: req.body.amount,
+                            create_date: req.body.create_date,
                             point_sp: req.body.point_sp,
                             product_infor: req.body.product_infor,
                             type_giftID: req.body.type_giftID
@@ -61,6 +65,7 @@ var insertGift = function (req, res) {
                     }
                   }
                  }
+                }
                 }
             }
         }
@@ -81,6 +86,7 @@ var editGift = function (req, res) {
                     gift.urlHinh = req.body.urlHinh;
                     gift.trademark=req.body.trademark;
                     gift.amount=req.body.amount;
+                    gift.create_date=req.body.create_date;
                     gift.point_sp=req.body.point_sp;
                     gift.product_infor=req.body.product_infor;
                     gift.save((err) => {

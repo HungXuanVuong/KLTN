@@ -19,7 +19,7 @@ import { SlidebarComponent } from './common/slidebar/slidebar.component';
     declarations: [
         AdminComponent,
         HeaderComponent,
-        SlidebarComponent,
+        SlidebarComponent
     ]
 })
 

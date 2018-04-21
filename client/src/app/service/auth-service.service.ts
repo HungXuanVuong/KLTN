@@ -96,4 +96,7 @@ export class AuthServiceService {
     this.createAuthenticationHeaders();
     return this.http.get(this.domain + 'authentication/user/' + id, this.options).map(res => res.json());
   }
+  editPointUser(user){
+    return this.http.put(this.domain + 'authentication/user/editpoint', user).map(res => res.json());
+  }
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransactionhistoryComponent } from './transactionhistory.component';
+import { DeleteproductComponent } from './deleteproduct.component';
 
-describe('TransactionhistoryComponent', () => {
-  let component: TransactionhistoryComponent;
-  let fixture: ComponentFixture<TransactionhistoryComponent>;
+describe('DeleteproductComponent', () => {
+  let component: DeleteproductComponent;
+  let fixture: ComponentFixture<DeleteproductComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransactionhistoryComponent ]
+      declarations: [ DeleteproductComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TransactionhistoryComponent);
+    fixture = TestBed.createComponent(DeleteproductComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

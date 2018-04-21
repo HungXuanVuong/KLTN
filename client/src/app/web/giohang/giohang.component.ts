@@ -24,6 +24,7 @@ export class GiohangComponent implements OnInit {
   loading = true;
   foundGift = false;
   point_sd;
+  order_sdq;
 
   gift = new Gift();
   user: User;
@@ -56,7 +57,7 @@ export class GiohangComponent implements OnInit {
       }
     });
   }
-  quyDoi(e_id){
+  quyDoi(e_id,pointuser,pointproduct){
     this.processing = true;
     const order = {
       productName: this.gift.product_name,
@@ -73,8 +74,24 @@ export class GiohangComponent implements OnInit {
       } else {
         this.messageClass = "alert alert-success";
         this.message = "Đổi quà thành công!";
+        this.order_sdq=data.order;
+        console.log(this.order_sdq);
+      }
+    });
+    const user_sd={
+      _id: e_id,
+      point: pointuser-pointproduct
+    }
+    this.authService.editPointUser(user_sd).subscribe(data2=>{
+      if (!data2.success) {
+        this.messageClass = "alert alert-danger";
+        this.message += data2.message;
+        this.processing = false;
+      } else {
+        this.messageClass = "alert alert-success";
+        this.message += " Tài khoản của bạn đã bị trừ trương ứng với số point vừa đổi!";     
         setTimeout(() =>{
-          this.router.navigate(['/giaohang']);
+          this.router.navigate(['/giaohang/'+ this.order_sdq._id]);
         }, 2000);
       }
     });

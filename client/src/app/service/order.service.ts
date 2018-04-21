@@ -34,5 +34,9 @@ export class OrderService {
   deleteOrder(id){
     return this.http.delete(this.domain + 'order/' + id, this.options).map(res => res.json());
   }
+
+  editStatusAndDay(order){
+    return this.http.put(this.domain + 'order/editstatus', order).map(res => res.json());
+  }
   
 }

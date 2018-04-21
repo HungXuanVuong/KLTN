@@ -18,13 +18,29 @@ const getAllTypeGift = function(req, res){
     });
 };
 var editTypeGift = function (req, res) {
-    var type_giftId = req.param('type_giftId');
-    Type_giftModel.findOneAndUpdate({ _id: type_giftId }, req.body, { new: true }, function (err, type_giftModel) {
-        if (err) {
-            res.send(err);
-        }
-        res.json(type_giftModel);
-    });
+    if (!req.body._id) {
+        res.json({ success: false, message: 'No Typegift id provided' });
+    } else {
+        Type_giftModel.findOne({ _id: req.body._id }, (err, typegift) => {
+            if (err) {
+                res.json({ success: false, message: 'Not a valid typegift id' });
+            } else {
+                if (!typegift) {
+                    res.json({ success: false, message: 'typegift id was not found.' });
+                } else {
+                    typegift.type_name = req.body.type_name;
+                    typegift.type_infor = req.body.type_infor;
+                    typegift.save((err) => {
+                        if (err) {
+                            res.json({ success: false, message: err });
+                        } else {
+                            res.json({ success: true, message: 'Cập nhật thành công' });
+                        }
+                    });
+                }
+            }
+        });
+    }
 };
 
 

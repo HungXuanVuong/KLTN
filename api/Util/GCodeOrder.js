@@ -1,7 +1,6 @@
 var generateCodeOrder = require('password-generator');
 
-var maxLength = 12;
-var minLength = 10;
+var Length = 10;
 var uppercaseMinCount = 4;
 var lowercaseMinCount = 4;
 var numberMinCount = 2;
@@ -15,8 +14,7 @@ function isStrongEnough(codeorder) {
   var lc = codeorder.match(LOWERCASE_RE);
   var n = codeorder.match(NUMBER_RE);
   var nr = codeorder.match(NON_REPEATING_CHAR_RE);
-  return codeorder.length >= minLength &&
-    !nr &&
+  return !nr &&
     uc && uc.length >= uppercaseMinCount &&
     lc && lc.length >= lowercaseMinCount &&
     n && n.length >= numberMinCount;
@@ -24,7 +22,7 @@ function isStrongEnough(codeorder) {
 
 const generatorCode = function gCodeOrder() {
   var codeorder = "";
-  var randomLength = Math.floor(Math.random() * (maxLength - minLength)) + minLength;
+  var randomLength = Math.floor(Math.random()) + Length;
   while (!isStrongEnough(codeorder)) {
     codeorder = generateCodeOrder(randomLength, false, /[\w\d\?\-]/);
   }
