@@ -51,7 +51,7 @@
         <div class="row">
             <div *ngFor="let new of news | filter : searchKey | paginate: { itemsPerPage:6, currentPage: p}" class="col-lg-4">
 
-              
+
                 <div class="panel panel-green">
                     <div class="panel-heading no-padding center">
                         <p class="text-center" style="color:white; font-size:16px; ">{{new.title}}</p>
@@ -139,7 +139,8 @@
                                 <img src="./../../../assets/web/img/imguser/{{user.urlHinh}}">
                                 <h4>{{user.username}}</h4>
                                 <p>
-                                    Point tích lũy: {{user.point}} <br /> Đã giới thiệu: {{user.uvNumber}}
+                                    Đã giới thiệu: {{user.uvNumber}}
+                                    <br /> Point tích lũy: {{user.point}}
                             </div>
                         </div>
                     </div>

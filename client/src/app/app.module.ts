@@ -1,3 +1,5 @@
+import { CandidateService } from './service/candidate.service';
+import { SharedModule } from './sharemodule.module';
 import { NewsuserService } from './service/newsuser.service';
 import { NewscandidateService } from './service/newscandidate.service';
 import { PolicyService } from './service/policy.service';
@@ -17,15 +19,17 @@ import { GiftService } from './service/gift.service';
 import { TypeGiftService } from './service/type-gift.service';
 import { OrderService } from './service/order.service';
 
-
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
     AppComponent,
+ 
     // HeaderComponent
 
   ],
   imports: [
+    // SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
@@ -42,7 +46,8 @@ import { OrderService } from './service/order.service';
     PolicyService,
     OrderService,
     NewscandidateService,
-    NewsuserService
+    NewsuserService,
+    CandidateService
   ],
   bootstrap: [AppComponent]
 })

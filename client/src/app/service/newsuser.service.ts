@@ -36,4 +36,9 @@ export class NewsuserService {
       return this.http.put(this.domain + 'newsuser/edit/', newsuser).map(res =>res.json());
     }
 
+    addNewsUser(newsuser){
+      this.createAuthenticationHeaders();
+      return this.http.post(this.domain + 'newsuser/add', newsuser, this.options).map(res => res.json());
+    }
+
 }

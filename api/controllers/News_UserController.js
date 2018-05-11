@@ -1,26 +1,67 @@
 const News_UserModel = require('../models/News_UserModel');
 
 
+
+function checkExitst(newss, users) {
+    News_UserModel.find({ news: newss }, function (err, news) {
+        if (err) {
+            return "err";
+        } else {
+            console.log("List news: ");
+            console.log(news);
+            for (var u in news) {
+                if (news[u].user == users) {
+                    console.log("Có ");
+                    console.log(news[u]);
+                }
+            }
+        }
+    });
+}
+
+
 const addNews_User = function (req, res) {
+
     if (!req.body.news) {
         res.json({ success: false, message: 'Chưa cung cấp Id news' });
     } else {
         if (!req.body.user) {
             res.json({ success: false, message: 'Chưa cung cấp Id user' });
         } else {
-            let newsUser = new News_UserModel({
-                news: req.body.news,
-                user: req.body.user,
-                status: req.body.status
-            });
-            newsUser.save(function (err) {
+            
+            News_UserModel.find({ news: req.body.news }, function (err, news) {
                 if (err) {
-                    res.json({ success: false, message: 'Ứng tuyển thất bại: ', err });
+                    return "err";
                 } else {
-                    res.json({ success: true, message: 'Ứng tuyển đã được lưu!' });
+                    check = true;
+                    for (var u in news) {
+                        if (news[u].user == req.body.user) {
+                            // console.log("Có ");
+                            // console.log(news[u]);
+                            check = false;
+                            res.json({ success: false, message: 'Bạn đã đăng ứng tuyển rồi.' });
+                            return;
+                        }
+                    }
+                    if (check) {
+                        let newsUser = new News_UserModel({
+                            news: req.body.news,
+                            user: req.body.user,
+                            status: req.body.status
+                        });
+                        
+                        newsUser.save(function (err) {
+                            if (err) {
+                                res.json({ success: false, message: 'Ứng tuyển thất bại ! ', err });
+
+                            } else {
+                                res.json({ success: true, message: 'Ứng tuyển thành công !' });
+                            }
+                        });
+                        return;
+                    }
                 }
             });
-            
         }
     }
 };

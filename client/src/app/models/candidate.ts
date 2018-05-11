@@ -1,6 +1,6 @@
 export class Candidate{
 
-    id: Object;
+    _id: Object;
     username: String;
     sex: String;
     email: String;
@@ -11,7 +11,7 @@ export class Candidate{
     create_date:  Date;
 
     constructor(){
-        this.id = 0;
+        this._id = 0;
         this.username = "";
         this.sex = "";
         this.email = "";

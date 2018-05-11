@@ -1,144 +1,154 @@
-<div class="container main-content">
-  <div class="row">
-    <div class="col-md-8">
-      <div class="panel panel-info">
+<div id="feature3">
+  <div class="container main-content">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel panel-info">
 
-        <div class="panel-heading">
-          <h5>Nhập thông tin ứng viên</h5>
-        </div>
-        <div class="panel-body">
-          <form [formGroup]="myForm" class="form-horizontal">
-         
-                <div class="form-group">
-                  <label for="username" class="col-md-2 control-label">Họ và tên (*)</label>
+          <div class="panel-heading">
+            <h5>Giới thiệu ứng viên</h5>
+          </div>
+          <div class="panel-body">
+            <div class=" show-hide-message">
+              <div [ngClass]="messageClass">
+                {{message}}
+              </div>
+            </div>
+            <form [formGroup]="myForm" class="form-horizontal">
 
-                  <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.username.errors && myForm.controls.username.dirty), 'has-success': !myForm.controls.username.errors}">
-                    <input type="text" name="username" class="form-control" autocomplete="off" formControlName="username" placeholder="Nhập tiêu đề..."
-                    />
-                    <ul class="help-block">
-                      <li *ngIf="myForm.controls.username.errors?.required && myForm.controls.username.dirty">Trường này bắt buộc</li>
-                      <li *ngIf="(myForm.controls.username.errors?.minlength || myForm.controls.username.errors?.maxlength) && myForm.controls.username.dirty">Tiêu đề ít nhất có 5 ký tự , tối đa 40</li>
-                    </ul>
-                  </div>
+              <div class="form-group">
+                <label for="username" class="col-md-2 control-label">Họ và tên (*)</label>
 
+                <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.username.errors && myForm.controls.username.dirty), 'has-success': !myForm.controls.username.errors}">
+                  <input type="text" name="username" class="form-control" autocomplete="off" formControlName="username" placeholder="Nhập họ tên ứng viên..."
+                  />
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.username.errors?.required && myForm.controls.username.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="(myForm.controls.username.errors?.minlength || myForm.controls.username.errors?.maxlength) && myForm.controls.username.dirty">Tiêu đề ít nhất có 5 ký tự , tối đa 40</li>
+                  </ul>
                 </div>
 
-                <div class="form-group">
-                  <label class="col-md-2 control-label" for="sex">Giới tính (*)</label>
-                  <div class="col-md-10">
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="sex" id="sex" value="male" checked>
+              </div>
+
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="sex">Giới tính (*)</label>
+                <div class="col-md-10">
+                  <div class="radio">
+                    <label>
+                        <input type="radio" name="sex" id="sex" value="Nam" checked formControlName="sex">
                         Nam
                       </label>
-                      <label>
-                        <input type="radio" name="sex" id="sex" value="female">
+                    <label>
+                        <input type="radio" name="sex" id="sex" value="Nữ" formControlName="sex">
                         Nữ
                       </label>
-                    </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label for="email" class="col-md-2 control-label">Email (*)</label>
-                  <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.email.errors && myForm.controls.email.dirty), 'has-success': !myForm.controls.email.errors}">
-                    <input type="text" name="email" class="form-control" autocomplete="off" formControlName="email" placeholder="Nhập tiêu đề..."
-                    />
-                    <ul class="help-block">
-                      <li *ngIf="myForm.controls.email.errors?.required && myForm.controls.email.dirty">Trường này bắt buộc</li>
-                      <li *ngIf="(myForm.controls.email.errors?.minlength || myForm.controls.email.errors?.maxlength) && myForm.controls.email.dirty">Tiêu đề ít nhất có 5 ký tự , tối đa 30</li>
-                      <li *ngIf="myForm.controls.email.errors?.validateEmail && myForm.controls.email.dirty">Email không hợp lệ</li>
-                    </ul>
-                  </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="col-md-2 control-label">Email (*)</label>
+                <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.email.errors && myForm.controls.email.dirty) || (!emailValid && myForm.controls.email.dirty), 'has-success': !myForm.controls.email.errors}">
+                  <input type="text" name="email" class="form-control" autocomplete="off" formControlName="email" placeholder="Email ứng viên..." (blur)="checkEmail()"
+                  />
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.email.errors?.required && myForm.controls.email.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="(myForm.controls.email.errors?.minlength || myForm.controls.email.errors?.maxlength) && myForm.controls.email.dirty">Email ít nhất có 5 ký tự , tối đa 30</li>
+                    <li *ngIf="myForm.controls.email.errors?.validateEmail && myForm.controls.email.dirty">Email không hợp lệ</li>
+                    <li *ngIf="emailMessage">{{emailMessage}}</li>
+                  </ul>
                 </div>
-                <div class="form-group">
-                  <label for="phone" class="col-md-2 control-label">SĐT(*)</label>
-                  <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.phone.errors && myForm.controls.phone.dirty), 'has-success': !myForm.controls.phone.errors}">
-                    <input type="text" name="phone" class="form-control" autocomplete="off" formControlName="phone" placeholder="Nhập tiêu đề..."
-                    />
-                    <ul class="help-block">
-                      <li *ngIf="myForm.controls.phone.errors?.required && myForm.controls.phone.dirty">Trường này bắt buộc</li>
-                      <li *ngIf="myForm.controls.phone.errors?.validatesdt && myForm.controls.phone.dirty">Số điện thoại không hợp lệ</li>
-                    </ul>
-                  </div>
+              </div>
+              <div class="form-group">
+                <label for="phone" class="col-md-2 control-label">SĐT(*)</label>
+                <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.phone.errors && myForm.controls.phone.dirty) || (!phoneValid && myForm.controls.phone.dirty), 'has-success': !myForm.controls.phone.errors}">
+                  <input type="text" name="phone" class="form-control" autocomplete="off" formControlName="phone" placeholder="Nhập số điện thoại ứng viên..." (blur)="checkPhone()"
+                  />
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.phone.errors?.required && myForm.controls.phone.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="myForm.controls.phone.errors?.validatesdt && myForm.controls.phone.dirty">Số điện thoại không hợp lệ</li>
+                    <li *ngIf="phoneMessage">{{phoneMessage}}</li>
+                  </ul>
                 </div>
-                <div class="form-group">
-                  <label for="school" class="col-md-2 control-label">Trường (*)</label>
-                  <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.school.errors && myForm.controls.school.dirty), 'has-success': !myForm.controls.school.errors}">
-                    <input type="text" name="school" class="form-control" autocomplete="off" formControlName="school" placeholder="Nhập tiêu đề..."
-                    />
-                    <ul class="help-block">
-                      <li *ngIf="myForm.controls.school.errors?.required && myForm.controls.school.dirty">Trường này bắt buộc</li>
-                      <li *ngIf="(myForm.controls.school.errors?.minlength || myForm.controls.school.errors?.maxlength) && myForm.controls.school.dirty">Tiêu đề ít nhất có 5 ký tự , tối đa 50</li>
-                    </ul>
-                  </div>
+              </div>
+              <div class="form-group">
+                <label for="school" class="col-md-2 control-label">Trường (*)</label>
+                <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.school.errors && myForm.controls.school.dirty), 'has-success': !myForm.controls.school.errors}">
+                  <input type="text" name="school" class="form-control" autocomplete="off" formControlName="school" placeholder="Nhập Trường ứng viên học..."
+                  />
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.school.errors?.required && myForm.controls.school.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="(myForm.controls.school.errors?.minlength || myForm.controls.school.errors?.maxlength) && myForm.controls.school.dirty">Tiêu đề ít nhất có 5 ký tự , tối đa 50</li>
+                  </ul>
                 </div>
-                <div class="form-group">
-                  <label for="faculty" class="col-md-2 control-label">Khoa (*)</label>
-                  <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.faculty.errors && myForm.controls.faculty.dirty), 'has-success': !myForm.controls.faculty.errors}">
-                    <input type="text" name="faculty" class="form-control" autocomplete="off" formControlName="faculty" placeholder="Nhập tiêu đề..."
-                    />
-                    <ul class="help-block">
-                      <li *ngIf="myForm.controls.faculty.errors?.required && myForm.controls.faculty.dirty">Trường này bắt buộc</li>
-                      <li *ngIf="(myForm.controls.faculty.errors?.minlength || myForm.controls.faculty.errors?.maxlength) && myForm.controls.faculty.dirty">Tiêu đề ít nhất có 2 ký tự , tối đa 50</li>
-                    </ul>
-                  </div>
+              </div>
+              <div class="form-group">
+                <label for="faculty" class="col-md-2 control-label">Khoa (*)</label>
+                <div class="col-md-10" [ngClass]="{'has-error': (myForm.controls.faculty.errors && myForm.controls.faculty.dirty), 'has-success': !myForm.controls.faculty.errors}">
+                  <input type="text" name="faculty" class="form-control" autocomplete="off" formControlName="faculty" placeholder="Nhập khoa ứng viên học..."
+                  />
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.faculty.errors?.required && myForm.controls.faculty.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="(myForm.controls.faculty.errors?.minlength || myForm.controls.faculty.errors?.maxlength) && myForm.controls.faculty.dirty">Tiêu đề ít nhất có 2 ký tự , tối đa 50</li>
+                  </ul>
                 </div>
-                <div class="form-group">
-                  <label for="cv" class="col-md-2 control-label">CV/Résume (*)</label>
-                  <div class="col-md-10">
-                    <input type="file" (change)="onFileChange($event)" id="cv">
-                    <span class="help-block">Định dạng: .PDF, .DOC, .DOCX</span>
-                    <span class="help-block">Kích thước tối đa: 2MB</span>
-                  </div>
+              </div>
+              <div class="form-group">
+                <label for="cv" class="col-md-2 control-label">CV/Résume (*)</label>
+                <div class="col-md-10">
+                  <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploaderCV"/>
+                  <span class="help-block">Định dạng: .PDF, .DOC, .DOCX</span>
+                  <span class="help-block">Kích thước tối đa: 2MB</span>
                 </div>
-                <div class="form-group">
-                  <div class="col-md-10 col-md-offset-2">
-                    <button type="submit" class="btn btn-primary">Giới thiệu</button>
-                  </div>
+              </div>
+              <div class="form-group">
+                <div class="col-md-10 col-md-offset-2">
+                    <!-- [disabled]="processing || !emailValid || !phoneValid"  -->
+                  <button type="submit" class="btn btn-primary" (click)="addNews_Candidate()">Giới thiệu</button>
+                  <!-- <button (click)="addNews_Candidate()">Submit</button> -->
                 </div>
+              </div>
 
-          </form>
-        </div>
-      </div>
-
-    </div>
-    <div class="col-md-4">
-      <div class="panel panel-green">
-        <div class="panel-heading no-padding center">
-          <p class="text-center" style="color:white; font-size:16px; ">{{news.title}}</p>
-        </div>
-        <div class="panel-body">
-
-          <a [routerLink]="['/chitiettin/', news._id]"><img src="./../../../assets/web/img/imgtin/{{news.urlHinh}}" alt="java" class="img-responsive"></a>
-          <div class="row" style="padding:10px 5px;">
-            <div class="hang">
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Địa điểm</div>
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:blue;">{{news.place}}</div>
-            </div>
-            <div class="hang1">
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Lương</div>
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:lightsalmon;">{{news.salary}}</div>
-            </div>
-            <div class="hang2">
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Vị trí</div>
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:lightsalmon;">{{news.position}}</div>
-            </div>
-            <div class="hang3">
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Ngày đăng</div>
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left"> {{news.create_date | date:'dd/MM/yyyy'}}</div>
-            </div>
-            <div class="hang4">
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Hạn nộp hồ sơ</div>
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{news.exp_date | date:'dd/MM/yyyy'}}</div>
-            </div>
-            <div class="hang5">
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left">Point thưởng</div>
-              <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:red;font-weight: bold;">{{news.point_uv}}</div>
-            </div>
+            </form>
           </div>
-
         </div>
-        <!-- <div class="text-center panel-footer" style="height: 52px;">
+
+      </div>
+      <div class="col-md-4">
+        <div class="panel panel-green">
+          <div class="panel-heading no-padding center">
+            <p class="text-center" style="color:white; font-size:16px; ">{{news.title}}</p>
+          </div>
+          <div class="panel-body">
+
+            <a [routerLink]="['/chitiettin/', news._id]"><img src="./../../../assets/web/img/imgtin/{{news.urlHinh}}" alt="java" class="img-responsive"></a>
+            <div class="row" style="padding:10px 5px;">
+              <div class="hang">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">Địa điểm</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:blue;">{{news.place}}</div>
+              </div>
+              <div class="hang1">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">Lương</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:lightsalmon;">{{news.salary}}</div>
+              </div>
+              <div class="hang2">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">Vị trí</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:lightsalmon;">{{news.position}}</div>
+              </div>
+              <div class="hang3">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">Ngày đăng</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left"> {{news.create_date | date:'dd/MM/yyyy'}}</div>
+              </div>
+              <div class="hang4">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">Hạn nộp hồ sơ</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">{{news.exp_date | date:'dd/MM/yyyy'}}</div>
+              </div>
+              <div class="hang5">
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left">Point thưởng</div>
+                <div class="col-md-6 col-sm-6 col-xs-6 text-left" style="color:red;font-weight: bold;">{{news.point_uv}}</div>
+              </div>
+            </div>
+
+          </div>
+          <!-- <div class="text-center panel-footer" style="height: 52px;">
           <div class="pull-right">
             <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
             <a class="btn btn-social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>
@@ -154,9 +164,10 @@
             </div>
           </div>
         </div> -->
+        </div>
       </div>
     </div>
-  </div>
 
+  </div>
+  <!-- End container-->
 </div>
-<!-- End container-->

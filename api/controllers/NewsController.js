@@ -38,7 +38,7 @@ const getSingleNews = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'No news ID was provided.' });
     } else {
-        NewsModel.findOne({ _id: req.params.id }, (err, news) => {
+        NewsModel.findOne({ _id: req.params.id }).populate({path: 'employee'}).exec(function (err, news) {
             if (err) {
                 res.json({ success: false, message: 'Not a valid news id' }); // Return error message
             } else {

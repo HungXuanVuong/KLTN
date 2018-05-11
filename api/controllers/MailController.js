@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 
-email = process.env.MAILER_EMAIL_ID || 'hungxuanvuong@gmail.com',
-pass = process.env.MAILER_PASSWORD || '0947925583Hung';
+email = process.env.MAILER_EMAIL_ID || '',
+pass = process.env.MAILER_PASSWORD || '';
 
 
 // var client = nodemailer.createTransport({

@@ -3,6 +3,7 @@ import { News_User } from '../../../models/news_user';
 import { NewscandidateService } from '../../../service/newscandidate.service';
 import { News_Candidate } from '../../../models/news_candidate';
 import { User } from './../../../models/user';
+import { News } from './../../../models/news';
 import { AuthServiceService } from './../../../service/auth-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewsService } from './../../../service/news.service';
@@ -19,7 +20,7 @@ export class DetailnewsComponent implements OnInit {
   messageClass;
   processing = false;
 
-  news;
+  news = new News();
   foundNews = false;
   currentUrl;
 
@@ -60,15 +61,18 @@ hoso = 10;
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
       }else{
+        this.news = data.news;
         console.log(data);
-        this.news = {
-          title: data.news.title,
-          employee: data.news.employee,
-          content: data.news.content
-        }
-        this.authService.findUserById(this.news.employee).subscribe(userData =>{
-          this.user = userData.user;
-        });
+        
+        // console.log(data);
+        // this.news = {
+        //   title: data.news.title,
+        //   employee: data.news.employee,
+        //   content: data.news.content
+        // }
+        // this.authService.findUserById(this.news.employee).subscribe(userData =>{
+        //   this.user = userData.user;
+        // });
         this.foundNews = true;
       }
     });
@@ -120,7 +124,7 @@ hoso = 10;
   getListUserByNewsId(id){
     this.newUserService.getUserByNewsId(id).subscribe(data =>{
       this.news_user = data.users;
-      console.log(this.news_user);
+      
     });
   }
 

@@ -1,6 +1,6 @@
 export class News{
 
-    id: Object;
+    _id: Object;
     title: String;
     urlHinh: String;
     place: String;
@@ -16,7 +16,7 @@ export class News{
     employee: Object;
 
     constructor(){
-        this.id = 0;
+        this._id = 0;
         this.title = "";
         this.urlHinh = "";
         this.place = "";

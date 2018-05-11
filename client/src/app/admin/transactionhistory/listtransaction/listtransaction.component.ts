@@ -48,6 +48,7 @@ public temp_var: Object=false;
     this.orderService.getAllOrder().subscribe(data =>{
       this.order = data.listOrder;
       this.temp_var=true;
+      console.log(this.order);
     });
   }
   ngOnInit() {
@@ -55,6 +56,7 @@ public temp_var: Object=false;
       pagingType: 'full_numbers',
     };
     this.getAllOrder();
+
   }
 
 }

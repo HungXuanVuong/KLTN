@@ -11,6 +11,8 @@ router.route('/add')
 router.route('/getall')
 .get(NewsCandidateController.getAllNewsCandidate);
 
+router.get('/checkEmailCandidate/:news/:email', NewsCandidateController.checkEmail);
+router.get('/checkPhoneCandidate/:news/:phone', NewsCandidateController.checkPhone);
 
 router.route('/edit')
 .put(NewsCandidateController.editNewsCandidate);

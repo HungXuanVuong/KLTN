@@ -1,4 +1,8 @@
 const News_CandidateModel = require('../models/News_CadidateModel');
+const CandidateModel = require('../models/CandidateModel');
+
+var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
 
 const addNew_Candidate = function (req, res) {
@@ -14,13 +18,14 @@ const addNew_Candidate = function (req, res) {
                 let newCandidate = new News_CandidateModel({
                     news: req.body.newsId,
                     candidate: req.body.candidateId,
+                    user: req.body.userId,
                     status: req.body.status
                 });
                 newCandidate.save(function (err) {
                     if (err) {
                         res.json({ success: false, message: 'Giới thiệu thất bại: ', err });
                     } else {
-                        res.json({ success: true, message: 'Lưu thành công  !' });
+                        res.json({ success: true, message: 'Giới thiệu thành công  !' });
                     }
                 });
             }
@@ -172,6 +177,86 @@ const deleteNewsCandidate = function (req, res) {
     }
 }
 
+const checkEmail = function (req, res, next) {
+    var id_news = req.param('news');
+    var email = req.param('email');
+    if (!id_news) {
+        res.json({ success: false, massage: 'Chưa nhận được id news !' });
+    } else {
+        if (!email) {
+            res.json({ success: false, massage: 'Chưa nhận được E-mail' });
+        } else {
+            CandidateModel.findOne({ email: email }, function (err, candidate) {
+                if (err) {
+                    res.json({ success: false, message: err });
+                } else {
+                    if(candidate){
+                        News_CandidateModel.find({ news: id_news }, function (err, news) {
+                            // console.log(candidate._id);
+                            var id_candidate = candidate._id +"";
+                            if (err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                for (var u in news) {
+                                    if (news[u].candidate == id_candidate) {
+                                        res.json({ success: false, message: 'Có vẻ email của ứng viên đã được giới thiệu ở tin này !' });
+                                        return;
+                                    }
+                                }
+                                res.json({ success: true, message: 'Ok!' });
+                            }
+                        });
+                    }else{
+                        res.json({ success: true, message: 'Ok!' });
+                    }
+                    
+                }
+            });
+        }
+    }
+
+}
+
+const checkPhone = function (req, res, next) {
+    var id_news = req.param('news');
+    var phone = req.param('phone');
+    if (!id_news) {
+        res.json({ success: false, massage: 'Chưa nhận được id news !' });
+    } else {
+        if (!phone) {
+            res.json({ success: false, massage: 'Chưa nhận được phone' });
+        } else {
+            CandidateModel.findOne({ phone: phone }, function (err, candidate) {
+                if (err) {
+                    res.json({ success: false, message: err });
+                } else {
+                    if(candidate){
+                        News_CandidateModel.find({ news: id_news }, function (err, news) {
+                            // console.log(candidate._id);
+                            var id_candidate = candidate._id +"";
+                            if (err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                for (var u in news) {
+                                    if (news[u].candidate == id_candidate) {
+                                        res.json({ success: false, message: 'Có vẻ số điện thoại của ứng viên đã được giới thiệu ở tin này !' });
+                                        return;
+                                    }
+                                }
+                                res.json({ success: true, message: 'Ok!' });
+                            }
+                        });
+                    }else{
+                        res.json({ success: true, message: 'Ok!' });
+                    }
+                    
+                }
+            });
+        }
+    }
+
+}
+
 module.exports = {
     addNew_Candidate,
     editNewsCandidate,
@@ -179,5 +264,7 @@ module.exports = {
     getAllNewsCandidate,
     findNewsCandidateById,
     findListCandidateByIdNews,
-    findListCandidateByIdUser
+    findListCandidateByIdUser,
+    checkEmail,
+    checkPhone
 }

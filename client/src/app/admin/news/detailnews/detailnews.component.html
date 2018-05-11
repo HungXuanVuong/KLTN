@@ -1,16 +1,5 @@
-<!-- <div class="row">
-  <ul class="nav nav-tabs">
-    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/admin/detailnews/thongtinchung">Thông tin chung</a></li>
-    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/admin/detailnews/xuli">Xử lý tuyển dụng</a></li>
-    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a routerLink="/admin/detailnews/chiphixuli">Chi phí xử lí</a></li>
-  </ul>
-</div>
-<div class="row">
-  <router-outlet></router-outlet>
-</div> -->
-<!-- <div class="container"> -->
 
-<!-- <h4>Theo dõi tình trạng tin tuyển dụng</h4> -->
+
 <div class="row">
   <div class="col-lg-12">
     <h4 class="page-header">Theo dõi tình trạng tin tuyển dụng</h4>
@@ -29,29 +18,36 @@
   <div id="home" class="tab-pane fade in active">
 
     <div class="row" style="padding-top:10px;" *ngIf="foundNews">
-      <div class="col-md-6">
-        <u>Người đăng tin:</u> <b>{{user.username}}</b>
+
+      <div class="col-md-6" style="font-size:20px">
+        <span class="label label-default"><u>Người đăng tin:</u> <b>{{news.employee.username}}</b></span>
       </div>
-      <div class="col-md-6">
-        <u>Tiểu Đề:</u>  <b>{{news.title}}</b>
+      <div class="col-md-6" style="font-size:20px">
+        <span class="label label-warning"><u>Tiểu Đề:</u> <b>{{news.title}}</b></span>
       </div>
+
       <div class="col-md-12" style="padding-top:5px;">
-        <h3><span class="label label-success">Nội Dung</span></h3> 
+        <h3><span class="label label-success">Nội Dung</span></h3>
       </div>
       <div class="col-md-12" style="padding-top:10px;" [innerHTML]="news.content">
-
       </div>
     </div>
   </div>
 
   <div id="menu1" class="tab-pane fade">
 
+      <div class="row">
+        <div class="row" style="padding-top:10px;">
+          <div class="col-md-6" style="font-size:20px">
+            <span class="label label-default"><u>Người đăng tin:</u> <b>{{news.employee.username}}</b></span>
+          </div>
+          <div class="col-md-6" style="font-size:20px">
+            <span class="label label-warning"><u>Tiểu Đề:</u> <b>{{news.title}}</b></span>
+          </div>
+        </div>
 
-    <div class="row">
-      
-
-      <div class="col-md-12">
-        <div class="panel panel-info">
+        <div class="col-md-12" style="padding-top:10px;">
+        <div class="panel panel-info" >
           <div class="panel-heading">Danh sách ứng tuyển</div>
           <div class="panel-body">
             <table class="table table-striped table-bordered table-hover">
@@ -72,7 +68,9 @@
                   <td>{{newsuser.user.phone}}</td>
                   <td>{{newsuser.user.email}}</td>
                   <td><a href='../../../../assets/web/cv/VuongXuanHung_CV.pdf' download>{{newsuser.user.cvFile}}</a></td>
-                  <td>{{newsuser.status}}</td>
+                  <td *ngIf="newsuser.status=='Hồ sơ'"><span class="label label-danger">{{newsuser.status}}</span></td>
+                  <td *ngIf="newsuser.status=='Phỏng vấn'"><span class="label label-primary">{{newsuser.status}}</span></td>
+                  <td *ngIf="newsuser.status=='Hợp đồng'"><span class="label label-success">{{newsuser.status}}</span></td>
                   <td class="center">
                     <div class="dropdown text-center">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -80,14 +78,14 @@
                         <i class="fa fa-caret-down"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-user">
-                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i> Hồ sơ</a>
+                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a>
                         </li>
-                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i> Phỏng vấn</a>
+                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
                         </li>
-                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i> Hợp đồng</a>
+                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
                         </li>
                       </ul>
-                      <!-- /.dropdown-user -->
+                  
                     </div>
                   </td>
                 </tr>
@@ -115,14 +113,16 @@
 
               </thead>
               <tbody>
-                <!-- <div *ngIf="news_candidte.lenght>0"> OK</div> -->
+                
                 <tr *ngFor="let newcandidate of news_candidte | derp">
                   <td>{{newcandidate.candidate.username}}</td>
                   <td>{{newcandidate.candidate.phone}}</td>
                   <td>{{newcandidate.candidate.email}}</td>
                   <td><a href='../../../../assets/web/cv/VuongXuanHung_CV.pdf' download>{{newcandidate.candidate.cvFile}}</a></td>
                   <td>{{newcandidate.user.username}}</td>
-                  <td>{{newcandidate.status}}</td>
+                  <td *ngIf="newcandidate.status=='Hồ sơ'"><span class="label label-danger">{{newcandidate.status}}</span></td>
+                  <td *ngIf="newcandidate.status=='Phỏng vấn'"><span class="label label-primary">{{newcandidate.status}}</span></td>
+                  <td *ngIf="newcandidate.status=='Hợp đồng'"><span class="label label-success">{{newcandidate.status}}</span></td>
                   <td class="center">
                     <div class="dropdown text-center">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -130,14 +130,14 @@
                         <i class="fa fa-caret-down"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-user">
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i> Hồ sơ</a>
+                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a>
                         </li>
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i> Phỏng vấn</a>
+                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
                         </li>
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i> Hợp đồng</a>
+                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
                         </li>
                       </ul>
-                      <!-- /.dropdown-user -->
+                   
                     </div>
                   </td>
                 </tr>
@@ -151,18 +151,15 @@
   </div>
 
   <div id="menu2" class="tab-pane fade">
+    <div class="row" style="padding-top:10px;">
+
+    </div>
+
 
     <div class="row" style="padding-top:10px;">
 
       <div class="col-md-8">
-        <fusioncharts
-            [id]="id"
-            [width]="width"
-            [height]="height"
-            [type]="type"
-            [dataFormat]="dataFormat"
-            [dataSource]="dataSource"
-        ></fusioncharts>
+        <fusioncharts [id]="id" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource"></fusioncharts>
       </div>
 
       <div class="col-md-4" style="padding-top:20px;">

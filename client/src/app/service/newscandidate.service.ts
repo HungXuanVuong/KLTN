@@ -41,4 +41,18 @@ export class NewscandidateService {
     return this.http.put(this.domain + 'newscandidate/edit/', newscandidate).map(res =>res.json());
   }
 
+  checkEmail(idNews, email){
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'newscandidate/checkEmailCandidate/'+idNews+'/'+email, this.options).map(res => res.json());
+  }
+
+  checkPhone(idNews, phone){
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'newscandidate/checkPhoneCandidate/'+idNews+'/'+phone, this.options).map(res => res.json());
+  }
+
+  addNewsCandidate(newscandidate){
+    this.createAuthenticationHeaders();
+    return this.http.post(this.domain + 'newscandidate/add', newscandidate, this.options).map(res => res.json());
+  }
 }

@@ -4,7 +4,7 @@ const GCodeOrder = require('../Util/GCodeOrder');
 const config = require('../config/db');
 
 const getAllOrder = function (req, res) {
-    OrderModel.find({}, function (err, order) {
+    OrderModel.find({}).populate({path: 'employee'}).exec(function (err, order) {
         if (err) {
             res.json({ success: false, message: 'Lỗi: ' + err });
         } else {

@@ -75,7 +75,7 @@ const addCandidate = function (req, res) {
                                     faculty: req.body.faculty,
                                     cvFile: req.body.cvFile
                                 });
-                                candidate.save(function (err) {
+                                candidate.save(function (err, candidatenew) {
                                     if (err) {
                                         if (err.errors) {
                                             if (err.errors.email) {
@@ -91,27 +91,7 @@ const addCandidate = function (req, res) {
                                             res.json({ success: false, message: 'Giới thiệu thất bại: ', err });
                                         }
                                     } else {
-                                        if(!req.params.id){
-                                            res.json({ success: false, message: 'No news ID was provided.' });
-                                        }else{
-                                            if(!req.body.userId){
-                                                res.json({ success: false, message: 'No user ID was provided.' });
-                                            }else{
-                                                let newCandidate = new News_CandidateModel({
-                                                    news: req.params.id,
-                                                    candidate: candidate._id,
-                                                    user:req.body.userId,
-                                                    status: req.body.status
-                                                });
-                                                newCandidate.save(function (err) {
-                                                    if (err) {
-                                                        res.json({ success: false, message: 'Giới thiệu thất bại: ', err });
-                                                    } else {
-                                                        res.json({ success: true, message: 'Lưu thành công  !' });
-                                                    }
-                                                });
-                                            }
-                                        }
+                                        res.json({ success: true, candidate: candidatenew, message: 'Thông tin ứng viên đã được lưu ! '});
                                     }
                                 });
                             }
@@ -171,19 +151,19 @@ const editCandidate = function (req, res) {
                     res.json({ success: false, message: 'Không tìm thấy Candidate có id này.' });
                 } else {
                     candidate.username = req.body.username,
-                    candidate.sex = req.body.sex,
-                    candidate.email = req.body.email,
-                    candidate.phone = req.body.phone,
-                    candidate.school = req.body.school,
-                    candidate.faculty = req.body.faculty,
-                    candidate.cvFile = req.body.cvFile,
-                    candidate.save((err) => {
-                    if (err) {
-                        res.json({ success: false, message: err });
-                    } else {
-                        res.json({ success: true, message: 'Cập nhật thành công' });
-                    }
-                });
+                        candidate.sex = req.body.sex,
+                        candidate.email = req.body.email,
+                        candidate.phone = req.body.phone,
+                        candidate.school = req.body.school,
+                        candidate.faculty = req.body.faculty,
+                        candidate.cvFile = req.body.cvFile,
+                        candidate.save((err) => {
+                            if (err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                res.json({ success: true, message: 'Cập nhật thành công' });
+                            }
+                        });
                 }
             }
         });
@@ -221,5 +201,5 @@ module.exports = {
     deleteCandidate,
     findCandidateById,
     getAllCandidate
-    
+
 }
