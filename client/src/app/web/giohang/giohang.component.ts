@@ -29,6 +29,7 @@ export class GiohangComponent implements OnInit {
   gift = new Gift();
   user: User;
 
+
   constructor(
     private authService: AuthServiceService,
     private OrderService: OrderService,
@@ -57,20 +58,41 @@ export class GiohangComponent implements OnInit {
       }
     });
   }
-  quyDoi(e_id,pointuser,pointproduct){
+  quyDoi(e_id,pointuser,p_id,amountproduct,pointproduct){
     this.processing = true;
+    const gift1={
+          _id:  p_id,
+          amount: amountproduct-1
+    }
+    this.GiftService.updateNumberOfGift(gift1).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = "alert alert-danger";
+        this.processing = false;
+        setTimeout(() =>{
+          this.router.navigate(['/shopping/tatca']);
+        }, 2000);
+      } else {
+        this.messageClass = "alert alert-success";
+        this.gift=data.gift1;
+        console.log(this.gift);
+      }
+    });
     const order = {
       productName: this.gift.product_name,
       point_qd: this.gift.point_sp,
       placeOfReceipt: "Quầy lễ tân gần cửa ra vào, tầng G, tòa nhà FPT Software",
+      product_id: p_id,
       employee: e_id
     }
     //console.log(order);
     this.OrderService.addOrder(order).subscribe(data => {
       if (!data.success) {
         this.messageClass = "alert alert-danger";
-        this.message = data.message;
+        this.message ="Đã có sự cố xảy ra!!! Giao dịch đổi quà không thành công";
         this.processing = false;
+        setTimeout(() =>{
+          this.router.navigate(['/shopping/tatca']);
+        }, 2000);
       } else {
         this.messageClass = "alert alert-success";
         this.message = "Đổi quà thành công!";
@@ -88,6 +110,7 @@ export class GiohangComponent implements OnInit {
         this.message += data2.message;
         this.processing = false;
       } else {
+       
         this.messageClass = "alert alert-success";
         this.message += " Tài khoản của bạn đã bị trừ trương ứng với số point vừa đổi!";     
         setTimeout(() =>{
@@ -96,5 +119,4 @@ export class GiohangComponent implements OnInit {
       }
     });
   }
-
 }

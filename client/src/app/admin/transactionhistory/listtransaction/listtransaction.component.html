@@ -29,8 +29,8 @@
                           <th>Địa điểm nhận quà</th>
                           <th>Tên người giao dịch</th>
                           <th>Ngày đổi quà</th>
-                          <th>Tình trạng đơn hàng</th>
                           <th>Ngày nhận quà</th>
+                          <th>Tình trạng đơn hàng</th>
                           <th>Option</th>
                       </tr>
                   </thead>
@@ -42,29 +42,62 @@
                           <td>{{ o.placeOfReceipt }}</td>
                           <td>{{ o.employee.username }}</td>
                           <td>{{ o.orderDay | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
-                          <td>
-                            <div *ngIf="o.status==='Hoàn thành'">
-                              <button [disabled]="loadingBlogs" (click)="toggle(o._id, o.status)" class="btn btn-primary">{{o.status}}</button>
-                            </div>
-                            <div *ngIf="o.status==='Đang chờ'">
-                                    <button [disabled]="loadingBlogs"  (click)="toggle(o._id, o.status)" class="btn btn-danger">{{o.status}} <i class="fa fa-exchange"></i></button>
-
-                            </div>
-                          </td>
                           <td>{{ o.receivedDay | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+                          <td>
+                                <div *ngIf="o.status==='Giao hàng thành công'">
+                                  <p style="color:#0fa6ec;font-weight: bold;">{{o.status}}</p>
+                                </div>
+                                <div *ngIf="o.status==='Đổi quà thành công'">
+                                        <p style="color:#ec1111;font-weight: bold;">{{o.status}}</p>
+                                </div>
+                              </td>
                           <td class="center">
+                                <div *ngIf="o.status==='Giao hàng thành công'">
                               <div class="dropdown text-center">
                                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                                       <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
                                   </a>
                                   <ul class="dropdown-menu dropdown-user">
-                                      <li><a [routerLink]="['/admin/edittransaction/', o._id]"><i class="fa fa-pencil fa-fw"></i> Edit</a>
-                                      </li>
-                                      <li><a [routerLink]="['/admin/deletetransaction/', o._id]"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
-                                      </li>
+                                      <li><a [routerLink]="['/admin/edittransaction/', o._id]"><i class="fa fa-pencil fa-fw"></i> Chỉnh sửa</a>
                                   </ul>
                               <!-- /.dropdown-user -->
                               </div>
+                            </div>
+                            <div *ngIf="o.status==='Đổi quà thành công'">
+                                    <div class="dropdown text-center">
+                                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-user">
+                                                <li><a [routerLink]="['/admin/edittransaction/', o._id]"><i class="fa fa-pencil fa-fw"></i> Chỉnh sửa</a>
+                                                </li>
+                                                <li><a data-toggle="modal" data-target="#exampleModalLong" ><i class="fa fa-exchange"></i> Đổi trạng thái</a>
+                                                </li>
+                                                <li><a [routerLink]="['/admin/deletetransaction/', o._id]"><i class="fa fa-trash-o fa-fw"></i> Hủy</a>
+                                                </li>
+                                            </ul>
+                                        <!-- /.dropdown-user -->
+                                        </div>
+                                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                  <h3 class="modal-title" id="exampleModalLongTitle">Thay đổi trạng thái đơn hàng</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <p>Để thay đổi trạng thái đơn hàng thì đơn hàng phải được giao thành công. Bạn có chắc muốn thay đổi trạng thái đơn hàng này không?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                  <button type="button" name="button" class="btn btn-success" (click)="setStatus(o._id)" data-dismiss="modal">Đồng ý</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                            </div>
                           </td>
                       </tr>
                   </tbody>

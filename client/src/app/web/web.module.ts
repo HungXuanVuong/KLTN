@@ -17,7 +17,7 @@ import { FooterComponent } from '../shared/components/footer/footer.component';
     declarations: [
         WebComponent,
         HeaderComponent,
-        FooterComponent,
+        FooterComponent
     ]
 })
 

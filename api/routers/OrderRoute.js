@@ -17,6 +17,7 @@ router.route('/edit')
 router.route('/editstatus')
 .put(OrderController.editStatusAndDay);
 
+
 router.route('/:id')
 .get(OrderController.getOrderByID)
 .delete(OrderController.deleteOrder);

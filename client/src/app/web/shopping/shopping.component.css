@@ -2,3 +2,9 @@
     padding-top: 100px;
     background: #ffffff;
 }
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }

@@ -6,6 +6,8 @@ const router = express.Router();
 
 const UserController = require('../controllers/UserController');
 
+const UploadFileUtil = require('../Util/UploadfileUtil');
+
 
 router.post('/register', UserController.register);
 
@@ -17,8 +19,12 @@ router.get('/checkExitsEmail/:email', UserController.checkExitsEmail);
 
 router.put('/resetpassword', UserController.resetPasswordGmail);
 
-
+router.post('/checkExitsPass', UserController.checkExitsPass);
 router.post('/login', UserController.login);
+
+// router.post('/upload', UploadFileUtil.uploadImgUserHandling);
+router.post('/uploadcv', UploadFileUtil.uploadCVUserHandling);
+
 
 
 router.route('/user/getall')
@@ -34,13 +40,16 @@ router.route('/user/:id')
 router.route('/user/editpoint')
       .put(UserController.editPointUser);
 
+router.route('/user/editavatar')
+      .put(UserController.editAvataUser);
+
+router.route('/edit')
+      .put(UserController.updatePasswordUser);
+
 router.route('/user/edit')
       .put(UserController.editUser);
 
-
-
-// router.route('password/edit')
-//       .put(UserController.updatePasswordUser);
+router.put('/update', UserController.editUser);
 
 router.use(UserController.checkToken);
 router.get('/profile', UserController.getUserProfile);

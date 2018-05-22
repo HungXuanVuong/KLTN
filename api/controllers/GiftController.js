@@ -4,7 +4,7 @@ const Type_giftModel= require('../models/Type_giftModel');
 const config = require('../config/db');
 
 const getAllGift = function(req, res){
-    GiftModel.find({}, function(err, gift){
+    GiftModel.find({}).populate({path: 'type_giftID'}).exec(function(err, gift){
         if(err){
             res.json({success: false, message: 'Lỗi: ' + err});
         }else{
@@ -161,11 +161,41 @@ var giftListByTypeofGift = function (req, res) {
         });
     });
 };
+const updateNumberOfGift = function(req, res){
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id quà' });
+    }else{
+        if(!req.body.amount){
+            res.json({ success: false, message: 'Chưa có số lượng quà cập nhật' });
+        }else{
+            GiftModel.findOne({ _id: req.body._id }, (err, gift) => {
+                if (err) {
+                    res.json({ success: false, message: 'id quà không hợp lệ' });
+                } else {
+                    if (!gift) {
+                        res.json({ success: false, message: 'Không tìm thấy quà có id này.' });
+                    } else {
+                        gift.amount = req.body.amount,
+                        console.log(req.body.amount);
+                        gift.save((err) => {
+                            if (err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                res.json({ success: true, message: 'Cập nhật số lượng quà thành công' });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
+};
 module.exports = {
     getAllGift,
     insertGift,
     deleteGift,
     editGift,
     giftById,
-    giftListByTypeofGift
+    giftListByTypeofGift,
+    updateNumberOfGift
 }

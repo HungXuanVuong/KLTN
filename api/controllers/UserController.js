@@ -177,7 +177,28 @@ const resetPasswordGmail = function(req, res){
         })
     }
 }
-
+const checkExitsPass= function(req, res) {
+        if (!req.body.password) {
+            res.json({ success: false, message: 'Bạn chưa nhập vào password' });
+        } else {
+            UserModel.findOne({ email: req.body.email.toLowerCase() }, function (err, user) {
+                if (err) {
+                    res.json({ success: false, message: err });
+                } else {
+                    if (!user) {
+                        res.json({ success: false, message: 'Email không tồn tại' });
+                    } else {
+                        const validPassword = user.comparePassword(req.body.password);
+                        if (!validPassword) {
+                            res.json({ success: false, message: 'Mật khẩu không hợp lệ' });
+                        } else {
+                            res.json({ success: true, message: 'Xác nhận mật khẩu thành công!' });
+                        }
+                    }
+                }
+            });
+        }
+}
 const login = function (req, res) {
     if (!req.body.email) {
         res.json({ success: false, message: 'Bạn chưa nhập email' });
@@ -273,6 +294,7 @@ const getUserProfile = function (req, res) {
     });
 };
 
+
 const updatePasswordUser = function (req, res) {
     if (!req.body._id) {
         res.json({ success: false, message: 'id user chưa được cung cấp' });
@@ -360,10 +382,10 @@ const editUser = function(req, res){
                     user.sex = req.body.sex;
                     user.address = req.body.address;
                     user.phone = req.body.phone;
-                    user.urlHinh = req.body.urlHinh;
+                    //user.urlHinh = req.body.urlHinh;
                     user.cvFile = req.body.cvFile;
-                    user.point = req.body.point;
-                    user.uvNumber = req.body.uvNumber;
+                    //user.point = req.body.point;
+                    //user.uvNumber = req.body.uvNumber;
                     user.role = req.body.role;
                     user.save((err) => {
                         if (err) {
@@ -393,7 +415,6 @@ const editPointUser = function(req, res){
                         res.json({ success: false, message: 'Không tìm thấy user có id này.' });
                     } else {
                         user.point = req.body.point,
-                        console.log(req.body.point);
                         user.save((err) => {
                             if (err) {
                                 res.json({ success: false, message: err });
@@ -408,13 +429,42 @@ const editPointUser = function(req, res){
     }
 };
 
+const editAvataUser = function(req, res){
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id user' });
+    }else{
+        if(!req.body.urlHinh){
+            res.json({ success: false, message: 'Chưa có hình cập nhật' });
+        }else{
+            UserModel.findOne({ _id: req.body._id }, (err, user) => {
+                if (err) {
+                    res.json({ success: false, message: 'id user không hợp lệ' });
+                } else {
+                    if (!user) {
+                        res.json({ success: false, message: 'Không tìm thấy user có id này.' });
+                    } else {
+                        user.urlHinh = req.body.urlHinh,
+                        user.save((err) => {
+                            if (err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                res.json({ success: true, message: 'Cập nhật Avatar thành công' });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
+};
 module.exports = {
     register,
     registerWithMail,
+    checkExitsPass,
     login,
     checkEmail,
     getUserProfile,
-    // updatePasswordUser,
+    updatePasswordUser,
     findUserById,
     checkToken,
     getAllUsers,
@@ -422,5 +472,7 @@ module.exports = {
     checkExitsEmail,
     resetPasswordGmail,
     editPointUser,
-    editUser
+    editUser,
+    editAvataUser,
+    
 }

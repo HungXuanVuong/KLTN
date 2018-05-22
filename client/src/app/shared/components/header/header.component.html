@@ -30,6 +30,9 @@
             <ul class="dropdown-menu dropdown-user">
               <li><a routerLink="/profile"><i class="fa fa-user fa-fw"></i> Thông tin cá nhân</a>
               </li>
+              <li class="divider"></li>
+              <li><a [routerLink]="['/changepass/', user._id]"><i class="fa fa-unlock-alt"></i> Đổi mật khẩu</a>
+              </li>
               <!-- <li><a onclick="window.location.href='file:///E:/HOC%20TAP/HK7/TLCN/TL/admin/index.html'"><i class="fa fa-user-secret fa-fw"></i> Quản trị</a>
                 </li> -->
               <li class="divider"></li>

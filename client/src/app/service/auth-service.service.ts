@@ -69,6 +69,10 @@ export class AuthServiceService {
     return this.http.get(this.domain+ 'authentication/checkExitsEmail/' + email).map(res => res.json());
   }
 
+  checkExitsPass(user) {
+    return this.http.post(this.domain + 'authentication/checkExitsPass', user).map(res => res.json());
+  }
+
   login(user) {
     return this.http.post(this.domain + 'authentication/login', user).map(res => res.json());
   }
@@ -95,6 +99,15 @@ export class AuthServiceService {
   findUserById(id){
     this.createAuthenticationHeaders();
     return this.http.get(this.domain + 'authentication/user/' + id, this.options).map(res => res.json());
+  }
+  editAvatarUser(user){
+    this.createAuthenticationHeaders();
+    return this.http.put(this.domain + 'authentication/user/editavatar/', user, this.options).map(res => res.json());
+  }
+
+  editUser(user){
+    this.createAuthenticationHeaders();
+    return this.http.put(this.domain + 'authentication/update/', user, this.options).map(res => res.json());
   }
   editPointUser(user){
     return this.http.put(this.domain + 'authentication/user/editpoint', user).map(res => res.json());

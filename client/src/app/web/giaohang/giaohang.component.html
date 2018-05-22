@@ -8,7 +8,7 @@
         </div>
         <div class="row">
           <div class="col-sm-offset-2 col-sm-8">
-             <div class="panel panel-primary">
+             <div class="panel panel-primary" id="print-section">
                 <div class="panel-heading">
                   <h3 class="panel-title">HÓA ĐƠN THANH TOÁN ĐỔI QUÀ <span data-toggle="tooltip" data-placement="right" class="red-tooltip">&nbsp;</span></h3>
                 </div>
@@ -17,6 +17,9 @@
                     <tbody>
                         <tr>
                           <td colspan="2" class="send">ĐƠN HÀNG #{{order.codeOrder}}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="2" class="send">NGƯỜI ĐỔI QUÀ: {{order.employee.username}}</td>
                         </tr>
                       <tr>
                         <td colspan="2" class="send">PHƯƠNG THỨC GỬI</td>
@@ -88,26 +91,13 @@
                   </table>
                 </div>
               </div>
-                  <div class="panel panel-info">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">Gửi Cảm Nhận <i class="fa fa-commenting-o pull-right fa-fw" aria-hidden="true"></i></h3>
-                    </div>
-                    <div class="panel-body">
-                      <form name="frmTestimonial" action="testimonial.html" method="post" data-toggle="validator">
-                        <div class="form-group">
-                          <label for="xName">Tên Của Bạn :</label>
-                          <input type="text" name="xName" value="{{user.username}}" class="form-control" maxlength="25" id="xName" required>
-                        </div>
-                        <div class="form-group">
-                          <label for="xMessage">Cảm Nhận :</label>
-                          <textarea name="xMessage" id="xMessage" rows="5" placeholder="Ghi vài dòng cảm nhận của quý nhân viên về dịch vụ ở đây." class="form-control" maxlength="255" required></textarea>
-                        </div>
-                        <div class="btn-group pull-right" role="group" aria-label="button">
-                          <button type="submit" class="btn btn-info">Gửi</button>
-                          <button type="submit" class="btn btn-info"><i class="fa fa-arrow-circle-right fa-fw" aria-hidden="true"></i></button>
-                        </div>
-                      </form>
-                    </div>
+              <div class="form-group">
+                  <div class="pull-left">
+                    <button class="btn btn-success" routerLink ="/shopping/tatca"><i class="fa fa-cart-arrow-down"></i> Tiếp tục mua sắm</button>
+                  </div>
+                  <div class="pull-right">
+                    <button class="btn btn-default" (click)="print()"><i class="fa fa-print" aria-hidden="true"></i> Xuất hóa đơn</button>
+                  </div>
                   </div>
               </div>
         </div>
@@ -229,4 +219,3 @@
         });
       //-->
       </script>
-  

@@ -13,13 +13,14 @@ const routes: Routes = [
             { path: '', redirectTo: 'home'},
             { path: 'home', loadChildren: './home/home.module#HomeModule'},
             { path: 'chitiettin/:id', loadChildren: './chitiettin/chitiettin.module#ChitiettinModule'},
-            { path: 'profile/:id', loadChildren: './profile/profile.module#ProfileModule'},
-            { path: 'formprofile/:id', loadChildren: './formprofile/formprofile.module#FormprofileModule'},
+            { path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
             { path: 'formgioithieu/:id', loadChildren: './formgioithieu/formgioithieu.module#FormgioithieuModule'},
             { path: 'shopping', loadChildren: './shopping/shopping.module#ShoppingModule'},
             { path: 'jobdashboard', loadChildren: './jobdashboad/jobdashboard.module#JobdashboadModule'},
             { path: 'giohang/:id', loadChildren: './giohang/giohang.module#GiohangModule'},
-            { path: 'giaohang/:id', loadChildren: './giaohang/giaohang.module#GiaohangModule'}
+            { path: 'giaohang/:id', loadChildren: './giaohang/giaohang.module#GiaohangModule'},
+            { path: 'formprofile/:id', loadChildren: './formprofile/formprofile.module#FormprofileModule'},
+            { path: 'changepass/:id', loadChildren: './change-pass/change-pass.module#ChangePassModule'}
             
         ]
     }

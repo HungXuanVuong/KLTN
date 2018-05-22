@@ -22,6 +22,9 @@ export class GiftService {
     insertGift(gift){
       return this.http.post(this.domain + 'gift/allgift', gift).map(res => res.json());
     }
+    updateNumberOfGift(gift){
+      return this.http.put(this.domain + 'gift/allgift/editnumberofgift', gift).map(res => res.json());
+    }
   
     editGift(gift){
       return this.http.put(this.domain + 'gift/allgift/edit/', gift).map(res => res.json());

@@ -20,7 +20,7 @@ const routes: Routes = [
             //Transaction history
               { path: 'listtransaction', loadChildren: './transactionhistory/listtransaction/listtransaction.module#ListtransactionModule'},
               { path: 'formtransaction', loadChildren: './transactionhistory/formtransaction/formtransaction.module#FormtransactionModule'},
-              { path: 'edittransaction', loadChildren: './transactionhistory/edittransaction/edittransaction.module#EdittransactionModule'},
+              { path: 'edittransaction/:id', loadChildren: './transactionhistory/edittransaction/edittransaction.module#EdittransactionModule'},
               { path: 'deletetransaction/:id', loadChildren: './transactionhistory/deletetransaction/deletetransaction.module#DeletetransactionModule'},
             //product
             { path: 'listproduct', loadChildren: './product/listproduct/listproduct.module#ListproductModule'},

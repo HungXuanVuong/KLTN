@@ -1,75 +1,97 @@
-<div class="container main-content">
+<div id="feature3">
+  <div class="container main-content">
 
-  <div class="col-md-8">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">Thông tin cá nhân</h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-3 col-lg-3 " align="center">
-            <img alt="User Pic" src="./../../../assets/web/img/imguser/{{user.urlHinh}}" class="img-circle img-responsive">
+      <div class="col-md-12">
+          <div class="panel panel-info">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Thông tin cá nhân</h3>
+              </div>
+              <div class="panel-body">
+                  <div class="row">
+                      <div class=" show-hide-message">
+                          <div [ngClass]="messageClass">
+                              {{message}}
+                          </div>
+                      </div>
+                      <div class="col-md-3 col-lg-3 " align="center">
+                          <img alt="User Pic" src="../../../assets/web/img/imguser/{{user.urlHinh}}" class="img-circle img-responsive"
+                          />
+                      </div>
+                      <div class="col-md-9 col-lg-9">
+                          <div class="col-md-12 col-lg-12 ">
+                              <!-- <input type="button" id="loadFileXml" value="loadXml" onclick="document.getElementById('file').click();" />
+                              <input type="file" style="display:none;" id="file" name="file"/> -->
+                              <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploader" />
+                              
+                          </div>
+                          <div class="col-md-6 col-lg-6 " style="padding-top:5px;">
+                              <button class="btn btn-warning" (click)="uploadAvatar()">Cập nhật ảnh đại diện</button>
+                          </div>
+                      </div>
+                  </div>
+                  <form (submit)="updateUser()" *ngIf="!loading">
+                      <table class="table table-user-information">
+                          <tbody>
+                              <tr>
+                                  <td>Họ và tên</td>
+                                  <td>
+                                      <input [disabled]="processing" type="text" name="username" placeholder="Enter text" class="form-control" [(ngModel)]="user.username"
+                                          #username="ngModel" />
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>Ngày tham gia</td>
+                                  <td><label class="form-control">{{user.register_date | date: 'dd/MM/yyyy'}}</label></td>
+                              </tr>
+                              <tr>
+                                  <td>Ngày sinh</td>
+                                  <td>
+                                      <my-date-picker (dateChanged)="onDateChanged($event)" [ngModelOptions]="{standalone: true}" name="mydate" [options]="myDatePickerOptions"
+                                          [(ngModel)]="model" #ngaySinh="ngModel" required></my-date-picker>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>Giới tính</td>
+                                  <td>
+                                      <select [(ngModel)]="sex" (change)="selectSexHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control">
+                                  <option value="Nam">Nam</option>
+                                  <option value="Nữ">Nữ</option>
+                                </select>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>Địa chỉ</td>
+                                  <td>
+                                      <input [disabled]="processing" type="text" name="address" placeholder="Enter text" class="form-control" [(ngModel)]="user.address"
+                                          #address="ngModel" />
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>Email</td>
+                                  <td><label class="form-control">{{user.email}}</label></td>
+                              </tr>
+                              <tr>
+                                  <td>Số điện thoại</td>
+                                  <td>
+                                      <input [disabled]="processing" type="text" name="phone" placeholder="Enter text" class="form-control" [(ngModel)]="user.phone"
+                                          #phone="ngModel" />
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td>CV</td>
+                                  <td *ngIf="user.cvFile">{{user.cvFile}}
+                                      <input type="button" id="loadFileXml" value="..." onclick="document.getElementById('file').click();" />
+                                      <input id="file" type="file" style="display:none;" name="single" ng2FileSelect [uploader]="uploaderCV" />
+                                  </td>
+                                  <td *ngIf="!user.cvFile"><input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploaderCV"
+                                      /></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                      <button class="btn btn-success" type="submit"> Cập nhật</button>
+                  </form>
+              </div>
           </div>
-        </div>
-        <form (submit)="updateUser()" *ngIf="!loading">
-          <table class="table table-user-information">
-            <tbody>
-              <tr>
-                <td>Họ và tên</td>
-                <td>
-                  <input [disabled]="processing" type="text" name="username" placeholder="Enter text" class="form-control" [(ngModel)]="user.username"
-                    #username="ngModel" />
-                </td>
-              </tr>
-              <tr>
-                <td>Ngày tham gia</td>
-                <td>{{user.register_date | date: 'MM/dd/yyyy'}}</td>
-              </tr>
-              <tr>
-                <td>Ngày sinh</td>
-                <td>{{user.dateOfBirth | date: 'MM/dd/yyyy'}}</td>
-              </tr>
-              <tr>
-                <td>Giới tính</td>
-                <td>
-                    <select [(ngModel)]="sex" (change)="selectSexHandle($event)" [ngModelOptions]="{standalone: true}"
-                    class="form-control">
-                        <option value="Nam">Nam</option>
-                        <option value="Nữ">Nữ</option>
-                      </select>
-                </td>
-              </tr>
-              <tr>
-                <td>Địa chỉ</td>
-                <td>
-                    <input [disabled]="processing" type="text" name="address" placeholder="Enter text" class="form-control" [(ngModel)]="user.address"
-                    #address="ngModel" />
-                </td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td><a href="#">{{user.email}}</a></td>
-              </tr>
-              <tr>
-                <td>Số điện thoại</td>
-                <td>
-                    <input [disabled]="processing" type="text" name="phone" placeholder="Enter text" class="form-control" [(ngModel)]="user.phone"
-                    #phone="ngModel" />
-                </td>
-              </tr>
-              <tr>
-                <td>CV</td>
-                <td>{{user.cvFile}} <button>...</button></td>
-                <!-- <span class="help-block">Định dạng: .PDF, .DOC, .DOCX</span>
-                    <span class="help-block">Kích thước tối đa: 2MB</span></td> -->
-              </tr>
-            </tbody>
-          </table>
-        </form>
       </div>
-      <div class="panel-footer">
-        <a class="btn btn-success"> Cập nhật</a>
-      </div>
-    </div>
   </div>
 </div>

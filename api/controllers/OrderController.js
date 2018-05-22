@@ -4,7 +4,7 @@ const GCodeOrder = require('../Util/GCodeOrder');
 const config = require('../config/db');
 
 const getAllOrder = function (req, res) {
-    OrderModel.find({}, function (err, order) {
+    OrderModel.find({}).populate({path: 'employee'}).sort({ create_date: -1 }).exec(function (err, order) {
         if (err) {
             res.json({ success: false, message: 'Lỗi: ' + err });
         } else {
@@ -24,7 +24,7 @@ const getOrderByID = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'No order ID was provided.' });
     } else {
-        OrderModel.findOne({ _id: req.params.id }, (err, order) => {
+        OrderModel.findOne({ _id: req.params.id }).populate({path: 'employee'}).exec(function (err, order) {
             if (err) {
                 res.json({ success: false, message: 'Not a valid order id' }); // Return error message
             } else {
@@ -48,8 +48,9 @@ const addOrder = function (req, res) {
         orderDay: req.body.orderDay,
         receivedDay: req.body.receivedDay,
         placeOfReceipt: req.body.placeOfReceipt,
+        product_id: req.body.product_id,
         employee: req.body.employee,
-        status: 'Đang chờ'
+        status: 'Đổi quà thành công'
     });
     //console.log(order);
     order.save(function (err) {
@@ -80,6 +81,7 @@ const editOrder = function (req, res) {
                     order.receivedDay = req.body.receivedDate,
                     order.placeOfReceipt = req.body.placeOfReceipt,
                     order.status = req.body.status,
+                    order.product_id = req.body.product_id,
                     order.employee = req.body.employee
                     order.save((err) => {
                         if (err) {
@@ -138,7 +140,7 @@ const editStatusAndDay = function(req, res){
                             if (err) {
                                 res.json({ success: false, message: err });
                             } else {
-                                res.json({ success: true, message: 'Cập nhật point thành công' });
+                                res.json({ success: true, message: 'Cập nhật tình trạng thành công' });
                             }
                         });
                     }
@@ -147,6 +149,7 @@ const editStatusAndDay = function(req, res){
         }
     }
 };
+
 module.exports = {
     getAllOrder,
     getOrderByID,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServiceService } from '../../service/auth-service.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,6 +15,7 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
   styleUrls: ['./giaohang.component.css']
 })
 export class GiaohangComponent implements OnInit {
+  form : FormGroup;
   message;
   messageClass;
   users: Array<User> = [];
@@ -27,14 +28,35 @@ export class GiaohangComponent implements OnInit {
   order;
   
     constructor(
-      private authService: AuthServiceService,
+      private formBuilder: FormBuilder,
       private location: Location,
       private activatedRoute: ActivatedRoute,
       private orderService: OrderService,
       private router: Router,
       private _sanitizer: DomSanitizer
   ) { }
- 
+  disableForm() {
+    this.form.controls['comment'].disable();
+  }
+
+  enableForm(){
+    this.form.controls['comment'].enable();
+  }
+  print(): void {
+    let printContents, popupWin;
+    printContents = document.getElementById('print-section').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`  
+    <html>
+        <head>
+          <title>In hóa đơn</title>
+        </head>
+    <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+}
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params;
     this.orderService.getOrderByID(this.currentUrl.id).subscribe(data =>{
@@ -47,13 +69,6 @@ export class GiaohangComponent implements OnInit {
         this.order = data.order; 
         console.log(this.order);
         this.loading = false; // Allow loading of blog form
-      }
-    });
-    this.authService.getProfile().subscribe(profile => {
-      if(profile){
-        this.user = profile.user;
-      }else{
-        return;
       }
     });
   }
