@@ -16,7 +16,8 @@
         Danh Sách Tin Tuyển Dụng
       </div>
       <!-- /.panel-heading -->
-      <div class="panel-body">
+
+      <div *ngIf="user.role=='admin'" class="panel-body">
         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" width="100%" class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
@@ -24,10 +25,6 @@
               <th width="30%">Tiêu đề</th>
               <th>Ngày đăng</th>
               <th>Hạn nộp</th>
-              <!-- <th>Vi trí</th>
-              <th>Địa điểm</th>
-              <th>Lương</th>
-              <th>Nội dung</th> -->
               <th>Chính sách thưởng</th>
               <th>Tình trạng</th>
               <th>Theo dõi</th>
@@ -41,10 +38,6 @@
               <td>{{new.title}}</td>
               <td>{{new.create_date | date: 'dd/MM/yyyy'}}</td>
               <td>{{new.exp_date | date: 'dd/MM/yyyy'}}</td>
-              <!-- <td>{{new.position}}</td>
-              <td>{{new.place}}</td>
-              <td>{{new.salary}}</td>
-              <td>................</td> -->
               <td>{{new.newsPolicy.pName}}</td>
               <td>{{new.status}}</td>
               <td><a [routerLink]="['/admin/detailnews', new._id]">{{new.employee.username}}</a></td>
@@ -60,16 +53,58 @@
                     <li><a [routerLink]="['/admin/deletenews/', new._id]"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
                     </li>
                   </ul>
-                  <!-- /.dropdown-user -->
+   
                 </div>
               </td>
             </tr>
-            
-            <!-- end loop -->
           </tbody>
         </table>
-        <!-- /.table-responsive -->
       </div>
+
+      <div *ngIf="user.role=='empl'" class="panel-body">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" width="100%" class="table table-striped table-bordered table-hover">
+          <thead>
+            <tr>
+              <th width="10%">Hình</th>
+              <th width="30%">Tiêu đề</th>
+              <th>Ngày đăng</th>
+              <th>Hạn nộp</th>
+              <th>Chính sách thưởng</th>
+              <th>Tình trạng</th>
+              <th>Theo dõi</th>
+              <th>Option</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let new of news | role : userId" class="odd gradeX">
+              <td><img src="./../../../../assets/web/img/imgtin/{{new.urlHinh}}" class="img-responsive img-user" alt="Cinque Terre"></td>
+              <td>{{new.title}}</td>
+              <td>{{new.create_date | date: 'dd/MM/yyyy'}}</td>
+              <td>{{new.exp_date | date: 'dd/MM/yyyy'}}</td>
+              <td>{{new.newsPolicy.pName}}</td>
+              <td>{{new.status}}</td>
+              <td><a [routerLink]="['/admin/detailnews', new._id]">{{new.employee.username}}</a></td>
+              <td class="center">
+                <div class="dropdown text-center">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-gear fa-fw"></i> 
+                    <i class="fa fa-caret-down"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user">
+                    <li><a href="edittintuyendung.html"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                    </li>
+                    <li><a [routerLink]="['/admin/deletenews/', new._id]"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
+                    </li>
+                  </ul>
+   
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <!-- /.panel-body -->
     </div>
     <!-- /.panel -->

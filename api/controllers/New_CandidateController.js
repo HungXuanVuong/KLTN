@@ -37,9 +37,9 @@ const findNewsCandidateById = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'id news_candidate chưa được cung cấp.' });
     } else {
-        News_CandidateModel.findOne({ _id: req.params.id }, (err, newscandidate) => {
+        News_CandidateModel.findOne({ _id: req.params.id }).populate({path: 'candidate'}).populate({path: 'news'}).exec(function (err, newscandidate) {
             if (err) {
-                res.json({ success: false, message: 'id candidate không hợp lệ' });
+                res.json({ success: false, message: 'id news_candidate không hợp lệ' });
             } else {
                 if (!newscandidate) {
                     res.json({ success: false, message: 'Không tìm thấy news_candidate này' });

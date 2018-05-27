@@ -1,11 +1,13 @@
+import { User } from '../../../models/user';
 import { PolicyService } from './../../../service/policy.service';
 import { Component, OnInit } from '@angular/core';
 import { News } from "../../../models/news";
 import { NewsService } from "../../../service/news.service";
-
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
+import { AuthServiceService } from './../../../service/auth-service.service';
 
 // import {News} from ''
 @Component({
@@ -20,15 +22,19 @@ export class ListnewsComponent implements OnInit {
 
   news : Array<News> = [];
 
+  user = new User();
   message;
   messageClass;
   processing = false;
 
   constructor(
-    private newsService : NewsService
+    private newsService : NewsService,
+    private authService: AuthServiceService,
+    private router: Router
   ) { }
 
   newsId = '';
+  userId = 0;
 
   deleteNews(id){
     this.newsService.deleteNews(id).subscribe(data =>{
@@ -51,8 +57,23 @@ export class ListnewsComponent implements OnInit {
     });
   }
 
+  RedirectUnregister(){
+    this.router.navigate(['/redirectpage'],
+    {queryParams: {mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger"}});
+  }
+  checkRole(){
+    this.authService.getProfile().subscribe(profile => {
+      if(!profile.user){
+        this.RedirectUnregister();
+      }else{
+        this.user = profile.user;
+        this.userId = profile.user._id;
+      }
+    });
+  }
   ngOnInit() {
    
+    this.checkRole();
     this.dtOptions = {
       pagingType: 'full_numbers',
     };

@@ -55,4 +55,9 @@ export class NewscandidateService {
     this.createAuthenticationHeaders();
     return this.http.post(this.domain + 'newscandidate/add', newscandidate, this.options).map(res => res.json());
   }
+
+  getNewsCandidateById(id){
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'newscandidate/'+ id, this.options).map(res => res.json());
+  }
 }

@@ -29,7 +29,7 @@ export class AdminComponent implements OnInit {
       if(!profile.user){
         this.RedirectUnregister();
       }else{
-        if(profile.user.role === 'admin'){
+        if(profile.user.role === 'admin' || profile.user.role === 'empl'){
           return;
         }else{
           this.RedirectUnregister();

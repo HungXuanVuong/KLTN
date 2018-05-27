@@ -9,7 +9,7 @@ const routes: Routes = [
              { path: '', redirectTo: 'danggioithieu'},
             { path: 'dagioithieu', loadChildren: './uvdagt/uvdagt.module#UvdagtModule'},
             { path: 'danggioithieu', loadChildren: './uvdanggt/uvdanggt.module#UvdanggtModule'},
-            { path: 'trangthaiuv', loadChildren: './trangthaiuv/trangthaiuv.module#TrangthaiuvModule'}
+            { path: 'trangthaiuv/:id', loadChildren: './trangthaiuv/trangthaiuv.module#TrangthaiuvModule'}
             
         ]
     }
