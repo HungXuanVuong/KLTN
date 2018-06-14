@@ -12,9 +12,7 @@ import { SlidebarComponent } from './common/slidebar/slidebar.component';
 @NgModule({
     imports: [
         CommonModule,
-        AdminRoutingModule,
-        //HeaderModule
-
+        AdminRoutingModule
     ],
     declarations: [
         AdminComponent,

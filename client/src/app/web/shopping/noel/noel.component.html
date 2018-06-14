@@ -3,7 +3,7 @@
   <!-- feature1 -->
 <div class="product">
   <div class="row">
-      <div *ngFor="let g of gift | paginate: { itemsPerPage:8, currentPage: p }" class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+      <div *ngFor="let g of gift | paginate: { itemsPerPage:12, currentPage: p }" class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
               <div class="panel-body">
                   <a href="product.html"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive"></a>
                 <div class="panel-heading no-padding center">
@@ -15,7 +15,7 @@
                           <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
                       </div>
                       <div class="row">
-                        <div class="col-md-6">Số lượng còn:</div>
+                        <div class="col-md-6">Số lượng:</div>
                         <a class="col-md-6 career_link_location">{{g.amount}}</a>
                       </div>
                   </div>

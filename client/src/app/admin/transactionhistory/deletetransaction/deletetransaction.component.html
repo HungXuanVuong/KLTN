@@ -25,7 +25,7 @@
         <!-- Modal Footer -->
         <div class="modal-footer">
           <!-- Yes Button -->
-          <button [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="deleteTransaction(order.employee,order.employee.point,order.product_id,order.point_qd,gift.amount)">Đồng ý</button>
+          <button [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="deleteTransaction(order.employee,order.employee.point,order.product_id,order.product_id.point_sp)">Đồng ý</button>
           <!-- No Button -->
           <a routerLink="/admin/listtransaction"><button [disabled]="processing" type="button" name="button" class="btn btn-danger">Không</button></a>
         </div>

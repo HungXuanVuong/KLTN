@@ -32,82 +32,73 @@ export class DeletetransactionComponent implements OnInit {
   ) { }
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params; // get URL paramon page load
-    this.orderService.getOrderByID(this.currentUrl.id).subscribe(data =>{
-      if(!data.success){
+    this.orderService.getOrderByID(this.currentUrl.id).subscribe(data => {
+      if (!data.success) {
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
-      }else{
+      }else {
         this.order = {
           codeOrder: data.order.codeOrder,
-          productName: data.order.productName,
-          point_qd: data.order.point_qd,
+          productName: data.order.product_id.product_name,
+          point_qd: data.order.product_id.point_sp,
           orderDay: data.order.orderDay,
           receivedDay: data.order.receivedDay,
           placeOfReceipt: data.order.placeOfReceipt,
           product_id: data.order.product_id,
           status: data.order.status,
           employee: data.order.employee
-        }
+        };
         this.foundOrder = true;
-        
-    this.giftService.getGiftId(data.order.product_id).subscribe(data1 =>{
-      if (!data1.success) {
-        this.messageClass = 'alert alert-danger'; // Set bootstrap error class
-        this.message = data1.message; // Set error message
-      } else {
-        this.gift = data1.gift; 
-      }
-    });
+        console.log(data.order.product_id.amount);
       }
     });
     this.authService.getProfile().subscribe(profile => {
-      if(profile){
+      if (profile) {
         this.user = profile.user;
-      }else{
+      }else {
         return;
       }
     });
   }
-  
-  deleteTransaction(employee_id,point_u,product_id,point_qd,amount_p){
-    const gift_cn={
+  deleteTransaction(employee_id, point_u, product_id, point_qd) {
+    const gift_cn = {
       _id: product_id,
-      amount: amount_p+1
-    }
+      amount: this.order.product_id.amount + 1
+    };
     this.giftService.updateNumberOfGift(gift_cn).subscribe(data => {
       if (!data.success) {
-        this.messageClass = "alert alert-danger";
+        this.messageClass = 'alert alert-danger';
         this.processing = false;
-        setTimeout(() =>{
+        setTimeout(() => {
           this.router.navigate(['/shopping/tatca']);
         }, 2000);
       } else {
-        this.messageClass = "alert alert-success";
+        this.messageClass = 'alert alert-success';
       }
     });
 
   console.log(gift_cn);
-    const user_sd={
+    const user_sd = {
       _id: employee_id,
-      point: point_u+point_qd
-    }
-      this.authService.editPointUser(user_sd).subscribe(data1=>{
+      point: point_u + point_qd
+    };
+      this.authService.editPointUser(user_sd).subscribe(data1 => {
         if (!data1.success) {
-          this.messageClass = "alert alert-danger";
-          this.message += data1.message;
+          this.messageClass = 'alert alert-danger';
+          this.message = data1.message;
           this.processing = false;
-        } else {    
+        } else {
           this.processing = true; // Disable button
-          this.orderService.deleteOrder(this.currentUrl.id).subscribe(data2 =>{
+          this.orderService.deleteOrder(this.currentUrl.id).subscribe(data2 => {
             // check yeu cau xoa
-            if(!data2.success){
+            if (!data2.success) {
               this.messageClass = 'alert alert-danger';
-              this.message = data2.message;
-            }else{
+              this.message = 'data2.message';
+            }else {
               this.messageClass = 'alert alert-success';
-              this.message = data2.message; 
-              this.message += " Tài khoản người đổi quà vừa được hoàn point tương ứng!"; 
-              setTimeout(() =>{
+              this.message = data2.message;
+              this.message += ' Tài khoản người đổi quà vừa được hoàn point tương ứng!';
+              setTimeout(() => {
                 this.router.navigate(['/admin/listtransaction']);
               }, 2000);
             }

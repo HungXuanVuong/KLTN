@@ -18,7 +18,7 @@ export class EdittransactionComponent implements OnInit {
   processing2 = false;
   currentUrl;
   loading = true;
-  form : FormGroup;
+  form: FormGroup;
 
 
   constructor(
@@ -31,7 +31,7 @@ export class EdittransactionComponent implements OnInit {
     this.createForm();
   }
 
-  createForm(){
+  createForm() {
     this.form = this.formBuilder.group({
       codeOrder: ['', Validators.required],
       productName: ['', Validators.required],
@@ -42,12 +42,11 @@ export class EdittransactionComponent implements OnInit {
       receivedDay: ['', Validators.required]
     });
   }
- 
-  clearAllFields(){
+  clearAllFields() {
     this.createForm();
   }
 
-  disableForm(){
+  disableForm() {
     this.form.controls['codeOrder'].disable();
     this.form.controls['productName'].disable();
     this.form.controls['point_qd'].disable();
@@ -55,7 +54,7 @@ export class EdittransactionComponent implements OnInit {
     this.form.controls['orderDay'].disable();
     this.form.controls['receivedDay'].disable();
   }
-  updatetypegift() {
+  updateOrder() {
     this.processing2 = true;
     this.processing = true; // Lock form fields
     // Function to send blog object to backend
@@ -71,17 +70,17 @@ export class EdittransactionComponent implements OnInit {
         this.message = data.message; // Set success message
         // After two seconds, navigate back to blog page
         setTimeout(() => {
-          this.router.navigate(['/admin/listcatagory']); // Navigate back to route page
+          this.router.navigate(['/admin/listtransaction']); // Navigate back to route page
         }, 2000);
       }
     });
   }
-  goBack(){
-    this.router.navigate(['/admin/listcatagory']);
+  goBack() {
+    this.router.navigate(['/admin/listtransaction']);
   }
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params;
-    this.orderService.getOrderByID(this.currentUrl.id).subscribe(data =>{
+    this.orderService.getOrderByID(this.currentUrl.id).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger'; // Set bootstrap error class
         this.message = data.message; // Set error message

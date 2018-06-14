@@ -4,7 +4,7 @@ const Type_giftModel= require('../models/Type_giftModel');
 const config = require('../config/db');
 
 const getAllGift = function(req, res){
-    GiftModel.find({}).populate({path: 'type_giftID'}).exec(function(err, gift){
+    GiftModel.find({}).populate({path: 'type_giftID'}).populate({path: 'employee'}).exec(function(err, gift){
         if(err){
             res.json({success: false, message: 'Lỗi: ' + err});
         }else{
@@ -42,7 +42,10 @@ var insertGift = function (req, res) {
                       }else {
                           if (!req.body.type_giftID) {
                         res.json({ success: false, message: 'Bạn cần bổ sung loại quà cho sản phẩm tương ứng' });
-                    } else {
+                    }else {
+                        if (!req.body.employee) {
+                      res.json({ success: false, message: 'Bạn cần bổ sung người nhập quà cho sản phẩm tương ứng' });
+                  } else {
                         let giftmodel = new GiftModel({
                             
                             product_name: req.body.product_name,
@@ -52,7 +55,8 @@ var insertGift = function (req, res) {
                             create_date: req.body.create_date,
                             point_sp: req.body.point_sp,
                             product_infor: req.body.product_infor,
-                            type_giftID: req.body.type_giftID
+                            type_giftID: req.body.type_giftID,
+                            employee: req.body.employee
                         });
                         console.log(giftmodel);
                         giftmodel.save(function (err) {
@@ -68,6 +72,7 @@ var insertGift = function (req, res) {
                 }
                 }
             }
+        }
         }
     }
 };
@@ -89,6 +94,8 @@ var editGift = function (req, res) {
                     gift.create_date=req.body.create_date;
                     gift.point_sp=req.body.point_sp;
                     gift.product_infor=req.body.product_infor;
+                    gift.type_giftID=req.body.type_giftID;
+                    gift.employee=req.body.employee;
                     gift.save((err) => {
                         if (err) {
                             res.json({ success: false, message: err });

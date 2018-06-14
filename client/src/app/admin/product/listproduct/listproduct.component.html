@@ -26,6 +26,7 @@
                             <th>Hình</th>
                             <th>Tên quà</th>
                             <th>Loại quà</th>
+                            <th>Thương hiệu</th>
                             <th>Số point quy đổi</th>
                             <th>Số lượng</th>
                             <th>Ngày nhập kho</th>
@@ -39,6 +40,7 @@
                             <td>{{g.urlHinh}}</td>
                             <td>{{g.product_name}}</td>
                             <td>{{g.type_giftID.type_name}}</td>
+                            <td>{{g.trademark}}</td>
                             <td>{{g.point_sp}}</td>
                             <td>{{g.amount}}</td>
                             <td>{{g.create_date}}</td>
@@ -51,7 +53,7 @@
                                     <ul class="dropdown-menu dropdown-user">
                                         <li><a [routerLink]="['/admin/editproduct/', g._id]"><i class="fa fa-pencil fa-fw"></i> Edit</a>
                                         </li>
-                                        <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
+                                        <li><a><i class="fa fa-trash-o fa-fw"></i> Delete</a>
                                         </li>
                                     </ul>
                                 <!-- /.dropdown-user -->

@@ -5,12 +5,14 @@ const giftModelSchema = new Schema({
     product_name: {type: String},
     urlHinh: {type: String},
     trademark: {type: String},
-    amount: {type: Number},    
+    amount: {type: Number}, 
+    create_date: {type: Date},   
     point_sp: {type: Number},
     product_infor: {type: String},
     type_giftID : {
          type:Schema.ObjectId, ref: 'Type_giftModel'
-    }
+    },
+    employee: {type: Schema.ObjectId, ref: 'UserModel'}
 });
 
 const GiftModel = mongoose.model('GiftModel', giftModelSchema);

@@ -23,17 +23,17 @@ export class DeletecatagoryComponent implements OnInit {
     private router: Router
   ) { }
 
-  deleteTypeGift(){
+  deleteTypeGift() {
     this.processing = true; // Disable button
-    this.typeGiftService.deleteTypeGift(this.currentUrl.id).subscribe(data =>{
+    this.typeGiftService.deleteTypeGift(this.currentUrl.id).subscribe(data => {
       // check yeu cau xoa
-      if(!data.success){
+      if (!data.success) {
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
-      }else{
+      }else {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
-        setTimeout(() =>{
+        setTimeout(() => {
           this.router.navigate(['/admin/listcatagory']);
         }, 2000);
       }
@@ -43,15 +43,15 @@ export class DeletecatagoryComponent implements OnInit {
 
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params; // get URL paramon page load
-    this.typeGiftService.getDetailTypeGift(this.currentUrl.id).subscribe(data =>{
-      if(!data.success){
+    this.typeGiftService.getDetailTypeGift(this.currentUrl.id).subscribe(data => {
+      if (!data.success) {
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
-      }else{
+      }else {
         this.typegift = {
           type_name: data.typegift.type_name,
           type_infor: data.typegift.type_infor
-        }
+        };
         this.foundTypeGift = true;
       }
     });

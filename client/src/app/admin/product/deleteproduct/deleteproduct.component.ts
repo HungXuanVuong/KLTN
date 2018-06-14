@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GiftService } from '../../../service/gift.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-deleteproduct',
