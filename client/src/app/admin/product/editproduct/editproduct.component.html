@@ -1,57 +1,109 @@
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Sửa thông tin quà quy đổi </h1>
+    <h1 class="page-header">Chỉnh sửa thông tin quà quy đổi </h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+  <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{message}}
+  </div>
+</div>
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-info">
       <div class="panel-heading">
-        Form sửa thông tin
+        Form nhập thông tin
       </div>
       <div class="panel-body">
         <div class="row">
 
-          <form role="form">
+          <form role="form" [formGroup]="form" (submit)="updateProduct()">
             <div class="col-lg-12">
               <div class="form-group">
-                <label for="cv" class="col-md-2 control-label">Hình</label>
+                <label for="urlHinh" class="col-md-2 control-label">Hình</label>
                 <div class="col-md-10">
-                  <input type="file" id="cv">
+                  <input type="file" id="urlHinh" class="form-control" ng2FileSelect [uploader]="uploader" />
                   <span class="help-block">Định dạng: .JPG, .PNG</span>
                   <span class="help-block">Kích thước tối đa: 2MB</span>
                 </div>
               </div>
               <div class="form-group">
-                <label for="tentheloai">Tên quà</label>
-                <input class="form-control" placeholder="Nhập vào tên thể loại" name="tentheloai">
+                <label for="product_name">Tên quà</label>
+                <div [ngClass]="{'has-error': (form.controls.product_name.errors && form.controls.product_name.dirty), 'has-success': !form.controls.product_name.errors}"></div>
+                <input [disabled]="processing" class="form-control" type="text"  name="product_name" autocomplete="off" formControlName="product_name" [(ngModel)]="gift.product_name">
+                 <!-- Validation -->
+                 <ul class="help-block">
+                  <li *ngIf="form.controls.product_name.errors?.required && form.controls.product_name.dirty">Trường này bắt buộc</li>
+                  <li *ngIf="(form.controls.product_name.errors?.minlength || form.controls.product_name.errors?.maxlength) && form.controls.product_name.dirty">Tên quà ít nhất có 8 ký tự , tối đa 40</li>
+                </ul>
               </div>
 
               <div class="form-group">
-                <label for="theloai">Thể loại</label>
-                <select class="form-control">
-                      <option>Sinh nhật</option>
-                      <option>Noel</option>
-                      <option>Valentine</option>
-                  </select>
+                <label for="type_giftID">Thể loại</label>
+                <select [(ngModel)]="selectedTypegift"  (change)="selectTypegiftHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control"[(ngModel)]="gift.type_giftID.type_name">
+                  <option *ngFor="let typegift of typegiftList" value="{{ typegift._id }}">{{typegift.type_name}}</option>
+                </select>
               </div>
 
               <div class="form-group">
-                <label for="tentheloai">Số point quy đổi</label>
-                <input class="form-control" placeholder="Nhập vào tên thể loại" name="tentheloai">
+                <label for="point_sp">Số point quy đổi</label>
+                <div [ngClass]="{'has-error': (form.controls.point_sp.errors && form.controls.point_sp.dirty), 'has-success': !form.controls.point_sp.errors}"></div>
+                <input [disabled]="processing" class="form-control" name="point_sp" formControlName="point_sp" [(ngModel)]="gift.point_sp">
+                <!-- Validation -->
+                <ul class="help-block">
+                    <li *ngIf="form.controls.point_sp.errors?.required && form.controls.point_sp.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="form.controls.point_sp.errors?.min && form.controls.point_sp.dirty">Số point tối thiểu là 1</li>
+                    <li *ngIf="form.controls.point_sp.errors?.validateNumberOf && form.controls.point_sp.dirty">"Số point" phải là số</li>
+                  </ul>
+              </div>
+
+              <div class="form-group">
+                <label for="trademark">Thương hiệu</label>
+                <div [ngClass]="{'has-error': (form.controls.trademark.errors && form.controls.trademark.dirty), 'has-success': !form.controls.trademark.errors}"></div>
+                <input [disabled]="processing" class="form-control" name="trademark" formControlName="trademark" [(ngModel)]="gift.trademark" 
+                />
+                <!-- Validation -->
+                <ul class="help-block">
+                  <li *ngIf="form.controls.trademark.errors?.required && form.controls.trademark.dirty">Trường này bắt buộc</li>
+                  <li *ngIf="(form.controls.trademark.errors?.minlength || form.controls.trademark.errors?.maxlength) && form.controls.trademark.dirty">Tên thương hiệu ít nhất có 2 ký tự , tối đa 8</li>
+                </ul>
+              </div>
+
+              <div class="form-group">
+                  <div [ngClass]="{'has-error': (form.controls.amount.errors && form.controls.amount.dirty), 'has-success': !form.controls.amount.errors}"></div>
+                <label for="amount">Số lượng</label>
+                <input [disabled]="processing" class="form-control" name="amount" formControlName="amount" [(ngModel)]="gift.amount">
+                <!-- Validation -->
+                <ul class="help-block">
+                    <li *ngIf="form.controls.amount.errors?.required && form.controls.amount.dirty">Trường này bắt buộc</li>
+                    <li *ngIf="form.controls.amount.errors?.min && form.controls.amount.dirty">Số lượng tối thiểu là 1</li>
+                    <li *ngIf="form.controls.amount.errors?.validateNumberOf && form.controls.amount.dirty">"Số lượng" phải là số</li>
+                  </ul>
+              </div>
+
+              <div class="form-group">
+                <label for="create_date">Ngày nhập kho</label>
+                  <input [disabled]="processing2" class="form-control" id="create_date" name="create_date" formControlName="create_date" [(ngModel)]="gift.create_date">
               </div>
               <div class="form-group">
-                <label for="mota">Mô tả</label>
-                <textarea class="form-control" name="description" placeholder="Mô tả"></textarea>
+                <label for="product_infor">Thông tin quà</label>
+              <div [ngClass]="{'has-error': (form.controls.product_infor.errors && form.controls.product_infor.dirty), 'has-success': !form.controls.product_infor.errors}">
+                <textarea [disabled]="processing" name="product_infor" id="type_infor" rows="8" cols="80" class="form-control" formControlName="product_infor" [(ngModel)]="gift.product_infor"></textarea>
+                <ul class="help-block">
+                  <li *ngIf="form.controls.product_infor.errors?.required && form.controls.product_infor.dirty">Trường này bắt buộc nhập</li>
+                  <li *ngIf="form.controls.product_infor.errors?.minlength && form.controls.product_infor.dirty || form.controls.product_infor.errors?.maxlength && form.controls.product_infor.dirty ">ký tự ít nhất là 50, không quá 500 ký tự</li>
+                </ul>
+              </div>
               </div>
               <div class="form-group">
                 <div class="pull-left">
-                  <input class="btn btn-success" routerLink="/admin/listproduct" value="Trở lại">
+                  <button type="button" name="button" class="btn btn-success" (click)="goBack();">Trở lại</button>
                 </div>
                 <div class="pull-right">
-                  <button type="submit" class="btn btn-default">Lưu</button>
+                  <button [disabled]="processing || (!form.controls.urlHinh.dirty && !form.controls.product_name.dirty && !form.controls.point_sp.dirty && !form.controls.trademark.dirty && !form.controls.amount.dirty && !form.controls.product_infor.dirty)" type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
                   <button type="reset" class="btn btn-default">Xóa trống</button>
                 </div>
               </div>

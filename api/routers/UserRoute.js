@@ -19,7 +19,7 @@ router.get('/checkExitsEmail/:email', UserController.checkExitsEmail);
 
 router.put('/resetpassword', UserController.resetPasswordGmail);
 
-
+router.post('/checkExitsPass', UserController.checkExitsPass);
 router.post('/login', UserController.login);
 
 // router.post('/upload', UploadFileUtil.uploadImgUserHandling);
@@ -35,7 +35,6 @@ router.route('/user/gettop4')
 
 router.route('/user/:id')
       .get(UserController.findUserById)
-      
 
 router.route('/user/editpoint')
       .put(UserController.editPointUser);
@@ -43,15 +42,13 @@ router.route('/user/editpoint')
 router.route('/user/editavatar')
       .put(UserController.editAvataUser);
 
-
+router.route('/edit')
+      .put(UserController.updatePasswordUser);
 
 router.route('/user/edit')
       .put(UserController.editUser);
 
 router.put('/update', UserController.editUser);
-
-// router.route('password/edit')
-//       .put(UserController.updatePasswordUser);
 
 router.use(UserController.checkToken);
 router.get('/profile', UserController.getUserProfile);

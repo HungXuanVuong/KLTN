@@ -2,22 +2,20 @@ export class Order{
     
         id: Object;
         codeOrder: String;
-        productName: String;
-        point_qd: Number;
         orderDay: Date;
         receivedDay: Date;
         placeOfReceipt: String;
         status: String;
         employee: Object;
+        product_id: Object;
     
         constructor(){
             this.id = 0;
             this.codeOrder = "";
-            this.productName = "";
-            this.point_qd = 0;
             this.orderDay = new Date();
             this.receivedDay = new Date();
             this.status = "";
             this.employee = "";
+            this.product_id = "";
         }
     }

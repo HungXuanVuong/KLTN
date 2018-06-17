@@ -2,15 +2,17 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const giftModelSchema = new Schema({
-    product_name: {type: String, required: true},
-    urlHinh: {type: String, required: true},
-    trademark: {type: String, required: true},
-    amount: {type: Number},    
+    product_name: {type: String},
+    urlHinh: {type: String},
+    trademark: {type: String},
+    amount: {type: Number}, 
+    create_date: {type: Date},   
     point_sp: {type: Number},
-    product_infor: {type: String, required: true},
+    product_infor: {type: String},
     type_giftID : {
          type:Schema.ObjectId, ref: 'Type_giftModel'
-    }
+    },
+    employee: {type: Schema.ObjectId, ref: 'UserModel'}
 });
 
 const GiftModel = mongoose.model('GiftModel', giftModelSchema);

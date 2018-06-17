@@ -9,6 +9,7 @@ export class Gift{
         point_sp: Number;
         product_infor: String;
         type_giftID:Object;
+        employee: Object;
        
         constructor(){
             this.id = 0;
@@ -20,5 +21,6 @@ export class Gift{
             this.point_sp = 0;
             this.product_infor = "";
             this.type_giftID="";
+            this.employee="";
         }
     }
