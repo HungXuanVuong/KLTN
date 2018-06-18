@@ -101,9 +101,9 @@ export class FormprofileComponent implements OnInit {
             this.uploaderCV.queue[0].upload();
             this.messageClass = 'alert alert-success'; 
             this.message = data.message; 
-            setTimeout(() => {
-              this.router.navigate(['/profile/5ad0b99a1450f026203e0a69']); 
-            }, 1000);
+            // setTimeout(() => {
+            //   this.router.navigate(['/profile/5ad0b99a1450f026203e0a69']); 
+            // }, 1000);
           }
     });
   }

@@ -89,7 +89,7 @@ const findListUserByIdNews = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'No news ID was provided.' });
     } else {
-        News_UserModel.find({ "news": newsId }).populate({ path: 'user' }).exec(function (err, users) {
+        News_UserModel.find({ "news": newsId }).populate({ path: 'user' }).populate({ path: 'news' }).exec(function (err, users) {
             if (err) {
                 res.json({ success: false, message: 'Not a valid news id' }); // Return error message
             } else {

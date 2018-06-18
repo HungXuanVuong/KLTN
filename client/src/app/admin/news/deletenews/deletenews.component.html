@@ -1,11 +1,11 @@
 <div [@routerTransition] class="container" style="padding-top:10px;">
   
     <!-- Custom Success/Error Message -->
-    <div class="row show-hide-message" *ngIf="message">
+    <!-- <div class="row show-hide-message" *ngIf="message">
       <div [ngClass]="messageClass">
         {{ message }}
       </div>
-    </div>
+    </div> -->
   
     <!-- Modal Confirmation Window -->
     <div class="col-md-6 col-md-push-2" *ngIf="foundNews">
@@ -27,7 +27,7 @@
         <!-- Modal Footer -->
         <div class="modal-footer">
           <!-- Yes Button -->
-          <button [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="deleteNews()">Đồng ý</button>
+          <button type="submit" [disabled]="processing" data-toggle="modal" data-target="#myModal" type="button" name="button" class="btn btn-success" (click)="deleteNews()">Đồng ý</button>
           <!-- No Button -->
           <a routerLink="/admin/listnews"><button [disabled]="processing" type="button" name="button" class="btn btn-danger">Không</button></a>
         </div>
