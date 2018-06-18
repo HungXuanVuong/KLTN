@@ -9,7 +9,7 @@
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#home">Thông tin chung</a></li>
   <li><a data-toggle="tab" href="#menu1">Xử lí tuyển dụng</a></li>
-  <li><a data-toggle="tab" href="#menu2">Chi phí xử lí</a></li>
+  <li><a data-toggle="tab" href="#menu2">Thống kê xử lý</a></li>
 
 </ul>
 
@@ -134,7 +134,7 @@
                         </li>
                         <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
                         </li>
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
+                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')" (click)="testClick(newcandidate.user._id)"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
                         </li>
                       </ul>
                    

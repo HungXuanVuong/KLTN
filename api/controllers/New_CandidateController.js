@@ -56,7 +56,7 @@ const findListCandidateByIdNews = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'No news ID was provided.' });
     } else {
-        News_CandidateModel.find({ "news": newsId }).populate({ path: 'user' }).populate({ path: 'candidate' }).exec(function (err, candidates) {
+        News_CandidateModel.find({ "news": newsId }).populate({ path: 'user' }).populate({ path: 'candidate' }).populate({ path: 'news' }).exec(function (err, candidates) {
             if (err) {
                 res.json({ success: false, message: 'Not a valid news id' }); // Return error message
             } else {
@@ -77,7 +77,7 @@ const findListCandidateByIdUser = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'No user ID was provided.' });
     } else {
-        News_CandidateModel.find({ "user": userId }).populate({ path: 'user' }).populate({ path: 'candidate' }).exec(function (err, candidates) {
+        News_CandidateModel.find({ "user": userId }).populate({ path: 'user' }).populate({ path: 'candidate' }).populate({ path: 'news' }).exec(function (err, candidates) {
             if (err) {
                 res.json({ success: false, message: 'Not a valid user id' }); // Return error message
             } else {
