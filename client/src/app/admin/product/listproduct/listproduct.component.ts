@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class ListproductComponent implements OnInit {
   listgift: Object;
   dtOptions: DataTables.Settings = {};
-  public temp_var: Object=false;
+  public temp_var: Object= false;
   listtypegift;
 
 
@@ -26,29 +26,30 @@ export class ListproductComponent implements OnInit {
     private type_giftService: TypeGiftService
   ) { }
 
-  getAllType(){
-    this.type_giftService.getAllTypeGift().subscribe(data =>{
+  getAllType() {
+    this.type_giftService.getAllTypeGift().subscribe(data => {
       this.listtypegift = data.listTypegift;
     });
   }
 
-  getAllGift(){
+  getAllGift() {
     this.dtOptions = {
       pagingType: 'full_numbers',
     };
-    this.giftService.getAllGift().subscribe(data =>{
+    this.giftService.getAllGift().subscribe(data => {
       this.listgift = data.listGift;
-      this.temp_var=true;
+      this.temp_var = true;
       console.log(this.listgift);
     });
   }
 
-  selectPBHandle(event: any){
+  selectPBHandle(event: any) {
     this.giftbytype = event.target.value;
     console.log(this.giftbytype);
   }
+  // tslint:disable-next-line:member-ordering
   selectedTypegift;
-  refeshPage(){
+  refeshPage() {
     this.selectedTypegift = null;
   }
 

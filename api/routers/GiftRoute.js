@@ -10,10 +10,14 @@ router.route('/allgift')
 .get(GiftController.getAllGift)
 .post(GiftController.insertGift);
 
+router.route('/allgift/editnumberofgift')
+.put(GiftController.updateNumberOfGift);
+
 router.route('/allgift/:id')
 .get(GiftController.giftById)
 .put(GiftController.editGift)
 .delete(GiftController.deleteGift);
+
 
 router.route('/getalltype/:type_giftID/allgift')
 .get(GiftController.giftListByTypeofGift);

@@ -1,0 +1,56 @@
+<div id="feature3">
+  <div class="container main-content">
+
+    <div class="col-md-12">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Thông tin cá nhân</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row show-hide-message">
+            <div [ngClass]="messageClass">
+              {{message}}
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <form [formGroup]="form" *ngIf="!loading">
+                <div [ngClass]="{'has-error': (form.controls.current_pass.errors && form.controls.current_pass.dirty) || (!passValid && form.controls.current_pass.dirty), 'has-success': !form.controls.current_pass.errors && passValid}"
+                  class="form-group">
+                  <label>Nhập mật khẩu cũ</label>
+                  <input type="password" name="current_pass" class="form-control" placeholder="Mời nhập mật khẩu cũ" autofocus formControlName="current_pass"
+                    (blur)="checkExitsPass(user.email)">
+                  <ul class="help-block">
+                    <li *ngIf="form.controls.current_pass.errors?.required && form.controls.current_pass.dirty">Trường này là bắt buộc</li>
+                    <li *ngIf="(form.controls.current_pass.errors?.minlength || form.controls.current_pass.error?.maxlength) && form.controls.email.dirty">ít nhất là 5, tối đa là 30 ký tự</li>
+                    <li *ngIf="form.controls.current_pass.errors?.validateEmail && form.controls.current_pass.dirty">Email không hợp lệ</li>
+                    <li *ngIf="passMessage">{{passMessage}}</li>
+                  </ul>
+                </div>
+                <div class="form-group">
+                  <label>Nhập mật khẩu mới</label>
+                  <input [disabled]="processing" type="password" name="password" placeholder="Mời nhập mật khẩu mới" class="form-control" formControlName="password"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Nhập lại mật khẩu mới</label>
+                  <input [disabled]="processing" type="password" name="confirm" placeholder="Mời nhập lại mật khẩu mới" class="form-control"
+                    formControlName="confirm" />
+                  <ul>
+                    <li style="color:red;" *ngIf="!checkConfirm()">Mật khẩu không khớp, vui lòng nhập lại</li>
+                  </ul>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="pull-left">
+            <button [disabled]="processing" type="submit" name="submit" class="btn btn-info" [disabled]="processing || !passValid" (click)="changePassword()">
+              Cập nhật
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

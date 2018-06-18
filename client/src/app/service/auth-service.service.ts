@@ -68,7 +68,9 @@ export class AuthServiceService {
   checkExitsEmail(email){
     return this.http.get(this.domain+ 'authentication/checkExitsEmail/' + email).map(res => res.json());
   }
-
+  checkExitsPass(user) {
+    return this.http.post(this.domain + 'authentication/checkExitsPass', user).map(res => res.json());
+  }
   login(user) {
     return this.http.post(this.domain + 'authentication/login', user).map(res => res.json());
   }

@@ -19,14 +19,11 @@ const routes: Routes = [
             { path: 'deletecatagory/:id', loadChildren: './catagory/deletecatagory/deletecatagory.module#DeletecatagoryModule'},
             //Transaction history
               { path: 'listtransaction', loadChildren: './transactionhistory/listtransaction/listtransaction.module#ListtransactionModule'},
-              { path: 'formtransaction', loadChildren: './transactionhistory/formtransaction/formtransaction.module#FormtransactionModule'},
-              { path: 'edittransaction', loadChildren: './transactionhistory/edittransaction/edittransaction.module#EdittransactionModule'},
-              { path: 'deletetransaction/:id', loadChildren: './transactionhistory/deletetransaction/deletetransaction.module#DeletetransactionModule'},
+              { path: 'edittransaction/:id', loadChildren: './transactionhistory/edittransaction/edittransaction.module#EdittransactionModule'},
             //product
             { path: 'listproduct', loadChildren: './product/listproduct/listproduct.module#ListproductModule'},
             { path: 'formproduct', loadChildren: './product/formproduct/formproduct.module#FormproductModule'},
             { path: 'editproduct/:id', loadChildren: './product/editproduct/editproduct.module#EditproductModule'},
-            { path: 'deleteproduct/:id', loadChildren: './product/editproduct/editproduct.module#EditproductModule'},
             //user
             { path: 'listuser', loadChildren: './users/listuser/listuser.module#ListuserModule'},
             { path: 'formuser', loadChildren: './users/formuser/formuser.module#FormuserModule'},

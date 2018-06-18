@@ -4,7 +4,7 @@ const GCodeOrder = require('../Util/GCodeOrder');
 const config = require('../config/db');
 
 const getAllOrder = function (req, res) {
-    OrderModel.find({}).populate({path: 'employee'}).exec(function (err, order) {
+    OrderModel.find({}).populate({path: 'employee'}).populate({path: 'product_id'}).sort({ create_date: -1 }).exec(function (err, order) {
         if (err) {
             res.json({ success: false, message: 'Lỗi: ' + err });
         } else {
@@ -24,13 +24,14 @@ const getOrderByID = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'No order ID was provided.' });
     } else {
-        OrderModel.findOne({ _id: req.params.id }, (err, order) => {
+        OrderModel.findOne({ _id: req.params.id }).populate({path: 'employee'}).populate({path: 'product_id'}).exec(function (err, order) {
             if (err) {
                 res.json({ success: false, message: 'Not a valid order id' }); // Return error message
             } else {
                 if (!order) {
                     res.json({ success: false, message: 'Order not found.' });
                 } else {
+                    console.log(order);
                     res.json({ success: true, order: order });
                 }
             }
@@ -43,13 +44,12 @@ const addOrder = function (req, res) {
    var codeorder = GCodeOrder.generatorCode();
    let order = new OrderModel({
         codeOrder: codeorder,
-        productName: req.body.productName,
-        point_qd: req.body.point_qd,
         orderDay: req.body.orderDay,
         receivedDay: req.body.receivedDay,
         placeOfReceipt: req.body.placeOfReceipt,
+        product_id: req.body.product_id,
         employee: req.body.employee,
-        status: 'Đang chờ'
+        status: 'Đã đặt quà'
     });
     //console.log(order);
     order.save(function (err) {
@@ -73,13 +73,11 @@ const editOrder = function (req, res) {
                     res.json({ success: false, message: 'Order id was not found.' });
                 } else {
                     order.codeOrder = req.body.codeOrder,
-                    order.productName = req.body.productName,
-                    order.point_qd = req.body.point_qd,
                     order.orderDay = req.body.orderDay,
-                    // create_date: Date.now,
                     order.receivedDay = req.body.receivedDate,
                     order.placeOfReceipt = req.body.placeOfReceipt,
                     order.status = req.body.status,
+                    order.product_id = req.body.product_id,
                     order.employee = req.body.employee
                     order.save((err) => {
                         if (err) {
@@ -138,7 +136,7 @@ const editStatusAndDay = function(req, res){
                             if (err) {
                                 res.json({ success: false, message: err });
                             } else {
-                                res.json({ success: true, message: 'Cập nhật point thành công' });
+                                res.json({ success: true, message: 'Cập nhật tình trạng thành công' });
                             }
                         });
                     }
@@ -147,6 +145,7 @@ const editStatusAndDay = function(req, res){
         }
     }
 };
+
 module.exports = {
     getAllOrder,
     getOrderByID,

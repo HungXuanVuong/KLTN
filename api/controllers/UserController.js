@@ -177,7 +177,28 @@ const resetPasswordGmail = function(req, res){
         })
     }
 }
-
+const checkExitsPass= function(req, res) {
+    if (!req.body.password) {
+        res.json({ success: false, message: 'Bạn chưa nhập vào password' });
+    } else {
+        UserModel.findOne({ email: req.body.email.toLowerCase() }, function (err, user) {
+            if (err) {
+                res.json({ success: false, message: err });
+            } else {
+                if (!user) {
+                    res.json({ success: false, message: 'Email không tồn tại' });
+                } else {
+                    const validPassword = user.comparePassword(req.body.password);
+                    if (!validPassword) {
+                        res.json({ success: false, message: 'Mật khẩu không hợp lệ' });
+                    } else {
+                        res.json({ success: true, message: 'Xác nhận mật khẩu thành công!' });
+                    }
+                }
+            }
+        });
+    }
+}
 const login = function (req, res) {
     if (!req.body.email) {
         res.json({ success: false, message: 'Bạn chưa nhập email' });
@@ -438,10 +459,11 @@ const editAvataUser = function(req, res){
 module.exports = {
     register,
     registerWithMail,
+    checkExitsPass,
     login,
     checkEmail,
     getUserProfile,
-    // updatePasswordUser,
+    updatePasswordUser,
     findUserById,
     checkToken,
     getAllUsers,

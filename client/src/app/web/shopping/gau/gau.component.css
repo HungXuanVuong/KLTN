@@ -1,0 +1,15 @@
+.figure {
+    height: 100%;   
+    width: 100%;
+}
+.img {
+    width: 100%;
+    vertical-align: top;
+    }
+.figcaption {
+    width: 100%;
+    bottom: -100%;
+    position: absolute;
+    padding: 10px;
+    color: #111;
+    }

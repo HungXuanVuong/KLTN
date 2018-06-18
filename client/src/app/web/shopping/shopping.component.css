@@ -1,4 +1,16 @@
 #shopping{
     padding-top: 100px;
-    background: #ffffff;
+    /* background: #ffffff; */
+    background-image: url("./../../../assets/web/img/imgShop/anhnen12.jpg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-attachment: fixed;
+    height: 100%;
+    background-size: cover;
 }
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  }
