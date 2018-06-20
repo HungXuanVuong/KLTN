@@ -20,18 +20,18 @@
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body">
-        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
           <thead>
             <tr>
               <th>Hình</th>
               <th>Họ tên</th>
-              <th>Ngày Sinh</th>
+              <!-- <th>Ngày Sinh</th> -->
               <th>Email</th>
               <th>SĐT</th>
               <th>GioiTinh</th>
               <th>CvFile</th>
-              <th>Password</th>
-              <th>Đã giới thiệu</th>
+              <!-- <th>Password</th> -->
+              <!-- <th>Đã giới thiệu</th> -->
               <th>Điểm thưởng</th>
               <th>Role</th>
               <th>Option</th>
@@ -42,15 +42,15 @@
             <tr *ngFor="let user of users" class="odd gradeX">
               <td><img src="./../../../../assets/web/img/imguser/{{user.urlHinh}}" class="img-circle img-user pagination-centered" alt="Cinque Terre"></td>
               <td>{{user.username}}</td>
-              <td>{{user.dateOfBirth | date: 'dd/MM/yyyy'}}</td>
+              <!-- <td>{{user.dateOfBirth | date: 'dd/MM/yyyy'}}</td> -->
               <td>{{user.email}}</td>
               <td>{{user.phone}}</td>
               <td>{{user.sex}}</td>
               <td><a>CV</a></td>
-              <td>
+              <!-- <td>
                 <p type="password">****</p>
               </td>
-              <td>{{user.uvNumber}}</td>
+              <td>{{user.uvNumber}}</td> -->
               <td>{{user.point}}</td>
               <td>{{user.role}}</td>
               <td class="center">

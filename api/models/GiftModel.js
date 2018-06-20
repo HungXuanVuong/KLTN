@@ -6,7 +6,7 @@ const giftModelSchema = new Schema({
     urlHinh: {type: String},
     trademark: {type: String},
     amount: {type: Number}, 
-    create_date: {type: Date},   
+    create_date: {type: Date, default: Date.now},   
     point_sp: {type: Number},
     product_infor: {type: String},
     type_giftID : {

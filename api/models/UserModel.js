@@ -79,7 +79,7 @@ const userModelSchema = new Schema({
     phone: {type: String},
     urlHinh: {type: String, default: "null.png"},
     cvFile: {type: String},
-    point: {type: Number},
+    point: {type: Number, default: 0},
     uvNumber: {type: Number, default: 0},
     role: {type: String, default: 'user'},
     register_date: {type: Date, default: Date.now}
