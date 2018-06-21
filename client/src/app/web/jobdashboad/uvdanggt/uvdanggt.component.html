@@ -26,7 +26,8 @@
               <td>{{newcandidate.candidate.sex}}</td>
               <td>{{newcandidate.candidate.phone}}</td>
               <td>{{newcandidate.candidate.email}}</td>
-              <td><a href='../../../../assets/web/cv/VuongXuanHung_CV.pdf' download>{{newcandidate.candidate.cvFile}}</a></td>
+              <!-- <td><a href='../../../../assets/web/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a></td> -->
+              <td><a href='/file/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a></td>
               <td>{{newcandidate.candidate.school}}</td>
               <td>{{newcandidate.candidate.faculty}}</td>
               <td><a [routerLink]="['/jobdashboard/trangthaiuv/', newcandidate._id]">{{newcandidate.status}}</a></td>

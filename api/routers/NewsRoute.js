@@ -4,6 +4,9 @@ const config = require('../config/db');
 const router = express.Router();
 
 const NewsController = require('../controllers/NewsController');
+const UploadFileUtil = require('../Util/UploadfileUtil');
+
+router.post('/upimgnews', UploadFileUtil.uploadImgNewsHandling);
 
 router.route('/add')
 .post(NewsController.addNews);

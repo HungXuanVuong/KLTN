@@ -48,7 +48,7 @@
                     <i class="fa fa-caret-down"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-user">
-                    <li><a href="edittintuyendung.html"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                    <li><a [routerLink]="['/admin/editnews/', new._id]"><i class="fa fa-pencil fa-fw"></i> Edit</a>
                     </li>
                     <li><a [routerLink]="['/admin/deletenews/', new._id]"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
                     </li>
@@ -78,7 +78,8 @@
           <tbody>
 
             <tr *ngFor="let new of news | role : userId" class="odd gradeX">
-              <td><img src="./../../../../assets/web/img/imgtin/{{new.urlHinh}}" class="img-responsive img-user" alt="Cinque Terre"></td>
+              <!-- <td><img src="./../../../../assets/web/img/imgtin/{{new.urlHinh}}" class="img-responsive img-user" alt="Cinque Terre"></td> -->
+              <td><img src="/images/imgtin/{{new.urlHinh}}" class="img-responsive img-user" alt="Cinque Terre"></td>
               <td>{{new.title}}</td>
               <td>{{new.create_date | date: 'dd/MM/yyyy'}}</td>
               <td>{{new.exp_date | date: 'dd/MM/yyyy'}}</td>
@@ -92,12 +93,11 @@
                     <i class="fa fa-caret-down"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-user">
-                    <li><a href="edittintuyendung.html"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                    <li><a [routerLink]="['/admin/editnews/', new._id]"><i class="fa fa-pencil fa-fw"></i> Edit</a>
                     </li>
                     <li><a [routerLink]="['/admin/deletenews/', new._id]"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
                     </li>
                   </ul>
-   
                 </div>
               </td>
             </tr>

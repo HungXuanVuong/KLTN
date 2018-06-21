@@ -58,7 +58,8 @@
                     </div>
                     <div class="panel-body">
 
-                        <a [routerLink]="['/chitiettin/', new._id]"><img src="./../../../assets/web/img/imgtin/{{new.urlHinh}}" alt="java" class="img-responsive"></a>
+                        <!-- <a [routerLink]="['/chitiettin/', new._id]"><img src="./../../../assets/web/img/imgtin/{{new.urlHinh}}" alt="java" class="img-responsive"></a> -->
+                        <a [routerLink]="['/chitiettin/', new._id]"><img src="/images/imgtin/{{new.urlHinh}}" alt="java" class="img-responsive"></a>
                         <div class="row" style="padding:10px 5px;">
                             <div class="hang">
                                 <div class="col-md-6 col-sm-6 col-xs-6 text-left">Địa điểm</div>
@@ -136,7 +137,8 @@
                     <div class="panel-body">
                         <div *ngFor="let user of users" class="col-md-3">
                             <div class="block block-light block-center block-image block-border">
-                                <img src="./../../../assets/web/img/imguser/{{user.urlHinh}}">
+                                <!-- <img src="./../../../assets/web/img/imguser/{{user.urlHinh}}"> -->
+                                <img src="/images/imguser/{{user.urlHinh}}">
                                 <h4>{{user.username}}</h4>
                                 <p>
                                     Đã giới thiệu: {{user.uvNumber}}

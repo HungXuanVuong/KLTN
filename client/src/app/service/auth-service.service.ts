@@ -111,4 +111,16 @@ export class AuthServiceService {
   editPointUser(user){
     return this.http.put(this.domain + 'authentication/user/editpoint', user).map(res => res.json());
   }
+
+  editPointSignUser(user){
+    return this.http.put(this.domain + 'authentication/user/editpointsign', user).map(res => res.json());
+  }
+
+  lockUser(user){
+    return this.http.put(this.domain + 'authentication/user/lockuser', user).map(res => res.json());
+  }
+
+  unLockUser(user){
+    return this.http.put(this.domain + 'authentication/user/unlockuser', user).map(res => res.json());
+  }
 }

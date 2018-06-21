@@ -3,7 +3,7 @@ const multer = require('multer');
 // multer storeage imgUser
 const storageImgUser = multer.diskStorage({ 
     destination: function (req, file, cb) {
-        cb(null, './client/src/assets/web/img/imguser/');
+        cb(null, 'public/images/imguser/');
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
@@ -29,9 +29,19 @@ const uploadImgUserHandling = function(req, res){
 
 
 // multer storeage tin
+// const storageImgNews = multer.diskStorage({ 
+//     destination: function (req, file, cb) {
+//         cb(null, './client/src/assets/web/img/imgtin/');
+//     },
+//     filename: function (req, file, cb) {
+//         var datetimestamp = Date.now();
+//         cb(null,file.originalname);
+//     }
+// });
+
 const storageImgNews = multer.diskStorage({ 
     destination: function (req, file, cb) {
-        cb(null, './client/src/assets/web/img/imgtin/');
+        cb(null, 'public/images/imgtin/');
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
@@ -58,7 +68,7 @@ const uploadImgNewsHandling = function(req, res){
 
 const storageCvUser = multer.diskStorage({ 
     destination: function (req, file, cb) {
-        cb(null, './client/src/assets/web/cv/');
+        cb(null, 'public/file/cv/');
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();

@@ -1,3 +1,4 @@
+import { FileUploader } from 'ng2-file-upload';
 import { News } from './../../../models/news';
 import { User } from './../../../models/user';
 import { AuthServiceService } from './../../../service/auth-service.service';
@@ -47,20 +48,7 @@ export class FormnewsComponent implements OnInit {
   userId = '';
   pointUv = 0;
 
-  // id: Object;
-  // title: String;
-  // urlHinh: String;
-  // place: String;
-  // salary: String;
-  // position: String;
-  // create_date: Date;
-  // exp_date: Date;
-  // point_uv: Number;
-  // content: String;
-  // numberOf: Number;
-  // status: String;
-  // newsPolicy: Object;
-  // employee: Object;
+  public uploaderNews: FileUploader = new FileUploader({ url: 'http://localhost:3000/news/upimgnews' });
 
 
   constructor(
@@ -69,16 +57,11 @@ export class FormnewsComponent implements OnInit {
     private policyService: PolicyService,
     private newService: NewsService,
     private authService: AuthServiceService
-    // private popup:Popup
 
   ) {
     this.createForm();
     
   }
-
-  // ClickButton(){
-  //   this.popup.show();
-  // }
   
   pointRefer(){
     this.policyService.getSingle(this.newsPolicy).subscribe(data =>{
@@ -180,12 +163,13 @@ export class FormnewsComponent implements OnInit {
   }
 
   addNews(){
+
     this.pointRefer();
     console.log(this.pointUv);
     this.processing = true;
     this.disableForm();
     const news ={
-      urlHinh: 'hometd12.jpeg',
+      urlHinh: this.uploaderNews.queue[0].file.name,
       title: this.myForm.get('title').value,
       place: this.myForm.get('place').value,
       salary: this.myForm.get('salary').value,
@@ -205,6 +189,7 @@ export class FormnewsComponent implements OnInit {
         this.processing = false;
         this.enableForm();
       } else {
+        this.uploaderNews.queue[0].upload();
          this.saved = false;
         this.messageClass = "alert alert-success";
         this.message = data.message;
@@ -226,12 +211,9 @@ export class FormnewsComponent implements OnInit {
       }
     });
   }
-  
 
   // onChange() {
   //   console.log('Change');
   //   console.log(this.ckeditorContent);
   // }
-
-
 }

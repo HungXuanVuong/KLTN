@@ -59,9 +59,11 @@
               <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
             </a>
                   <ul class="dropdown-menu dropdown-user">
-                    <li><a routerLink="/admin/edituser"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                    <!-- <li><a routerLink="/admin/edituser"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                    </li> -->
+                    <li><a (click)="lockUser(user._id)" data-toggle="modal" data-target="#myModal"><i class="fa fa-lock fa-fw"></i> Lock user</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
+                    <li><a (click)="unLockUser(user._id)" data-toggle="modal" data-target="#myModal"><i class="fa fa-unlock fa-fw"></i> UnLock user</a>
                     </li>
                   </ul>
                   <!-- /.dropdown-user -->
@@ -80,3 +82,28 @@
   <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-success">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h1><i class="fa fa-info-circle"></i> Thông báo</h1>
+      </div>
+      <div class="modal-body">
+        <div class="row show-hide-message">
+          <div [ngClass]="messageClass">
+            {{message}}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-right" (onclick)="clearAllFields()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
