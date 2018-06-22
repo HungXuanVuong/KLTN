@@ -145,6 +145,17 @@ export class DetailnewsComponent implements OnInit {
   updateStatusNewsCandidate(id, status) {
     this.newscandidate._id = id;
     this.newscandidate.status = status;
+    if(status == 'Phỏng vấn'){
+      this.newscandidate.point += this.policy.pointInterview;
+      console.log(this.newscandidate.point);
+    }
+    if(status == 'Hợp đồng'){
+      this.newscandidate.point += this.policy.pointSign;
+      console.log(this.newscandidate.point);
+    }
+
+    console.log(this.newscandidate);
+    // this.newscandidate.point = 
     this.newscandidteService.editStatusNewsCandidate(this.newscandidate).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';

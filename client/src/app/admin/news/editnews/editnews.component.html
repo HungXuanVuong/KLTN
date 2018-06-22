@@ -1,61 +1,81 @@
 <div class="row">
   <!-- /.col-lg-12 -->
+  <div class="col-lg-12">
+    <h4 class="page-header">Sửa thông tin tuyển dụng </h4>
+  </div>
 </div>
 <div class="row">
   <div class="col-lg-12">
     <!--col-md-offset-4 -->
     <div class="panel panel-green">
       <div class="panel-heading">
-        Sửa tin tuyển dụng
+        <!-- Sửa tin tuyển dụng -->
       </div>
       <div class="panel-body">
-        <div class="row show-hide-message">
-          <div [ngClass]="messageClass">
-            {{message}}
-          </div>
-        </div>
         <div class="row">
           <div class="col-lg-12">
             <form (submit)="updateNews()" *ngIf="!loading">
-              <div class="col-lg-6">
-                  <div class="form-group">
-                      <label for="title">Tiêu đề</label>
-                      <input [disabled]="processing" type="text" name="title" placeholder="Enter text" class="form-control" [(ngModel)]="news.title"
-                        #title="ngModel" />
-                    </div>
-                    <!-- <div class="form-group">
-                      <label for="ngaySinh">Hạn nộp</label>
-                      <my-date-picker (dateChanged)="onDateChanged($event)" [ngModelOptions]="{standalone: true}" name="mydate" [options]="myDatePickerOptions"
-                        [(ngModel)]="model" #exp_date="ngModel" required></my-date-picker>
-                    </div> -->
-                    
-                    <div class="form-group">
-                      <label for="diaChi">Vị trí</label>
-                      <input [disabled]="processing" type="text" name="position" placeholder="Enter text" class="form-control" [(ngModel)]="news.position"
-                        #position="ngModel" />
-                    </div>
+              <!-- <div class="col-lg-6"> -->
+              <div class="form-group">
+                <label for="title">Tiêu đề</label>
+                <input [disabled]="processing" type="text" name="title" class="form-control" [(ngModel)]="news.title" #title="ngModel" />
               </div>
-              <div class="col-lg-6">
-                    <div class="form-group">
-                      <label for="chucVu">Chính sách</label>
-                      <select [(ngModel)]="selectedPolicy" (change)="selectPolicyHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control">
-                        <option *ngFor="let policy of listPolicy" value="{{policy._id}}">{{policy.pName}}</option>
-                      </select>
-                    </div>
-                    
-                    <!-- <div class="form-group">
+              <div class="form-group">
+                <label for="place">Địa điểm</label>
+                <input [disabled]="processing" type="text" name="place" class="form-control" [(ngModel)]="news.place" #place="ngModel" />
+              </div>
+              <div class="form-group">
+                <label for="salary">Lương</label>
+                <input [disabled]="processing" type="text" name="salary" class="form-control" [(ngModel)]="news.salary" #salary="ngModel"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exp_date">Hạn nộp</label>
+                <my-date-picker (dateChanged)="onDateChanged($event)" [ngModelOptions]="{standalone: true}" name="mydate" [options]="myDatePickerOptions"
+                  [(ngModel)]="model" #exp_date="ngModel" required></my-date-picker>
+              </div>
+
+              <div class="form-group">
+                <label for="diaChi">Vị trí</label>
+                <input [disabled]="processing" type="text" name="position" class="form-control" [(ngModel)]="news.position" #position="ngModel"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="numberOf">Số lượng</label>
+                <input [disabled]="processing" type="text" name="numberOf" class="form-control" [(ngModel)]="news.numberOf" #numberOf="ngModel"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="motacv" class="control-label">Nội dung </label>
+                <!-- <textarea class="form-control"placeholder="Nhập nội dung" ></textarea> -->
+                <!-- <editor apiKey="zampqj962soas6fhh3ub8hut4tqkepk0uwetpewkhp9n91p8" cloudChannel="dev"  [init]="{plugins: 'link'}"></editor> -->
+                <ckeditor [(ngModel)]="ckeditorContent" [ngModelOptions]="{standalone: true}" debounce="500">
+                  <!--(change)="onChange($event)"-->
+                </ckeditor>
+              </div>
+              <!-- </div> -->
+              <!-- <div class="col-lg-6"> -->
+              <div class="form-group">
+                <label for="chucVu">Chính sách</label>
+                <select [(ngModel)]="selectedPolicy" (change)="selectPolicyHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control">
+                  <option *ngFor="let policy of listPolicy" value="{{policy._id}}">{{policy.pName}}</option>
+                </select>
+              </div>
+
+              <!-- <div class="form-group">
                       <label for="luongCanBan">Lương căn bản</label>
                       <input [disabled]="processing" type="text" name="luongCanBan" placeholder="Enter text" class="form-control" [(ngModel)]="nhanvien.luongCanBan"
                         #luongCanBan="ngModel" />
                     </div> -->
-              </div>
-              
+              <!-- </div> -->
+
               <div class="col-lg-12">
-                  <button [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="goBack()">Quay lại DS</button>
-                  <button [disabled]="processing" type="submit" name="save"
-                    class="btn btn-info">Lưu thay đổi</button>
+                <button type="button" name="button" class="btn btn-success" (click)="goBack()">Quay lại DS</button>
+                <button type="submit" data-toggle="modal" data-target="#myModal" name="save" class="btn btn-info" (click)="updateNews()">Lưu thay đổi</button>
               </div>
-              
+
             </form>
           </div>
           <!-- /.col-lg-6 (nested) -->
@@ -70,3 +90,27 @@
   <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header modal-header-success" [ngClass]="messageClass">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3>
+            <i class="fa fa-info-circle"></i> Thông báo</h3>
+        </div>
+        <div class="modal-body">
+          <div class="row show-hide-message">
+            <p>{{message}}</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-right" (onclick)="clearAllFields()" data-dismiss="modal">OK</button>
+          <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->

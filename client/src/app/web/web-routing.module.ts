@@ -14,6 +14,7 @@ const routes: Routes = [
             { path: 'home', loadChildren: './home/home.module#HomeModule'},
             { path: 'chitiettin/:id', loadChildren: './chitiettin/chitiettin.module#ChitiettinModule'},
             { path: 'profile/:id', loadChildren: './profile/profile.module#ProfileModule'},
+            { path: 'profiledetail/:id', loadChildren: './profiledetail/profiledetail.module#ProfiledetailModule'},
             { path: 'formprofile/:id', loadChildren: './formprofile/formprofile.module#FormprofileModule'},
             { path: 'formgioithieu/:id', loadChildren: './formgioithieu/formgioithieu.module#FormgioithieuModule'},
             { path: 'shopping', loadChildren: './shopping/shopping.module#ShoppingModule'},

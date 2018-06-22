@@ -6,6 +6,7 @@ const news_CandidateModelSchema = new Schema({
     news: {type: Schema.ObjectId, ref: 'NewsModel'},
     user: {type: Schema.ObjectId, ref: 'UserModel'},
     status: {type: String, default:'Hồ sơ'},
+    point:{type: Number, default: 0},
     create_date: {type:Date, default: Date.now}
 });
 

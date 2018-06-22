@@ -4,3 +4,26 @@ img {
   height: auto;
   border-radius: 8px;
 }
+
+.modal-dialog .modal-content {
+  border-radius: 6px;
+  padding: 0;
+}
+.modal-dialog .modal-content .modal-header {
+  padding: 9px 15px;
+  border-bottom: 1px solid #eee;
+  /* background-color: #BCF5A9; */
+  -webkit-border-top-left-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.modal-dialog .modal-content .modal-body {
+  padding: 20px;
+  font-size: 20px;
+}
+.modal-dialog .modal-content .modal-footer {
+  padding-top: 15px;
+}

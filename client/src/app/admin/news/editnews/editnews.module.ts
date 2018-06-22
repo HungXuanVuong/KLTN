@@ -1,3 +1,6 @@
+import { CKEditorModule } from 'ng2-ckeditor';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { MyDatePickerModule } from 'mydatepicker';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +13,10 @@ import { EditnewsComponent } from './editnews.component';
         CommonModule,
         EditnewsRoutingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        MyDatePickerModule,
+        EditorModule,
+        CKEditorModule,
 
     ],
     declarations: [

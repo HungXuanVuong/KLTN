@@ -1,3 +1,4 @@
+import { JobdashboadComponent } from './../../../web/jobdashboad/jobdashboad.component';
 import { Policy } from './../../../models/policy';
 import { PolicyService } from './../../../service/policy.service';
 import { NewsService } from './../../../service/news.service';
@@ -27,6 +28,7 @@ export class EditnewsComponent implements OnInit {
   selectedPolicy: Object = {};
 
   listPolicy: Array<Policy> = [];
+  ckeditorContent;
 
   constructor(
     private location: Location,
@@ -66,7 +68,21 @@ export class EditnewsComponent implements OnInit {
   }
 
   updateNews() {
-
+    this.processing = true;
+    this.news.exp_date = this.model.jsdate;
+    this.news.newsPolicy = this.policy;
+    this.news.content = this.ckeditorContent;
+    console.log(this.news.content);
+    this.newService.editNews(this.news).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+      }
+    });
   }
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params;
@@ -76,6 +92,7 @@ export class EditnewsComponent implements OnInit {
         this.message = data.message;
       } else {
         this.news = data.news;
+        this.ckeditorContent = data.news.content;
         console.log(data);
         this.loading = false;
         var d = new Date(data.news.exp_date);

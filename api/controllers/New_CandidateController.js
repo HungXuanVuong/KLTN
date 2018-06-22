@@ -124,7 +124,8 @@ const editNewsCandidate = function (req, res) {
                 } else {
                     // newscandidate.candidate = req.body.candidateId,
                     // newscandidate.news = req.body.newsId,
-                    newscandidate.status = req.body.status
+                    newscandidate.status = req.body.status;
+                    newscandidate.point = req.body.point;
                     newscandidate.save((err) => {
                         if (err) {
                             res.json({ success: false, message: err });

@@ -1,3 +1,5 @@
+import { PolicyService } from './../../service/policy.service';
+import { Policy } from './../../models/policy';
 import { CandidateService } from '../../service/candidate.service';
 import { NewscandidateService } from '../../service/newscandidate.service';
 
@@ -33,9 +35,9 @@ export class FormgioithieuComponent implements OnInit {
 
 
   myForm: FormGroup;
-
+  policy = new Policy();
   news = new News();
-
+  point;
   user = new User();
 
   public uploaderCV: FileUploader = new FileUploader({ url: 'http://localhost:3000/authentication/uploadcv' });
@@ -47,7 +49,8 @@ export class FormgioithieuComponent implements OnInit {
     private router: Router,
     private cd: ChangeDetectorRef,
     private newsCandidateService: NewscandidateService,
-    private candidateService: CandidateService
+    private candidateService: CandidateService,
+    private policyService: PolicyService
   ) {
     this.createForm();
 
@@ -162,6 +165,24 @@ export class FormgioithieuComponent implements OnInit {
       this.loading = false;
     });
   }
+  updatePointFileUser(idUser) {
+    console.log(idUser);
+    this.authService.findUserById(idUser).subscribe(user =>{
+       this.point = user.user;
+      console.log(this.point);
+      this.point.point += this.policy.pointFile;
+      this.authService.editPointUser(this.point).subscribe(user =>{
+        if (!user.success) {
+          this.messageClass = 'alert alert-danger';
+          this.message = user.message;
+          this.processing = false;
+        } else {
+          this.messageClass = 'alert alert-success';
+          this.message = user.message;
+        }
+      });
+    });
+  }
 
   addNews_Candidate() {
     this.currentUrl = this.activatedRoute.snapshot.params;
@@ -256,9 +277,20 @@ export class FormgioithieuComponent implements OnInit {
       } else {
         this.news = data.news; // Save blog object for use in HTMLxx
         console.log(this.news);
+        this.policyService.getSingle(data.news.newsPolicy).subscribe(policy => {
+          if (!policy.success) {
+            this.processing = false;
+          } else {
+            this.policy = policy.policy;
+            //console.log(this.policy);
+          }
+        });
         this.loading = false; // Allow loading of blog form
+        
       }
     });
+
+
 
   }
 

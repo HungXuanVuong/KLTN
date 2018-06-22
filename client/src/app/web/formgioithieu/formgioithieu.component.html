@@ -102,7 +102,7 @@
               <div class="form-group">
                 <div class="col-md-10 col-md-offset-2">
                     <!-- [disabled]="processing || !emailValid || !phoneValid"  -->
-                  <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-primary" (click)="addNews_Candidate()">Giới thiệu</button>
+                  <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-primary" (click)="updatePointFileUser(user._id)" (click)="addNews_Candidate()">Giới thiệu</button>
                   <!-- <button (click)="addNews_Candidate()">Submit</button> -->
                 </div>
               </div>
@@ -148,22 +148,6 @@
             </div>
 
           </div>
-          <!-- <div class="text-center panel-footer" style="height: 52px;">
-          <div class="pull-right">
-            <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-            <a class="btn btn-social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>
-          </div>
-          <div class="pull-left">
-            <div *ngIf="!user">
-              <a (click)="RedirectUnregister()" class="btn btn-primary">Ứng tuyển</a>
-              <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
-            </div>
-            <div *ngIf="user">
-              <a routerLink="/profile" class="btn btn-primary">Ứng tuyển</a>
-              <a routerLink="/formgioithieu" class="btn btn-success">Giới thiệu</a>
-            </div>
-          </div>
-        </div> -->
         </div>
       </div>
     </div>
@@ -173,26 +157,23 @@
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header modal-header-success">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h1><i class="fa fa-info-circle"></i> Thông báo</h1>
-      </div>
-      <div class="modal-body">
-        <div class="row show-hide-message">
-          <div [ngClass]="messageClass">
-            {{message}}
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header modal-header-success" [ngClass]="messageClass">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3><i class="fa fa-info-circle"></i> Thông báo</h3>
+        </div>
+        <div class="modal-body">
+          <div class="row show-hide-message">
+              <p>{{message}}</p>
           </div>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Đóng</button>
+        </div>
       </div>
-      <div class="modal-footer">
-          <button type="button" class="btn btn-default pull-right" (onclick)="clearAllFields()" data-dismiss="modal">OK</button>
-        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
-      </div>
+      <!-- /.modal-content -->
     </div>
-    <!-- /.modal-content -->
+    <!-- /.modal-dialog -->
   </div>
-  <!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+  <!-- /.modal -->
