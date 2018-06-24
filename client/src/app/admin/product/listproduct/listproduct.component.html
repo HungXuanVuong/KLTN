@@ -22,8 +22,7 @@
                 <table datatable [dtOptions]="dtOptions" width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" *ngIf="this.temp_var">
                     <thead>
                         <tr>
-                            
-                            <!-- <th>Hình</th> -->
+                            <th>STT</th>
                             <th>Tên quà</th>
                             <th>Loại quà</th>
                             <th>Thương hiệu</th>
@@ -31,13 +30,13 @@
                             <th>Số lượng</th>
                             <th>Ngày nhập kho</th>
                             <th>Mô tả</th>
-                            <th>Option</th>
+                            <th>Tình trạng quà</th>
+                            <th>Tùy chọn</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="odd gradeX" *ngFor="let g of listgift;">
-                            
-                            <!-- <td>{{g.urlHinh}}</td> -->
+                            <td class="counterCell"></td>
                             <td>{{g.product_name}}</td>
                             <td>{{g.type_giftID.type_name}}</td>
                             <td>{{g.trademark}}</td>
@@ -45,6 +44,14 @@
                             <td>{{g.amount}}</td>
                             <td>{{g.create_date | date: 'dd/MM/yyyy'}}</td>
                             <td>{{g.product_infor}}</td>
+                            <td>
+                                    <div *ngIf="g.status==='Còn quà'">
+                                            <p style="color:#11b835;font-weight: bold;">{{g.status}}</p>
+                                          </div>
+                                          <div *ngIf="g.status==='Hết quà'">
+                                                  <p style="color:#ec1111;font-weight: bold;">{{g.status}}</p>
+                                          </div>
+                            </td>
                             <td class="center">
                                 <div class="dropdown text-center">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

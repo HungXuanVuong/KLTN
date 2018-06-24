@@ -29,7 +29,7 @@
                             <th>Điểm vòng hồ sơ</th>
                             <th>Điểm vòng phỏng vấn</th>
                             <th>Điểm khi ứng viên ký hợp đồng </th>
-                            <th>Option</th>
+                            <th>Tùy chọn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,9 +44,7 @@
                                         <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-user">
-                                        <li><a routerLink="/admin/editchinhsach"><i class="fa fa-pencil fa-fw"></i> Edit</a>
-                                        </li>
-                                        <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
+                                        <li><a [routerLink]="['/admin/editchinhsach/', policy._id]"><i class="fa fa-pencil fa-fw"></i> Edit</a>
                                         </li>
                                     </ul>
                                     <!-- /.dropdown-user -->

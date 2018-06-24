@@ -10,18 +10,23 @@ export class GiftService {
   constructor(
     private http: Http,
     private authService: AuthServiceService) { }
+
   getAllGift() {
     return this.http.get(this.domain + 'gift/allgift').map(res => res.json());
   }
+
   getGiftId(id) {
     return this.http.get(this.domain + 'gift/allgift/' + id).map(res => res.json());
   }
+
   getAllGiftByType(id) {
     return this.http.get(this.domain + 'gift/getalltype/' + id + '/allgift').map(res => res.json());
   }
+
   insertGift(gift) {
     return this.http.post(this.domain + 'gift/allgift', gift).map(res => res.json());
   }
+
   updateNumberOfGift(gift) {
     return this.http.put(this.domain + 'gift/allgift/editnumberofgift', gift).map(res => res.json());
   }
@@ -32,5 +37,11 @@ export class GiftService {
 
   deleteGift(id) {
     return this.http.delete(this.domain + 'gift/allgift/' + id).map(res => res.json());
+  }
+  getAllGiftByStatus() {
+    return this.http.get(this.domain + 'gift/allgiftbystatus').map(res => res.json());
+  }
+  editStatus(gift){
+    return this.http.put(this.domain + 'gift/editstatusgift', gift).map(res => res.json());
   }
 }

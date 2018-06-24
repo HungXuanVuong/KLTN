@@ -24,7 +24,7 @@ export class NoelComponent implements OnInit {
       { queryParams: { mess: 'Vui lòng đăng nhập thì mới truy cập được chức năng này !', messclas: 'alert alert-danger' } });
   }
   ngOnInit() {
-    this.giftService.getAllGift().subscribe(data1 => {
+    this.giftService.getAllGiftByStatus().subscribe(data1 => {
       this.gift = data1.listGift;
       console.log(this.gift);
     });

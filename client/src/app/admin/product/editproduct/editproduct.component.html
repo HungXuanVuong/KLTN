@@ -100,10 +100,10 @@
               </div>
               <div class="form-group">
                 <div class="pull-left">
-                  <button type="button" name="button" class="btn btn-success" (click)="goBack();">Trở lại</button>
+                  <button type="button" name="button" class="btn btn-success" (click)="goBack();"><i class="fa fa-reply"></i> Trở lại</button>
                 </div>
                 <div class="pull-right">
-                  <button [disabled]="processing || (!form.controls.urlHinh.dirty && !form.controls.product_name.dirty && !form.controls.point_sp.dirty && !form.controls.trademark.dirty && !form.controls.amount.dirty && !form.controls.product_infor.dirty)" type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
+                  <button [disabled]="processing || (!form.controls.product_name.dirty && !form.controls.point_sp.dirty && !form.controls.trademark.dirty && !form.controls.amount.dirty && !form.controls.product_infor.dirty)" type="submit" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cập nhật</button>
                   <button type="reset" class="btn btn-default">Xóa trống</button>
                 </div>
               </div>

@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { animate } from '@angular/animations';
-import { DeletecatagoryComponent } from './deletecatagory.component';
+import { CheckorderComponent } from './checkorder.component';
 const routes: Routes = [
     { 
-        path: '', component: DeletecatagoryComponent,
+        path: '', component: CheckorderComponent,
     }
 ];
 @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class DeletecatagoryRoutingModule {}
+export class CheckorderRoutingModule {}

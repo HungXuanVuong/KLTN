@@ -8,7 +8,8 @@ const routes: Routes = [
             { path: '', redirectTo: 'tatca'},
             { path: 'tatca', loadChildren: './noel/noel.module#NoelModule'},
             { path: 'loaiqua/:id', loadChildren: './gau/gau.module#GauModule'},
-            { path: 'chitietsp/:id', loadChildren: './chitietsp/chitietsp.module#ChitietspModule'}
+            { path: 'chitietsp/:id', loadChildren: './chitietsp/chitietsp.module#ChitietspModule'},
+            { path: 'xacnhanhoadon', loadChildren: './checkorder/checkorder.module#CheckorderModule'}
         ]
     }
 ];

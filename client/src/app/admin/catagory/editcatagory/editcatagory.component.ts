@@ -18,7 +18,6 @@ export class EditcatagoryComponent implements OnInit {
   loading = true;
   form : FormGroup;
 
-
   constructor(
     private formBuilder: FormBuilder,
     private location: Location,

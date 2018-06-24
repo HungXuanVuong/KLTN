@@ -16,7 +16,6 @@ const routes: Routes = [
             { path: 'listcatagory', loadChildren: './catagory/listcatagory/listcatagory.module#ListcatagoryModule'},
             { path: 'formcatagory', loadChildren: './catagory/formcatagory/formcatagory.module#FormcatagoryModule'},
             { path: 'editcatagory/:id', loadChildren: './catagory/editcatagory/editcatagory.module#EditcatagoryModule'},
-            { path: 'deletecatagory/:id', loadChildren: './catagory/deletecatagory/deletecatagory.module#DeletecatagoryModule'},
             //Transaction history
               { path: 'listtransaction', loadChildren: './transactionhistory/listtransaction/listtransaction.module#ListtransactionModule'},
               { path: 'edittransaction/:id', loadChildren: './transactionhistory/edittransaction/edittransaction.module#EdittransactionModule'},
@@ -46,7 +45,7 @@ const routes: Routes = [
             { path: 'editcandidate', loadChildren: './candidate/editcandidate/editcandidate.module#EditcandidateModule'},
             // chinhsach
             { path: 'listchinhsach', loadChildren: './point/listchinhsach/listchinhsach.module#ListchinhsachModule'},
-            { path: 'editchinhsach', loadChildren: './point/editchinhsach/editchinhsach.module#EditchinhsachModule'},
+            { path: 'editchinhsach/:id', loadChildren: './point/editchinhsach/editchinhsach.module#EditchinhsachModule'},
             { path: 'formchinhsach', loadChildren: './point/formchinhsach/formchinhsach.module#FormchinhsachModule'}
         ]
     }

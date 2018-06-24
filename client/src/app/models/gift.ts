@@ -8,6 +8,7 @@ export class Gift{
         create_date: Date;
         point_sp: Number;
         product_infor: String;
+        status: String;
         type_giftID:Object;
         employee: Object;
        
@@ -20,6 +21,7 @@ export class Gift{
             this.create_date= new Date();
             this.point_sp = 0;
             this.product_infor = "";
+            this.status = "";
             this.type_giftID="";
             this.employee="";
         }

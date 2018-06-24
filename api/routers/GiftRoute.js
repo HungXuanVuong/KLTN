@@ -10,6 +10,9 @@ router.route('/allgift')
 .get(GiftController.getAllGift)
 .post(GiftController.insertGift);
 
+router.route('/editstatusgift')
+.put(GiftController.editStatus);
+
 router.route('/allgift/editnumberofgift')
 .put(GiftController.updateNumberOfGift);
 
@@ -18,6 +21,8 @@ router.route('/allgift/:id')
 .put(GiftController.editGift)
 .delete(GiftController.deleteGift);
 
+router.route('/allgiftbystatus')
+.get(GiftController.getAllGiftByStatus);
 
 router.route('/getalltype/:type_giftID/allgift')
 .get(GiftController.giftListByTypeofGift);

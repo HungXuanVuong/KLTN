@@ -1,10 +1,13 @@
 
 <div class="row products">
+    <div class="col-lg-12">
+      <h1 class="page-header txtelegantshadow" style="font:bold; text-transform:capitalize;">Quà thuộc danh mục {{type_gift.type_name}}</h1>
+    </div>
   <!-- feature1 -->
 <div class="product">
   <div class="row">
       <div *ngFor="let g of gift | paginate: { itemsPerPage:8, currentPage: p }" class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-              <div class="panel-body">
+        <div class="panel-body">
                   <figure>
                   <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive"></a>
                   <figcaption>
@@ -50,7 +53,9 @@
   <!-- .row -->
   <div class="rowt text-center" style="padding-top:25px">
     <div class="col-md-12">
-      <pagination-controls (pageChange)="p =$event"></pagination-controls>
+      <div *ngIf="true">
+      <pagination-controls autoHide="true" (pageChange)="p =$event"></pagination-controls>
+      </div>
     </div>
   </div>
 <!-- .container -->

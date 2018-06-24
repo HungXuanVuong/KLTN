@@ -119,6 +119,7 @@ export class FormproductComponent implements OnInit {
       amount: this.form.get('amount').value,
       product_infor: this.form.get('product_infor').value,
       create_date: this.expDate,
+      status: 'Còn quà',
       type_giftID: this.productTypegift,
       employee: this.userId,
     };

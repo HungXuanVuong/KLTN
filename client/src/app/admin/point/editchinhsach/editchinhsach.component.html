@@ -12,38 +12,54 @@
         Form sửa thông tin
       </div>
       <div class="panel-body">
+        <div class="row show-hide-message">
+            <div [ngClass]="messageClass">
+              {{message}}
+            </div>
+          </div>
         <div class="row">
-
-          <form role="form">
+          <form  role="form" (submit)="updatepolicy()" *ngIf="!loading">
             <div class="col-lg-6">
               <div class="form-group">
                 <label>Tên chính sách</label>
-                <input class="form-control" placeholder="Nhập vào tên chính sách" name="tencs">
+                <div [ngClass]="{'has-error': (form.controls.pName.errors && form.controls.pName.dirty), 'has-success': !form.controls.pName.errors}">
+                <input [disabled]="processing" type="text" name="tenchinhsach" placeholder="Nhập vào tên chính sách" class="form-control" [(ngModel)]="policy.pName"
+                #pName="ngModel" />
+              </div>
               </div>
               <div class="form-group">
                 <label>Điểm vòng hồ sơ</label>
-                <input class="form-control" placeholder="Nhập vào điểm vòng hồ sơ" name="diemhs">
+                <div [ngClass]="{'has-error': (form.controls.pointFile.errors && form.controls.pointFile.dirty), 'has-success': !form.controls.pointFile.errors}">
+                <input [disabled]="processing" type="text" name="diemhoso" placeholder="Nhập vào điểm nhận được khi ứng viên ở vòng hồ sơ" class="form-control" [(ngModel)]="policy.pointFile"
+                #pointFile="ngModel" />
+              </div>
               </div>
               <div class="form-group">
                 <label>Điểm vòng phỏng vấn</label>
-                <input class="form-control" placeholder="Nhập vào điểm vòng phỏng vấn" name="diempv">
+                <div [ngClass]="{'has-error': (form.controls.pointInterview.errors && form.controls.pointInterview.dirty), 'has-success': !form.controls.pointInterview.errors}">
+                <input [disabled]="processing" type="text" name="diemphongvan" placeholder="Nhập vào điểm nhận được khi ứng viên ở vòng phỏng vấn" class="form-control" [(ngModel)]="policy.pointInterview"
+                #pointInterview="ngModel" />
               </div>
+            </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">
                 <label>Điểm khi ứng viên ký hợp đồng</label>
-                <input class="form-control" placeholder="Nhập vào điểm khi ứng viên ký hợp đồng" name="diemkhd">
+                <div [ngClass]="{'has-error': (form.controls.pointSign.errors && form.controls.pointSign.dirty), 'has-success': !form.controls.pointSign.errors}">
+                <input [disabled]="processing" type="text" name="diemkyhd" placeholder="Nhập vào điểm nhận được khi ứng viên ký hợp đồng" class="form-control" [(ngModel)]="policy.pointSign"
+                #pointSign="ngModel" />
               </div>
+            </div>
             </div>
             <div class="col-lg-12">
               <div class="form-group">
 
                 <div class="pull-left">
-                  <a class="btn btn-success" routerLink="/admin/listchinhsach" id="come_back">Trở lại</a>
+                  <a type="button" name="button" class="btn btn-success" (click)="goBack()"><i class="fa fa-reply"></i> Trở lại</a>
                 </div>
                 <div class="pull-right">
-                  <button type="submit" class="btn btn-default">Lưu</button>
-                  <button type="reset" class="btn btn-default">Xóa trống</button>
+                  <button [disabled]="processing || (!pName.dirty && !pointFile.dirty && !pointInterview.dirty && !pointSign.dirty)" type="submit" name="save" class="btn btn-info"><i class="fa fa-floppy-o" aria-hidden="true"></i> Cập nhật</button>
+                  <button type="reset" (onclick)="clearAllFields()" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i> Xóa trống</button>
                 </div>
               </div>
             </div>

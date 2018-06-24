@@ -12,40 +12,57 @@
         Form nhập thông tin
       </div>
       <div class="panel-body">
+        <div class="row show-hide-message">
+            <div [ngClass]="messageClass">
+              {{message}}
+            </div>
+          </div>
         <div class="row">
-
-          <form role="form">
+          <form [formGroup]="form" (submit)="addPolicy()" role="form">
             <div class="col-lg-6">
               <div class="form-group">
                 <label>Tên chính sách</label>
-                <input class="form-control" placeholder="Nhập vào tên chính sách" name="tencs">
+                <div [ngClass]="{'has-error': (form.controls.pName.errors && form.controls.pName.dirty), 'has-success': !form.controls.pName.errors}">
+                <input type="text" name="pName" class="form-control" autocomplete="off" formControlName="pName" placeholder="Nhập vào tên chính sách">
+                 <!-- Validation -->
+                 <ul class="help-block">
+                  <li *ngIf="form.controls.pName.errors?.required && form.controls.pName.dirty">Trường này bắt buộc nhập</li>
+                  <li *ngIf="form.controls.pName.errors?.minlength && form.controls.pName.dirty || form.controls.pName.errors?.maxlength && form.controls.pName.dirty ">ký tự ít nhất là 5, không quá 50 ký tự</li>
+                 </ul>
+              </div>
               </div>
               <div class="form-group">
                 <label>Điểm vòng hồ sơ</label>
-                <input class="form-control" placeholder="Nhập vào điểm vòng hồ sơ" name="diemhs">
+                <div [ngClass]="{'has-error': (form.controls.pointFile.errors && form.controls.pointFile.dirty), 'has-success': !form.controls.pointFile.errors}">
+                <input type="text" name="pointFile" class="form-control" autocomplete="off" formControlName="pointFile" placeholder="Nhập vào điểm đạt được khi ứng viên ở vòng hồ sơ">
               </div>
               <div class="form-group">
                 <label>Điểm vòng phỏng vấn</label>
-                <input class="form-control" placeholder="Nhập vào điểm vòng phỏng vấn" name="diempv">
+                <div [ngClass]="{'has-error': (form.controls.pointInterview.errors && form.controls.pointInterview.dirty), 'has-success': !form.controls.pointInterview.errors}">
+                <input type="text" name="pointInterview" class="form-control" autocomplete="off" formControlName="pointInterview" placeholder="Nhập vào điểm đạt được khi ứng viên ở vòng phỏng vấn">
               </div>
             </div>
+              </div>
+              </div>
             <div class="col-lg-6">
 
               <div class="form-group">
                 <label>Điểm khi ứng viên ký hợp đồng</label>
-                <input class="form-control" placeholder="Nhập vào điểm khi ứng viên ký hợp đồng" name="diemkhd">
+                <div [ngClass]="{'has-error': (form.controls.pointSign.errors && form.controls.pointSign.dirty), 'has-success': !form.controls.pointSign.errors}">
+                <input type="text" name="pointSign" class="form-control" autocomplete="off" formControlName="pointSign" placeholder="Nhập vào điểm đạt được khi ứng viên ở vòng ký hợp đồng">
               </div>
 
+            </div>
             </div>
             <div class="col-lg-12">
               <div class="form-group">
 
                 <div class="pull-left">
-                  <a class="btn btn-success" routerLink="/admin/listchinhsach"id="come_back">Trở lại</a>
+                  <a class="btn btn-success" routerLink="/admin/listchinhsach"id="come_back"><i class="fa fa-reply"></i> Trở lại</a>
                 </div>
                 <div class="pull-right">
-                  <button type="submit" class="btn btn-default">Lưu</button>
-                  <button type="reset" class="btn btn-default">Xóa trống</button>
+                  <button type="submit" class="btn btn-default"><i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</button>
+                  <button type="reset" (onclick)="clearAllFields()" class="btn btn-default"><i class="fa fa-refresh" aria-hidden="true"></i> Xóa trống</button>
                 </div>
               </div>
             </div>

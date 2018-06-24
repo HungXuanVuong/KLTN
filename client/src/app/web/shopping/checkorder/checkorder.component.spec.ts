@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeletecatagoryComponent } from './deletecatagory.component';
+import { CheckorderComponent } from './checkorder.component';
 
-describe('DeletecatagoryComponent', () => {
-  let component: DeletecatagoryComponent;
-  let fixture: ComponentFixture<DeletecatagoryComponent>;
+describe('CheckorderComponent', () => {
+  let component: CheckorderComponent;
+  let fixture: ComponentFixture<CheckorderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeletecatagoryComponent ]
+      declarations: [ CheckorderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeletecatagoryComponent);
+    fixture = TestBed.createComponent(CheckorderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

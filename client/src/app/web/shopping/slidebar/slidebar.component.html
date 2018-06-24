@@ -1,4 +1,4 @@
-<div class="panel panel-default sidebar-menu">
+<div class="panel panel-default sidebar-menu" id="sidebar1">
   <div class="panel-heading">
     <h3 class="panel-title">Thể loại</h3>
   </div>
@@ -15,3 +15,15 @@
     </div>
   </div>
 </div>
+<div class="panel panel-default sidebar-menu" id="sidebar2" *ngIf="user">
+    <div class="panel-heading">
+      <h3 class="panel-title">Giao quà</h3>
+    </div>
+<div class="panel-body">
+    <div class="nav nav-pills nav-stacked category-menu">
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/shopping/xacnhanhoadon">Xác nhận hóa đơn</a>
+        </li>
+    </div>
+  </div>
+  </div>

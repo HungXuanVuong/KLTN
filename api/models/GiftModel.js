@@ -9,6 +9,7 @@ const giftModelSchema = new Schema({
     create_date: {type: Date, default: Date.now},   
     point_sp: {type: Number},
     product_infor: {type: String},
+    status: {type: String},
     type_giftID : {
          type:Schema.ObjectId, ref: 'Type_giftModel'
     },

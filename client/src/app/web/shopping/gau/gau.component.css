@@ -13,3 +13,14 @@
     padding: 10px;
     color: #111;
     }
+    .txtelegantshadow {
+        background-image: -webkit-linear-gradient(left, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+        background-image: -moz-linear-gradient(left, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+        background-image: -ms-linear-gradient(left, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+        background-image:-o-linear-gradient(left, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+        background-image:linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+      
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        
+        }

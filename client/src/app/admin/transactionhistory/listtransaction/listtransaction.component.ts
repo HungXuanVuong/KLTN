@@ -97,11 +97,7 @@ export class ListtransactionComponent implements OnInit {
       }
     });
   }
-deleteTransaction(order_id,employee_id, point_user, product_id, point_qd) {
-    const gift_cn = {
-      _id: product_id,
-      amount: product_id.amount + 1
-    };
+  quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn){
     this.giftService.updateNumberOfGift(gift_cn).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -140,5 +136,37 @@ deleteTransaction(order_id,employee_id, point_user, product_id, point_qd) {
           });
         }
       });
+  }
+deleteTransaction(order_id,employee_id, point_user, product_id, point_qd) {
+    if(product_id.status==='Hết quà'){
+    const gift_cn1 = {
+      _id: product_id,
+      amount: product_id.amount
+    };
+    const gift_ht = {
+      _id: product_id,
+      status: 'Còn quà'
+    };
+
+    this.giftService.editStatus(gift_ht).subscribe(data2 => {
+      if (!data2.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data2.message;
+      } else {
+        this.messageClass = 'alert alert-success';
+      }
+    });
+    this.quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn1);
+   
+    }else{
+      if(product_id.status==='Còn quà'){
+        const gift_cn2 = {
+          _id: product_id,
+          amount: product_id.amount + 1
+        };
+        this.quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn2);
+      }
+    }
+
     }
   }

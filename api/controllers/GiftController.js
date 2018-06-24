@@ -18,6 +18,21 @@ const getAllGift = function(req, res){
         }
     });
 };
+const getAllGiftByStatus = function(req, res){
+    GiftModel.find({status: 'Còn quà'}).populate({path: 'type_giftID'}).populate({path: 'employee'}).exec(function(err, gift){
+        if(err){
+            res.json({success: false, message: 'Lỗi: ' + err});
+        }else{
+            if(!gift){
+                res.json({success: false, message: 'Rỗng'});
+            }else{
+                var count = 0;
+                count = gift.length;
+                res.json({success: true, countgift: count, listGift: gift});
+            }
+        }
+    });
+};
 var insertGift = function (req, res) {
     if (!req.body.product_name) {
         res.json({ success: false, message: 'Bạn cần bổ xung tên sản phẩm' });
@@ -40,6 +55,9 @@ var insertGift = function (req, res) {
                        if (!req.body.product_infor) {
                            res.json({ success: false, message: 'Bạn cần bổ sung thông tin sản phẩm tương ứng' });
                       }else {
+                        if (!req.body.product_infor) {
+                            res.json({ success: false, message: 'Bạn cần bổ sung thông tin sản phẩm tương ứng' });
+                       }else {
                           if (!req.body.type_giftID) {
                         res.json({ success: false, message: 'Bạn cần bổ sung loại quà cho sản phẩm tương ứng' });
                     }else {
@@ -55,6 +73,7 @@ var insertGift = function (req, res) {
                             create_date: req.body.create_date,
                             point_sp: req.body.point_sp,
                             product_infor: req.body.product_infor,
+                            status: req.body.status,
                             type_giftID: req.body.type_giftID,
                             employee: req.body.employee
                         });
@@ -68,7 +87,8 @@ var insertGift = function (req, res) {
                         });
                     }
                   }
-                 }
+                }
+            }
                 }
                 }
             }
@@ -94,6 +114,7 @@ var editGift = function (req, res) {
                     gift.create_date=req.body.create_date;
                     gift.point_sp=req.body.point_sp;
                     gift.product_infor=req.body.product_infor;
+                    gift.status=req.body.status;
                     gift.type_giftID=req.body.type_giftID;
                     gift.employee=req.body.employee;
                     gift.save((err) => {
@@ -155,7 +176,7 @@ var giftListByTypeofGift = function (req, res) {
 
     Type_giftModel.findById(type_giftID, function (err, type_gift) {
         if (err) res.send(err);
-        GiftModel.find({ "type_giftID": type_gift._id }, function (err, gift) {
+        GiftModel.find({ "type_giftID": type_gift._id, status: 'Còn quà' }, function (err, gift) {
             if (err) {
                 res.json({ success: false, message: 'Not a valid id' }); // Return error message
             } else {
@@ -197,12 +218,43 @@ const updateNumberOfGift = function(req, res){
         }
     }
 };
+const editStatus = function(req, res){
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id quà' });
+    }else{
+        if(!req.body.status){
+            res.json({ success: false, message: 'Chưa có tình trạng cập nhật' });
+        }else{
+            GiftModel.findOne({ _id: req.body._id }, (err, gift) => {
+                if (err) {
+                    res.json({ success: false, message: 'id quà không hợp lệ' });
+                } else {
+                    if (!gift) {
+                        res.json({ success: false, message: 'Không tìm thấy quà có id này.' });
+                    } else {
+                        gift.status = req.body.status
+                        console.log(gift);
+                        gift.save((err) => {
+                            if (err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                res.json({ success: true, message: 'Cập nhật tình trạng thành công' });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    }
+};
 module.exports = {
     getAllGift,
+    getAllGiftByStatus,
     insertGift,
     deleteGift,
     editGift,
     giftById,
     giftListByTypeofGift,
-    updateNumberOfGift
+    updateNumberOfGift,
+    editStatus
 }

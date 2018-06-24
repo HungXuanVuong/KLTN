@@ -57,12 +57,7 @@ export class GiohangComponent implements OnInit {
       }
     });
   }
-  quyDoi(e_id, pointuser, p_id, amountproduct, pointproduct) {
-    this.processing = true;
-    const gift1 = {
-          _id:  p_id,
-          amount: amountproduct - 1
-    };
+  quyTrinhDoiQua(e_id, pointuser, p_id,gift1,pointproduct){ 
     this.GiftService.updateNumberOfGift(gift1).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -113,5 +108,32 @@ export class GiohangComponent implements OnInit {
         }, 2000);
       }
     });
+  }
+  quyDoi(e_id, pointuser, p_id, amountproduct, pointproduct) {
+    this.processing = true;
+    const gift1 = {
+          _id:  p_id,
+          amount: amountproduct - 1
+    };
+    if(gift1.amount==0){
+      const gift_ht = {
+        _id: p_id,
+        status: 'Hết quà'
+      };
+      this.GiftService.editStatus(gift_ht).subscribe(data2 => {
+        if (!data2.success) {
+          this.messageClass = 'alert alert-danger';
+          this.message = data2.message;
+        } else {
+          this.messageClass = 'alert alert-success';
+        }
+      });
+      this.quyTrinhDoiQua(e_id, pointuser, p_id,gift1,pointproduct);
+  }else{
+    if(gift1.amount>0){
+      this.quyTrinhDoiQua(e_id, pointuser, p_id,gift1,pointproduct);
+    }
+  }
+
   }
 }
