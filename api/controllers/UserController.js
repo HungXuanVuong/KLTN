@@ -108,7 +108,6 @@ const registerWithMail = function (req, res) {
                             to: [user.email],
                             subject: '[Phát_sinh_Password]',
                             text: 'Chào bạn: ' + user.username + ', Mật khẩu của bạn là : ' + password
-                            // html: 'Hello<strong> </strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="http://www.herokutestapp3z24.com/activate/">http://www.herokutestapp3z24.com/activate/</a>'
                         };
                         // Function to send e-mail to the user
                         client.sendMail(email, function (err, info) {
@@ -129,47 +128,46 @@ const registerWithMail = function (req, res) {
     }
 }
 
-const resetPasswordGmail = function(req, res){
+const resetPasswordGmail = function (req, res) {
     if (!req.body.email) {
         res.json({ success: false, message: 'cần phải nhập vào e-mail' });
-    }else{
+    } else {
         UserModel.findOne({ email: req.body.email.toLowerCase() }, function (err, user) {
-            if(err){
-                res.json({ success: false, message: 'Đây không phải là mail hợp lệ !' }); 
-            }else{
-                if(!user){
+            if (err) {
+                res.json({ success: false, message: 'Đây không phải là mail hợp lệ !' });
+            } else {
+                if (!user) {
                     res.json({ success: false, message: 'Không tìm thấy user này.' }); // Return error message
-                }else{
+                } else {
                     var password = Custompassword.generatorPass();
                     user.password = password;
-                    user.save((err)=>{
-                        if(err){
-                            if(err.errors){
+                    user.save((err) => {
+                        if (err) {
+                            if (err.errors) {
                                 res.json({ success: false, message: 'Đảm bảo rằng mail này là đúng' });
-                            }else{
+                            } else {
                                 res.json({ success: false, message: err }); // Return error message
                             }
-                        }else{
-                             // Create e-mail object to send to user
-                        var email = {
-                            from: 'Admin HKGroup',
-                            to: [user.email],
-                            subject: '[Resert_Password]',
-                            text: 'Chào bạn: ' + user.username + ', Mật khẩu mới của bạn là : ' + password
-                            // html: 'Hello<strong> </strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="http://www.herokutestapp3z24.com/activate/">http://www.herokutestapp3z24.com/activate/</a>'
-                        };
-                        // Function to send e-mail to the user
-                        client.sendMail(email, function (err, info) {
-                            if (err) {
-                                console.log(err); // If error with sending e-mail, log to console/terminal
-                                res.json({ success: false, message: 'Kiểm tra lại kết nối mạng ', err });
-                            } else {
-                                console.log(info); // Log success message to console if sent
-                                console.log(user.email); // Display e-mail that it was sent to
-                            }
-                        });
-                        res.json({ success: true, message: 'Reset mật khẩu thành công!, Vui lòng check mail để nhận mật khẩu' });
-                        return;
+                        } else {
+                            // Create e-mail object to send to user
+                            var email = {
+                                from: 'Admin HKGroup',
+                                to: [user.email],
+                                subject: '[Resert_Password]',
+                                text: 'Chào bạn: ' + user.username + ', Mật khẩu mới của bạn là : ' + password
+                            };
+                            // Function to send e-mail to the user
+                            client.sendMail(email, function (err, info) {
+                                if (err) {
+                                    console.log(err);
+                                    res.json({ success: false, message: 'Kiểm tra lại kết nối mạng ', err });
+                                } else {
+                                    console.log(info); 
+                                    console.log(user.email); 
+                                }
+                            });
+                            res.json({ success: true, message: 'Reset mật khẩu thành công!, Vui lòng check mail để nhận mật khẩu' });
+                            return;
                         }
                     });
                 }
@@ -177,7 +175,7 @@ const resetPasswordGmail = function(req, res){
         })
     }
 }
-const checkExitsPass= function(req, res) {
+const checkExitsPass = function (req, res) {
     if (!req.body.password) {
         res.json({ success: false, message: 'Bạn chưa nhập vào password' });
     } else {
@@ -213,13 +211,18 @@ const login = function (req, res) {
                     if (!user) {
                         res.json({ success: false, message: 'Email không tồn tại' });
                     } else {
-                        const validPassword = user.comparePassword(req.body.password);
-                        if (!validPassword) {
-                            res.json({ success: false, message: 'Mật khẩu không hợp lệ' });
+                        if (user.status == 'lock') {
+                            res.json({ success: false, message: 'Tài khoản của bạn đã bị khóa, Vui lòng liên hệ admin để được giúp đỡ !' });
                         } else {
-                            const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' });
-                            res.json({ success: true, message: 'Đăng nhập thành công !', token: token, user: { username: user.username } });
+                            const validPassword = user.comparePassword(req.body.password);
+                            if (!validPassword) {
+                                res.json({ success: false, message: 'Mật khẩu không hợp lệ' });
+                            } else {
+                                const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' });
+                                res.json({ success: true, message: 'Đăng nhập thành công !', token: token, user: { username: user.username } });
+                            }
                         }
+
                     }
                 }
             });
@@ -257,7 +260,7 @@ const checkExitsEmail = function (req, res) {
                 if (!user) {
                     res.json({ success: false, message: 'E-mail không tồn tại trong hệ thống.' });
                 } else {
-                    res.json({ success: true});
+                    res.json({ success: true });
                 }
             }
         });
@@ -365,7 +368,7 @@ const getTop4Users = function (req, res) {
 };
 
 
-const editUser = function(req, res){
+const editUser = function (req, res) {
     if (!req.body._id) {
         res.json({ success: false, message: 'Chưa cung cấp id user' });
     } else {
@@ -399,13 +402,13 @@ const editUser = function(req, res){
     }
 };
 
-const editPointUser = function(req, res){
+const editPointUser = function (req, res) {
     if (!req.body._id) {
         res.json({ success: false, message: 'Chưa cung cấp id user' });
-    }else{
-        if(!req.body.point){
+    } else {
+        if (!req.body.point) {
             res.json({ success: false, message: 'Chưa có số point cập nhật' });
-        }else{
+        } else {
             UserModel.findOne({ _id: req.body._id }, (err, user) => {
                 if (err) {
                     res.json({ success: false, message: 'id user không hợp lệ' });
@@ -414,13 +417,13 @@ const editPointUser = function(req, res){
                         res.json({ success: false, message: 'Không tìm thấy user có id này.' });
                     } else {
                         user.point = req.body.point,
-                        user.save((err) => {
-                            if (err) {
-                                res.json({ success: false, message: err });
-                            } else {
-                                res.json({ success: true, message: 'Cập nhật point thành công' });
-                            }
-                        });
+                            user.save((err) => {
+                                if (err) {
+                                    res.json({ success: false, message: err });
+                                } else {
+                                    res.json({ success: true, message: 'Cập nhật point thành công' });
+                                }
+                            });
                     }
                 }
             });
@@ -428,13 +431,43 @@ const editPointUser = function(req, res){
     }
 };
 
-const editAvataUser = function(req, res){
+const editPointSignUser = function (req, res) {
     if (!req.body._id) {
         res.json({ success: false, message: 'Chưa cung cấp id user' });
-    }else{
-        if(!req.body.urlHinh){
+    } else {
+        if (!req.body.point) {
+            res.json({ success: false, message: 'Chưa có số point cập nhật' });
+        } else {
+            UserModel.findOne({ _id: req.body._id }, (err, user) => {
+                if (err) {
+                    res.json({ success: false, message: 'id user không hợp lệ' });
+                } else {
+                    if (!user) {
+                        res.json({ success: false, message: 'Không tìm thấy user có id này.' });
+                    } else {
+                        user.point = req.body.point,
+                        user.uvNumber = req.body.uvNumber
+                            user.save((err) => {
+                                if (err) {
+                                    res.json({ success: false, message: err });
+                                } else {
+                                    res.json({ success: true, message: 'Cập nhật point thành công' });
+                                }
+                            });
+                    }
+                }
+            });
+        }
+    }
+};
+
+const editAvataUser = function (req, res) {
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id user' });
+    } else {
+        if (!req.body.urlHinh) {
             res.json({ success: false, message: 'Chưa có hình cập nhật' });
-        }else{
+        } else {
             UserModel.findOne({ _id: req.body._id }, (err, user) => {
                 if (err) {
                     res.json({ success: false, message: 'id user không hợp lệ' });
@@ -443,13 +476,71 @@ const editAvataUser = function(req, res){
                         res.json({ success: false, message: 'Không tìm thấy user có id này.' });
                     } else {
                         user.urlHinh = req.body.urlHinh,
-                        user.save((err) => {
-                            if (err) {
-                                res.json({ success: false, message: err });
-                            } else {
-                                res.json({ success: true, message: 'Cập nhật Avatar thành công' });
-                            }
-                        });
+                            user.save((err) => {
+                                if (err) {
+                                    res.json({ success: false, message: err });
+                                } else {
+                                    res.json({ success: true, message: 'Cập nhật Avatar thành công' });
+                                }
+                            });
+                    }
+                }
+            });
+        }
+    }
+};
+
+const lockUser = function (req, res) {
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id user' });
+    } else {
+        if (!req.body.status) {
+            res.json({ success: false, message: 'lock chưa xác định' });
+        } else {
+            UserModel.findOne({ _id: req.body._id }, (err, user) => {
+                if (err) {
+                    res.json({ success: false, message: 'id user không hợp lệ' });
+                } else {
+                    if (!user) {
+                        res.json({ success: false, message: 'Không tìm thấy user có id này.' });
+                    } else {
+                        user.status = req.body.status,
+                            user.save((err) => {
+                                if (err) {
+                                    res.json({ success: false, message: err });
+                                } else {
+                                    res.json({ success: true, message: 'Đã lock user ' + user.username + ' !' });
+                                }
+                            });
+                    }
+                }
+            });
+        }
+    }
+};
+
+const unlockUser = function (req, res) {
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id user' });
+    } else {
+        if (!req.body.status) {
+            res.json({ success: false, message: 'lock chưa xác định' });
+        } else {
+            UserModel.findOne({ _id: req.body._id }, (err, user) => {
+                if (err) {
+                    res.json({ success: false, message: 'id user không hợp lệ' });
+                } else {
+                    if (!user) {
+                        res.json({ success: false, message: 'Không tìm thấy user có id này.' });
+                    } else {
+                        user.status = req.body.status,
+                            user.save((err) => {
+                                if (err) {
+                                    res.json({ success: false, message: err });
+                                } else {
+                                    res.json({ success: true, message: 'Đã unlock user ' + user.username + ' !' });
+                                }
+                            });
                     }
                 }
             });
@@ -473,5 +564,8 @@ module.exports = {
     editPointUser,
     editUser,
     editAvataUser,
-    
+    lockUser,
+    unlockUser,
+    editPointSignUser
+
 }

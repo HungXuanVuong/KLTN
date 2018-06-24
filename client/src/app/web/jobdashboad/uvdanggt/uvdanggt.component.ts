@@ -41,6 +41,7 @@ export class UvdanggtComponent implements OnInit {
       this.userId = profile.user._id;
       this.newscandidteService.getCandidateByUserId(this.userId).subscribe(data => {
         this.news_candidte = data.candidates;
+        console.log(this.news_candidte);
       });
     });
 

@@ -70,13 +70,10 @@ export class FormprofileComponent implements OnInit {
           this.processing = false; // Unlock form fields
         } else {
           // this.ngOnInit();
+          this.uploader.queue[0].upload();
           this.messageClass = 'alert alert-success'; // Set success bootstrap class
           this.message = data.message; // Set success message
           // After two seconds, navigate back to blog page
-          setTimeout(() =>{
-            this.message = '';
-            this.messageClass = '';
-          }, 1000);
            this.ngOnInit();
         }
       });

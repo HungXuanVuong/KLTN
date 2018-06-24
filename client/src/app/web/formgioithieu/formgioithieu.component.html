@@ -8,11 +8,11 @@
             <h5>Giới thiệu ứng viên</h5>
           </div>
           <div class="panel-body">
-            <div class=" show-hide-message">
+            <!-- <div class=" show-hide-message">
               <div [ngClass]="messageClass">
                 {{message}}
               </div>
-            </div>
+            </div> -->
             <form [formGroup]="myForm" class="form-horizontal">
 
               <div class="form-group">
@@ -93,16 +93,19 @@
               </div>
               <div class="form-group">
                 <label for="cv" class="col-md-2 control-label">CV/Résume (*)</label>
-                <div class="col-md-10">
-                  <input type="file" class="form-control" name="single" ng2FileSelect [uploader]="uploaderCV"/>
+                <div class="col-md-10"[ngClass]="{'has-error': (myForm.controls.cvFile.errors && myForm.controls.cvFile.dirty), 'has-success': !myForm.controls.cvFile.errors}">
+                  <input type="file" (change)="onFileChange($event)" class="form-control" formControlName="cvFile" name="single" ng2FileSelect [uploader]="uploaderCV"/>
                   <span class="help-block">Định dạng: .PDF, .DOC, .DOCX</span>
                   <span class="help-block">Kích thước tối đa: 2MB</span>
+                  <ul class="help-block">
+                    <li *ngIf="myForm.controls.cvFile.errors?.required && myForm.controls.cvFile.dirty">Trường này bắt buộc</li>
+                  </ul>
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-md-10 col-md-offset-2">
                     <!-- [disabled]="processing || !emailValid || !phoneValid"  -->
-                  <button type="submit" class="btn btn-primary" (click)="addNews_Candidate()">Giới thiệu</button>
+                  <button type="submit" [disabled]="myForm.invalid || myForm.prestine" data-toggle="modal" data-target="#myModal" class="btn btn-primary" (click)="addNews_Candidate()">Giới thiệu</button>
                   <!-- <button (click)="addNews_Candidate()">Submit</button> -->
                 </div>
               </div>
@@ -119,7 +122,7 @@
           </div>
           <div class="panel-body">
 
-            <a [routerLink]="['/chitiettin/', news._id]"><img src="./../../../assets/web/img/imgtin/{{news.urlHinh}}" alt="java" class="img-responsive"></a>
+            <a [routerLink]="['/chitiettin/', news._id]"><img src="/images/imgtin/{{news.urlHinh}}" alt="java" class="img-responsive"></a>
             <div class="row" style="padding:10px 5px;">
               <div class="hang">
                 <div class="col-md-6 col-sm-6 col-xs-6 text-left">Địa điểm</div>
@@ -148,22 +151,6 @@
             </div>
 
           </div>
-          <!-- <div class="text-center panel-footer" style="height: 52px;">
-          <div class="pull-right">
-            <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-            <a class="btn btn-social-icon btn-google-plus"><i class="fa fa-google-plus"></i></a>
-          </div>
-          <div class="pull-left">
-            <div *ngIf="!user">
-              <a (click)="RedirectUnregister()" class="btn btn-primary">Ứng tuyển</a>
-              <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
-            </div>
-            <div *ngIf="user">
-              <a routerLink="/profile" class="btn btn-primary">Ứng tuyển</a>
-              <a routerLink="/formgioithieu" class="btn btn-success">Giới thiệu</a>
-            </div>
-          </div>
-        </div> -->
         </div>
       </div>
     </div>
@@ -171,3 +158,26 @@
   </div>
   <!-- End container-->
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header modal-header-success" [ngClass]="messageClass">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3><i class="fa fa-info-circle"></i> Thông báo</h3>
+        </div>
+        <div class="modal-body">
+          <div class="row show-hide-message">
+              <p>{{message}}</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-right" data-dismiss="modal" (click)="clearAllFields()">Tiếp tục giới thiệu</button>
+          <button type="button" class="btn btn-default pull-right" data-dismiss="modal" (click)="redirectHome()">Đóng</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->

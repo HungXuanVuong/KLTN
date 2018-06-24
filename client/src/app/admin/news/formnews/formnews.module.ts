@@ -1,3 +1,4 @@
+import { FileUploadModule } from 'ng2-file-upload/ng2-file-upload';
 import { MyDatePickerModule } from 'mydatepicker';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +20,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
         EditorModule,
         CKEditorModule,
         MyDatePickerModule,
-        
+        FileUploadModule
 
     ],
     declarations: [

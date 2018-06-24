@@ -82,7 +82,8 @@ const userModelSchema = new Schema({
     point: {type: Number, default: 0},
     uvNumber: {type: Number, default: 0},
     role: {type: String, default: 'user'},
-    register_date: {type: Date, default: Date.now}
+    register_date: {type: Date, default: Date.now},
+    status: {type: String, default: 'unlock'}
 });
 
 userModelSchema.pre('save', function (next) {

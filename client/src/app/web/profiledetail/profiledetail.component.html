@@ -1,0 +1,80 @@
+<div id="feature3">
+  <div class="container main-content">
+    <div class="row">
+      <div class="col-md-8 col-md-push-2">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Thông tin cá nhân</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+                <!-- <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://localhost:3000/uploads/mi.png" class="img-circle img-responsive">                </div> -->
+              <!-- <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="./../../../assets/web/img/imguser/{{user.urlHinh}}" class="img-circle img-responsive">                </div> -->
+              <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="/images/imguser/{{user.urlHinh}}" class="img-circle img-responsive">                </div>
+              <table class="table table-user-information">
+                <tbody>
+                  <tr>
+                    <td>Họ và tên</td>
+                    <td>{{user.username}}</td>
+                  </tr>
+                  <tr>
+                    <td>Ngày tham gia</td>
+                    <td>{{user.register_date | date: 'MM/dd/yyyy'}}</td>
+                  </tr>
+                  <tr>
+                    <td>Ngày sinh</td>
+                    <td>{{user.dateOfBirth | date: 'MM/dd/yyyy'}}</td>
+                  </tr>
+                  <tr>
+                    <td>Giới tính</td>
+                    <td>{{user.sex}}</td>
+                  </tr>
+                  <tr>
+                    <td>Địa chỉ</td>
+                    <td>{{user.address}}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td><a href="#">{{user.email}}</a></td>
+                  </tr>
+                  <tr>
+                    <td>Số điện thoại</td>
+                    <td>{{user.phone}}</td>
+                  </tr>
+                  <tr>
+                    <td>CV</td>
+                    <td>{{user.cvFile}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <a class="btn btn-danger" [routerLink]="['/formprofile/', user._id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa thông tin</a>
+          <!-- <button class="btn btn-primary" (click)="addNewsUser()" data-toggle="modal" data-target="#myModal"> Ứng tuyển</button> -->
+        </div>
+      </div>
+      
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-success" [ngClass]="messageClass">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3><i class="fa fa-info-circle"></i> Thông báo</h3>
+      </div>
+      <div class="modal-body">
+        <div class="row show-hide-message">
+            <p>{{message}}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

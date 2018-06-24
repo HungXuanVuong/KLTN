@@ -12,6 +12,9 @@ import 'rxjs/add/operator/map';
 })
 export class ListuserComponent implements OnInit {
 
+  message;
+  messageClass;
+  processing = false;
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -24,6 +27,40 @@ export class ListuserComponent implements OnInit {
     this.userService.getAllUser().subscribe(data =>{
       this.users = data.listUsers;
       this.dtTrigger.next();
+    });
+  }
+
+  lockUser(id){
+    let userLock = {
+      _id: id,
+      status: 'lock'
+    };
+    this.userService.lockUser(userLock).subscribe(data =>{
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+      }
+    });
+  }
+
+  unLockUser(id){
+    let userLock = {
+      _id: id,
+      status: 'unlock'
+    };
+    this.userService.unLockUser(userLock).subscribe(data =>{
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+      }
     });
   }
 

@@ -45,10 +45,10 @@
       </div>
 
       <div class="col-md-12" style="padding-top:10px;">
-        <div class="panel panel-info">
+        <div class="panel panel-warning">
           <div class="panel-heading">Danh sách ứng tuyển</div>
           <div class="panel-body">
-            <table class="table table-striped table-bordered table-hover">
+            <table class=" table table-responsive table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <th>Tên</th>
@@ -65,7 +65,8 @@
                   <td>{{newsuser.user.username}}</td>
                   <td>{{newsuser.user.phone}}</td>
                   <td>{{newsuser.user.email}}</td>
-                  <td><a href='../../../../assets/web/cv/VuongXuanHung_CV.pdf' download>{{newsuser.user.cvFile}}</a></td>
+                  <!-- <td><a href='../../../../assets/web/cv/VuongXuanHung_CV.pdf' download>{{newsuser.user.cvFile}}</a></td> -->
+                  <td><a href='/file/cv/{{newsuser.user.cvFile}}' download>{{newsuser.user.cvFile}}</a></td>
                   <td *ngIf="newsuser.status=='Hồ sơ'"><span class="label label-danger">{{newsuser.status}}</span></td>
                   <td *ngIf="newsuser.status=='Phỏng vấn'"><span class="label label-primary">{{newsuser.status}}</span></td>
                   <td *ngIf="newsuser.status=='Hợp đồng'"><span class="label label-success">{{newsuser.status}}</span></td>
@@ -75,12 +76,12 @@
                         <i class="fa fa-gear fa-fw"></i> 
                         <i class="fa fa-caret-down"></i>
                       </a>
-                      <ul class="dropdown-menu dropdown-user">
-                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a>
+                      <ul class="dropdown-menu dropdown-user dropdown-menu-right">
+                        <!-- <li *ngIf="newsuser.status=='Hồ sơ'||newsuser.status=='Hồ sơ' "><a (click)="updateStatusNewsUser(newsuser._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a>
+                        </li> -->
+                        <li *ngIf="newsuser.status=='Hồ sơ'"><a (click)="updateStatusNewsUser(newsuser._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
                         </li>
-                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
-                        </li>
-                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
+                        <li *ngIf="newsuser.status=='Hồ sơ' || newsuser.status=='Phỏng vấn'"><a (click)="updateStatusNewsUser(newsuser._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
                         </li>
                       </ul>
 
@@ -97,14 +98,14 @@
         <div class="panel panel-info">
           <div class="panel-heading">Danh sách giới thiệu</div>
           <div class="panel-body">
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-responsive table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <th>Tên</th>
                   <th>Số điện thoại</th>
                   <th>Email</th>
                   <th>CV</th>
-                  <th>Người GT</th>
+                  <th>Người giới thiệu</th>
                   <th>Tình trạng</th>
                   <th>Xử lý</th>
                 </tr>
@@ -116,7 +117,8 @@
                   <td>{{newcandidate.candidate.username}}</td>
                   <td>{{newcandidate.candidate.phone}}</td>
                   <td>{{newcandidate.candidate.email}}</td>
-                  <td><a href='../../../../assets/web/cv/VuongXuanHung_CV.pdf' download>{{newcandidate.candidate.cvFile}}</a></td>
+                  <!-- <td><a href='../../../../assets/web/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a></td> -->
+                  <td><a href='/file/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a></td>
                   <td>{{newcandidate.user.username}}</td>
                   <td *ngIf="newcandidate.status=='Hồ sơ'"><span class="label label-danger">{{newcandidate.status}}</span></td>
                   <td *ngIf="newcandidate.status=='Phỏng vấn'"><span class="label label-primary">{{newcandidate.status}}</span></td>
@@ -127,12 +129,12 @@
                         <i class="fa fa-gear fa-fw"></i> 
                         <i class="fa fa-caret-down"></i>
                       </a>
-                      <ul class="dropdown-menu dropdown-user">
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a>
+                      <ul class="dropdown-menu dropdown-user dropdown-menu-right">
+                         <!-- <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a> 
+                        </li> -->
+                        <li *ngIf="newcandidate.status=='Hồ sơ'"><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Phỏng vấn')" (click)="updatePointFileUser(newcandidate.user._id)"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
                         </li>
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
-                        </li>
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')" (click)="testClick(newcandidate.user._id)"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
+                        <li *ngIf="newcandidate.status=='Hồ sơ' || newcandidate.status=='Phỏng vấn'"><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')" (click)="updatePointSignUser(newcandidate.user._id)"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
                         </li>
                       </ul>
 

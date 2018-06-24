@@ -1,11 +1,12 @@
 const express = require('express');
-const app = express(), port = 3000;
+const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const jsonwebtoken = require('jsonwebtoken');
 const path = require('path');
 const cors = require('cors');
 
+const port = process.env.PORT || 3000;
 const config = require('./api/config/db');
 
 const multer = require('multer');
@@ -40,16 +41,17 @@ app.use(function (req, res, next) {
 app.use(cors({
     origin: 'http://localhost:4200'
 }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + '/client/dist/'));
-//default
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
-});
 
-app.use(express.static(__dirname + 'uploads'));
+
+
+var publicDir = require('path').join(__dirname,'/public');
+app.use(express.static(publicDir));
+
+// app.use(express.static(__dirname + '/uploads'));
 // multer
 const storage = multer.diskStorage({ 
     destination: function (req, file, cb) {
@@ -117,6 +119,11 @@ app.use('/newscandidate', NewsCandidateRouter);
 /*9. NewsUserRouter */
 const NewsUserRouter = require('./api/routers/News_UserRoute');
 app.use('/newsuser', NewsUserRouter);
+
+//default
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
+});
 
 app.listen(port, function () {
     console.log('listening on port : ' + port);

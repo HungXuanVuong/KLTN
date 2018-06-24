@@ -86,13 +86,13 @@ export class DetailnewsComponent implements OnInit {
   }
 
 
-  testClick(idUser) {
+  updatePointFileUser(idUser) {
     console.log(idUser);
-    // console.log(this.policy);
+    console.log(this.policy);
     this.authService.findUserById(idUser).subscribe(user =>{
        this.point = user.user;
       console.log(this.point);
-      this.point.point += this.policy.pointSign;
+      this.point.point += this.policy.pointInterview;
       this.authService.editPointUser(this.point).subscribe(user =>{
         if (!user.success) {
           this.messageClass = 'alert alert-danger';
@@ -101,12 +101,29 @@ export class DetailnewsComponent implements OnInit {
         } else {
           this.messageClass = 'alert alert-success';
           this.message = user.message;
-          console.log("Da cong diem");
         }
       });
     });
-    // this.point.point = this.policy
-    // this.authService.editPointUser(idUser).subscribe();
+  }
+
+  updatePointSignUser(idUser) {
+    console.log(idUser);
+    // console.log(this.policy);
+    this.authService.findUserById(idUser).subscribe(user =>{
+       this.point = user.user;
+      this.point.point += this.policy.pointSign;
+      this.point.uvNumber +=1;
+      this.authService.editPointSignUser(this.point).subscribe(user =>{
+        if (!user.success) {
+          this.messageClass = 'alert alert-danger';
+          this.message = user.message;
+          this.processing = false;
+        } else {
+          this.messageClass = 'alert alert-success';
+          this.message = user.message;
+        }
+      });
+    });
   }
 
   updateStatusNewsUser(id, status) {
@@ -128,6 +145,17 @@ export class DetailnewsComponent implements OnInit {
   updateStatusNewsCandidate(id, status) {
     this.newscandidate._id = id;
     this.newscandidate.status = status;
+    if(status == 'Phỏng vấn'){
+      this.newscandidate.point += this.policy.pointInterview;
+      console.log(this.newscandidate.point);
+    }
+    if(status == 'Hợp đồng'){
+      this.newscandidate.point += this.policy.pointSign;
+      console.log(this.newscandidate.point);
+    }
+
+    console.log(this.newscandidate);
+    // this.newscandidate.point = 
     this.newscandidteService.editStatusNewsCandidate(this.newscandidate).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';

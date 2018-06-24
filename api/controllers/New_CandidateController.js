@@ -19,7 +19,8 @@ const addNew_Candidate = function (req, res) {
                     news: req.body.newsId,
                     candidate: req.body.candidateId,
                     user: req.body.userId,
-                    status: req.body.status
+                    status: req.body.status,
+                    point: req.body.point
                 });
                 newCandidate.save(function (err) {
                     if (err) {
@@ -124,7 +125,8 @@ const editNewsCandidate = function (req, res) {
                 } else {
                     // newscandidate.candidate = req.body.candidateId,
                     // newscandidate.news = req.body.newsId,
-                    newscandidate.status = req.body.status
+                    newscandidate.status = req.body.status;
+                    newscandidate.point = req.body.point;
                     newscandidate.save((err) => {
                         if (err) {
                             res.json({ success: false, message: err });

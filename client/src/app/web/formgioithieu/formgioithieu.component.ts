@@ -1,3 +1,5 @@
+import { PolicyService } from './../../service/policy.service';
+import { Policy } from './../../models/policy';
 import { CandidateService } from '../../service/candidate.service';
 import { NewscandidateService } from '../../service/newscandidate.service';
 
@@ -33,9 +35,9 @@ export class FormgioithieuComponent implements OnInit {
 
 
   myForm: FormGroup;
-
+  policy = new Policy();
   news = new News();
-
+  point;
   user = new User();
 
   public uploaderCV: FileUploader = new FileUploader({ url: 'http://localhost:3000/authentication/uploadcv' });
@@ -47,7 +49,8 @@ export class FormgioithieuComponent implements OnInit {
     private router: Router,
     private cd: ChangeDetectorRef,
     private newsCandidateService: NewscandidateService,
-    private candidateService: CandidateService
+    private candidateService: CandidateService,
+    private policyService: PolicyService
   ) {
     this.createForm();
 
@@ -151,6 +154,9 @@ export class FormgioithieuComponent implements OnInit {
       { queryParams: { mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger" } });
   }
 
+  redirectHome(){
+    this.router.navigate(['/']);
+  }
   checkAuth() {
     this.authService.getProfile().subscribe(data => {
       if (!data.success) {
@@ -162,7 +168,51 @@ export class FormgioithieuComponent implements OnInit {
       this.loading = false;
     });
   }
+  updatePointFileUser(idUser) {
+    console.log(idUser);
+    this.authService.findUserById(idUser).subscribe(user =>{
+       this.point = user.user;
+      console.log(this.point);
+      this.point.point += this.policy.pointFile;
+      this.authService.editPointUser(this.point).subscribe(user =>{
+        if (!user.success) {
+          this.messageClass = 'alert alert-danger';
+          this.message = user.message;
+          this.processing = false;
+        } else {
+          this.messageClass = 'alert alert-success';
+          this.message = user.message;
+        }
+      });
+    });
+  }
+addCandidate(){
+  this.currentUrl = this.activatedRoute.snapshot.params;
+  this.processing = true;
+  this.disableForm();
+  const candidate = {
+    username: this.myForm.get('username').value,
+    sex: this.myForm.get('sex').value,
+    email: this.myForm.get('email').value,
+    phone: this.myForm.get('phone').value,
+    school: this.myForm.get('school').value,
+    faculty: this.myForm.get('faculty').value,
+    cvFile: this.uploaderCV.queue[0].file.name
+  }
+  console.log(candidate);
 
+  this.candidateService.addCandidate(candidate).subscribe(data => {
+    if (!data.success) {
+      this.messageClass = "alert alert-danger";
+      this.message = data.message;
+      this.processing = false;
+      this.enableForm();
+    } else {
+      this.messageClass = "alert alert-success";
+      this.message = data.message;
+    }
+  });
+}
   addNews_Candidate() {
     this.currentUrl = this.activatedRoute.snapshot.params;
     this.processing = true;
@@ -188,11 +238,11 @@ export class FormgioithieuComponent implements OnInit {
         console.log(data.candidate._id);
         this.uploaderCV.queue[0].upload();
         console.log(this.currentUrl.id);
-
         let newscandidate = {
           newsId: this.currentUrl.id,
           userId: this.user._id,
-          candidateId: data.candidate._id
+          candidateId: data.candidate._id,
+          point: this.policy.pointFile
         };
         this.newsCandidateService.addNewsCandidate(newscandidate).subscribe(result => {
           if (!result.success) {
@@ -203,6 +253,9 @@ export class FormgioithieuComponent implements OnInit {
           } else {
             this.messageClass = "alert alert-success";
             this.message = result.message;
+            // setTimeout(() =>{
+            //   this.router.navigate(['/']);
+            // }, 3000);
           }
         });
 
@@ -210,6 +263,10 @@ export class FormgioithieuComponent implements OnInit {
     });
 
 
+  }
+  clearAllFields() {
+    this.enableForm();
+    this.myForm.reset();
   }
 
   cleanQueueUpload() {
@@ -256,9 +313,20 @@ export class FormgioithieuComponent implements OnInit {
       } else {
         this.news = data.news; // Save blog object for use in HTMLxx
         console.log(this.news);
+        this.policyService.getSingle(data.news.newsPolicy).subscribe(policy => {
+          if (!policy.success) {
+            this.processing = false;
+          } else {
+            this.policy = policy.policy;
+            //console.log(this.policy);
+          }
+        });
         this.loading = false; // Allow loading of blog form
+        
       }
     });
+
+
 
   }
 

@@ -22,7 +22,7 @@ router.put('/resetpassword', UserController.resetPasswordGmail);
 router.post('/checkExitsPass', UserController.checkExitsPass);
 router.post('/login', UserController.login);
 
-// router.post('/upload', UploadFileUtil.uploadImgUserHandling);
+router.post('/upload', UploadFileUtil.uploadImgUserHandling);
 router.post('/uploadcv', UploadFileUtil.uploadCVUserHandling);
 
 
@@ -39,6 +39,15 @@ router.route('/user/:id')
 router.route('/user/editpoint')
       .put(UserController.editPointUser);
 
+router.route('/user/editpointsign')
+      .put(UserController.editPointSignUser);
+
+router.route('/user/lockuser')
+      .put(UserController.lockUser);
+
+router.route('/user/unlockuser')
+      .put(UserController.unlockUser);
+
 router.route('/user/editavatar')
       .put(UserController.editAvataUser);
 
@@ -49,6 +58,7 @@ router.route('/user/edit')
       .put(UserController.editUser);
 
 router.put('/update', UserController.editUser);
+
 
 router.use(UserController.checkToken);
 router.get('/profile', UserController.getUserProfile);
