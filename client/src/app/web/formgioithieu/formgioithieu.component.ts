@@ -154,6 +154,9 @@ export class FormgioithieuComponent implements OnInit {
       { queryParams: { mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger" } });
   }
 
+  redirectHome(){
+    this.router.navigate(['/']);
+  }
   checkAuth() {
     this.authService.getProfile().subscribe(data => {
       if (!data.success) {
@@ -183,7 +186,33 @@ export class FormgioithieuComponent implements OnInit {
       });
     });
   }
+addCandidate(){
+  this.currentUrl = this.activatedRoute.snapshot.params;
+  this.processing = true;
+  this.disableForm();
+  const candidate = {
+    username: this.myForm.get('username').value,
+    sex: this.myForm.get('sex').value,
+    email: this.myForm.get('email').value,
+    phone: this.myForm.get('phone').value,
+    school: this.myForm.get('school').value,
+    faculty: this.myForm.get('faculty').value,
+    cvFile: this.uploaderCV.queue[0].file.name
+  }
+  console.log(candidate);
 
+  this.candidateService.addCandidate(candidate).subscribe(data => {
+    if (!data.success) {
+      this.messageClass = "alert alert-danger";
+      this.message = data.message;
+      this.processing = false;
+      this.enableForm();
+    } else {
+      this.messageClass = "alert alert-success";
+      this.message = data.message;
+    }
+  });
+}
   addNews_Candidate() {
     this.currentUrl = this.activatedRoute.snapshot.params;
     this.processing = true;
@@ -209,11 +238,11 @@ export class FormgioithieuComponent implements OnInit {
         console.log(data.candidate._id);
         this.uploaderCV.queue[0].upload();
         console.log(this.currentUrl.id);
-
         let newscandidate = {
           newsId: this.currentUrl.id,
           userId: this.user._id,
-          candidateId: data.candidate._id
+          candidateId: data.candidate._id,
+          point: this.policy.pointFile
         };
         this.newsCandidateService.addNewsCandidate(newscandidate).subscribe(result => {
           if (!result.success) {
@@ -224,6 +253,9 @@ export class FormgioithieuComponent implements OnInit {
           } else {
             this.messageClass = "alert alert-success";
             this.message = result.message;
+            // setTimeout(() =>{
+            //   this.router.navigate(['/']);
+            // }, 3000);
           }
         });
 
@@ -231,6 +263,10 @@ export class FormgioithieuComponent implements OnInit {
     });
 
 
+  }
+  clearAllFields() {
+    this.enableForm();
+    this.myForm.reset();
   }
 
   cleanQueueUpload() {

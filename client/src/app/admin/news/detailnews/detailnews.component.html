@@ -77,11 +77,11 @@
                         <i class="fa fa-caret-down"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-user dropdown-menu-right">
-                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a>
+                        <!-- <li *ngIf="newsuser.status=='Hồ sơ'||newsuser.status=='Hồ sơ' "><a (click)="updateStatusNewsUser(newsuser._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a>
+                        </li> -->
+                        <li *ngIf="newsuser.status=='Hồ sơ'"><a (click)="updateStatusNewsUser(newsuser._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
                         </li>
-                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
-                        </li>
-                        <li><a (click)="updateStatusNewsUser(newsuser._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
+                        <li *ngIf="newsuser.status=='Hồ sơ' || newsuser.status=='Phỏng vấn'"><a (click)="updateStatusNewsUser(newsuser._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
                         </li>
                       </ul>
 
@@ -130,11 +130,11 @@
                         <i class="fa fa-caret-down"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-user dropdown-menu-right">
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a>
+                         <!-- <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a> 
+                        </li> -->
+                        <li *ngIf="newcandidate.status=='Hồ sơ'"><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Phỏng vấn')" (click)="updatePointFileUser(newcandidate.user._id)"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
                         </li>
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Phỏng vấn')" (click)="updatePointFileUser(newcandidate.user._id)"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
-                        </li>
-                        <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')" (click)="updatePointSignUser(newcandidate.user._id)"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
+                        <li *ngIf="newcandidate.status=='Hồ sơ' || newcandidate.status=='Phỏng vấn'"><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')" (click)="updatePointSignUser(newcandidate.user._id)"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
                         </li>
                       </ul>
 

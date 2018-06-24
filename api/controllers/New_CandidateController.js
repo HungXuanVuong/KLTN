@@ -19,7 +19,8 @@ const addNew_Candidate = function (req, res) {
                     news: req.body.newsId,
                     candidate: req.body.candidateId,
                     user: req.body.userId,
-                    status: req.body.status
+                    status: req.body.status,
+                    point: req.body.point
                 });
                 newCandidate.save(function (err) {
                     if (err) {

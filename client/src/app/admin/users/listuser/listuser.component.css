@@ -4,7 +4,14 @@ img {
   height: auto;
   border-radius: 8px;
 }
+.img-responsive {
+  width:100%;
+}
 
+/* table.table td img{
+  width: 100%;
+  height: auto;
+} */
 .modal-dialog .modal-content {
   border-radius: 6px;
   padding: 0;

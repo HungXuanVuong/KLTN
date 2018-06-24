@@ -64,7 +64,7 @@ const addCandidate = function (req, res) {
                         }
                         else {
                             if (!req.body.cvFile) {
-                                res.json({ success: false, message: 'Bạn cung cấp cvFile ứng viên.' });
+                                res.json({ success: false, message: 'Bạn chưa cung cấp cvFile ứng viên.' });
                             } else {
                                 let candidate = new CandidateModel({
                                     username: req.body.username,

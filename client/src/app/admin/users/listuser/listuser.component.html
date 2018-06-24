@@ -20,7 +20,7 @@
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body">
-        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" width="100%" class="table table-responsive table-striped table-bordered table-hover" id="dataTables-example">
           <thead>
             <tr>
               <th>Hình</th>
@@ -41,7 +41,7 @@
 
             <tr *ngFor="let user of users" class="odd gradeX">
               <!-- <td><img src="./../../../../assets/web/img/imguser/{{user.urlHinh}}" class="img-circle img-user pagination-centered" alt="Cinque Terre"></td> -->
-              <td><img src="/images/imguser/{{user.urlHinh}}" class="img-circle img-user pagination-centered" alt="Cinque Terre"></td>
+              <td><img src="/images/imguser/{{user.urlHinh}}" class="img-responsive img-circle img-user" alt="Cinque Terre"></td>
               <td>{{user.username}}</td>
               <!-- <td>{{user.dateOfBirth | date: 'dd/MM/yyyy'}}</td> -->
               <td>{{user.email}}</td>
