@@ -36,7 +36,8 @@
                             <th>Tên người giao dịch</th>
                             <th>Ngày đổi quà</th>
                             <th>Ngày nhận quà</th>
-                            <th>Tình trạng đơn hàng</th>
+                            <th>Tên người thay đổi trạng thái đơn quà</th>
+                            <th>Tình trạng đơn quà</th>
                             <th>Tùy chọn</th>
                         </tr>
                     </thead>
@@ -50,6 +51,7 @@
                             <td>{{ o.employee.username }}</td>
                             <td>{{ o.orderDay | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                             <td>{{ o.receivedDay | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+                            <td>{{ o.employeeSetStatus.username }}</td>
                             <td>
                                   <div *ngIf="o.status==='Đã giao quà'">
                                     <p style="color:#0fa6ec;font-weight: bold;">{{o.status}}</p>
@@ -57,7 +59,7 @@
                                   <div *ngIf="o.status==='Đã đặt quà'">
                                           <p style="color:#ec1111;font-weight: bold;">{{o.status}}</p>
                                   </div>
-                                </td>
+                            </td>
                             <td class="center">
                                   <div *ngIf="o.status==='Đã giao quà'">
                                 <div class="dropdown text-center">
@@ -99,7 +101,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                                    <button type="button" name="button" class="btn btn-success" (click)="setStatus(o._id)" data-dismiss="modal">Đồng ý</button>
+                                                    <button type="button" name="button" class="btn btn-success" (click)="setStatus(o._id, user._id)" data-dismiss="modal">Đồng ý</button>
                                                   </div>
                                                 </div>
                                               </div>

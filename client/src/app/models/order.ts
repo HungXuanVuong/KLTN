@@ -7,6 +7,7 @@ export class Order{
         placeOfReceipt: String;
         status: String;
         employee: Object;
+        employeeSetStatus: Object;
         product_id: Object;
     
         constructor(){
@@ -16,6 +17,7 @@ export class Order{
             this.receivedDay = new Date();
             this.status = "";
             this.employee = "";
+            this.employeeSetStatus = "";
             this.product_id = "";
         }
     }

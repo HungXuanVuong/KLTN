@@ -39,7 +39,8 @@ export class EdittransactionComponent implements OnInit {
       placeOfReceipt: ['', Validators.required],
       employee: ['', Validators.required],
       orderDay: ['', Validators.required],
-      receivedDay: ['', Validators.required]
+      receivedDay: ['', Validators.required],
+      employeeSetStatus: ['', Validators.required]
     });
   }
   clearAllFields() {
@@ -53,6 +54,7 @@ export class EdittransactionComponent implements OnInit {
     this.form.controls['employee'].disable();
     this.form.controls['orderDay'].disable();
     this.form.controls['receivedDay'].disable();
+    this.form.controls['employeeSetStatus'].disable();
   }
   updateOrder() {
     this.processing2 = true;

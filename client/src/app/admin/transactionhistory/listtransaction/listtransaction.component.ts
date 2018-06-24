@@ -42,7 +42,7 @@ export class ListtransactionComponent implements OnInit {
     this.donHangTrangThai = event.target.value;
     console.log(this.donHangTrangThai);
   }
-  setStatus(orderid) {
+  setStatus(orderid, userid) {
     this.orderService.getOrderByID(orderid).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -55,12 +55,14 @@ export class ListtransactionComponent implements OnInit {
           placeOfReceipt: data.order.placeOfReceipt,
           product_id: data.order.product_id,
           status: data.order.status,
-          employee: data.order.employee
+          employee: data.order.employee,
+          employeeSetStatus: data.order.employeeSetStatus
         };
         if (this.order2.status === 'Đã đặt quà') {
           const order_ht = {
             _id: orderid,
-            status: 'Đã giao quà'
+            status: 'Đã giao quà',
+            employeeSetStatus: userid
           };
           console.log(order_ht);
           this.orderService.editStatusAndDay(order_ht).subscribe(data2 => {

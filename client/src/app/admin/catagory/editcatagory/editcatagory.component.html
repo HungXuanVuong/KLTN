@@ -38,7 +38,7 @@
                     <button type="button" name="button" class="btn btn-success" (click)="goBack()"><i class="fa fa-reply"></i> Trở về</button>
                 </div>
                 <div class="pull-right">
-                    <button [disabled]="processing || (!type_name.dirty && !type_infor.dirty)" type="submit" name="save" class="btn btn-info"> Cập nhật</button>
+                    <button [disabled]="processing || (!type_name.dirty && !type_infor.dirty)" type="submit" name="save" class="btn btn-info"><i class="fa fa-pencil fa-fw"></i> Cập nhật</button>
                   <button type="reset" (onclick)="clearAllFields()" class="btn btn-default">Xóa trống</button>
                 </div>
               </div>

@@ -4,7 +4,7 @@ const GCodeOrder = require('../Util/GCodeOrder');
 const config = require('../config/db');
 
 const getAllOrder = function (req, res) {
-    OrderModel.find({}).populate({path: 'employee'}).populate({path: 'product_id'}).sort({ create_date: -1 }).exec(function (err, order) {
+    OrderModel.find({}).populate({path: 'employee'}).populate({path: 'product_id'}).populate({path: 'employeeSetStatus'}).sort({ create_date: -1 }).exec(function (err, order) {
         if (err) {
             res.json({ success: false, message: 'Lỗi: ' + err });
         } else {
@@ -24,7 +24,7 @@ const getOrderByID = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'No order ID was provided.' });
     } else {
-        OrderModel.findOne({ _id: req.params.id }).populate({path: 'employee'}).populate({path: 'product_id'}).exec(function (err, order) {
+        OrderModel.findOne({ _id: req.params.id }).populate({path: 'employee'}).populate({path: 'product_id'}).populate({path: 'employeeSetStatus'}).exec(function (err, order) {
             if (err) {
                 res.json({ success: false, message: 'Not a valid order id' }); // Return error message
             } else {
@@ -49,6 +49,7 @@ const addOrder = function (req, res) {
         placeOfReceipt: req.body.placeOfReceipt,
         product_id: req.body.product_id,
         employee: req.body.employee,
+        employeeSetStatus: req.body.employeeSetStatus,
         status: 'Đã đặt quà'
     });
     //console.log(order);
@@ -79,6 +80,7 @@ const editOrder = function (req, res) {
                     order.status = req.body.status,
                     order.product_id = req.body.product_id,
                     order.employee = req.body.employee
+                    employeeSetStatus= req.body.employeeSetStatus,
                     order.save((err) => {
                         if (err) {
                             res.json({ success: false, message: err });
@@ -122,6 +124,9 @@ const editStatusAndDay = function(req, res){
         if(!req.body.status){
             res.json({ success: false, message: 'Chưa có tình trạng cập nhật' });
         }else{
+            if(!req.body.employeeSetStatus){
+            res.json({ success: false, message: 'Chưa cung cấp id người thay đổi trạng thái đơn quà' });
+        }else{
             OrderModel.findOne({ _id: req.body._id }, (err, order) => {
                 if (err) {
                     res.json({ success: false, message: 'id đơn hàng không hợp lệ' });
@@ -130,7 +135,8 @@ const editStatusAndDay = function(req, res){
                         res.json({ success: false, message: 'Không tìm thấy đơn hàng có id này.' });
                     } else {
                         order.status = req.body.status,
-                        order.receivedDay = new Date()
+                        order.receivedDay = new Date(),
+                        order.employeeSetStatus=req.body.employeeSetStatus
                         console.log(order);
                         order.save((err) => {
                             if (err) {
@@ -142,6 +148,7 @@ const editStatusAndDay = function(req, res){
                     }
                 }
             });
+        }
         }
     }
 };

@@ -34,7 +34,7 @@ export class CheckorderComponent implements OnInit {
     });
   }
   
-  setStatusUser(orderid) {
+  setStatusUser(orderid,userid) {
     this.orderService.getOrderByID(orderid).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -52,7 +52,8 @@ export class CheckorderComponent implements OnInit {
         if (this.order2.status === 'Đã đặt quà') {
           const order_ht = {
             _id: orderid,
-            status: 'Đã giao quà'
+            status: 'Đã giao quà',
+            employeeSetStatus: userid
           };
           console.log(order_ht);
           this.orderService.editStatusAndDay(order_ht).subscribe(data2 => {
