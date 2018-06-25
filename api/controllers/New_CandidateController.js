@@ -96,16 +96,16 @@ const findListCandidateByIdUser = function (req, res) {
 
 
 const getAllNewsCandidate = function (req, res) {
-    News_CandidateModel.find({}, function (err, newscandidate) {
+    News_CandidateModel.find({}).populate({path: 'news'}).populate({path: 'user'}).sort({ create_date: -1 }).exec(function (err, newsCandidate) {
         if (err) {
             res.json({ success: false, message: 'Lỗi: ' + err });
         } else {
-            if (!newscandidate) {
-                res.json({ success: false, message: ' Danh sach Rỗng' });
+            if (!newsCandidate) {
+                res.json({ success: false, message: 'Rỗng' });
             } else {
                 var count = 0;
-                count = newscandidate.length;
-                res.json({ success: true, countusers: count, listNewscandidate: newscandidate });
+                count = newsCandidate.length;
+                res.json({ success: true, countnewsCandidate: count, listnewsCandidate: newsCandidate });
             }
         }
     });
@@ -256,8 +256,8 @@ const checkPhone = function (req, res, next) {
             });
         }
     }
-
 }
+
 
 module.exports = {
     addNew_Candidate,

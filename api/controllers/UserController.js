@@ -393,7 +393,7 @@ const editUser = function (req, res) {
                         if (err) {
                             res.json({ success: false, message: err });
                         } else {
-                            res.json({ success: true, message: 'Cập nhật thành công' });
+                            res.json({ success: true, message: 'Cập nhật user thành công' });
                         }
                     });
                 }
@@ -421,7 +421,7 @@ const editPointUser = function (req, res) {
                                 if (err) {
                                     res.json({ success: false, message: err });
                                 } else {
-                                    res.json({ success: true, message: 'Cập nhật point thành công' });
+                                    res.json({ success: true, message: 'Cộng point thành công' });
                                 }
                             });
                     }
@@ -451,7 +451,7 @@ const editPointSignUser = function (req, res) {
                                 if (err) {
                                     res.json({ success: false, message: err });
                                 } else {
-                                    res.json({ success: true, message: 'Cập nhật point thành công' });
+                                    res.json({ success: true, message: 'Cộng point thành công' });
                                 }
                             });
                     }
@@ -547,6 +547,35 @@ const unlockUser = function (req, res) {
         }
     }
 };
+
+const editRoleUser = function (req, res) {
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa cung cấp id user' });
+    } else {
+        if (!req.body.role) {
+            res.json({ success: false, message: 'role user undefined' });
+        } else {
+            UserModel.findOne({ _id: req.body._id }, (err, user) => {
+                if (err) {
+                    res.json({ success: false, message: 'id user không hợp lệ' });
+                } else {
+                    if (!user) {
+                        res.json({ success: false, message: 'Không tìm thấy user có id này.' });
+                    } else {
+                        user.role = req.body.role,
+                            user.save((err) => {
+                                if (err) {
+                                    res.json({ success: false, message: err });
+                                } else {
+                                    res.json({ success: true, message: 'Cấp quyền thành công' });
+                                }
+                            });
+                    }
+                }
+            });
+        }
+    }
+};
 module.exports = {
     register,
     registerWithMail,
@@ -566,6 +595,7 @@ module.exports = {
     editAvataUser,
     lockUser,
     unlockUser,
-    editPointSignUser
+    editPointSignUser,
+    editRoleUser
 
 }

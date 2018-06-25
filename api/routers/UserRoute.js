@@ -39,6 +39,9 @@ router.route('/user/:id')
 router.route('/user/editpoint')
       .put(UserController.editPointUser);
 
+router.route('/user/editrole')
+      .put(UserController.editRoleUser);
+
 router.route('/user/editpointsign')
       .put(UserController.editPointSignUser);
 

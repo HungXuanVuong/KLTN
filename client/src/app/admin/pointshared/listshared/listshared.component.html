@@ -6,9 +6,9 @@
 </div>
 
 <div class="row" style="padding-bottom:5px">
-  <div class="col-lg-12">
+  <!-- <div class="col-lg-12">
     <a routerLink="/admin/formshared" class="btn btn-danger"><span class="fa fa-plus"></span> Thêm người nhận</a>
-  </div>
+  </div> -->
   <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
@@ -18,11 +18,11 @@
   <div class="col-lg-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        Danh sách Point đã chi
+        <!-- Danh sách Point đã chi -->
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body">
-        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" width="100%" class="table table-responsive table-striped table-bordered table-hover" id="dataTables-example">
           <thead>
             <tr>
 
@@ -32,78 +32,19 @@
               <th>Tin tuyển dụng tham gia giới thiệu ứng viên</th>
               <th>Tình trạng ứng viên giới thiệu đạt được</th>
               <th>Số point được nhận</th>
-              <th>Option</th>
+              <th>Ngày giới thiệu</th>
+              <!-- <th>Option</th> -->
             </tr>
           </thead>
           <tbody>
-            <tr class="odd gradeX">
-
-              <td>Trần Văn Minh</td>
-              <td>minhvt@gmail.com</td>
-              <td>01667236241</td>
-              <td>[HN] 06 Java developers onsite in Singapore</td>
-              <td>Phỏng vấn</td>
-              <td>25</td>
-              <td class="center">
-                <div class="dropdown text-center">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                      <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
-                                  </a>
-                  <ul class="dropdown-menu dropdown-user">
-                    <li><a routerLink="/admin/editshared"><i class="fa fa-pencil fa-fw"></i> Edit</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
-                    </li>
-                  </ul>
-                  <!-- /.dropdown-user -->
-                </div>
-              </td>
-            </tr>
-            <tr class="even gradeC">
-
-              <td>Hoàng Thị Mai Hương</td>
-              <td>htmhuong@gmail.com</td>
-              <td>0927236241</td>
-              <td>[HCM] 10 senior JAVA/J2EE dev onsite in US</td>
-              <td>Hồ sơ</td>
-              <td>10</td>
-              <td class="center">
-                <div class="dropdown text-center">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                      <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
-                                  </a>
-                  <ul class="dropdown-menu dropdown-user">
-                    <li><a routerLink="/admin/editshared"><i class="fa fa-pencil fa-fw"></i> Edit</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
-                    </li>
-                  </ul>
-                  <!-- /.dropdown-user -->
-                </div>
-              </td>
-            </tr>
-            <tr class="odd gradeA">
-
-              <td>Trương Thị Ngọc Ánh</td>
-              <td>hana@gmail.com</td>
-              <td>0931836241</td>
-              <td>[HCM] 10 senior JAVA/J2EE dev onsite in US</td>
-              <td>Phỏng vấn</td>
-              <td>20</td>
-              <td class="center">
-                <div class="dropdown text-center">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                      <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
-                                  </a>
-                  <ul class="dropdown-menu dropdown-user">
-                    <li><a routerLink="/admin/editshared"><i class="fa fa-pencil fa-fw"></i> Edit</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
-                    </li>
-                  </ul>
-                  <!-- /.dropdown-user -->
-                </div>
-              </td>
+              <tr *ngFor="let newsCanidate of listNewsCandidate" class="odd gradeX">
+              <td>{{newsCanidate.user.username}}</td>
+              <td>{{newsCanidate.user.email}}</td>
+              <td>{{newsCanidate.user.phone}}</td>
+              <td>{{newsCanidate.news.title}}</td>
+              <td align="center">{{newsCanidate.status}}</td>
+              <td align="center">{{newsCanidate.point}}</td>
+              <td align="center">{{newsCanidate.create_date | date: 'dd/MM/yyyy'}}</td>
             </tr>
           </tbody>
         </table>

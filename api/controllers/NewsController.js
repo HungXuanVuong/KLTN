@@ -96,7 +96,7 @@ const addNews = function (req, res) {
                                         if (err) {
                                             res.json({ success: false, message: err });
                                         } else {
-                                            res.json({ success: true, message: 'Lưu thành công!' });
+                                            res.json({ success: true, message: 'Đăng tin thành công!' });
                                         }
                                     });
                                 }

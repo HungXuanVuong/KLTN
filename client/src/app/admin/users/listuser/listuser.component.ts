@@ -5,6 +5,7 @@ import { AuthServiceService } from "../../../service/auth-service.service";
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
+
 @Component({
   selector: 'app-listuser',
   templateUrl: './listuser.component.html',
@@ -23,6 +24,7 @@ export class ListuserComponent implements OnInit {
     private userService: AuthServiceService
   ) { }
 
+  user = new User();
   getAllUser(){
     this.userService.getAllUser().subscribe(data =>{
       this.users = data.listUsers;
@@ -64,6 +66,43 @@ export class ListuserComponent implements OnInit {
     });
   }
 
+  updateRoleUser(id, role){
+    let userRole = {
+      _id: id,
+      role: role
+    }
+    this.userService.editRoleUser(userRole).subscribe(data =>{
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.ngOnInit();
+      }
+    });
+  }
+
+  showWork(){
+    console.log(this.user);
+    this.updateRoleUser(this.user._id, 'user');
+    this.ngOnInit();
+  }
+
+  getUserInfo(id){
+    this.userService.findUserById(id).subscribe(data =>{
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.user = data.user;
+      }
+    });
+  }
   ngOnInit() {
     
     this.dtOptions = {

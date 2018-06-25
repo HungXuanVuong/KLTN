@@ -28,7 +28,7 @@
     <!-- <li>
         <a routerLink="/admin/listcandidate"><i class="fa fa-user"></i> Quản lí ứng viên</a>
     </li> -->
-    <li>
+    <li *ngIf="user.role ==='admin'" >
         <a routerLink="/admin/listuser"><i class="fa fa-users fa-fw"></i> Quản lí người dùng</a>
     </li>
 

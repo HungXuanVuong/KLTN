@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { News } from '../../../models/news';
 import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-editnews',
@@ -30,14 +31,19 @@ export class EditnewsComponent implements OnInit {
   listPolicy: Array<Policy> = [];
   ckeditorContent;
 
+  myForm: FormGroup;
+
   constructor(
     private location: Location,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private newService: NewsService,
-    private policyService: PolicyService
+    private policyService: PolicyService,
+    private formBuilder: FormBuilder,
 
-  ) { }
+  ) {
+    this.createForm();
+   }
 
   public myDatePickerOptions: IMyDpOptions = {
     dateFormat: 'dd.mm.yyyy',
@@ -49,6 +55,53 @@ export class EditnewsComponent implements OnInit {
   }
   selectPolicyHandle(event: any) {
     this.policy = event.target.value;
+  }
+
+  validateNumberOf(controls) {
+    const regExp = new RegExp(/[0-9]/);
+    if (regExp.test(controls.value)) {
+      return null;
+    } else {
+      return { 'validateNumberOf': true }
+    }
+  }
+  createForm() {
+    this.myForm = this.formBuilder.group({
+      title: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(40)
+      ])],
+      place: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(15)
+      ])],
+      salary: ['', Validators.compose([
+        Validators.required
+      ])],
+      position: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(8)
+      ])],
+      numberOf: ['', Validators.compose([
+        Validators.required,
+        Validators.min(1),
+        this.validateNumberOf
+      ])],
+      myDate: [this.model, Validators.required],
+      policy: ['', Validators.compose([
+        Validators.required
+      ])],
+      status: ['', Validators.compose([
+        Validators.required
+      ])],
+      newsPolicy: ['', Validators.compose([
+        Validators.required
+      ])]
+
+    });
   }
 
   getAllPolicy() {
