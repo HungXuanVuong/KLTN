@@ -28,8 +28,8 @@
               <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
             </div>
             <div *ngIf="user">
-              <a [routerLink]="['/profile/', new._id]" class="btn btn-primary">Ứng tuyển</a>
-              <a [routerLink]="['/formgioithieu/', new._id]" class="btn btn-success">Giới thiệu</a>
+              <a [routerLink]="['/profile/', news._id]" class="btn btn-primary">Ứng tuyển</a>
+              <a [routerLink]="['/formgioithieu/', news._id]" class="btn btn-success">Giới thiệu</a>
             </div>
           </div>
           <div class="col-md-12" style="padding-top:10px;" [innerHTML]="news.content">
@@ -41,8 +41,8 @@
               <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
             </div>
             <div *ngIf="user">
-              <a [routerLink]="['/profile/', new._id]" class="btn btn-primary">Ứng tuyển</a>
-              <a [routerLink]="['/formgioithieu/', new._id]" class="btn btn-success">Giới thiệu</a>
+              <a [routerLink]="['/profile/', news._id]" class="btn btn-primary">Ứng tuyển</a>
+              <a [routerLink]="['/formgioithieu/', news._id]" class="btn btn-success">Giới thiệu</a>
             </div>
           </div>
         </div>
