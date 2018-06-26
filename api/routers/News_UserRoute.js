@@ -11,12 +11,15 @@ router.route('/add')
 router.route('/getall')
 .get(NewsUserController.getAllNewsUser);
 
+router.route('/findbystatus/:status')
+.get(NewsUserController.countNewsUserByStatus);
 
 router.route('/edit')
 .put(NewsUserController.editNewsUser);
 
-router.route('/user/:id')
+router.route('/:id')
 .get(NewsUserController.findListUserByIdNews);
+
 
 router.route('/:id')
 .get(NewsUserController.findNewsUserById)

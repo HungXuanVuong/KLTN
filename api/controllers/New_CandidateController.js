@@ -38,7 +38,7 @@ const findNewsCandidateById = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'id news_candidate chưa được cung cấp.' });
     } else {
-        News_CandidateModel.findOne({ _id: req.params.id }).populate({path: 'candidate'}).populate({path: 'news'}).exec(function (err, newscandidate) {
+        News_CandidateModel.findOne({ _id: req.params.id }).populate({ path: 'candidate' }).populate({ path: 'news' }).exec(function (err, newscandidate) {
             if (err) {
                 res.json({ success: false, message: 'id news_candidate không hợp lệ' });
             } else {
@@ -96,7 +96,7 @@ const findListCandidateByIdUser = function (req, res) {
 
 
 const getAllNewsCandidate = function (req, res) {
-    News_CandidateModel.find({}).populate({path: 'news'}).populate({path: 'user'}).sort({ create_date: -1 }).exec(function (err, newsCandidate) {
+    News_CandidateModel.find({}).populate({ path: 'news' }).populate({ path: 'user' }).sort({ create_date: -1 }).exec(function (err, newsCandidate) {
         if (err) {
             res.json({ success: false, message: 'Lỗi: ' + err });
         } else {
@@ -123,8 +123,6 @@ const editNewsCandidate = function (req, res) {
                 if (!newscandidate) {
                     res.json({ success: false, message: 'Không tìm thấy newscandidate có id này.' });
                 } else {
-                    // newscandidate.candidate = req.body.candidateId,
-                    // newscandidate.news = req.body.newsId,
                     newscandidate.status = req.body.status;
                     newscandidate.point = req.body.point;
                     newscandidate.save((err) => {
@@ -192,10 +190,10 @@ const checkEmail = function (req, res, next) {
                 if (err) {
                     res.json({ success: false, message: err });
                 } else {
-                    if(candidate){
+                    if (candidate) {
                         News_CandidateModel.find({ news: id_news }, function (err, news) {
                             // console.log(candidate._id);
-                            var id_candidate = candidate._id +"";
+                            var id_candidate = candidate._id + "";
                             if (err) {
                                 res.json({ success: false, message: err });
                             } else {
@@ -208,10 +206,10 @@ const checkEmail = function (req, res, next) {
                                 res.json({ success: true, message: 'Ok!' });
                             }
                         });
-                    }else{
+                    } else {
                         res.json({ success: true, message: 'Ok!' });
                     }
-                    
+
                 }
             });
         }
@@ -232,10 +230,10 @@ const checkPhone = function (req, res, next) {
                 if (err) {
                     res.json({ success: false, message: err });
                 } else {
-                    if(candidate){
+                    if (candidate) {
                         News_CandidateModel.find({ news: id_news }, function (err, news) {
                             // console.log(candidate._id);
-                            var id_candidate = candidate._id +"";
+                            var id_candidate = candidate._id + "";
                             if (err) {
                                 res.json({ success: false, message: err });
                             } else {
@@ -248,16 +246,49 @@ const checkPhone = function (req, res, next) {
                                 res.json({ success: true, message: 'Ok!' });
                             }
                         });
-                    }else{
+                    } else {
                         res.json({ success: true, message: 'Ok!' });
                     }
-                    
+
                 }
             });
         }
     }
 }
 
+const get5NewCandidate = function (req, res) {
+    CandidateModel.find({}).sort({ '_id': -1 }).limit(5).exec(function (err, candiates) {
+        if (err) {
+            res.json({ success: false, message: err });
+        } else {
+            if (!users) {
+                res.json({ success: false, message: 'Danh sách rỗng' });
+            } else {
+                res.json({ success: true, listCandidate: candiates });
+            }
+        }
+    });
+};
+
+const countNewsCandidate = function (req, res) {
+    if (!req.params.status) {
+        res.json({ success: false, message: 'No status newscandidate provided' });
+    } else {
+        CandidateModel.find({"status": 'Hồ sơ'}, (err, newsCandidates) => {
+            if (err) {
+                res.json({ success: false, message: 'Invalid status' });
+            } else {
+                if (!newsCandidates) {
+                    res.json({ success: false, messasge: 'newsCandidates was not found' });
+                } else {
+                    var count = 0;
+                    count = newsCandidates.length;
+                    res.json({ success: true, counterCandidate: count, newsCandidates: newsCandidates });
+                }
+            }
+        });
+    }
+};
 
 module.exports = {
     addNew_Candidate,
@@ -268,5 +299,7 @@ module.exports = {
     findListCandidateByIdNews,
     findListCandidateByIdUser,
     checkEmail,
-    checkPhone
+    checkPhone,
+    get5NewCandidate,
+    countNewsCandidate
 }

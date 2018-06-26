@@ -29,7 +29,7 @@ export class NewsuserService {
 
     getUserByNewsId(id) {
       this.createAuthenticationHeaders();
-      return this.http.get(this.domain + 'newsuser/user/'+ id, this.options).map(res => res.json());
+      return this.http.get(this.domain + 'newsuser/'+ id, this.options).map(res => res.json());
     }
 
     editStatusNewsUser(newsuser){

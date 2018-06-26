@@ -367,6 +367,19 @@ const getTop4Users = function (req, res) {
     });
 };
 
+const get5NewUser = function(req, res){
+    UserModel.find({}).sort({'_id':-1}).limit(5).exec(function (err, users) {
+        if (err) {
+            res.json({ success: false, message: err });
+        } else {
+            if (!users) {
+                res.json({ success: false, message: 'Danh sách rỗng' });
+            } else {
+                res.json({ success: true, listUsers: users });
+            }
+        }
+    });
+};
 
 const editUser = function (req, res) {
     if (!req.body._id) {
@@ -596,6 +609,7 @@ module.exports = {
     lockUser,
     unlockUser,
     editPointSignUser,
-    editRoleUser
+    editRoleUser,
+    get5NewUser
 
 }

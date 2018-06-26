@@ -49,7 +49,7 @@ export class DetailnewsComponent implements OnInit {
   title = 'Thống kê ứng viên';
 
   hoso = 10;
-
+  data: any;
 
 
   constructor(
@@ -202,7 +202,24 @@ export class DetailnewsComponent implements OnInit {
     this.getSingleNews(this.currentUrl.id);
     this.getListCandidateByNewsId(this.currentUrl.id);
     this.getListUserByNewsId(this.currentUrl.id);
-
+    
+    this.data = {
+      labels: ['Hồ sơ', 'Phỏng vấn', 'Hợp đồng'],
+      datasets: [
+          {
+              label: 'Ứng viên',
+              backgroundColor: '#42A5F5',
+              borderColor: '#1E88E5',
+              data: [40, 23, 16]
+          },
+          {
+              label: 'Ứng tuyển',
+              backgroundColor: '#9CCC65',
+              borderColor: '#7CB342',
+              data: [31, 23, 18]
+          }
+      ]
+  }
 
     this.dataSource = {
       "chart": {
