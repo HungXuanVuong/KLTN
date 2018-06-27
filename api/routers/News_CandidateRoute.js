@@ -25,6 +25,9 @@ router.route('/findbystatus/:status')
 router.route('/edit')
 .put(NewsCandidateController.editNewsCandidate);
 
+router.route('/findcandidateinnews/:id')
+.put(NewsCandidateController.countCandidateInNewsByStatus);
+
 router.route('/candidate/:id')
 .get(NewsCandidateController.findListCandidateByIdNews);
 router.route('/candidateuser/:id')

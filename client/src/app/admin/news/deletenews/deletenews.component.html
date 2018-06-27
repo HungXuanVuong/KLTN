@@ -1,54 +1,82 @@
 <div [@routerTransition] class="container" style="padding-top:10px;">
-  
-    <!-- Custom Success/Error Message -->
-    <!-- <div class="row show-hide-message" *ngIf="message">
+
+  <!-- Custom Success/Error Message -->
+  <!-- <div class="row show-hide-message" *ngIf="message">
       <div [ngClass]="messageClass">
         {{ message }}
       </div>
     </div> -->
-  
-    <!-- Modal Confirmation Window -->
-    <div class="col-md-6 col-md-push-2" *ngIf="foundNews">
-      <!-- Model Outer Layer -->
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header-success">
-          <!-- Close Button -->
-          <button type="button" name="button" class="close" data-dismiss="modal">&times;</button>
-          <!-- Modal Title -->
-          <h4><i class="fa fa-info-circle"></i> Thông báo</h4>
-        </div>
-  
-        <!-- Modal Body -->
-        <div class="modal-body">
-          <p>Bạn có chắc sẽ xóa không ?</p>
-        </div>
-  
-        <!-- Modal Footer -->
-        <div class="modal-footer">
-          <!-- Yes Button -->
-          <button type="submit" [disabled]="processing" data-toggle="modal" data-target="#myModal" type="button" name="button" class="btn btn-success" (click)="deleteNews()">Đồng ý</button>
-          <!-- No Button -->
-          <a routerLink="/admin/listnews"><button [disabled]="processing" type="button" name="button" class="btn btn-danger">Không</button></a>
+
+  <!-- Modal Confirmation Window -->
+  <div class="col-md-6 col-md-push-2" *ngIf="foundNews">
+    <!-- Model Outer Layer -->
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header-success">
+        <!-- Close Button -->
+        <button type="button" name="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- Modal Title -->
+        <h4>
+          <i class="fa fa-info-circle"></i> Thông báo</h4>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <p>Bạn có chắc sẽ xóa không ?</p>
+        <div class="row show-hide-message" *ngIf="message">
+          <div [ngClass]="messageClass">
+            {{ message }}
+          </div>
         </div>
       </div>
-  
-      <br />
-  
-      <!-- Panel -->
-      <div class="panel panel-green">
-        <!-- Panel Heading -->
-        <div class="panel-heading">
-          <!-- Panel Title -->
-          <h3 class="panel-title">{{ news.title }}</h3>
-        </div>
-  
-        <!-- Panel Body -->
-        <div class="panel-body">
-          <!-- <img src="./../../../../assets/web/img/imgtin/{{news.urlHinh}}" class="img-responsive img-user" alt="Cinque Terre"> -->
-          <img src="/images/imgtin/{{news.urlHinh}}" class="img-responsive img-user" alt="Cinque Terre">
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <!-- Yes Button -->
+        <button type="submit" [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="editStatusNews()">Đồng ý</button>
+        <!-- No Button -->
+        <a routerLink="/admin/listnews">
+          <button [disabled]="processing" type="button" name="button" class="btn btn-danger">Không</button>
+        </a>
+      </div>
+    </div>
+
+    <br />
+
+    <!-- Panel -->
+    <div class="panel panel-green">
+      <!-- Panel Heading -->
+      <div class="panel-heading">
+        <!-- Panel Title -->
+        <h3 class="panel-title">{{ news.title }}</h3>
+      </div>
+
+      <!-- Panel Body -->
+      <div class="panel-body">
+        <!-- <img src="./../../../../assets/web/img/imgtin/{{news.urlHinh}}" class="img-responsive img-user" alt="Cinque Terre"> -->
+        <img src="/images/imgtin/{{news.urlHinh}}" class="img-responsive img-user" alt="Cinque Terre">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-success" [ngClass]="messageClass">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>
+          <i class="fa fa-info-circle"></i> Thông báo</h3>
+      </div>
+      <div class="modal-body">
+        <div class="row show-hide-message">
+          <p>{{message}}</p>
         </div>
       </div>
-  
+      <div class="modal-footer">
+        <button type="button" (click)="redirect()" class="btn btn-danger pull-right" data-dismiss="modal">OK</button>
+      </div>
     </div>
   </div>
+</div> -->

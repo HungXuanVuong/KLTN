@@ -20,6 +20,8 @@ router.route('/edit')
 router.route('/:id')
 .get(NewsUserController.findListUserByIdNews);
 
+router.route('/finduserbystatus/:id')
+.put(NewsUserController.countUserInNewsByStatus);
 
 router.route('/:id')
 .get(NewsUserController.findNewsUserById)

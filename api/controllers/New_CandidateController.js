@@ -274,7 +274,7 @@ const countNewsCandidate = function (req, res) {
     if (!req.params.status) {
         res.json({ success: false, message: 'No status newscandidate provided' });
     } else {
-        CandidateModel.find({"status": 'Hồ sơ'}, (err, newsCandidates) => {
+        News_CandidateModel.find({ "status": req.params.status }, (err, newsCandidates) => {
             if (err) {
                 res.json({ success: false, message: 'Invalid status' });
             } else {
@@ -290,6 +290,30 @@ const countNewsCandidate = function (req, res) {
     }
 };
 
+const countCandidateInNewsByStatus = function (req, res) {
+    if (!req.params.id) {
+        res.json({ success: false, message: 'No newsId provided' });
+    } else {
+        if (!req.body.status) {
+            res.json({ success: false, message: 'No status newscandidate provided' });
+        } else {
+            News_CandidateModel.find({ news: req.params.id, status: req.body.status }, (err, newsCandidates) => {
+                if (err) {
+                    res.json({ success: false, message: 'Invalid status' });
+                } else {
+                    if (!newsCandidates) {
+                        res.json({ success: false, messasge: 'newsCandidates was not found' });
+                    } else {
+                        var count = 0;
+                        count = newsCandidates.length;
+                        res.json({ success: true, counterCandidate: count, newsCandidates: newsCandidates });
+                    }
+                }
+            });
+        }
+    }
+};
+
 module.exports = {
     addNew_Candidate,
     editNewsCandidate,
@@ -301,5 +325,6 @@ module.exports = {
     checkEmail,
     checkPhone,
     get5NewCandidate,
-    countNewsCandidate
+    countNewsCandidate,
+    countCandidateInNewsByStatus
 }

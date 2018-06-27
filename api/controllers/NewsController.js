@@ -19,7 +19,7 @@ const getAllNews = function (req, res) {
 };
 
 const getTop6News = function (req, res) {
-    NewsModel.find({}).populate({path: 'newsPolicy'}).populate({path: 'employee'}).sort({ create_date: -1 }).exec(function (err, news) {
+    NewsModel.find({status: 'Hoạt động'}).populate({path: 'newsPolicy'}).populate({path: 'employee'}).sort({ create_date: -1 }).exec(function (err, news) {
         if (err) {
             res.json({ success: false, message: 'Lỗi: ' + err });
         } else {
@@ -124,7 +124,6 @@ const editNews = function (req, res) {
                     news.title = req.body.title;
                     news.place = req.body.place;
                     news.salary = req.body.salary;
-                    // news.create_date = new.create_date,
                     news.exp_date = req.body.exp_date;
                     news.position = req.body.position;
                     news.numberOf = req.body.numberOf;
@@ -133,6 +132,31 @@ const editNews = function (req, res) {
                     news.status = req.body.status;
                     news.employee = req.body.employee;
                     news.point_uv = req.body.point_uv;
+                    news.save((err) => {
+                        if (err) {
+                            res.json({ success: false, message: err });
+                        } else {
+                            res.json({ success: true, message: 'Cập nhật thành công' });
+                        }
+                    });
+                }
+            }
+        });
+    }
+};
+
+const editStatusNews = function (req, res) {
+    if (!req.body._id) {
+        res.json({ success: false, message: 'Chưa có id tin' });
+    } else {
+        NewsModel.findOne({ _id: req.body._id }, (err, news) => {
+            if (err) {
+                res.json({ success: false, message: 'Not a valid news id' });
+            } else {
+                if (!news) {
+                    res.json({ success: false, message: 'news id was not found.' });
+                } else {
+                    news.status = 'Kết thúc';
                     news.save((err) => {
                         if (err) {
                             res.json({ success: false, message: err });
@@ -176,5 +200,6 @@ module.exports = {
     getSingleNews,
     addNews,
     editNews,
-    deleteNews
+    deleteNews,
+    editStatusNews
 }

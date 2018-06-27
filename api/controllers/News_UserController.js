@@ -197,6 +197,30 @@ const countNewsUserByStatus = function (req, res) {
     }
 };
 
+const countUserInNewsByStatus = function (req, res) {
+    if (!req.params.id) {
+        res.json({ success: false, message: 'No newsId provided' });
+    } else {
+        if (!req.body.status) {
+            res.json({ success: false, message: 'No status newscandidate provided' });
+        } else {
+            News_UserModel.find({ news: req.params.id, status: req.body.status }, (err, newsUsers) => {
+                if (err) {
+                    res.json({ success: false, message: 'Invalid status' });
+                } else {
+                    if (!newsUsers) {
+                        res.json({ success: false, messasge: 'newsUsers was not found' });
+                    } else {
+                        var count = 0;
+                        count = newsUsers.length;
+                        res.json({ success: true, counterUser: count, newsUsers: newsUsers });
+                    }
+                }
+            });
+        }
+    }
+};
+
 module.exports = {
     addNews_User,
     findListUserByIdNews,
@@ -204,6 +228,7 @@ module.exports = {
     deleteNewsUser,
     editNewsUser,
     findNewsUserById,
-    countNewsUserByStatus
+    countNewsUserByStatus,
+    countUserInNewsByStatus
 
 }

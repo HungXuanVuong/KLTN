@@ -20,6 +20,9 @@ router.route('/gettop6')
 router.route('/edit')
 .put(NewsController.editNews);
 
+router.route('/editstatus')
+.put(NewsController.editStatusNews);
+
 router.route('/:id')
 .get(NewsController.getSingleNews)
 .delete(NewsController.deleteNews);

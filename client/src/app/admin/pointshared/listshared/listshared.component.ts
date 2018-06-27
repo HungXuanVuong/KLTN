@@ -11,15 +11,14 @@ import { Subject } from 'rxjs/Subject';
 })
 export class ListsharedComponent implements OnInit {
 
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+
   message;
   messageClass;
   processing = false;
-
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
   listNewsCandidate: Array<News_Candidate> = [];
-
-
+  
   constructor(
     private router: Router,
     private newsCandidateService: NewscandidateService
@@ -27,16 +26,9 @@ export class ListsharedComponent implements OnInit {
 
   getAllNewsCandidate(){
     this.newsCandidateService.getAllNewsCandidate().subscribe(data =>{
-      if(!data.success){
-        this.messageClass = 'alert alert-danger';
-        this.message = data.message;
-      }else{
-        this.messageClass = 'alert alert-success';
-        this.message = data.message;
         this.listNewsCandidate = data.listnewsCandidate;
         this.dtTrigger.next();
-        console.log(data);
-      }
+        console.log(this.listNewsCandidate);
     });
   }
 

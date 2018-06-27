@@ -48,6 +48,12 @@ export class NewsService {
     return this.http.put(this.domain + 'news/edit/', news, this.options).map(res => res.json());
   }
   
+  
+  editStatusNews(news){
+    this.createAuthenticationHeaders();
+    return this.http.put(this.domain + 'news/editstatus/', news, this.options).map(res => res.json());
+  }
+
   deleteNews(id){
     this.createAuthenticationHeaders();
     return this.http.delete(this.domain + 'news/' + id, this.options).map(res => res.json());

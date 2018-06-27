@@ -12,7 +12,7 @@ const newsModelSchema = new Schema({
     point_uv: {type: Number},
     content: {type: String},
     numberOf: {type: Number},
-    status: {type: String},
+    status: {type: String, default: 'Hoạt động'},
     newsPolicy: {type: Schema.ObjectId, ref: 'PolicyModel'},
     employee: {type: Schema.ObjectId, ref: 'UserModel'}
 
