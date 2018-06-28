@@ -29,7 +29,7 @@ export class NewsuserService {
 
     getUserByNewsId(id) {
       this.createAuthenticationHeaders();
-      return this.http.get(this.domain + 'newsuser/user/'+ id, this.options).map(res => res.json());
+      return this.http.get(this.domain + 'newsuser/'+ id, this.options).map(res => res.json());
     }
 
     editStatusNewsUser(newsuser){
@@ -41,4 +41,15 @@ export class NewsuserService {
       return this.http.post(this.domain + 'newsuser/add', newsuser, this.options).map(res => res.json());
     }
 
+
+    getUserInNewsByStatus(id, user){
+      this.createAuthenticationHeaders();
+      return this.http.put(this.domain + 'newsuser/finduserbystatus/'+ id, user, this.options).map(res => res.json());
+    }
+
+    // getCandidateInNewsByStatus(id, candidate){
+    //   this.createAuthenticationHeaders();
+    //   return this.http.put(this.domain + 'newscandidate/findcandidateinnews/'+ id, candidate, this.options).map(res => res.json());
+    // }
+    
 }

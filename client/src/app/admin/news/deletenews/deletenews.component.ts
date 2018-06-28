@@ -44,6 +44,28 @@ export class DeletenewsComponent implements OnInit {
     });
   }
 
+  redirect(){
+    this.router.navigate(['admin/listnews']);
+  }
+
+  editStatusNews() {
+    let news = {
+      _id: this.currentUrl.id
+    }
+    this.newsService.editStatusNews(news).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() =>{
+          this.router.navigate(['admin/listnews']);
+        }, 1000);
+      }
+    });
+  }
+
 
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params; // get URL paramon page load

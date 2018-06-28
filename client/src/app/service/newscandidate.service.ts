@@ -60,4 +60,14 @@ export class NewscandidateService {
     this.createAuthenticationHeaders();
     return this.http.get(this.domain + 'newscandidate/'+ id, this.options).map(res => res.json());
   }
+
+  getAllNewsCandidate(){
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'newscandidate/getall', this.options).map(res => res.json());
+  }
+
+  getCandidateInNewsByStatus(id, candidate){
+    this.createAuthenticationHeaders();
+    return this.http.put(this.domain + 'newscandidate/findcandidateinnews/'+ id, candidate, this.options).map(res => res.json());
+  }
 }

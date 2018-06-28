@@ -30,6 +30,9 @@ router.post('/uploadcv', UploadFileUtil.uploadCVUserHandling);
 router.route('/user/getall')
       .get(UserController.getAllUsers);
 
+router.route('/user/gettop5')
+      .get(UserController.get5NewUser);
+
 router.route('/user/gettop4')
       .get(UserController.getTop4Users);
 
@@ -38,6 +41,9 @@ router.route('/user/:id')
 
 router.route('/user/editpoint')
       .put(UserController.editPointUser);
+
+router.route('/user/editrole')
+      .put(UserController.editRoleUser);
 
 router.route('/user/editpointsign')
       .put(UserController.editPointSignUser);

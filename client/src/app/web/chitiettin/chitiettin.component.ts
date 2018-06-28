@@ -36,7 +36,7 @@ export class ChitiettinComponent implements OnInit {
   // create_date;
   // exp_date;
 
-  netImage:any = '../../../assets/web/img/imgtin/';
+  netImage:any = '/images/imgtin/';
   constructor(
     private location: Location,
     private activatedRoute: ActivatedRoute,

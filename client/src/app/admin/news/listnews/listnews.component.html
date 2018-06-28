@@ -26,7 +26,7 @@
               <th>Ngày đăng</th>
               <th>Hạn nộp</th>
               <th>Chính sách thưởng</th>
-              <th>Tình trạng</th>
+              <!-- <th>Tình trạng</th> -->
               <th>Theo dõi</th>
               <th>Option</th>
             </tr>
@@ -41,7 +41,7 @@
               <td>{{new.create_date | date: 'dd/MM/yyyy'}}</td>
               <td>{{new.exp_date | date: 'dd/MM/yyyy'}}</td>
               <td>{{new.newsPolicy.pName}}</td>
-              <td>{{new.status}}</td>
+              <!-- <td>{{new.status}}</td> -->
               <td>
                 <a [routerLink]="['/admin/detailnews', new._id]">{{new.employee.username}}</a>
               </td>

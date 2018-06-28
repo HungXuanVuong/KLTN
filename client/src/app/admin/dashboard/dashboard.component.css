@@ -5,6 +5,6 @@ table {
     content: counter(tableCount); 
     counter-increment: tableCount; 
 }
-table th, td {
+/* table th, td {
     text-align: center;   
- }
+ } */

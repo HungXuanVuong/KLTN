@@ -1,15 +1,12 @@
 import { User } from '../../../models/user';
-import { PolicyService } from './../../../service/policy.service';
 import { Component, OnInit } from '@angular/core';
 import { News } from "../../../models/news";
 import { NewsService } from "../../../service/news.service";
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
-
 import { AuthServiceService } from './../../../service/auth-service.service';
 
-// import {News} from ''
 @Component({
   selector: 'app-listnews',
   templateUrl: './listnews.component.html',
@@ -20,7 +17,7 @@ export class ListnewsComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-  news : Array<News> = [];
+  news: Array<News> = [];
 
   user = new User();
   message;
@@ -28,7 +25,7 @@ export class ListnewsComponent implements OnInit {
   processing = false;
 
   constructor(
-    private newsService : NewsService,
+    private newsService: NewsService,
     private authService: AuthServiceService,
     private router: Router
   ) { }
@@ -36,12 +33,12 @@ export class ListnewsComponent implements OnInit {
   newsId = '';
   userId = 0;
 
-  deleteNews(id){
-    this.newsService.deleteNews(id).subscribe(data =>{
-      if(!data.success){
+  deleteNews(id) {
+    this.newsService.deleteNews(id).subscribe(data => {
+      if (!data.success) {
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
-      }else{
+      } else {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
         this.getAllNews();
@@ -49,7 +46,23 @@ export class ListnewsComponent implements OnInit {
     });
   }
 
-  getAllNews(){
+  editStatusNews(id) {
+    let news = {
+      _id: id
+    }
+    this.newsService.editStatusNews(news).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.getAllNews();
+      }
+    });
+  }
+
+  getAllNews() {
     this.newsService.getTop6News().subscribe(data => {
       this.news = data.listNews;
       this.dtTrigger.next();
@@ -57,34 +70,34 @@ export class ListnewsComponent implements OnInit {
     });
   }
 
-  RedirectUnregister(){
+  RedirectUnregister() {
     this.router.navigate(['/redirectpage'],
-    {queryParams: {mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger"}});
+      { queryParams: { mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger" } });
   }
-  checkRole(){
+  checkRole() {
     this.authService.getProfile().subscribe(profile => {
-      if(!profile.user){
+      if (!profile.user) {
         this.RedirectUnregister();
-      }else{
+      } else {
         this.user = profile.user;
         this.userId = profile.user._id;
       }
     });
   }
   ngOnInit() {
-   
+
     this.checkRole();
     this.dtOptions = {
       pagingType: 'full_numbers',
     };
     this.getAllNews();
-    
+
 
     // this.policyService.getAll().subscribe(data =>{
     //   console.log(data);
     // });
 
-    
+
   }
 
 }

@@ -99,7 +99,7 @@ export class FormprofileComponent implements OnInit {
             this.messageClass = 'alert alert-success'; 
             this.message = data.message; 
             // setTimeout(() => {
-            //   this.router.navigate(['/profile/5ad0b99a1450f026203e0a69']); 
+            //   this.router.navigate(['/profiledetail/5ad0b99a1450f026203e0a69']); 
             // }, 1000);
           }
     });

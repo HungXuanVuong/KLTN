@@ -38,6 +38,17 @@ export class DetailnewsComponent implements OnInit {
   newscandidate = new News_Candidate();
 
   user = new User();
+
+  userFile = 0;
+  userInterView = 0;
+  UserSign = 0;
+
+  candidateFile = 0;
+  candidateInterView = 0;
+  candidateSign = 0;
+
+  file;
+
   // chart
 
   id = 'chart1';
@@ -48,8 +59,7 @@ export class DetailnewsComponent implements OnInit {
   dataSource;
   title = 'Thống kê ứng viên';
 
-  hoso = 10;
-
+  data: any;
 
 
   constructor(
@@ -69,15 +79,11 @@ export class DetailnewsComponent implements OnInit {
         this.message = data.message;
       } else {
         this.news = data.news;
-        // console.log(data);
-        // this.policyId = data.news.newsPolicy;
-        // console.log(data.news.newsPolicy);
         this.policyService.getSingle(data.news.newsPolicy).subscribe(policy => {
           if (!policy.success) {
             this.processing = false;
           } else {
             this.policy = policy.policy;
-            //console.log(this.policy);
           }
         });
         this.foundNews = true;
@@ -85,15 +91,14 @@ export class DetailnewsComponent implements OnInit {
     });
   }
 
-
   updatePointFileUser(idUser) {
     console.log(idUser);
     console.log(this.policy);
-    this.authService.findUserById(idUser).subscribe(user =>{
-       this.point = user.user;
+    this.authService.findUserById(idUser).subscribe(user => {
+      this.point = user.user;
       console.log(this.point);
       this.point.point += this.policy.pointInterview;
-      this.authService.editPointUser(this.point).subscribe(user =>{
+      this.authService.editPointUser(this.point).subscribe(user => {
         if (!user.success) {
           this.messageClass = 'alert alert-danger';
           this.message = user.message;
@@ -108,12 +113,11 @@ export class DetailnewsComponent implements OnInit {
 
   updatePointSignUser(idUser) {
     console.log(idUser);
-    // console.log(this.policy);
-    this.authService.findUserById(idUser).subscribe(user =>{
-       this.point = user.user;
+    this.authService.findUserById(idUser).subscribe(user => {
+      this.point = user.user;
       this.point.point += this.policy.pointSign;
-      this.point.uvNumber +=1;
-      this.authService.editPointSignUser(this.point).subscribe(user =>{
+      this.point.uvNumber += 1;
+      this.authService.editPointSignUser(this.point).subscribe(user => {
         if (!user.success) {
           this.messageClass = 'alert alert-danger';
           this.message = user.message;
@@ -145,17 +149,15 @@ export class DetailnewsComponent implements OnInit {
   updateStatusNewsCandidate(id, status) {
     this.newscandidate._id = id;
     this.newscandidate.status = status;
-    if(status == 'Phỏng vấn'){
+    if (status == 'Phỏng vấn') {
       this.newscandidate.point += this.policy.pointInterview;
       console.log(this.newscandidate.point);
     }
-    if(status == 'Hợp đồng'){
+    if (status == 'Hợp đồng') {
       this.newscandidate.point += this.policy.pointSign;
       console.log(this.newscandidate.point);
     }
-
     console.log(this.newscandidate);
-    // this.newscandidate.point = 
     this.newscandidteService.editStatusNewsCandidate(this.newscandidate).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -197,37 +199,237 @@ export class DetailnewsComponent implements OnInit {
       }
     });
   }
+
+  listtest;
+  countUserInNewsByFile(id) {
+    let user = {
+      status: 'Hồ sơ'
+    };
+    this.newUserService.getUserInNewsByStatus(id, user).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.userFile = data.counterUser;
+      }
+    });
+  }
+
+  countUserInNewsByInterview(id) {
+    let user = {
+      status: 'Phỏng vấn'
+    };
+    this.newUserService.getUserInNewsByStatus(id, user).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.userInterView = data.counterUser;
+      }
+    });
+  }
+
+  countUserInNewsBySign(id) {
+    let user = {
+      status: 'Hợp đồng'
+    };
+    this.newUserService.getUserInNewsByStatus(id, user).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.UserSign = data.counterUser;
+        // console.log(this.userFile + '/' + this.userInterView + '/' + this.UserSign);
+        // console.log(this.candidateFile + '/' + this.candidateInterView + '/' + this.candidateSign);
+        console.log(this.userFile + '/' + this.userInterView + '/' + this.UserSign);
+        console.log(this.candidateFile + '/' + this.candidateInterView + '/' + this.candidateSign);
+        // this.data = {
+        //   labels: ['Hồ sơ', 'Phỏng vấn', 'Hợp đồng'],
+        //   datasets: [
+        //     {
+        //       label: 'Ứng viên',
+        //       backgroundColor: '#42A5F5',
+        //       borderColor: '#1E88E5',
+        //       data: [this.file, this.userInterView, this.UserSign]
+        //     },
+        //     {
+        //       label: 'Ứng tuyển',
+        //       backgroundColor: '#9CCC65',
+        //       borderColor: '#7CB342',
+        //       data: [this.candidateFile, this.candidateInterView, this.candidateSign]
+        //     }
+        //   ]
+        // }
+
+      }
+    });
+  }
+
+  countCandidateInNewsByFile(id) {
+    let user = {
+      status: 'Hồ sơ'
+    };
+    this.newscandidteService.getCandidateInNewsByStatus(id, user).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.candidateFile = data.counterCandidate;
+      }
+    });
+  }
+
+  countCandidateInNewsByInterview(id) {
+    let user = {
+      status: 'Phỏng vấn'
+    };
+    this.newscandidteService.getCandidateInNewsByStatus(id, user).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.candidateInterView = data.counterCandidate;
+      }
+    });
+  }
+
+  countCandidateInNewsBySign(id) {
+    let user = {
+      status: 'Hợp đồng'
+    };
+    this.newscandidteService.getCandidateInNewsByStatus(id, user).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.candidateSign = data.counterCandidate;
+        console.log(this.userFile + '/' + this.userInterView + '/' + this.UserSign);
+        console.log(this.candidateFile + '/' + this.candidateInterView + '/' + this.candidateSign);
+        this.data = {
+          labels: ['Hồ sơ', 'Phỏng vấn', 'Hợp đồng'],
+          datasets: [
+            {
+              label: 'Ứng viên',
+              backgroundColor: '#42A5F5',
+              borderColor: '#1E88E5',
+              data: [this.candidateFile, this.candidateInterView, this.candidateSign]
+              // data: [this.userFile, this.userInterView, this.UserSign]
+            },
+            {
+              label: 'Ứng tuyển',
+              backgroundColor: '#9CCC65',
+              borderColor: '#7CB342',
+              data: [this.userFile, this.userInterView, this.UserSign]
+            }
+          ]
+        }
+        this.dataSource = {
+          "chart": {
+            "caption": "Thống kê của tin tuyển dụng",
+            // "subCaption": "Top 5 stores in last month by revenue",
+            // "numberprefix": "Người",
+            "theme": "fint"
+          },
+          "data": [
+            {
+              "label": "Hồ sơ",
+              "value": this.userFile+this.candidateFile
+            },
+            {
+              "label": "Phỏng vấn",
+              "value": this.userInterView+this.candidateInterView
+            },
+            {
+              "label": "Hợp đồng",
+              "value": this.UserSign+this.candidateSign
+            },
+  
+          ]
+        }
+      }
+    });
+  }
+
   ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params; // get URL paramon page load
     this.getSingleNews(this.currentUrl.id);
     this.getListCandidateByNewsId(this.currentUrl.id);
     this.getListUserByNewsId(this.currentUrl.id);
 
+    this.countUserInNewsByFile(this.currentUrl.id);
+    this.countUserInNewsByInterview(this.currentUrl.id);
+    setTimeout(() => this.countUserInNewsBySign(this.currentUrl.id), 1000);
 
-    this.dataSource = {
-      "chart": {
-        "caption": "Thống kê ứng viên của tin tuyển dụng",
-        // "subCaption": "Top 5 stores in last month by revenue",
-        // "numberprefix": "Người",
-        "theme": "fint"
-      },
-      "data": [
-        {
-          "label": "Hồ sơ",
-          "value": 32
-        },
-        {
-          "label": "Phỏng vấn",
-          "value": "23"
-        },
-        {
-          "label": "Hợp đồng",
-          "value": "13",
-        },
+    this.countCandidateInNewsByFile(this.currentUrl.id);
+    this.countCandidateInNewsByInterview(this.currentUrl.id);
+    setTimeout(() => this.countCandidateInNewsBySign(this.currentUrl.id), 2000);
 
-      ]
-    }
+    // this.countCandidateInNewsBySign(this.currentUrl.id);
+
+    // console.log(this.userFile + '/' + this.userInterView + '/' + this.UserSign);
+    // console.log(this.candidateFile + '/' + this.candidateInterView + '/' + this.candidateSign);
+    //   console.log(this.file);
+    //   console.log(this.listtest);
+
+    //   this.data = {
+    //     labels: ['Hồ sơ', 'Phỏng vấn', 'Hợp đồng'],
+    //     datasets: [
+    //       {
+    //         label: 'Ứng viên',
+    //         backgroundColor: '#42A5F5',
+    //         borderColor: '#1E88E5',
+    //         data: [this.file, this.userInterView, this.UserSign]
+    //       },
+    //       {
+    //         label: 'Ứng tuyển',
+    //         backgroundColor: '#9CCC65',
+    //         borderColor: '#7CB342',
+    //         data: [this.candidateFile, this.candidateInterView, this.candidateSign]
+    //       }
+    //     ]
+    //   }
+
+      // this.dataSource = {
+      //   "chart": {
+      //     "caption": "Thống kê ứng viên của tin tuyển dụng",
+      //     // "subCaption": "Top 5 stores in last month by revenue",
+      //     // "numberprefix": "Người",
+      //     "theme": "fint"
+      //   },
+      //   "data": [
+      //     {
+      //       "label": "Hồ sơ",
+      //       "value": this.file
+      //     },
+      //     {
+      //       "label": "Phỏng vấn",
+      //       "value": this.userInterView
+      //     },
+      //     {
+      //       "label": "Hợp đồng",
+      //       "value": this.UserSign
+      //     },
+
+      //   ]
+      // }
 
   }
-
 }

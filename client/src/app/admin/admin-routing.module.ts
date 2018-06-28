@@ -25,7 +25,7 @@ const routes: Routes = [
             { path: 'editproduct/:id', loadChildren: './product/editproduct/editproduct.module#EditproductModule'},
             //user
             { path: 'listuser', loadChildren: './users/listuser/listuser.module#ListuserModule'},
-            { path: 'formuser', loadChildren: './users/formuser/formuser.module#FormuserModule'},
+            { path: 'formuser/:id', loadChildren: './users/formuser/formuser.module#FormuserModule'},
             { path: 'edituser', loadChildren: './users/edituser/edituser.module#EdituserModule'},
             
             //shared

@@ -1,7 +1,5 @@
 const News_UserModel = require('../models/News_UserModel');
 
-
-
 function checkExitst(newss, users) {
     News_UserModel.find({ news: newss }, function (err, news) {
         if (err) {
@@ -19,16 +17,13 @@ function checkExitst(newss, users) {
     });
 }
 
-
 const addNews_User = function (req, res) {
-
     if (!req.body.news) {
         res.json({ success: false, message: 'Chưa cung cấp Id news' });
     } else {
         if (!req.body.user) {
             res.json({ success: false, message: 'Chưa cung cấp Id user' });
         } else {
-            
             News_UserModel.find({ news: req.body.news }, function (err, news) {
                 if (err) {
                     return "err";
@@ -36,8 +31,6 @@ const addNews_User = function (req, res) {
                     check = true;
                     for (var u in news) {
                         if (news[u].user == req.body.user) {
-                            // console.log("Có ");
-                            // console.log(news[u]);
                             check = false;
                             res.json({ success: false, message: 'Bạn đã đăng ứng tuyển rồi.' });
                             return;
@@ -49,7 +42,6 @@ const addNews_User = function (req, res) {
                             user: req.body.user,
                             status: req.body.status
                         });
-                        
                         newsUser.save(function (err) {
                             if (err) {
                                 res.json({ success: false, message: 'Ứng tuyển thất bại ! ', err });
@@ -105,7 +97,6 @@ const findListUserByIdNews = function (req, res) {
     }
 };
 
-
 const getAllNewsUser = function (req, res) {
     News_UserModel.find({}, function (err, newsuser) {
         if (err) {
@@ -122,7 +113,6 @@ const getAllNewsUser = function (req, res) {
     });
 }
 
-
 const editNewsUser = function (req, res) {
     if (!req.body._id) {
         res.json({ success: false, message: 'Chưa cung cấp id newsuser' });
@@ -134,8 +124,6 @@ const editNewsUser = function (req, res) {
                 if (!newsuser) {
                     res.json({ success: false, message: 'Không tìm thấy newsuser có id này.' });
                 } else {
-                    // newscandidate.candidate = req.body.candidateId,
-                    // newscandidate.news = req.body.newsId,
                     newsuser.status = req.body.status
                     newsuser.save((err) => {
                         if (err) {
@@ -189,12 +177,58 @@ const deleteNewsUser = function (req, res) {
     }
 }
 
+const countNewsUserByStatus = function (req, res) {
+    if (!req.params.status) {
+        res.json({ success: false, message: 'No status newsuser provided' });
+    } else {
+        News_UserModel.find({ 'status': req.params.status }, (err, newsUser) => {
+            if (err) {
+                res.json({ success: false, message: 'Invalid status' });
+            } else {
+                if (!newsUser) {
+                    res.json({ success: false, messasge: 'newsuser was not found' });
+                } else {
+                    var count = 0;
+                    count = newsUser.length;
+                    res.json({ success: true, counter: count, newsUsers: newsUser });
+                }
+            }
+        });
+    }
+};
+
+const countUserInNewsByStatus = function (req, res) {
+    if (!req.params.id) {
+        res.json({ success: false, message: 'No newsId provided' });
+    } else {
+        if (!req.body.status) {
+            res.json({ success: false, message: 'No status newscandidate provided' });
+        } else {
+            News_UserModel.find({ news: req.params.id, status: req.body.status }, (err, newsUsers) => {
+                if (err) {
+                    res.json({ success: false, message: 'Invalid status' });
+                } else {
+                    if (!newsUsers) {
+                        res.json({ success: false, messasge: 'newsUsers was not found' });
+                    } else {
+                        var count = 0;
+                        count = newsUsers.length;
+                        res.json({ success: true, counterUser: count, newsUsers: newsUsers });
+                    }
+                }
+            });
+        }
+    }
+};
+
 module.exports = {
     addNews_User,
     findListUserByIdNews,
     getAllNewsUser,
     deleteNewsUser,
     editNewsUser,
-    findNewsUserById
+    findNewsUserById,
+    countNewsUserByStatus,
+    countUserInNewsByStatus
 
 }

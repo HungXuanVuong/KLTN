@@ -13,7 +13,6 @@ import { ListuserComponent } from './listuser.component';
         ReactiveFormsModule,
         FormsModule,
         DataTablesModule
-
     ],
     declarations: [
         ListuserComponent

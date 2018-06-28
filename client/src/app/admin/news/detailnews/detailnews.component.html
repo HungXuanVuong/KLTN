@@ -5,9 +5,15 @@
 </div>
 
 <ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#home">Thông tin chung</a></li>
-  <li><a data-toggle="tab" href="#menu1">Xử lí tuyển dụng</a></li>
-  <li><a data-toggle="tab" href="#menu2">Thống kê xử lý</a></li>
+  <li class="active">
+    <a data-toggle="tab" href="#home">Thông tin chung</a>
+  </li>
+  <li>
+    <a data-toggle="tab" href="#menu1">Xử lí tuyển dụng</a>
+  </li>
+  <li>
+    <a data-toggle="tab" href="#menu2">Thống kê xử lý</a>
+  </li>
 
 </ul>
 
@@ -18,14 +24,22 @@
     <div class="row" style="padding-top:10px;" *ngIf="foundNews">
 
       <div class="col-md-6" style="font-size:20px">
-        <span class="label label-default"><u>Người đăng tin:</u> <b>{{news.employee.username}}</b></span>
+        <span class="label label-default">
+          <u>Người đăng tin:</u>
+          <b>{{news.employee.username}}</b>
+        </span>
       </div>
       <div class="col-md-6" style="font-size:20px">
-        <span class="label label-warning"><u>Tiểu Đề:</u> <b>{{news.title}}</b></span>
+        <span class="label label-warning">
+          <u>Tiểu Đề:</u>
+          <b>{{news.title}}</b>
+        </span>
       </div>
 
       <div class="col-md-12" style="padding-top:5px;">
-        <h3><span class="label label-success">Nội Dung</span></h3>
+        <h3>
+          <span class="label label-success">Nội Dung</span>
+        </h3>
       </div>
       <div class="col-md-12" style="padding-top:10px;" [innerHTML]="news.content">
       </div>
@@ -37,10 +51,16 @@
     <div class="row">
       <div class="row" style="padding-top:10px;">
         <div class="col-md-6" style="font-size:20px">
-          <span class="label label-default"><u>Người đăng tin:</u> <b>{{news.employee.username}}</b></span>
+          <span class="label label-default">
+            <u>Người đăng tin:</u>
+            <b>{{news.employee.username}}</b>
+          </span>
         </div>
         <div class="col-md-6" style="font-size:20px">
-          <span class="label label-warning"><u>Tiểu Đề:</u> <b>{{news.title}}</b></span>
+          <span class="label label-warning">
+            <u>Tiểu Đề:</u>
+            <b>{{news.title}}</b>
+          </span>
         </div>
       </div>
 
@@ -66,22 +86,34 @@
                   <td>{{newsuser.user.phone}}</td>
                   <td>{{newsuser.user.email}}</td>
                   <!-- <td><a href='../../../../assets/web/cv/VuongXuanHung_CV.pdf' download>{{newsuser.user.cvFile}}</a></td> -->
-                  <td><a href='/file/cv/{{newsuser.user.cvFile}}' download>{{newsuser.user.cvFile}}</a></td>
-                  <td *ngIf="newsuser.status=='Hồ sơ'"><span class="label label-danger">{{newsuser.status}}</span></td>
-                  <td *ngIf="newsuser.status=='Phỏng vấn'"><span class="label label-primary">{{newsuser.status}}</span></td>
-                  <td *ngIf="newsuser.status=='Hợp đồng'"><span class="label label-success">{{newsuser.status}}</span></td>
+                  <td>
+                    <a href='/file/cv/{{newsuser.user.cvFile}}' download>{{newsuser.user.cvFile}}</a>
+                  </td>
+                  <td *ngIf="newsuser.status=='Hồ sơ'">
+                    <span class="label label-danger">{{newsuser.status}}</span>
+                  </td>
+                  <td *ngIf="newsuser.status=='Phỏng vấn'">
+                    <span class="label label-primary">{{newsuser.status}}</span>
+                  </td>
+                  <td *ngIf="newsuser.status=='Hợp đồng'">
+                    <span class="label label-success">{{newsuser.status}}</span>
+                  </td>
                   <td class="center">
                     <div class="dropdown text-center">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-gear fa-fw"></i> 
+                        <i class="fa fa-gear fa-fw"></i>
                         <i class="fa fa-caret-down"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-user dropdown-menu-right">
                         <!-- <li *ngIf="newsuser.status=='Hồ sơ'||newsuser.status=='Hồ sơ' "><a (click)="updateStatusNewsUser(newsuser._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a>
                         </li> -->
-                        <li *ngIf="newsuser.status=='Hồ sơ'"><a (click)="updateStatusNewsUser(newsuser._id, 'Phỏng vấn')"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
+                        <li *ngIf="newsuser.status=='Hồ sơ'">
+                          <a (click)="updateStatusNewsUser(newsuser._id, 'Phỏng vấn')">
+                            <i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
                         </li>
-                        <li *ngIf="newsuser.status=='Hồ sơ' || newsuser.status=='Phỏng vấn'"><a (click)="updateStatusNewsUser(newsuser._id, 'Hợp đồng')"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
+                        <li *ngIf="newsuser.status=='Hồ sơ' || newsuser.status=='Phỏng vấn'">
+                          <a (click)="updateStatusNewsUser(newsuser._id, 'Hợp đồng')">
+                            <i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
                         </li>
                       </ul>
 
@@ -118,23 +150,35 @@
                   <td>{{newcandidate.candidate.phone}}</td>
                   <td>{{newcandidate.candidate.email}}</td>
                   <!-- <td><a href='../../../../assets/web/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a></td> -->
-                  <td><a href='/file/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a></td>
+                  <td>
+                    <a href='/file/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a>
+                  </td>
                   <td>{{newcandidate.user.username}}</td>
-                  <td *ngIf="newcandidate.status=='Hồ sơ'"><span class="label label-danger">{{newcandidate.status}}</span></td>
-                  <td *ngIf="newcandidate.status=='Phỏng vấn'"><span class="label label-primary">{{newcandidate.status}}</span></td>
-                  <td *ngIf="newcandidate.status=='Hợp đồng'"><span class="label label-success">{{newcandidate.status}}</span></td>
+                  <td *ngIf="newcandidate.status=='Hồ sơ'">
+                    <span class="label label-danger">{{newcandidate.status}}</span>
+                  </td>
+                  <td *ngIf="newcandidate.status=='Phỏng vấn'">
+                    <span class="label label-primary">{{newcandidate.status}}</span>
+                  </td>
+                  <td *ngIf="newcandidate.status=='Hợp đồng'">
+                    <span class="label label-success">{{newcandidate.status}}</span>
+                  </td>
                   <td class="center">
                     <div class="dropdown text-center">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-gear fa-fw"></i> 
+                        <i class="fa fa-gear fa-fw"></i>
                         <i class="fa fa-caret-down"></i>
                       </a>
                       <ul class="dropdown-menu dropdown-user dropdown-menu-right">
-                         <!-- <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a> 
+                        <!-- <li><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hồ sơ')"><i class="fa fa-file-text-o fa-fw"></i>Hồ sơ</a> 
                         </li> -->
-                        <li *ngIf="newcandidate.status=='Hồ sơ'"><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Phỏng vấn')" (click)="updatePointFileUser(newcandidate.user._id)"><i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
+                        <li *ngIf="newcandidate.status=='Hồ sơ'">
+                          <a (click)="updateStatusNewsCandidate(newcandidate._id, 'Phỏng vấn')" (click)="updatePointFileUser(newcandidate.user._id)">
+                            <i class="fa fa-question-circle fa-fw"></i>Phỏng vấn</a>
                         </li>
-                        <li *ngIf="newcandidate.status=='Hồ sơ' || newcandidate.status=='Phỏng vấn'"><a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')" (click)="updatePointSignUser(newcandidate.user._id)"><i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
+                        <li *ngIf="newcandidate.status=='Hồ sơ' || newcandidate.status=='Phỏng vấn'">
+                          <a (click)="updateStatusNewsCandidate(newcandidate._id, 'Hợp đồng')" (click)="updatePointSignUser(newcandidate.user._id)">
+                            <i class="fa fa-pencil-square-o fa-fw"></i>Hợp đồng</a>
                         </li>
                       </ul>
 
@@ -151,10 +195,50 @@
   </div>
 
   <div id="menu2" class="tab-pane fade">
-    <div class="row" style="padding-top:10px;">
 
+    <div class="col-md-12">
+      <h4 class="page-header text-center">
+        <span class="label label-warning">Thống kế ứng viên, ứng tuyển</span>
+      </h4>
     </div>
 
+    <div class="col-md-12" style="padding-top:10px;">
+      <p-chart type="bar" [data]="data"></p-chart>
+    </div>
+
+    <div class="col-md-12" style="padding-top:10px;">
+      <div class="panel panel-danger">
+        <div class="panel-heading">Bảng thống kê chi tiết</div>
+        <div class="panel-body">
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Loại tình trạng</th>
+                <th style="text-align:center">Ứng viên</th>
+                <th style="text-align:center">Ứng tuyển</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Hồ sơ</td>
+                <td style="text-align:center">{{userFile}}</td>
+                <td style="text-align:center">{{candidateFile}}</td>
+              </tr>
+              <tr>
+                <td>Phỏng vấn</td>
+                <td style="text-align:center">{{userInterView}}</td>
+                <td style="text-align:center">{{candidateInterView}}</td>
+              </tr>
+              <tr>
+                <td>Hợp đồng</td>
+                <td style="text-align:center">{{UserSign}}</td>
+                <td style="text-align:center">{{candidateSign}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
     <div class="row" style="padding-top:10px;">
 
@@ -164,33 +248,34 @@
 
       <div class="col-md-4" style="padding-top:20px;">
         <div class="panel panel-danger">
-          <div class="panel-heading">Thống kê</div>
+          <div class="panel-heading">Thống kê Tổng</div>
           <div class="panel-body">
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
                   <th>Loại tình trạng</th>
-                  <th class="text-right">Số lượng</th>
+                  <th style="text-align:center">Số lượng</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Hồ sơ</td>
-                  <td align="right">32</td>
+                  <td style="text-align:center">{{userFile + candidateFile}}</td>
                 </tr>
                 <tr>
                   <td>Phỏng vấn</td>
-                  <td align="right">23</td>
+                  <td style="text-align:center">{{userInterView + candidateInterView}}</td>
                 </tr>
                 <tr>
                   <td>Hợp đồng</td>
-                  <td align="right">13</td>
+                  <td style="text-align:center">{{UserSign + candidateSign}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
+
 
     </div>
 

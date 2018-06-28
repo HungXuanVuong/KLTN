@@ -88,6 +88,11 @@ export class AuthServiceService {
     return this.http.get(this.domain + 'authentication/user/gettop4').map(res => res.json());
   }
 
+  getTop5User() {
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'authentication/user/gettop5').map(res => res.json());
+  }
+
   changePassword(user){
     this.createAuthenticationHeaders();
     return this.http.put(this.domain + 'authentication/edit/', user, this.options).map(res => res.json());
@@ -108,18 +113,27 @@ export class AuthServiceService {
   }
 
   editPointUser(user){
+    this.createAuthenticationHeaders();
     return this.http.put(this.domain + 'authentication/user/editpoint', user).map(res => res.json());
   }
 
   editPointSignUser(user){
+    this.createAuthenticationHeaders();
     return this.http.put(this.domain + 'authentication/user/editpointsign', user).map(res => res.json());
   }
 
   lockUser(user){
+    this.createAuthenticationHeaders();
     return this.http.put(this.domain + 'authentication/user/lockuser', user).map(res => res.json());
   }
 
   unLockUser(user){
+    this.createAuthenticationHeaders();
     return this.http.put(this.domain + 'authentication/user/unlockuser', user).map(res => res.json());
+  }
+
+  editRoleUser(user){
+    this.createAuthenticationHeaders();
+    return this.http.put(this.domain + 'authentication/user/editrole', user).map(res => res.json());
   }
 }

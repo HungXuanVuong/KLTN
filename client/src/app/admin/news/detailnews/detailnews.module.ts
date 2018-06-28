@@ -16,6 +16,9 @@ import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 import { FusionChartsModule } from 'angular4-fusioncharts';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 
+import {ChartModule} from 'primeng/chart'
+
+
 @NgModule({
     imports: [
         CommonModule,
@@ -23,7 +26,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
         ReactiveFormsModule,
         FormsModule,
         DataTablesModule,
-        FusionChartsModule
+        FusionChartsModule,
+        ChartModule
 
     ],
     declarations: [

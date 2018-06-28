@@ -24,26 +24,41 @@ export class FormchinhsachComponent implements OnInit {
     this.createForm();
   }
 
+  validateNumberOf(controls) {
+    const regExp = new RegExp(/[0-9]/);
+    if (regExp.test(controls.value)) {
+      return null;
+    } else {
+      return { 'validateNumberOf': true }
+    }
+  }
+
   createForm(){
     this.form = this.formBuilder.group({
       // tên chính sách
       pName: ['', Validators.compose([
-        Validators.required, // Field is required
-        Validators.minLength(5), 
-        Validators.maxLength(50)
+        Validators.required, 
+        Validators.maxLength(20),
+        Validators.minLength(2)
       ])],
       // điểm vòng hồ sơ
-      pointFile: ['',
-        Validators.required, // Field is required
-      ],
+      pointFile: ['', Validators.compose([
+        Validators.required,
+        Validators.min(0),
+        this.validateNumberOf
+      ])],
       // điểm vòng phỏng vấn
-      pointInterview: ['',
-        Validators.required, // Field is required
-      ],
+      pointInterview: ['', Validators.compose([
+        Validators.required,
+        Validators.min(0),
+        this.validateNumberOf
+      ])],
       // điểm ký hợp đồng
-      pointSign: ['',
-        Validators.required, // Field is required
-      ]
+      pointSign: ['', Validators.compose([
+        Validators.required,
+        Validators.min(0),
+        this.validateNumberOf
+      ])]
     });
   }
   clearAllFields(){

@@ -11,11 +11,22 @@ router.route('/add')
 router.route('/getall')
 .get(NewsCandidateController.getAllNewsCandidate);
 
+
+
+router.route('/get5newcandidate')
+.get(NewsCandidateController.get5NewCandidate);
+
 router.get('/checkEmailCandidate/:news/:email', NewsCandidateController.checkEmail);
 router.get('/checkPhoneCandidate/:news/:phone', NewsCandidateController.checkPhone);
 
+router.route('/findbystatus/:status')
+.get(NewsCandidateController.countNewsCandidate);
+
 router.route('/edit')
 .put(NewsCandidateController.editNewsCandidate);
+
+router.route('/findcandidateinnews/:id')
+.put(NewsCandidateController.countCandidateInNewsByStatus);
 
 router.route('/candidate/:id')
 .get(NewsCandidateController.findListCandidateByIdNews);

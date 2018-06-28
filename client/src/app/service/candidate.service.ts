@@ -51,5 +51,9 @@ export class CandidateService {
       return this.http.put(this.domain + 'candidate/edit/', candidate, this.options).map(res => res.json());
     }
 
+    getTop5Candidate() {
+      this.createAuthenticationHeaders();
+      return this.http.get(this.domain + 'candidate/gettop5').map(res => res.json());
+    }
 
 }
