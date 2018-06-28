@@ -6,15 +6,15 @@ const router = express.Router();
 const GiftController = require('../controllers/GiftController');
 
 
+router.route('/allgift/editnumberofgift')
+.put(GiftController.updateNumberOfGift);
+
 router.route('/allgift')
 .get(GiftController.getAllGift)
 .post(GiftController.insertGift);
 
 router.route('/editstatusgift')
 .put(GiftController.editStatus);
-
-router.route('/allgift/editnumberofgift')
-.put(GiftController.updateNumberOfGift);
 
 router.route('/allgift/:id')
 .get(GiftController.giftById)

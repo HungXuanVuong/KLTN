@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { OrderService } from '../../../service/order.service';
 import { GiftService } from '../../../service/gift.service';
 import { AuthServiceService } from '../../../service/auth-service.service';
@@ -10,6 +10,8 @@ import { Observable } from 'rxjs/Rx';
 import { CommonModule } from '@angular/common';
 import {User} from '../../../models/user';
 import {Gift} from '../../../models/gift';
+import { log } from 'util';
+
 
 @Component({
   selector: 'app-listtransaction',
@@ -28,8 +30,13 @@ export class ListtransactionComponent implements OnInit {
   public temp_var: Object = false;
   gift;
   user: User;
+  userId = 0;
   donHangTrangThai;
   selectedStatus;
+  @Input()
+  public statusID: any;
+  @Input()
+  public deleteID: any;
 
   constructor(
     private authService: AuthServiceService,
@@ -37,12 +44,25 @@ export class ListtransactionComponent implements OnInit {
     private giftService: GiftService,
     private router: Router
   ) { }
-  
   selectStatusHandle(event: any){
     this.donHangTrangThai = event.target.value;
     console.log(this.donHangTrangThai);
   }
-  setStatus(orderid, userid) {
+  RedirectUnregister(){
+    this.router.navigate(['/redirectpage'],
+    {queryParams: {mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger"}});
+  }
+  checkRole(){
+    this.authService.getProfile().subscribe(profile => {
+      if(!profile.user){
+        this.RedirectUnregister();
+      }else{
+        this.user = profile.user;
+        this.userId = profile.user._id;
+      }
+    });
+  }
+  setStatus(orderid, username) {
     this.orderService.getOrderByID(orderid).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -62,7 +82,7 @@ export class ListtransactionComponent implements OnInit {
           const order_ht = {
             _id: orderid,
             status: 'Đã giao quà',
-            employeeSetStatus: userid
+            employeeSetStatus: username
           };
           console.log(order_ht);
           this.orderService.editStatusAndDay(order_ht).subscribe(data2 => {
@@ -79,7 +99,6 @@ export class ListtransactionComponent implements OnInit {
       }
     });
   }
-
   getAllOrder() {
     this.orderService.getAllOrder().subscribe(data => {
       this.order = data.listOrder;
@@ -90,14 +109,8 @@ export class ListtransactionComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers'
     };
+    this.checkRole();
     this.getAllOrder();
-    this.authService.getProfile().subscribe(profile => {
-      if (profile) {
-        this.user = profile.user;
-      }else {
-        return;
-      }
-    });
   }
   quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn){
     this.giftService.updateNumberOfGift(gift_cn).subscribe(data => {

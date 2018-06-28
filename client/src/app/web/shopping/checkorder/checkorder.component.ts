@@ -34,7 +34,7 @@ export class CheckorderComponent implements OnInit {
     });
   }
   
-  setStatusUser(orderid,userid) {
+  setStatusUser(orderid,username) {
     this.orderService.getOrderByID(orderid).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -53,7 +53,7 @@ export class CheckorderComponent implements OnInit {
           const order_ht = {
             _id: orderid,
             status: 'Đã giao quà',
-            employeeSetStatus: userid
+            employeeSetStatus: username
           };
           console.log(order_ht);
           this.orderService.editStatusAndDay(order_ht).subscribe(data2 => {
@@ -79,6 +79,7 @@ export class CheckorderComponent implements OnInit {
         return;
       }
     });  
+    console.log(this.user);
   }
 
 }

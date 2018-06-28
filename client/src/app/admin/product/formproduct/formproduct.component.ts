@@ -73,7 +73,7 @@ export class FormproductComponent implements OnInit {
       ])],
       amount: ['', Validators.compose([
         Validators.required,
-        Validators.min(1),
+        Validators.min(0),
         this.validateNumberOf
       ])],
       create_date: [this.model, Validators.compose([

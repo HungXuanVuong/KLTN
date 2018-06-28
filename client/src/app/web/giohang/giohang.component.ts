@@ -115,6 +115,7 @@ export class GiohangComponent implements OnInit {
           _id:  p_id,
           amount: amountproduct - 1
     };
+    console.log(gift1);
     if(gift1.amount==0){
       const gift_ht = {
         _id: p_id,

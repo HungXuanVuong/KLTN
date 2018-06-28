@@ -7,7 +7,7 @@ export class Order{
         placeOfReceipt: String;
         status: String;
         employee: Object;
-        employeeSetStatus: Object;
+        employeeSetStatus: String;
         product_id: Object;
     
         constructor(){

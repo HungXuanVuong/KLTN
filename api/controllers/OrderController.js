@@ -4,7 +4,7 @@ const GCodeOrder = require('../Util/GCodeOrder');
 const config = require('../config/db');
 
 const getAllOrder = function (req, res) {
-    OrderModel.find({}).populate({path: 'employee'}).populate({path: 'product_id'}).populate({path: 'employeeSetStatus'}).sort({ create_date: -1 }).exec(function (err, order) {
+    OrderModel.find({}).populate({path: 'employee'}).populate({path: 'product_id'}).sort({ create_date: -1 }).exec(function (err, order) {
         if (err) {
             res.json({ success: false, message: 'Lỗi: ' + err });
         } else {
@@ -24,7 +24,7 @@ const getOrderByID = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'No order ID was provided.' });
     } else {
-        OrderModel.findOne({ _id: req.params.id }).populate({path: 'employee'}).populate({path: 'product_id'}).populate({path: 'employeeSetStatus'}).exec(function (err, order) {
+        OrderModel.findOne({ _id: req.params.id }).populate({path: 'employee'}).populate({path: 'product_id'}).exec(function (err, order) {
             if (err) {
                 res.json({ success: false, message: 'Not a valid order id' }); // Return error message
             } else {

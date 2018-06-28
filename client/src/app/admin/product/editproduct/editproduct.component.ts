@@ -75,7 +75,7 @@ export class EditproductComponent implements OnInit {
       ])],
       amount: ['', Validators.compose([
         Validators.required,
-        Validators.min(1),
+        Validators.min(0),
         this.validateNumberOf
       ])],
       create_date: ['', Validators.compose([

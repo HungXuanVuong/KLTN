@@ -29,7 +29,6 @@
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                   <tr>
-                        <th>STT</th>
                         <th>Mã đơn quà</th>
                         <th>Tên sản phẩm</th>
                         <th>Số point quy đổi</th>
@@ -46,7 +45,6 @@
                   <tr *ngFor="let o of order | paginate: { itemsPerPage:10, currentPage: p} | filter : searchOrder"
                     class="odd gradeX">
                     <ng-container *ngIf="o.status == 'Đã đặt quà'">
-                    <td class="counterCell"></td>
                     <td>{{ o.codeOrder }}</td>
                     <td>{{ o.product_id.product_name }}</td>
                     <td>{{ o.product_id.point_sp }}</td>
@@ -54,7 +52,7 @@
                     <td>{{ o.employee.username }}</td>
                     <td>{{ o.orderDay | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                     <td>{{ o.receivedDay | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
-                    <td>{{ o.employeeSetStatus.username }}</td>
+                    <td>{{ o.employeeSetStatus }}</td>
                     <td>
                           <div *ngIf="o.status==='Đã giao quà'">
                             <p style="color:#0fa6ec;font-weight: bold;">{{o.status}}</p>
@@ -89,7 +87,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                <button type="button" name="button" class="btn btn-success" (click)="setStatusUser(o._id, user._id)" data-dismiss="modal">Đồng ý</button>
+                                <button type="button" name="button" class="btn btn-success" (click)="setStatusUser(o._id, user.username)" data-dismiss="modal">Đồng ý</button>
                               </div>
                             </div>
                           </div>

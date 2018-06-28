@@ -9,7 +9,7 @@ const orderModelSchema = new Schema({
     status: {type: String},
     product_id: {type: Schema.ObjectId, ref: 'GiftModel'},
     employee: {type: Schema.ObjectId, ref: 'UserModel'},
-    employeeSetStatus: {type: Schema.ObjectId, ref: 'UserModel'}
+    employeeSetStatus: {type: String}
 });
 
 const OrderModel = mongoose.model('OrderModel', orderModelSchema);
