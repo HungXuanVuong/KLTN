@@ -33,10 +33,6 @@ export class ListtransactionComponent implements OnInit {
   userId = 0;
   donHangTrangThai;
   selectedStatus;
-  @Input()
-  public statusID: any;
-  @Input()
-  public deleteID: any;
 
   constructor(
     private authService: AuthServiceService,
