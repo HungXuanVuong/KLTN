@@ -330,13 +330,14 @@ export class DetailnewsComponent implements OnInit {
               label: 'Ứng viên',
               backgroundColor: '#42A5F5',
               borderColor: '#1E88E5',
-              data: [this.userFile, this.userInterView, this.UserSign]
+              data: [this.candidateFile, this.candidateInterView, this.candidateSign]
+              // data: [this.userFile, this.userInterView, this.UserSign]
             },
             {
               label: 'Ứng tuyển',
               backgroundColor: '#9CCC65',
               borderColor: '#7CB342',
-              data: [this.candidateFile, this.candidateInterView, this.candidateSign]
+              data: [this.userFile, this.userInterView, this.UserSign]
             }
           ]
         }
