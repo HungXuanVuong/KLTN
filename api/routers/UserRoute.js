@@ -30,7 +30,7 @@ router.post('/uploadcv', UploadFileUtil.uploadCVUserHandling);
 router.route('/user/getall')
       .get(UserController.getAllUsers);
 
-router.route('/user/get5newuser')
+router.route('/user/gettop5')
       .get(UserController.get5NewUser);
 
 router.route('/user/gettop4')

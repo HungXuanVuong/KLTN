@@ -15,6 +15,9 @@ router.route('/add')
 router.route('/getall')
 .get(CandidateController.getAllCandidate);
 
+router.route('/gettop5')
+.get(CandidateController.getTop5Candidate);
+
 
 router.route('/edit')
 .put(CandidateController.editCandidate);

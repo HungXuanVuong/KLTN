@@ -88,6 +88,11 @@ export class AuthServiceService {
     return this.http.get(this.domain + 'authentication/user/gettop4').map(res => res.json());
   }
 
+  getTop5User() {
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'authentication/user/gettop5').map(res => res.json());
+  }
+
   changePassword(user){
     this.createAuthenticationHeaders();
     return this.http.put(this.domain + 'authentication/edit/', user, this.options).map(res => res.json());

@@ -91,7 +91,7 @@ const addCandidate = function (req, res) {
                                             res.json({ success: false, message: 'Giới thiệu thất bại: ', err });
                                         }
                                     } else {
-                                        res.json({ success: true, candidate: candidatenew, message: 'Thông tin ứng viên đã được lưu ! '});
+                                        res.json({ success: true, candidate: candidatenew, message: 'Thông tin ứng viên đã được lưu ! ' });
                                     }
                                 });
                             }
@@ -138,6 +138,22 @@ const getAllCandidate = function (req, res) {
     });
 }
 
+
+const getTop5Candidate = function (req, res) {
+    CandidateModel.find({}).sort({ '_id': -1 }).limit(5).exec(function (err, candidates) {
+        if (err) {
+            res.json({ success: false, message: 'Lỗi: ' + err });
+        } else {
+            if (!candidates) {
+                res.json({ success: false, message: ' Danh sach Rỗng' });
+            } else {
+                var count = 0;
+                count = candidates.length;
+                res.json({ success: true, countusers: count, listCandidate: candidates });
+            }
+        }
+    });
+};
 
 const editCandidate = function (req, res) {
     if (!req.body._id) {
@@ -200,6 +216,7 @@ module.exports = {
     editCandidate,
     deleteCandidate,
     findCandidateById,
-    getAllCandidate
+    getAllCandidate,
+    getTop5Candidate
 
 }
