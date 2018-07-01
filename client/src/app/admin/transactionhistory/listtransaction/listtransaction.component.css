@@ -13,3 +13,12 @@ table {
     content: counter(tableCount); 
     counter-increment: tableCount; 
 }
+select#soflow-color {
+    color: #fff;
+    background-color: #d9ee95;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding-left: 15px;
+    height: 25px; 
+ }

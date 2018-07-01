@@ -17,9 +17,8 @@ export class ListproductComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   public temp_var: Object= false;
   listtypegift;
-
-
   giftbytype;
+  status_Product='XEM_TAT_CA';
 
   constructor(
     private giftService: GiftService,

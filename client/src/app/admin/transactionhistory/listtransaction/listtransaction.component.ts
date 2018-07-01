@@ -33,6 +33,7 @@ export class ListtransactionComponent implements OnInit {
   userId = 0;
   donHangTrangThai;
   selectedStatus;
+  status_Order='XEM_TAT_CA';
 
   constructor(
     private authService: AuthServiceService,
@@ -108,7 +109,43 @@ export class ListtransactionComponent implements OnInit {
     this.checkRole();
     this.getAllOrder();
   }
-  quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn){
+  setStatusByCancel(orderid, username){
+    this.orderService.getOrderByID(orderid).subscribe(data => {
+      if (!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      }else {
+        this.order2 = {
+          codeOrder: data.order.codeOrder,
+          orderDay: data.order.orderDay,
+          receivedDay: data.order.receivedDay,
+          placeOfReceipt: data.order.placeOfReceipt,
+          product_id: data.order.product_id,
+          status: data.order.status,
+          employee: data.order.employee,
+          employeeSetStatus: data.order.employeeSetStatus
+        };
+        if (this.order2.status === 'Đã đặt quà') {
+          const order_ht = {
+            _id: orderid,
+            status: 'Đã hủy đơn quà',
+            employeeSetStatus: username
+          };
+          console.log(order_ht);
+          this.orderService.editStatusAndDay(order_ht).subscribe(data2 => {
+            if (!data2.success) {
+              this.messageClass = 'alert alert-danger';
+              this.message = data2.message;
+            } else {
+                this.messageClass = 'alert alert-success';
+              this.ngOnInit();
+            }
+          });
+        }
+      }
+    });
+  }
+  quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn,username){
     this.giftService.updateNumberOfGift(gift_cn).subscribe(data => {
       if (!data.success) {
         this.messageClass = 'alert alert-danger';
@@ -133,22 +170,15 @@ export class ListtransactionComponent implements OnInit {
           this.processing = false;
         } else {
           this.processing = true; // Disable button
-          this.orderService.deleteOrder(order_id).subscribe(data2 => {
-            // check yeu cau xoa
-            if (!data2.success) {
-              this.messageClass = 'alert alert-danger';
-              this.message = 'data2.message';
-            }else {
-              this.messageClass = 'alert alert-success';
-              this.message = 'Hủy đơn quà thành công!';
-              this.message += ' Tài khoản người đổi quà vừa được hoàn point tương ứng!';
-              this.ngOnInit();
-            }
-          });
+          this.messageClass = 'alert alert-success';
+          this.setStatusByCancel(order_id,username);
+          this.message = 'Hủy đơn quà thành công!';
+          this.message += ' Tài khoản người đổi quà vừa được hoàn point tương ứng!';
+          this.ngOnInit();
         }
       });
   }
-deleteTransaction(order_id,employee_id, point_user, product_id, point_qd) {
+deleteTransaction(order_id,employee_id, point_user, product_id, point_qd,username) {
     if(product_id.status==='Hết quà'){
     const gift_cn1 = {
       _id: product_id,
@@ -167,7 +197,7 @@ deleteTransaction(order_id,employee_id, point_user, product_id, point_qd) {
         this.messageClass = 'alert alert-success';
       }
     });
-    this.quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn1);
+    this.quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn1,username);
    
     }else{
       if(product_id.status==='Còn quà'){
@@ -175,7 +205,7 @@ deleteTransaction(order_id,employee_id, point_user, product_id, point_qd) {
           _id: product_id,
           amount: product_id.amount + 1
         };
-        this.quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn2);
+        this.quyTrinhHoanDonQua(order_id,employee_id, point_user, product_id, point_qd,gift_cn2,username);
       }
     }
 

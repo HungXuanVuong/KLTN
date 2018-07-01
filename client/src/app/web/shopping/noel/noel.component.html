@@ -4,23 +4,67 @@
 <div class="product">
   <div class="row">
       <div *ngFor="let g of gift | paginate: { itemsPerPage:8, currentPage: p }" class="col-lg-3 col-md-4 col-sm-6 col-xs-6">  
-              <div class="panel-body">
-                  <a  target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive"></a>
-                <div class="panel-heading no-padding center">
-                  <p class="text-center" style="color:green; font-size:16px; ">{{g.product_name}}</p>
+        <div class="panel-body" *ngIf="user && user.point >= g.point_sp">
+          <figure>
+          <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive" title="Bạn có thể đổi quà này"></a>
+          <div class="top-right"><img src="./../../../assets/web/img/imgShop/1.png" class="img-responsive" style="width: 40%;height:40%"></div>
+          <figcaption>
+        <div class="panel-heading no-padding center">
+          <p class="text-center" style="color:green; font-size:16px;">{{g.product_name}}</p>
+      </div>
+          <div class="text">
+              <div class="row">
+                <div class="col-md-6">Quy đổi:</div>
+                <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
               </div>
-                  <div class="text">
-                      <div class="row">
-                          <div class="col-md-6">Quy đổi:</div>
-                          <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">Số lượng:</div>
-                        <a class="col-md-6 career_link_location">{{g.amount}}</a>
-                      </div>
-                  </div>
-
+              <div class="row">
+                <div class="col-md-6">Số lượng:</div>
+                <a class="col-md-6 career_link_location">{{g.amount}}</a>
               </div>
+          </div>
+        </figcaption>
+        </figure>
+      </div>
+      <div class="panel-body" *ngIf="user && user.point < g.point_sp">
+          <figure>
+          <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive" title="Bạn không đủ point để đổi quà này"></a>
+          <figcaption>
+        <div class="panel-heading no-padding center">
+          <p class="text-center" style="color:green; font-size:16px;">{{g.product_name}}</p>
+      </div>
+          <div class="text">
+              <div class="row">
+                <div class="col-md-6">Quy đổi:</div>
+                <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
+              </div>
+              <div class="row">
+                <div class="col-md-6">Số lượng:</div>
+                <a class="col-md-6 career_link_location">{{g.amount}}</a>
+              </div>
+          </div>
+        </figcaption>
+        </figure>
+      </div>
+      <div class="panel-body" *ngIf="!user">
+          <figure>
+          <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive"></a>
+          <figcaption>
+        <div class="panel-heading no-padding center">
+          <p class="text-center" style="color:green; font-size:16px;">{{g.product_name}}</p>
+      </div>
+          <div class="text">
+              <div class="row">
+                <div class="col-md-6">Quy đổi:</div>
+                <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
+              </div>
+              <div class="row">
+                <div class="col-md-6">Số lượng:</div>
+                <a class="col-md-6 career_link_location">{{g.amount}}</a>
+              </div>
+          </div>
+        </figcaption>
+        </figure>
+      </div>
                 <div class="pull-left">
                   <div *ngIf="!user">
                         <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default" style="font-size: 10px;">

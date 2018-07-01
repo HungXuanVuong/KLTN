@@ -1,4 +1,4 @@
-<div class="row" style="padding-bottom:10px;" *ngIf="user.role == 'empl' || user.role == 'admin'">
+<div class="row" style="padding-bottom:10px;" *ngIf="user.role == 'empl'">
         <div class="col-lg-12">
           <h1 class="page-header" style="font:bold">Xác nhận hóa đơn giao quà</h1>
         </div>
@@ -18,7 +18,7 @@
       
       </div>
       <!-- .row -->
-      <div class="row"  *ngIf="user.role == 'empl' || user.role == 'admin'">
+      <div class="row"  *ngIf="user.role == 'empl'">
         <div class="col-lg-12">
           <div class="panel panel-green">
             <div class="panel-heading text-center">
@@ -55,10 +55,10 @@
                     <td>{{ o.employeeSetStatus }}</td>
                     <td>
                           <div *ngIf="o.status==='Đã giao quà'">
-                            <p style="color:#0fa6ec;font-weight: bold;">{{o.status}}</p>
+                            <p style="color:#119e1c;font-weight: bold;">{{o.status}}</p>
                           </div>
                           <div *ngIf="o.status==='Đã đặt quà'">
-                                  <p style="color:#ec1111;font-weight: bold;">{{o.status}}</p>
+                                  <p style="color:#46aaec;font-weight: bold;">{{o.status}}</p>
                           </div>
                         </td>
                     <td>
@@ -105,6 +105,6 @@
           </div>
         </div>
       </div>
-      <div class="txtelegantshadow" *ngIf="user.role != 'empl' && user.role != 'admin'">
+      <div class="txtelegantshadow" *ngIf="user.role != 'empl'">
           <h1 class="page-header" style="font:bold; text-align: center;">Bạn không có quyền hạn sử dụng chức năng này!</h1>
       </div>

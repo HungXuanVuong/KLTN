@@ -16,6 +16,11 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 Form danh sách quà quy đổi
+                <select [(ngModel)]="status_Product" class="pull-right" style="color: rgb(3, 3, 20);font-family: 'Times New Roman', Times, serif;" id="soflow-color">
+                        <option value="XEM_TAT_CA">Xem tất cả</option>
+                        <option value="XEM_CON_QUA">Xem còn quà</option>
+                        <option value="XEM_HET_QUA">Xem hết quà</option>
+                      </select>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -36,6 +41,7 @@
                     </thead>
                     <tbody>
                         <tr class="odd gradeX" *ngFor="let g of listgift;">
+                            <ng-container *ngIf="status_Product ==='XEM_TAT_CA' || (status_Product ==='XEM_CON_QUA' && g.status==='Còn quà') || (status_Product ==='XEM_HET_QUA' && g.status==='Hết quà')">
                             <td class="counterCell"></td>
                             <td>{{g.product_name}}</td>
                             <td>{{g.type_giftID.type_name}}</td>
@@ -64,6 +70,7 @@
                                 <!-- /.dropdown-user -->
                                 </div>
                             </td>
+                            </ng-container>
                         </tr>    
                     </tbody>
                 </table>
