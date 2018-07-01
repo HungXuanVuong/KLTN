@@ -23,6 +23,12 @@ export class HomeComponent implements OnInit {
   searchKey = "";
   searchName = "";
 
+  positionName = "";
+  placeName = "";
+
+  positionKey = "";
+  placeKey = "";
+
 
   constructor(
     private authService: AuthServiceService,
@@ -30,41 +36,71 @@ export class HomeComponent implements OnInit {
     private router: Router
   ) {
 
-   }
+  }
 
-  OnclickSearch(){
+  selectPositionHandle(event: any) {
+    this.positionKey = event.target.value;
+    console.log(this.positionName);
+  }
+  selectPlaceHandle(event: any) {
+    this.placeKey = event.target.value;
+    console.log(this.placeName);
+  }
+
+  clearAll() {
+    this.searchKey = '';
+    this.searchName = '';
+    this.placeName = "0";
+    this.positionName = "0";
+    this.positionKey = '';
+    this.placeKey = '';
+    this.createHome();
+  }
+  OnclickSearch() {
     this.searchKey = this.searchName;
+    // setTimeout(function() {
+    //   this.positionKey = this.positionName;
+    // }, 500);
+    // setTimeout(function() {
+    //   this.placeKey = this.placeName;
+    // }, 1000);
+    // this.positionKey = this.positionName;
+    // this.placeKey = this.placeName;
   }
 
-  RedirectUnregister(){
+  RedirectUnregister() {
     this.router.navigate(['/login'],
-    {queryParams: {mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger"}});
+      { queryParams: { mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger" } });
   }
 
-  ngOnInit() {
-    this.newsService.getTop6News().subscribe(data =>{
+  createHome() {
+    this.newsService.getTop6News().subscribe(data => {
       this.news = data.listNews;
       console.log(this.news);
     });
-    this.authService.getTop4User().subscribe(data =>{
+    this.authService.getTop4User().subscribe(data => {
       //this.users = data.listUsers;
       this.users = data.listUsers;
       console.log(this.users);
       var d = new Date();
       this.month = d.getMonth();
-      if(this.month == 0){
+      if (this.month == 0) {
         this.month = 12;
       }
     });
 
     this.authService.getProfile().subscribe(profile => {
-      if(profile){
+      if (profile) {
         this.user = profile.user;
-      }else{
+      } else {
         return;
       }
     });
-
+  }
+  ngOnInit() {
+    this.placeName = "0";
+    this.positionName = "0";
+    this.createHome();
   }
 
 }

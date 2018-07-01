@@ -32,24 +32,104 @@
                      </a>
 </div>
 <!-- /.carousel -->
+
+<!-- <div id="feature1">
+    <div class="container">
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" name="q" type="text" placeholder="Search">
+                <div class="input-group-btn">
+                    <select class="form-control" name="category">
+                        <option>select</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+                <div class="input-group-btn">
+                    <select class="form-control" name="category">
+                        <option>select</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+                <div class="input-group-btn">
+                    <button class="btn btn-success">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
 <div id="feature1">
+    <div class="container">
+        <div class="row">
+            <div class="search-container" style="text-align: center;">
+                <form action="/action_page.php">
+                    <div class="col-md-6 nopadding">
+                        <div class="form-group">
+                            <input [(ngModel)]="searchName" name="searchName" class="form-control" type="search" placeholder="Tìm theo tên công việc..." name="search" style="font-size: 18px;border: 2px solid #00aff0;">
+                        </div>
+                    </div>
+                    <div class="col-md-2 nopadding">
+                        <div class="form-group">
+                            <select [(ngModel)]="positionName" (change)="selectPositionHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control" style="font-size: 18px;border: 2px solid #00aff0;">
+                                <option value="0"hidden>Vị trí..</option>
+                                <option>Developer</option>
+                                <option>Tester</option>
+                                <option>QA</option>
+                                <option>DevOps</option>
+                                <option>Senior</option>
+                                <option>PM</option>
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2 nopadding">
+                        <div class="form-group">
+                            <select [(ngModel)]="placeName" (change)="selectPlaceHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control" style="font-size: 18px;border: 2px solid #00aff0;">
+                                <option value="0"hidden>Địa điểm..</option>
+                                <option>Hồ Chí Minh</option>
+                                <option>Đà Nẵng</option>
+                                <option>Hà Nội</option>
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-1 nopadding">
+                        <div class="form-group">
+                            <button (click)="OnclickSearch()" value="" class="fa fa-search fa-lg btn btn-primary form-control"></button>
+                        </div>
+                    </div>
+                    <div class="col-md-1 nopadding">
+                            <div class="form-group">
+                                <button (click)="clearAll()" value="" class="fa fa-trash fa-lg btn btn-default form-control"></button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div id="feature1">
     <div class="container">
         <div class="row">
             <form class="search">
                 <div>
                     <input [(ngModel)]="searchName" name="searchName" type="search" placeholder="Tìm theo tên công việc, vị trí ...">
                     <button (click)="OnclickSearch()" value=""><img src="./../../../assets/web/img/search.png" alt="Search"></button>
-
                 </div>
             </form>
         </div>
     </div>
-</div>
+</div> -->
 <!-- feature1 -->
 <div id="feature2">
     <div class="container">
         <div class="row">
-            <div *ngFor="let new of news | filter : searchKey | paginate: { itemsPerPage:6, currentPage: p}" class="col-lg-4">
+            <div *ngFor="let new of news | filter : searchKey | position : positionKey | place : placeKey | paginate: { itemsPerPage:6, currentPage: p}" class="col-lg-4">
 
 
                 <div class="panel panel-green">
