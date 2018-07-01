@@ -58,6 +58,35 @@ const addNews_User = function (req, res) {
     }
 };
 
+const checkUserHaveApply = function (req, res) {
+    if (!req.body.news) {
+        res.json({ success: false, message: 'Chưa cung cấp Id news' });
+    } else {
+        if (!req.body.user) {
+            res.json({ success: false, message: 'Chưa cung cấp Id user' });
+        } else {
+            News_UserModel.find({ news: req.body.news }, function (err, news) {
+                if (err) {
+                    return "err";
+                } else {
+                    check = true;
+                    for (var u in news) {
+                        if (news[u].user == req.body.user) {
+                            check = false;
+                            res.json({ success: false, message: 'Bạn đã ứng tuyển vào tin này rồi.' });
+                            return;
+                        }
+                    }
+                    if (check) {
+                        res.json({ success: true, message: 'Bạn có thể ứng tuyển vào đây !' });
+                        return;
+                    }
+                }
+            });
+        }
+    }
+};
+
 const findNewsUserById = function (req, res) {
     if (!req.params.id) {
         res.json({ success: false, message: 'id news_user chưa được cung cấp.' });
@@ -229,6 +258,7 @@ module.exports = {
     editNewsUser,
     findNewsUserById,
     countNewsUserByStatus,
-    countUserInNewsByStatus
+    countUserInNewsByStatus,
+    checkUserHaveApply
 
 }

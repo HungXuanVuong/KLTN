@@ -1,3 +1,5 @@
+import { FilterPlacePipe } from './pipeSearchNewsByPlace.pipe';
+import { FilterPositionPipe } from './pipeSearchNewsByPosition.pipe';
 import { FilterJobPipe } from './pipeSearchNewsByJob.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +21,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ],
     declarations: [
         HomeComponent,
-        FilterJobPipe
+        FilterJobPipe,
+        FilterPositionPipe,
+        FilterPlacePipe
     ]
 })
 
