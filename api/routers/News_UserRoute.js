@@ -17,6 +17,9 @@ router.route('/findbystatus/:status')
 router.route('/edit')
 .put(NewsUserController.editNewsUser);
 
+router.route('/getbyuserid')
+.put(NewsUserController.getAllNewsUserByUserId);
+
 router.route('/checkuserapply')
 .put(NewsUserController.checkUserHaveApply);
 

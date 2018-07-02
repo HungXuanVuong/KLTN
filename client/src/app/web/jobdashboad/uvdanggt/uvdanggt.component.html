@@ -9,7 +9,7 @@
         <table width="100%" class="table table-responsive table-striped table-bordered table-hover" id="dataTables-example">
           <thead>
             <tr>
-              
+              <th>Tin tuyển dụng</th>
               <th>Họ tên</th>
               <th>Giới tính</th>
               <th>SĐT</th>
@@ -22,20 +22,25 @@
           </thead>
           <tbody>
             <tr *ngFor="let newcandidate of news_candidte">
+              <td>{{newcandidate.news.title}}</td>
               <td>{{newcandidate.candidate.username}}</td>
               <td>{{newcandidate.candidate.sex}}</td>
               <td>{{newcandidate.candidate.phone}}</td>
               <td>{{newcandidate.candidate.email}}</td>
               <!-- <td><a href='../../../../assets/web/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a></td> -->
-              <td><a href='/file/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a></td>
+              <td>
+                <a href='/file/cv/{{newcandidate.candidate.cvFile}}' download>{{newcandidate.candidate.cvFile}}</a>
+              </td>
               <td>{{newcandidate.candidate.school}}</td>
               <td align="center">{{newcandidate.point}}</td>
-              <td><a [routerLink]="['/jobdashboard/trangthaiuv/', newcandidate._id]">{{newcandidate.status}}</a></td>
+              <td>
+                <a [routerLink]="['/jobdashboard/trangthaiuv/', newcandidate._id]">{{newcandidate.status}}</a>
+              </td>
             </tr>
           </tbody>
         </table>
         <!-- /.table-responsive -->
-        
+
       </div>
       <!-- /.panel-body -->
     </div>

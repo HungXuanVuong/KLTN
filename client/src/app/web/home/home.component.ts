@@ -1,3 +1,4 @@
+import { NewsuserService } from './../../service/newsuser.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../service/auth-service.service';
 import { NewsService } from '../../service/news.service';
@@ -29,11 +30,13 @@ export class HomeComponent implements OnInit {
   positionKey = "";
   placeKey = "";
 
+  check = false;
 
   constructor(
     private authService: AuthServiceService,
     private newsService: NewsService,
-    private router: Router
+    private router: Router,
+    private newsuserSevice: NewsuserService
   ) {
 
   }
@@ -88,7 +91,6 @@ export class HomeComponent implements OnInit {
         this.month = 12;
       }
     });
-
     this.authService.getProfile().subscribe(profile => {
       if (profile) {
         this.user = profile.user;
@@ -97,10 +99,31 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  checkUserHaveApply(newsId, userId) {
+    let newsuser = {
+      news: newsId,
+      user: userId
+    };
+    this.newsuserSevice.checkUserHaveApplyIntoNews(newsuser).subscribe(data => {
+      if (!data.sucess) {
+        this.check = data.success;
+        return data.success;
+      } else {
+        this.check = data.success;
+        return data.success;
+      }
+    });
+  }
+
+
   ngOnInit() {
     this.placeName = "0";
     this.positionName = "0";
     this.createHome();
+
+    // this.checkUserHaveApply('5b2c7483ea925f12acbbd716','5a9160c56e355207e019eb55');
+    // console.log(this.check);
   }
 
 }

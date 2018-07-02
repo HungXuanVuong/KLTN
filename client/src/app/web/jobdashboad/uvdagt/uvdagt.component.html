@@ -2,57 +2,27 @@
   <div class="col-lg-12">
     <div class="panel panel-success">
       <div class="panel-heading">
-        Danh sách ứng viên đã giới thiệu
+        Danh sách tin đã ứng tuyển
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body">
-        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+        <table width="100%" class="table table-responsive table-striped table-bordered table-hover" id="dataTables-example">
           <thead>
             <tr>
-
-              <th>Họ tên</th>
-              <th>Email</th>
-              <th>SĐT</th>
-              <th>Giới tính</th>
-              <th>CvFile</th>
-              <th>Trường</th>
-              <th>Khoa</th>
-              <!-- <th><a href="statusDetail.html">Tình trạng</a></th> -->
+              <th>Tiêu đề</th>
+              <th>Vị trí</th>
+              <th>Địa điểm</th>
+              <th>Ngày ứng tuyển</th>
+              <th>Tình trạng</th>
             </tr>
           </thead>
           <tbody>
-            <tr class="odd gradeX">
-
-              <td>Đỗ Ngọc Khánh</td>
-              <td>khanhdn@gmail.com</td>
-              <td>0984012542</td>
-              <td>Nam</td>
-              <td><a>CV</a></td>
-              <td>HCMUTE</td>
-              <td>CNTT</td>
-              <!-- <td><a href="statusDetail.html">Hồ sơ</a></td> -->
-            </tr>
-            <tr class="even gradeC">
-
-              <td>Nguyễn Thanh Vân</td>
-              <td>vannt@gmail.com</td>
-              <td>0909845781</td>
-              <td>Nam</td>
-              <td><a>CV</a></td>
-              <td>HCMUTE</td>
-              <td>CNTT</td>
-              <!-- <td><a href="statusDetail.html">Phỏng Vấn</a></td> -->
-            </tr>
-            <tr class="odd gradeA">
-
-              <td>Trương Quang Hoàng</td>
-              <td>hoangtq@gmail.com</td>
-              <td>094798481</td>
-              <td>Nam</td>
-              <td><a>CV</a></td>
-              <td>HCMUTE</td>
-              <td>CNTT</td>
-              <!-- <td><a href="statusDetail.html">Ký hợp đồng</a></td> -->
+            <tr class="odd gradeX" *ngFor="let newsUser of newsUsers">
+              <td>{{newsUser.news.title}}</td>
+              <td>{{newsUser.news.position}}</td>
+              <td>{{newsUser.news.place}}</td>
+              <td>{{newsUser.create_date | date:'dd/MM/yyyy'}}</td>
+              <td>{{newsUser.status}}</td>
             </tr>
           </tbody>
         </table>

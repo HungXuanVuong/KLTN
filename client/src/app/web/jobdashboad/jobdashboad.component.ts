@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../service/auth-service.service';
 
@@ -17,11 +18,20 @@ export class JobdashboadComponent implements OnInit {
   uvNumber;
 
   constructor(
-    private authService: AuthServiceService
+    private authService: AuthServiceService,
+    private router: Router
   ) { }
+
+  RedirectUnregister() {
+    this.router.navigate(['/redirectpage'],
+      { queryParams: { mess: "Vui lòng đăng nhập thì mới truy cập được chức năng này !", messclas: "alert alert-danger" } });
+  }
 
   ngOnInit() {
     this.authService.getProfile().subscribe(data =>{
+      if(!data.success){
+        this.RedirectUnregister();
+      }
       this.urlHinh = data.user.urlHinh;
       this.username = data.user.username;
       this.point = data.user.point;

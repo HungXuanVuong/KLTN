@@ -51,5 +51,15 @@ export class NewsuserService {
     //   this.createAuthenticationHeaders();
     //   return this.http.put(this.domain + 'newscandidate/findcandidateinnews/'+ id, candidate, this.options).map(res => res.json());
     // }
+
+    getAllNewsUserByIdUser(user){
+      this.createAuthenticationHeaders();
+      return this.http.put(this.domain + 'newsuser/getbyuserid/', user, this.options).map(res => res.json());
+    }
+
+    checkUserHaveApplyIntoNews(newsuser){
+      this.createAuthenticationHeaders();
+      return this.http.put(this.domain + 'newsuser/checkuserapply/', newsuser, this.options).map(res => res.json());
+    }
     
 }

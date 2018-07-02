@@ -13,7 +13,8 @@ export class FilterPositionPipe implements PipeTransform {
     if (!searchText) return items;
     searchText = searchText.toLowerCase();
     return items.filter(it => {
-        return it.position.toLowerCase().includes(searchText);  
+      console.log(it.position.toLowerCase().includes(searchText));
+      return it.position.toLowerCase().includes(searchText);
     });
   }
 }

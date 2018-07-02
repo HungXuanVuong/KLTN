@@ -23,13 +23,13 @@
         </div>
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                       <span class="sr-only">Previous</span>
-                     </a>
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
     <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                       <span class="sr-only">Next</span>
-                     </a>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 <!-- /.carousel -->
 
@@ -67,15 +67,17 @@
         <div class="row">
             <div class="search-container" style="text-align: center;">
                 <form action="/action_page.php">
-                    <div class="col-md-6 nopadding">
+                    <div class="col-md-6 col-sm-6 col-xs-6 nopadding">
                         <div class="form-group">
-                            <input [(ngModel)]="searchName" name="searchName" class="form-control" type="search" placeholder="Tìm theo tên công việc..." name="search" style="font-size: 18px;border: 2px solid #00aff0;">
+                            <input [(ngModel)]="searchName" name="searchName" class="form-control" type="search" placeholder="Tìm theo tên công việc..."
+                                name="search" style="font-size: 18px;border: 2px solid #00aff0;">
                         </div>
                     </div>
-                    <div class="col-md-2 nopadding">
+                    <div class="col-md-2 col-sm-6 col-xs-6 nopadding">
                         <div class="form-group">
-                            <select [(ngModel)]="positionName" (change)="selectPositionHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control" style="font-size: 18px;border: 2px solid #00aff0;">
-                                <option value="0"hidden>Vị trí..</option>
+                            <select [(ngModel)]="positionName" (change)="selectPositionHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control"
+                                style="font-size: 18px;border: 2px solid #00aff0;">
+                                <option value="0" hidden>Vị trí..</option>
                                 <option>Developer</option>
                                 <option>Tester</option>
                                 <option>QA</option>
@@ -86,10 +88,11 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-2 nopadding">
+                    <div class="col-md-2 col-sm-6 col-xs-6 nopadding">
                         <div class="form-group">
-                            <select [(ngModel)]="placeName" (change)="selectPlaceHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control" style="font-size: 18px;border: 2px solid #00aff0;">
-                                <option value="0"hidden>Địa điểm..</option>
+                            <select [(ngModel)]="placeName" (change)="selectPlaceHandle($event)" [ngModelOptions]="{standalone: true}" class="form-control"
+                                style="font-size: 18px;border: 2px solid #00aff0;">
+                                <option value="0" hidden>Địa điểm..</option>
                                 <option>Hồ Chí Minh</option>
                                 <option>Đà Nẵng</option>
                                 <option>Hà Nội</option>
@@ -103,10 +106,10 @@
                         </div>
                     </div>
                     <div class="col-md-1 nopadding">
-                            <div class="form-group">
-                                <button (click)="clearAll()" value="" class="fa fa-trash fa-lg btn btn-default form-control"></button>
-                            </div>
+                        <div class="form-group">
+                            <button (click)="clearAll()" value="" class="fa fa-trash fa-lg btn btn-default form-control"></button>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -129,17 +132,21 @@
 <div id="feature2">
     <div class="container">
         <div class="row">
-            <div *ngFor="let new of news | filter : searchKey | position : positionKey | place : placeKey | paginate: { itemsPerPage:6, currentPage: p}" class="col-lg-4">
+            <div *ngFor="let new of news | filter : searchKey | position : positionKey | place : placeKey | paginate: { itemsPerPage:6, currentPage: p}"
+                class="col-lg-4">
 
 
                 <div class="panel panel-green">
                     <div class="panel-heading no-padding center">
+                        <!-- <div class="top-right"><img src="./../../../assets/web/img/imgShop/1.png" class="img-responsive" style="width: 40%;height:40%"></div> -->
                         <p class="text-center" style="color:white; font-size:16px; ">{{new.title}}</p>
                     </div>
                     <div class="panel-body">
 
                         <!-- <a [routerLink]="['/chitiettin/', new._id]"><img src="./../../../assets/web/img/imgtin/{{new.urlHinh}}" alt="java" class="img-responsive"></a> -->
-                        <a [routerLink]="['/chitiettin/', new._id]"><img src="/images/imgtin/{{new.urlHinh}}" alt="java" class="img-responsive"></a>
+                        <a [routerLink]="['/chitiettin/', new._id]">
+                            <img src="/images/imgtin/{{new.urlHinh}}" alt="java" class="img-responsive">
+                        </a>
                         <div class="row" style="padding:10px 5px;">
                             <div class="hang">
                                 <div class="col-md-6 col-sm-6 col-xs-6 text-left">Địa điểm</div>
@@ -179,11 +186,16 @@
                                 <a (click)="RedirectUnregister()" class="btn btn-success">Giới thiệu</a>
                             </div>
                             <div *ngIf="user">
+                                <!-- <button [disabled]="checkUserHaveApply(new._id, user._id)" [routerLink]="['/profile/', new._id]" class="btn btn-primary">Ứng tuyển</button> -->
                                 <a [routerLink]="['/profile/', new._id]" class="btn btn-primary">Ứng tuyển</a>
                                 <a [routerLink]="['/formgioithieu/', new._id]" class="btn btn-success">Giới thiệu</a>
                             </div>
                         </div>
                     </div>
+                    <!-- <div *ngIf="user">
+                        <div *ngIf="checkUserHaveApply(new._id, user._id)" class="label">Đã ứng tuyển</div>
+                    </div> -->
+
                 </div>
                 <!-- .panel -->
             </div>
