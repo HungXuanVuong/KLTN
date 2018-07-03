@@ -26,7 +26,7 @@
                 <option value="XEM_TAT_CA">Xem tất cả</option>
                 <option value="XEM_DA_DAT">Xem đơn quà đã đặt</option>
                 <option value="XEM_DA_GIAO">Xem đơn quà đã giao</option>
-                <option value="XEM_DA_HUY">Xem đơn hàng đã hủy</option>
+                <option value="XEM_DA_HUY">Xem đơn quà đã hủy</option>
               </select>
             </div>
             <!-- /.panel-heading -->
@@ -48,7 +48,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let o of order; let i = index">
+                      <tr *ngFor="let o of order;">
                           <ng-container *ngIf="status_Order ==='XEM_TAT_CA' || (status_Order ==='XEM_DA_DAT' && o.status==='Đã đặt quà') || (status_Order ==='XEM_DA_GIAO' && o.status==='Đã giao quà') || (status_Order ==='XEM_DA_HUY' && o.status==='Đã hủy đơn quà')">
                             <td class="counterCell"></td>
                             <td>{{ o.codeOrder }}</td>
@@ -100,14 +100,14 @@
                                           <div class="modal fade" id="setStatus" tabindex="-1" role="dialog" aria-labelledby="setStatus" aria-hidden="true" style="margin-top: 100px;padding-bottom: 10px;">
                                             <div class="modal-dialog" role="document">
                                               <div class="modal-content">
-                                                <div class="modal-header">
+                                                <div class="modal-header" style="background-color: #5cb85c;">
                                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                   </button>
                                                   <h3 class="modal-title" id="setStatus">Xác nhận thay đổi trạng thái đơn hàng</h3>
                                                 </div>
                                                 <div class="modal-body">
-                                                  <p>Để thay đổi trạng thái đơn hàng thì đơn hàng phải được giao quà thành công. Bạn có chắc muốn thay đổi trạng thái đơn hàng: {{o.codeOrder}} không? {{i}}</p>
+                                                  <p>Để thay đổi trạng thái đơn hàng thì đơn hàng phải được giao quà thành công. Bạn có chắc muốn thay đổi trạng thái đơn hàng: {{o.codeOrder}} không?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
@@ -119,7 +119,7 @@
                                           <div class="modal fade" id="cancelOrder" tabindex="-1" role="dialog" aria-labelledby="cancelOrder" aria-hidden="true" style="margin-top: 100px;padding-bottom: 10px;">
                                               <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
-                                                  <div class="modal-header">
+                                                  <div class="modal-header" style="background-color: #5cb85c;">
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
                                                     </button>
