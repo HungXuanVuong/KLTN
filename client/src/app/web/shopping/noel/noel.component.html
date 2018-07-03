@@ -83,7 +83,7 @@
               <i class="fa fa-shopping-cart"></i> Đổi ngay
             </a>
         </div>
-        <div *ngIf="user.role == 'admin'">
+        <div *ngIf="user && user.role == 'admin'">
             <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default" style="font-size: 10px;"> 
               <i class="fa fa-eye"></i> Xem chi tiết
             </a>
