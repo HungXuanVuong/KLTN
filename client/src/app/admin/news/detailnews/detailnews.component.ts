@@ -150,7 +150,7 @@ export class DetailnewsComponent implements OnInit {
     this.newscandidate._id = id;
     this.newscandidate.status = status;
     if (status == 'Phỏng vấn') {
-      this.newscandidate.point += this.policy.pointInterview;
+      this.newscandidate.point = this.newscandidate.point + this.policy.pointInterview + this.policy.pointFile;
       console.log(this.newscandidate.point);
     }
     if (status == 'Hợp đồng') {
