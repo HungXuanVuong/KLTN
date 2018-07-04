@@ -168,9 +168,9 @@ export class FormgioithieuComponent implements OnInit {
       this.loading = false;
     });
   }
-  updatePointFileUser(idUser) {
-    console.log(idUser);
-    this.authService.findUserById(idUser).subscribe(user =>{
+  updatePointFileUser() {
+    // console.log(idUser);
+    this.authService.findUserById(this.user._id).subscribe(user =>{
        this.point = user.user;
       console.log(this.point);
       this.point.point += this.policy.pointFile;

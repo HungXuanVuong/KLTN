@@ -24,7 +24,7 @@
               <div *ngIf="user && user.role != 'admin'">
                 <button class="btn btn-success" [routerLink]="['/giohang/', gift._id]"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" ></span> Đổi ngay </button>
               </div>
-              <div *ngIf="user.role == 'admin'">
+              <div *ngIf="user && user.role == 'admin'">
                 <button class="btn btn-success" data-toggle="modal" data-target="#cancel"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" ></span> Đổi ngay </button>
               </div>
             </div>                                        

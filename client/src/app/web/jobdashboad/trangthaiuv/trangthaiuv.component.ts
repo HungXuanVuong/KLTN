@@ -21,6 +21,7 @@ export class TrangthaiuvComponent implements OnInit {
   currentUrl;
   loading = true;
 
+  width = 0;
   newsCandidate = new News_Candidate();
 
   constructor(
@@ -29,13 +30,6 @@ export class TrangthaiuvComponent implements OnInit {
     private newsService: NewsService,
     private newsCandidateService: NewscandidateService
   ) {
-    
-   }
-
-  //complete = '.shop-tracking-status .order-status-timeline .order-status-timeline-completion.c3{width:70%}';
-
-  width = 0;
-  ngOnInit() {
     this.currentUrl = this.activatedRoute.snapshot.params;
     this.newsCandidateService.getNewsCandidateById(this.currentUrl.id).subscribe(data =>{
       if (!data.success) {
@@ -52,6 +46,13 @@ export class TrangthaiuvComponent implements OnInit {
         this.loading = false;
       }
     });
+   }
+
+  //complete = '.shop-tracking-status .order-status-timeline .order-status-timeline-completion.c3{width:70%}';
+
+ 
+  ngOnInit() {
+    
     
   }
 

@@ -105,7 +105,7 @@
               <div class="form-group">
                 <div class="col-md-10 col-md-offset-2">
                     <!-- [disabled]="processing || !emailValid || !phoneValid"  -->
-                  <button type="submit" [disabled]="myForm.invalid || myForm.prestine" data-toggle="modal" data-target="#myModal" class="btn btn-primary" (click)="addNews_Candidate()">Giới thiệu</button>
+                  <button type="submit" [disabled]="myForm.invalid || myForm.prestine" data-toggle="modal" data-target="#myModal" class="btn btn-primary" (click)="addNews_Candidate()" (click)="updatePointFileUser()">Giới thiệu</button>
                   <!-- <button (click)="addNews_Candidate()">Submit</button> -->
                 </div>
               </div>

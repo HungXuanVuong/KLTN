@@ -8,9 +8,10 @@
           </div>
           <div class="panel-body">
             <div class="row">
-                <!-- <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://localhost:3000/uploads/mi.png" class="img-circle img-responsive">                </div> -->
+              <!-- <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://localhost:3000/uploads/mi.png" class="img-circle img-responsive">                </div> -->
               <!-- <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="./../../../assets/web/img/imguser/{{user.urlHinh}}" class="img-circle img-responsive">                </div> -->
-              <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="/images/imguser/{{user.urlHinh}}" class="img-circle img-responsive">                </div>
+              <div class="col-md-3 col-lg-3 " align="center">
+                <img alt="User Pic" src="/images/imguser/{{user.urlHinh}}" class="img-circle img-responsive"> </div>
               <table class="table table-user-information">
                 <tbody>
                   <tr>
@@ -35,7 +36,9 @@
                   </tr>
                   <tr>
                     <td>Email</td>
-                    <td><a href="#">{{user.email}}</a></td>
+                    <td>
+                      <a href="#">{{user.email}}</a>
+                    </td>
                   </tr>
                   <tr>
                     <td>Số điện thoại</td>
@@ -51,7 +54,8 @@
           </div>
         </div>
         <div class="panel-footer">
-          <a class="btn btn-danger" [routerLink]="['/formprofile/', user._id]"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa thông tin</a>
+          <a class="btn btn-danger" [routerLink]="['/formprofile/', user._id]">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sửa thông tin</a>
           <button class="btn btn-primary" (click)="addNewsUser()" data-toggle="modal" data-target="#myModal"> Ứng tuyển</button>
         </div>
       </div>
@@ -62,7 +66,9 @@
           </div>
           <div class="panel-body">
             <!-- <a [routerLink]="['/chitiettin/', news._id]"><img src="./../../../assets/web/img/imgtin/{{news.urlHinh}}" alt="java" class="img-responsive"></a> -->
-            <a [routerLink]="['/chitiettin/', news._id]"><img src="/images/imgtin/{{news.urlHinh}}" alt="java" class="img-responsive"></a>
+            <a [routerLink]="['/chitiettin/', news._id]">
+              <img src="/images/imgtin/{{news.urlHinh}}" alt="java" class="img-responsive">
+            </a>
             <div class="row" style="padding:10px 5px;">
               <div class="hang">
                 <div class="col-md-6 col-sm-6 col-xs-6 text-left">Địa điểm</div>
@@ -90,6 +96,12 @@
               </div>
             </div>
           </div>
+          
+          <div *ngIf="user">
+            <!-- <div *ngIf="checkUserHaveApply(new._id, user._id)" class="label">Đã ứng tuyển</div> -->
+            <div *ngIf="!isTrue" class="label">Đã ứng tuyển</div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -101,11 +113,12 @@
     <div class="modal-content">
       <div class="modal-header modal-header-success" [ngClass]="messageClass">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3><i class="fa fa-info-circle"></i> Thông báo</h3>
+        <h3>
+          <i class="fa fa-info-circle"></i> Thông báo</h3>
       </div>
       <div class="modal-body">
         <div class="row show-hide-message">
-            <p>{{message}}</p>
+          <p>{{message}}</p>
         </div>
       </div>
       <div class="modal-footer">

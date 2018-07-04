@@ -24,3 +24,17 @@
 .modal-dialog .modal-content .modal-footer {
     padding-top: 15px;
   }
+
+  .label{
+    position: absolute;
+    top: 200px;
+    left: 300px;
+    width:80px;
+    height:40px;
+    line-height: 35px;
+    color:#fff;
+    transform: rotate(-60deg);
+    background: #E419B7;
+    -webkit-box-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.5); 
+  }
