@@ -9,15 +9,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slidebar.component.css']
 })
 export class SlidebarComponent implements OnInit {
-
-
   user = new User();
-
   constructor(
     private authService : AuthServiceService,
     private router : Router
   ) { }
+  isAdmin(role){
+    if(role==='admin'){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
+  isEmpl(role){
+    if(role==='empl'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  
+  isEmpl_Gift(role){
+    if(role==='empl_gift'){
+      return true;
+    }else{
+      return false;
+    }
+  }
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
       if(profile){

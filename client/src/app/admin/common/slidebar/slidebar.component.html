@@ -1,4 +1,4 @@
-<ul class="nav" id="side-menu">
+<ul class="nav responsive-nav" id="side-menu">
     <li class="sidebar-search">
         <div class="input-group custom-search-form">
             <input type="text" class="form-control" placeholder="Search...">
@@ -13,8 +13,8 @@
     <li>
         <a routerLink="/admin/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
     </li>
-    <li>
-        <a href="#"><i class="fa fa-book fa-fw"></i> Quản lí tin tuyển dụng<span class="fa arrow"></span></a>
+    <li class="dropdown">
+        <a><i class="fa fa-book fa-fw"></i> Quản lí tin tuyển dụng<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
                 <a routerLink="/admin/listnews">Danh sách tin tuyển dụng</a>
@@ -28,24 +28,23 @@
     <!-- <li>
         <a routerLink="/admin/listcandidate"><i class="fa fa-user"></i> Quản lí ứng viên</a>
     </li> -->
-    <li *ngIf="user.role ==='admin'" >
+    <li>
         <a routerLink="/admin/listuser"><i class="fa fa-users fa-fw"></i> Quản lí người dùng</a>
     </li>
-
     <li>
-        <a href="#"><i class="fa fa-usd fa-fw"></i> Quản lí Point thưởng<span class="fa arrow"></span></a>
+        <a><i class="fa fa-usd fa-fw"></i> Quản lí điểm thưởng<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
-                <a routerLink="/admin/listchinhsach">Chính sách point thưởng</a>
+                <a routerLink="/admin/listchinhsach">Chính sách điểm thưởng</a>
             </li>
             <li>
-                <a routerLink="/admin/listshared">Danh sách point thưởng đã chi</a>
+                <a routerLink="/admin/listshared">Danh sách điểm thưởng đã chi</a>
             </li>
         </ul>
         <!-- /.nav-second-level -->
     </li>
     <li>
-        <a href="#"><i class="fa fa-cart-plus fa-fw"></i> Quản lí danh mục shopping <span class="fa arrow"></span></a>
+        <a><i class="fa fa-cart-plus fa-fw"></i> Quản lí danh mục shopping <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
                 <a routerLink="/admin/listcatagory">Danh sách thể loại</a>

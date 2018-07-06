@@ -1,11 +1,8 @@
 <ul class="nav navbar-nav navbar-right" style="padding-right:90px;">
-    <li>
-        <a routerLink='/admin'>QUẢN TRỊ</a>
-    </li>
-    <li>
+    <li *ngIf="user.role !='admin'">
         <a routerLink="/jobdashboard">JOB DASHBOARD</a>
     </li>
-    <li>
+    <li *ngIf="user.role !='admin'">
         <a routerLink='/shopping'>ĐỔI QUÀ</a>
     </li>
 
@@ -14,10 +11,11 @@
             <i class="fa fa-user fa-fw" style="color:#006699"></i> <i class="fa fa-caret-down" style="color:#006699"></i>
           </a>
         <ul class="dropdown-menu dropdown-user">
-            <li><a routerLink="/profile"><i class="fa fa-user fa-fw"></i>Thôn tin cá nhân</a>
+            <li><a [routerLink]="['/profiledetail/', user._id]"><i class="fa fa-user fa-fw"></i>Thông tin cá nhân</a>
             </li>
-            <!-- <li><a onclick="window.location.href='file:///E:/HOC%20TAP/HK7/TLCN/TL/admin/index.html'"><i class="fa fa-user-secret fa-fw"></i> Quản trị</a>
-          </li> -->
+              <li class="divider"></li>
+              <li><a [routerLink]="['/changepass/', user._id]"><i class="fa fa-unlock-alt"></i> Đổi mật khẩu</a>
+              </li>
             <li class="divider"></li>
             <li><a (click)="onLogoutClick()"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
             </li>

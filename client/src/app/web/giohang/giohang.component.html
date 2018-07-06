@@ -22,12 +22,12 @@
   
         <!-- Modal Body -->
         <div class="modal-body">
-          <p>Hiện ví của bạn đang có: {{ user.point }} point</p>
+          <p>Hiện ví của bạn đang có: {{ user.point }} điểm</p>
           <div *ngIf="user.point < gift.point_sp">
-            <p>Rất tiếc! Bạn không có đủ số point tương ứng quy đổi món quà này! Mời bạn quay lại sau hoặc chọn món quà khác có số point quy đổi nhỏ hơn mức point của bạn hiện có!</p>
+            <p>Rất tiếc! Bạn không có đủ số điểm tương ứng quy đổi món quà này! Mời bạn quay lại sau hoặc chọn món quà khác có số điểm quy đổi nhỏ hơn mức điểm của bạn hiện có!</p>
           </div>
           <div *ngIf="user.point >= gift.point_sp">
-          <p>Bạn sẽ mất {{ gift.point_sp }} point cho món quà này. Bạn có chắc muốn đổi món quà này không?</p>
+          <p>Bạn sẽ mất {{ gift.point_sp }} điểm cho món quà này. Bạn có chắc muốn đổi món quà này không?</p>
           </div>
         </div>
   
@@ -62,7 +62,7 @@
                 Số lượng: 1
           </h5>
           <h5>
-              Số point quy đổi: {{ gift.point_sp }} point 
+              Số điểm quy đổi: {{ gift.point_sp }} điểm 
           </h5>
           <h5>
               Thông tin sản phẩm: {{ gift.product_infor }}

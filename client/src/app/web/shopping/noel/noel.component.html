@@ -1,131 +1,102 @@
 
 <div class="row products">
   <!-- feature1 -->
-<div class="product">
-  <div class="row">
-      <div *ngFor="let g of gift | paginate: { itemsPerPage:8, currentPage: p }" class="col-lg-3 col-md-4 col-sm-6 col-xs-6">  
-        <div class="panel-body" *ngIf="user && user.point >= g.point_sp && user.role != 'admin'">
-          <figure>
-          <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive" title="Bạn có thể đổi quà này"></a>
-          <div class="top-right"><img src="./../../../assets/web/img/imgShop/1.png" class="img-responsive" style="width: 40%;height:40%"></div>
-          <figcaption>
-        <div class="panel-heading no-padding center">
-          <p class="text-center" style="color:green; font-size:16px;">{{g.product_name}}</p>
-      </div>
-          <div class="text">
-              <div class="row">
-                <div class="col-md-6">Quy đổi:</div>
-                <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
-              </div>
-              <div class="row">
-                <div class="col-md-6">Số lượng:</div>
-                <a class="col-md-6 career_link_location">{{g.amount}}</a>
-              </div>
-          </div>
-        </figcaption>
-        </figure>
-      </div>
-      <div class="panel-body" *ngIf="user && user.point < g.point_sp && user.role != 'admin'">
-          <figure>
-          <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive" title="Bạn không đủ point để đổi quà này"></a>
-          <figcaption>
-        <div class="panel-heading no-padding center">
-          <p class="text-center" style="color:green; font-size:16px;">{{g.product_name}}</p>
-      </div>
-          <div class="text">
-              <div class="row">
-                <div class="col-md-6">Quy đổi:</div>
-                <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
-              </div>
-              <div class="row">
-                <div class="col-md-6">Số lượng:</div>
-                <a class="col-md-6 career_link_location">{{g.amount}}</a>
-              </div>
-          </div>
-        </figcaption>
-        </figure>
-      </div>
-      <div class="panel-body" *ngIf="!user || user.role == 'admin'">
-          <figure>
-          <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive"></a>
-          <figcaption>
-        <div class="panel-heading no-padding center">
-          <p class="text-center" style="color:green; font-size:16px;">{{g.product_name}}</p>
-      </div>
-          <div class="text">
-              <div class="row">
-                <div class="col-md-6">Quy đổi:</div>
-                <a class="col-md-6 career_link_location">{{g.point_sp}} Point</a>
-              </div>
-              <div class="row">
-                <div class="col-md-6">Số lượng:</div>
-                <a class="col-md-6 career_link_location">{{g.amount}}</a>
-              </div>
-          </div>
-        </figcaption>
-        </figure>
-      </div>
-      <div class="pull-left">
-        
-        <div *ngIf="!user">
-            <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default" style="font-size: 10px;"> 
-              <i class="fa fa-eye"></i> Xem chi tiết
-            </a>
-            <a (click)="RedirectUnregister()" class="btn btn-primary" style="font-size: 10px;"> 
-              <i class="fa fa-shopping-cart"></i> Đổi ngay
-            </a>
+  <div class="product">
+    <div class="row">
+        <div *ngFor="let g of gift | paginate: { itemsPerPage:8, currentPage: p }" class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+          <div class="panel-body" *ngIf="user && user.point >= g.point_sp">
+                    <figure>
+                    <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive" title="Bạn có thể đổi quà này"></a>
+                    <div class="top-right"><img src="./../../../assets/web/img/imgShop/1.png" class="img-responsive" style="width: 40%;height:40%"></div>
+                    <figcaption>
+                  <div class="panel-heading no-padding center">
+                    <p class="text-center" style="color:green; font-size:16px;">{{g.product_name}}</p>
+                </div>
+                    <div class="text">
+                        <div class="row">
+                          <div class="col-md-6">Quy đổi:</div>
+                          <a class="col-md-6 career_link_location">{{g.point_sp}} Điểm</a>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">Số lượng:</div>
+                          <a class="col-md-6 career_link_location">{{g.amount}}</a>
+                        </div>
+                    </div>
+                  </figcaption>
+                  </figure>
+                </div>
+                <div class="panel-body" *ngIf="user && user.point < g.point_sp">
+                    <figure>
+                    <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive" title="Bạn không đủ point để đổi quà này"></a>
+                    <figcaption>
+                  <div class="panel-heading no-padding center">
+                    <p class="text-center" style="color:green; font-size:16px;">{{g.product_name}}</p>
+                </div>
+                    <div class="text">
+                        <div class="row">
+                          <div class="col-md-6">Quy đổi:</div>
+                          <a class="col-md-6 career_link_location">{{g.point_sp}} Điểm</a>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">Số lượng:</div>
+                          <a class="col-md-6 career_link_location">{{g.amount}}</a>
+                        </div>
+                    </div>
+                  </figcaption>
+                  </figure>
+                </div>
+                <div class="panel-body" *ngIf="!user">
+                    <figure>
+                    <a target="_blank" href="./../../../assets/web/img/imgShop/{{g.urlHinh}}"><img src="./../../../assets/web/img/imgShop/{{g.urlHinh}}" alt="Product" class="img-responsive"></a>
+                    <figcaption>
+                  <div class="panel-heading no-padding center">
+                    <p class="text-center" style="color:green; font-size:16px;">{{g.product_name}}</p>
+                </div>
+                    <div class="text">
+                        <div class="row">
+                          <div class="col-md-6">Quy đổi:</div>
+                          <a class="col-md-6 career_link_location">{{g.point_sp}} Điểm</a>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">Số lượng:</div>
+                          <a class="col-md-6 career_link_location">{{g.amount}}</a>
+                        </div>
+                    </div>
+                  </figcaption>
+                  </figure>
+                </div>
+                <div class="pull-left">
+                  
+                  <div *ngIf="!user">
+                      <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default" style="font-size: 10px;"> 
+                        <i class="fa fa-eye"></i> Xem chi tiết
+                      </a>
+                      <a (click)="RedirectUnregister()" class="btn btn-primary" style="font-size: 10px;"> 
+                        <i class="fa fa-shopping-cart"></i> Đổi ngay
+                      </a>
+                  </div>
+                  <div *ngIf="user">
+                      <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default" style="font-size: 10px;"> 
+                        <i class="fa fa-eye"></i> Xem chi tiết
+                      </a>
+                      <a [routerLink]="['/giohang/', g._id]" class="btn btn-primary" style="font-size: 10px;"> 
+                        <i class="fa fa-shopping-cart"></i> Đổi ngay
+                      </a>
+                  </div>
+            <!-- .panel -->
         </div>
-        <div *ngIf="user && user.role != 'admin'">
-            <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default" style="font-size: 10px;"> 
-              <i class="fa fa-eye"></i> Xem chi tiết
-            </a>
-            <a [routerLink]="['/giohang/', g._id]" class="btn btn-primary" style="font-size: 10px;"> 
-              <i class="fa fa-shopping-cart"></i> Đổi ngay
-            </a>
-        </div>
-        <div *ngIf="user && user.role == 'admin'">
-            <a [routerLink]="['/shopping/chitietsp/', g._id]" class="btn btn-default" style="font-size: 10px;"> 
-              <i class="fa fa-eye"></i> Xem chi tiết
-            </a>
-            <a data-toggle="modal" data-target="#cancel" class="btn btn-primary" style="font-size: 10px;"> 
-              <i class="fa fa-shopping-cart"></i> Đổi ngay
-            </a>
-        </div>
-      </div>
-  <!-- .panel -->
-</div>
-<!-- .col-lg-6 -->
-
-</div>
-
-<div class="modal fade" id="cancel" tabindex="-1" role="dialog" aria-labelledby="cancel" aria-hidden="true" style="margin-top: 100px;padding-bottom: 10px;">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-<div class="modal-header" style="background-color: #5cb85c;">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <h3 class="modal-title" id="cancelOrder">Thông báo</h3>
-</div>
-<div class="modal-body">
-  <p>Bạn hiện không có quyền hạn truy cập vào chức năng này!</p>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-</div>
-</div>
-</div>
 </div>
   <!-- .row -->
-  <div class="rowt text-center" style="padding-top:25px">
-    <div class="col-md-12">
-      <div *ngIf="true">
-      <pagination-controls autoHide="true" (pageChange)="p =$event"></pagination-controls>
-      </div>
-    </div>
-  </div>
  
 <!-- .container -->
 </div>
 <!-- .feature2 -->
+</div>
+</div>
+<div class="row text-center" style="padding-top:25px;">
+  <div class="col-md-12">
+    <div *ngIf="true">
+    <pagination-controls autoHide="true" (pageChange)="p =$event"></pagination-controls>
+    </div>
+  </div>
 </div>

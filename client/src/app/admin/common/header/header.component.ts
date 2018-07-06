@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthServiceService } from '../../../service/auth-service.service';
+import { User } from '../../../models/user';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { AuthServiceService } from '../../../service/auth-service.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  user : User;
   constructor(
     private authService : AuthServiceService,
     private router : Router
@@ -21,6 +22,16 @@ export class HeaderComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.authService.getProfile().subscribe(profile => {
+      if(profile){
+        this.user = profile.user;
+        console.log(this.user);
+        //this.role = profile.user.role;
+       //  console.log(profile.user.role);
+      }else{
+        return;
+      }
+    });
   }
 
 }

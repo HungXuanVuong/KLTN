@@ -11,13 +11,13 @@
         <div class="col-sm-offset-2 col-sm-8">
            <div class="panel panel-primary" id="print-section">
               <div class="panel-heading">
-                <h3 class="panel-title">HÓA ĐƠN THANH TOÁN ĐỔI QUÀ <span data-toggle="tooltip" data-placement="right" class="red-tooltip">&nbsp;</span></h3>
+                <h3 class="panel-title">Hóa Đơn Thanh Toán Đổi Quà <span data-toggle="tooltip" data-placement="right" class="red-tooltip">&nbsp;</span></h3>
               </div>
               <div class="panel-body table-responsive padding-1">
                 <table class="table table-bordered table-striped">
                   <tbody>
                       <tr>
-                        <td colspan="2" class="send">ĐƠN HÀNG #{{order.codeOrder}}</td>
+                        <td colspan="2" class="send">ĐƠN QUÀ: #{{order.codeOrder}}</td>
                       </tr>
                       <tr>
                         <td colspan="2" class="send">NGƯỜI ĐỔI QUÀ: {{order.employee.username}}</td>
@@ -26,19 +26,19 @@
                       <td colspan="2" class="send">PHƯƠNG THỨC GỬI</td>
                     </tr>
                     <tr>
-                      <td align="right" class="active">Tên quà quy đổi :</td>
+                      <td align="right" class="active">Tên Phương Thức :</td>
                       <td>
-                        Đổi Point Lấy Quà ( point )
+                        Đổi Điểm Lấy Quà ( điểm )
                       </td>
                     </tr>
                     <tr>
-                      <td align="right" class="active">Số Point Cần Gửi :</td>
+                      <td align="right" class="active">Số Điểm Cần Gửi :</td>
                     <td>
                         {{order.product_id.point_sp}}
                     </td>
                     </tr>
                     <tr>
-                      <td align="right" class="active">Số Point Đã Gửi :</td>
+                      <td align="right" class="active">Số Điểm Đã Gửi :</td>
                     <td>
                       {{order.product_id.point_sp}}
                     </td>
@@ -47,25 +47,25 @@
                       <td colspan="2" class="receive">PHƯƠNG THỨC NHẬN</td>
                     </tr>
                     <tr>
-                      <td align="right" class="active">Tên Phương Thức :</td>
+                      <td align="right" class="active">Tên Quà Quy Đổi  :</td>
                       <td>
                         {{order.product_id.product_name}}
                       </td>
                     </tr>
                     <tr>
-                      <td align="right" class="active">Số Point tương ứng :</td>
+                      <td align="right" class="active">Số Điểm Tương Ứng :</td>
                       <td>
                         {{order.product_id.point_sp}}
                       </td>
                     </tr>
                                                                                                                         <tr>
-                      <td align="right" class="active">Địa Chỉ nhận quà :</td>
+                      <td align="right" class="active">Địa Chỉ Nhận Quà :</td>
                         <td>
                             {{order.placeOfReceipt}}
                         </td>
                     </tr>
                     <tr>
-                      <td colspan="2" class="information">THÔNG TIN ĐƠN HÀNG</td>
+                      <td colspan="2" class="information">THÔNG TIN ĐƠN QUÀ</td>
                     </tr>
                     <tr>
                       <td align="right" class="active">Ngày Tạo :</td>
@@ -80,12 +80,12 @@
                       <td>{{order.orderDay | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
                     </tr>
                     <tr>
-                      <td align="right" class="active">Trạng Thái Đơn Hàng :</td>
+                      <td align="right" class="active">Trạng Thái Đơn Quà :</td>
                       <td>
                         <span class="label label-success" id="orderStatus">{{order.status}}</span>                                                                                              </td>
                       </tr>
                     <tr>
-                      <td align="right" class="active">Thông Tin Đơn Hàng :</td>
+                      <td align="right" class="active">Thông Tin Đơn Quà :</td>
                       <td><a [routerLink]="['/giaohang/', order._id]" target="_blank">http://localhost:4200/giaohang/{{order._id}}</a></td>
                     </tr>
                   </tbody>

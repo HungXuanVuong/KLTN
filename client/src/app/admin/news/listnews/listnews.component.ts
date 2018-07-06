@@ -85,7 +85,6 @@ export class ListnewsComponent implements OnInit {
     });
   }
   ngOnInit() {
-
     this.checkRole();
     this.dtOptions = {
       pagingType: 'full_numbers',

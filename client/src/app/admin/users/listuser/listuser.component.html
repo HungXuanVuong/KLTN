@@ -1,6 +1,7 @@
+<ng-container *ngIf="user.role=='admin'">
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header">Quản lí người dùng</h1>
+    <h1 class="page-header">Quản Lí Người Dùng</h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>
@@ -16,7 +17,7 @@
   <div class="col-lg-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        Danh Sách Người Dùng
+        Form danh sách người dùng
       </div>
       <!-- /.panel-heading -->
       <div class="panel-body">
@@ -29,13 +30,13 @@
               <!-- <th>Ngày Sinh</th> -->
               <th>Email</th>
               <th>SĐT</th>
-              <th>GioiTinh</th>
+              <th>Giới tính</th>
               <th>CvFile</th>
               <!-- <th>Password</th> -->
               <!-- <th>Đã giới thiệu</th> -->
               <th>Điểm thưởng</th>
               <th>Role</th>
-              <th>Option</th>
+              <th>Tùy chọn</th>
             </tr>
           </thead>
           <tbody>
@@ -115,6 +116,10 @@
   <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+</ng-container>
+      <div class="txtelegantshadow" *ngIf="user.role =='empl' || user.role =='empl_gift'">
+          <h1 class="page-header" style="font:bold; text-align: center;font-size: 70px;">Bạn không có quyền hạn sử dụng chức năng này!</h1>
+      </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

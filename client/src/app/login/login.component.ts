@@ -63,9 +63,15 @@ export class LoginComponent implements OnInit {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
         this.authService.storeUserData(data.token, data.user);
+        if(data.user.role==='admin'){
+        setTimeout(() =>{
+          this.router.navigate(['/admin/dashboard']);
+        }, 2000);
+      }else{
         setTimeout(() =>{
           this.router.navigate(['/']);
         }, 2000);
+      }
       }
     });
   }

@@ -9,8 +9,6 @@ import { AuthServiceService } from '../../../service/auth-service.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-
   user : User;
   users;
   // role = this.user.role;

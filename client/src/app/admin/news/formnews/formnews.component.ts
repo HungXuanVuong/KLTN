@@ -205,6 +205,7 @@ export class FormnewsComponent implements OnInit {
     this.getAllPolicy();
     this.authService.getProfile().subscribe(profile => {
       if(profile){
+        this.user = profile.user;
         this.userId = profile.user._id;
       }else{
         return;
