@@ -61,14 +61,6 @@ export class HomeComponent implements OnInit {
   }
   OnclickSearch() {
     this.searchKey = this.searchName;
-    // setTimeout(function() {
-    //   this.positionKey = this.positionName;
-    // }, 500);
-    // setTimeout(function() {
-    //   this.placeKey = this.placeName;
-    // }, 1000);
-    // this.positionKey = this.positionName;
-    // this.placeKey = this.placeName;
   }
 
   RedirectUnregister() {
@@ -79,7 +71,7 @@ export class HomeComponent implements OnInit {
   createHome() {
     this.newsService.getTop6News().subscribe(data => {
       this.news = data.listNews;
-      console.log(this.news);
+      // console.log(this.news);
     });
     this.authService.getTop4User().subscribe(data => {
       //this.users = data.listUsers;

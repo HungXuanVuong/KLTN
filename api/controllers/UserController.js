@@ -434,7 +434,7 @@ const editPointUser = function (req, res) {
                                 if (err) {
                                     res.json({ success: false, message: err });
                                 } else {
-                                    res.json({ success: true, message: 'Cộng point thành công' });
+                                    res.json({ success: true, message: 'Giới thiệu thành công !' });
                                 }
                             });
                     }

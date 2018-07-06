@@ -203,11 +203,11 @@ const checkEmail = function (req, res, next) {
                                         return;
                                     }
                                 }
-                                res.json({ success: true, message: 'Ok!' });
+                                res.json({ success: true, message: 'Email hợp lệ !' });
                             }
                         });
                     } else {
-                        res.json({ success: true, message: 'Ok!' });
+                        res.json({ success: true, message: 'Email hợp lệ !!' });
                     }
 
                 }
@@ -243,11 +243,11 @@ const checkPhone = function (req, res, next) {
                                         return;
                                     }
                                 }
-                                res.json({ success: true, message: 'Ok!' });
+                                res.json({ success: true, message: 'Số điện thoại hợp lệ !' });
                             }
                         });
                     } else {
-                        res.json({ success: true, message: 'Ok!' });
+                        res.json({ success: true, message: 'Số điện thoại hợp lệ !' });
                     }
 
                 }
