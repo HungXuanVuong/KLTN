@@ -1,6 +1,7 @@
+<ng-container *ngIf="user.role=='admin' || user.role=='empl_gift'">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Danh sách các giao dịch quy đổi quà </h1>
+        <h1 class="page-header">Danh Sách Các Giao Dịch Quy Đổi Quà </h1>
     </div>
     <!-- /.col-lg-12 -->
   </div> <!-- /.row -->
@@ -10,18 +11,12 @@
         {{message}}
       </div>
   </div>
-  <div class="row" style="padding-bottom:5px">
-    <!--<div class="col-lg-12">
-        <a routerLink="/admin/formtransaction" class="btn btn-danger"><span class="fa fa-plus"></span> Thêm giao dịch</a>
-    </div> -->
-    <!-- /.col-lg-12 -->
-  </div>  <!-- /.row -->
   <!-- /.row -->
   <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-              Danh sách các đơn quà
+              Form danh sách các đơn quà
               <select [(ngModel)]="status_Order" class="pull-right" style="color: rgb(3, 3, 20);font-family: 'Times New Roman', Times, serif;" id="soflow-color">
                 <option value="XEM_TAT_CA">Xem tất cả</option>
                 <option value="XEM_DA_DAT">Xem đơn quà đã đặt</option>
@@ -37,7 +32,7 @@
                             <th>STT</th>
                             <th>Mã đơn quà</th>
                             <th>Tên sản phẩm</th>
-                            <th>Số point quy đổi</th>
+                            <th>Số điểm quy đổi</th>
                             <th>Địa điểm nhận quà</th>
                             <th>Tên người giao dịch</th>
                             <th>Ngày đổi quà</th>
@@ -77,7 +72,7 @@
                                         <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-user">
-                                        <li><a [routerLink]="['/admin/edittransaction/', o._id]"><i class="fa fa-pencil fa-fw"></i> Chỉnh sửa</a>
+                                        <li><a [routerLink]="['/admin/edittransaction/', o._id]" title="Chỉnh sửa"><i class="fa fa-pencil fa-fw" style="color:#2011ec"></i></a>
                                     </ul>
                                 <!-- /.dropdown-user -->
                                 </div>
@@ -88,11 +83,11 @@
                                                   <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
                                               </a>
                                               <ul class="dropdown-menu dropdown-user">
-                                                  <li><a [routerLink]="['/admin/edittransaction/', o._id]"><i class="fa fa-pencil fa-fw"></i> Chỉnh sửa</a>
+                                                  <li><a [routerLink]="['/admin/edittransaction/', o._id]" title="Chỉnh sửa"><i class="fa fa-pencil fa-fw" style="color:#2011ec"></i></a>
                                                   </li>
-                                                  <li><a data-toggle="modal" data-target="#setStatus"><i class="fa fa-exchange"></i> Đổi trạng thái</a>
+                                                  <li><a data-toggle="modal" data-target="#setStatus" title="Giao quà thành công"><i class="fa fa-exchange" style="color:#0dbe07"></i></a>
                                                   </li>
-                                                  <li><a data-toggle="modal" data-target="#cancelOrder"><i class="fa fa-trash-o fa-fw"></i> Hủy</a>
+                                                  <li><a data-toggle="modal" data-target="#cancelOrder" title="Hủy"><i class="fa fa-trash-o fa-fw" style="color:chocolate"></i></a>
                                                   </li>
                                               </ul>
                                           <!-- /.dropdown-user -->
@@ -151,5 +146,9 @@
     <!-- /.col-lg-12 -->
   </div>
   <!-- /.row -->
+</ng-container>
+      <div class="txtelegantshadow" *ngIf="user.role =='empl'">
+        <h1 class="page-header" style="font:bold; text-align: center;font-size: 70px;">Bạn không có quyền hạn sử dụng chức năng này!</h1>
+    </div>
   
   

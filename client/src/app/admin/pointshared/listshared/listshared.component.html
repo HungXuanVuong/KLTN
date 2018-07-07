@@ -1,6 +1,7 @@
+<ng-container *ngIf="user.role=='admin' || user.role =='empl'">
 <div class="row">
   <div class="col-lg-12">
-    <h4 class="page-header">Danh sách tuyển dụng</h4>
+    <h1 class="page-header">Danh Sách Điểm Thưởng Đã Chi</h1>
   </div>
 </div>
 <!-- <div class="row" style="padding-bottom:5px">
@@ -13,7 +14,7 @@
   <div class="col-lg-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        Danh Sách Tin Tuyển Dụng
+        Form danh sách điểm thưởng đã chi
       </div>
       <!-- /.panel-heading -->
 
@@ -27,7 +28,7 @@
               <th>Ngày giới thiệu</th>
               <th>Tin tuyển dụng tham gia giới thiệu ứng viên</th>
               <th>Tình trạng ứng viên giới thiệu đạt được</th>
-              <th>Số point được nhận</th>
+              <th>Số điểm được nhận</th>
              
             </tr>
           </thead>
@@ -54,4 +55,8 @@
   <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+</ng-container>
+      <div class="txtelegantshadow" *ngIf="user.role =='empl_gift'">
+        <h1 class="page-header" style="font:bold; text-align: center;font-size: 70px;">Bạn không có quyền hạn sử dụng chức năng này!</h1>
+    </div>
 

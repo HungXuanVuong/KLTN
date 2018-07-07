@@ -1,6 +1,7 @@
+<ng-container *ngIf="user.role=='admin' || user.role=='empl'">
 <div class="row">
     <div class="col-lg-12">
-        <h4 class="page-header">Chính sách nhận point thưởng</h4>
+        <h1 class="page-header">Chính Sách Nhận Điểm Thưởng</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -17,7 +18,7 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                Chính sách nhận point thưởng
+                Form chính sách nhận điểm thưởng
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -44,7 +45,7 @@
                                         <i class="fa fa-gear fa-fw"></i> <i class="fa fa-caret-down"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-user">
-                                        <li><a [routerLink]="['/admin/editchinhsach/', policy._id]"><i class="fa fa-pencil fa-fw"></i> Edit</a>
+                                        <li><a [routerLink]="['/admin/editchinhsach/', policy._id]" title="Chỉnh sửa"><i class="fa fa-pencil fa-fw" style="color:blue"></i></a>
                                         </li>
                                     </ul>
                                     <!-- /.dropdown-user -->
@@ -63,3 +64,7 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+</ng-container>
+      <div class="txtelegantshadow" *ngIf="user.role =='empl_gift'">
+        <h1 class="page-header" style="font:bold; text-align: center;font-size: 70px;">Bạn không có quyền hạn sử dụng chức năng này!</h1>
+    </div>

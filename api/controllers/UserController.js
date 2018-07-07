@@ -219,7 +219,7 @@ const login = function (req, res) {
                                 res.json({ success: false, message: 'Mật khẩu không hợp lệ' });
                             } else {
                                 const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' });
-                                res.json({ success: true, message: 'Đăng nhập thành công !', token: token, user: { username: user.username } });
+                                res.json({ success: true, message: 'Đăng nhập thành công !', token: token, user: { username: user.username, role: user.role } });
                             }
                         }
 

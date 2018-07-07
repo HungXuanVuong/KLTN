@@ -31,3 +31,14 @@ div.section > div > input {margin:0;padding-left:5px;font-size:10px;padding-righ
     .section{width:104%;}
     .menu-items{padding-left:0;}
 }
+.txtelegantshadow {
+    background-image: -webkit-linear-gradient(left, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+    background-image: -moz-linear-gradient(left, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+    background-image: -ms-linear-gradient(left, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+    background-image:-o-linear-gradient(left, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+    background-image:linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #00ffff, #0000ff, #8b00ff);
+  
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    
+    }

@@ -1,6 +1,7 @@
+<ng-container *ngIf="user.role=='admin' || user.role=='empl'">
 <div class="row">
   <div class="col-lg-12">
-    <h4 class="page-header">Danh sách tuyển dụng</h4>
+    <h1 class="page-header">Danh Sách Tuyển Dụng</h1>
   </div>
 </div>
 <!-- <div class="row" style="padding-bottom:5px">
@@ -13,7 +14,7 @@
   <div class="col-lg-12">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        Danh Sách Tin Tuyển Dụng
+        Form danh sách tin tuyển dụng
       </div>
       <!-- /.panel-heading -->
 
@@ -28,7 +29,7 @@
               <th>Chính sách thưởng</th>
               <!-- <th>Tình trạng</th> -->
               <th>Theo dõi</th>
-              <th>Option</th>
+              <th>Tùy chọn</th>
             </tr>
           </thead>
           <tbody>
@@ -53,12 +54,12 @@
                   </a>
                   <ul class="dropdown-menu dropdown-user">
                     <li>
-                      <a [routerLink]="['/admin/editnews/', new._id]">
-                        <i class="fa fa-pencil fa-fw"></i> Edit</a>
+                      <a [routerLink]="['/admin/editnews/', new._id]" title="Chỉnh sửa">
+                        <i class="fa fa-pencil fa-fw" style="color:blue"></i></a>
                     </li>
                     <li>
-                      <a [routerLink]="['/admin/deletenews/', new._id]">
-                        <i class="fa fa-trash-o fa-fw"></i> Delete</a>
+                      <a [routerLink]="['/admin/deletenews/', new._id]" title="Xóa">
+                        <i class="fa fa-trash-o fa-fw" style="color:brown"></i></a>
                     </li>
                   </ul>
 
@@ -80,7 +81,7 @@
               <th>Chính sách thưởng</th>
               <th>Tình trạng</th>
               <th>Theo dõi</th>
-              <th>Option</th>
+              <th>Tùy chọn</th>
             </tr>
           </thead>
           <tbody>
@@ -106,12 +107,12 @@
                   </a>
                   <ul class="dropdown-menu dropdown-user">
                     <li>
-                      <a [routerLink]="['/admin/editnews/', new._id]">
-                        <i class="fa fa-pencil fa-fw"></i> Edit</a>
+                      <a [routerLink]="['/admin/editnews/', new._id]" title="Chỉnh sửa">
+                        <i class="fa fa-pencil fa-fw" style="color:blue"></i></a>
                     </li>
                     <li>
-                      <a [routerLink]="['/admin/deletenews/', new._id]">
-                        <i class="fa fa-trash-o fa-fw"></i> Delete</a>
+                      <a [routerLink]="['/admin/deletenews/', new._id]" title="Xóa">
+                        <i class="fa fa-trash-o fa-fw" style="color:brown"></i></a>
                     </li>
                   </ul>
                 </div>
@@ -128,6 +129,10 @@
   <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+</ng-container>
+      <div class="txtelegantshadow" *ngIf="user.role =='empl_gift'">
+          <h1 class="page-header" style="font:bold; text-align: center;font-size: 70px;">Bạn không có quyền hạn sử dụng chức năng này!</h1>
+      </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

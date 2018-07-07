@@ -20,11 +20,12 @@ export class ListuserComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   users : Array<User> = [];
+  user = new User();
+
   constructor(
     private userService: AuthServiceService
   ) { }
 
-  user = new User();
   getAllUser(){
     this.userService.getAllUser().subscribe(data =>{
       this.users = data.listUsers;
@@ -104,12 +105,17 @@ export class ListuserComponent implements OnInit {
     });
   }
   ngOnInit() {
-    
     this.dtOptions = {
       pagingType: 'full_numbers',
     };
-
     this.getAllUser();
+    this.userService.getProfile().subscribe(profile => {
+      if(profile){
+        this.user = profile.user;
+      }else{
+        return;
+      }
+    });
   }
 
 }

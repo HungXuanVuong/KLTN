@@ -5,15 +5,15 @@
         </div>
         <div class="col-xs-5" style="border:0px solid gray">
             <!-- Datos del vendedor y titulo del producto -->
-            <h3> {{ gift.product_name }} </h3>    
+            <p class="txtelegantshadow" style="font:bold; font-size:40px"> {{ gift.product_name }} </p>    
             <h5 style="color:#337ab7">Thương hiệu: <a href="#">{{ gift.trademark }}</a> · <small style="color:#337ab7">(Chỉ còn {{ gift.amount }} sản phẩm)</small></h5>
 
             <!-- Precios -->
-            <h6 class="title-price"><small>Point quy đổi tương ứng</small></h6>
-            <h3 style="margin-top:0px;">{{ gift.point_sp }} points</h3>
+            <h2 class="title-price"><small style="color:#33b73a">Điểm quy đổi tương ứng cho mỗi quà: </small></h2>
+            <h4 style="margin-top:0px;">{{ gift.point_sp }} Điểm</h4>
 
             <div class="section" style="padding-bottom:20px;">
-                <h5 class="title-attr" style="color:#7cce11;font-weight: bold;">Được đổi tối đa 1 món quà trong 1 lần!</h5>
+                <h6 class="title-attr" style="color:#df341d;font-weight: bold; text-align:center">(Được đổi tối đa 1 món quà trong 1 lần!)</h6>
             </div>                
 
             <!-- Botones de compra -->
@@ -21,11 +21,8 @@
               <div *ngIf="!user">
                 <button class="btn btn-success" (click)="RedirectUnregister()"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" ></span> Đổi ngay </button>
               </div>
-              <div *ngIf="user && user.role != 'admin'">
+              <div *ngIf="user">
                 <button class="btn btn-success" [routerLink]="['/giohang/', gift._id]"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" ></span> Đổi ngay </button>
-              </div>
-              <div *ngIf="user && user.role == 'admin'">
-                <button class="btn btn-success" data-toggle="modal" data-target="#cancel"><span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" ></span> Đổi ngay </button>
               </div>
             </div>                                        
         </div>                              
