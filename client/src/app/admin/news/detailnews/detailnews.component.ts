@@ -154,7 +154,7 @@ export class DetailnewsComponent implements OnInit {
       console.log(this.newscandidate.point);
     }
     if (status == 'Hợp đồng') {
-      this.newscandidate.point += this.policy.pointSign;
+      this.newscandidate.point = this.newscandidate.point + this.policy.pointSign + this.policy.pointInterview + this.policy.pointFile;
       console.log(this.newscandidate.point);
     }
     console.log(this.newscandidate);

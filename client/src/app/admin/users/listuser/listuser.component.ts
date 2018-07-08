@@ -105,10 +105,6 @@ export class ListuserComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-    };
-    this.getAllUser();
     this.userService.getProfile().subscribe(profile => {
       if(profile){
         this.user = profile.user;
@@ -116,6 +112,10 @@ export class ListuserComponent implements OnInit {
         return;
       }
     });
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+    };
+    this.getAllUser();
   }
 
 }

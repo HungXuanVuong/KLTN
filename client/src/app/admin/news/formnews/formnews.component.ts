@@ -28,7 +28,7 @@ export class FormnewsComponent implements OnInit {
     dateFormat: 'dd.mm.yyyy',
   };
   // Initialized to specific date (09.10.2018).
-  public model: any = { date: { year: 2018, month: 5, day: 9 } };
+  public model: any = { date: { year: 2018, month: 7, day: 1 } };
 
   myForm: FormGroup;
   message;
@@ -106,7 +106,7 @@ export class FormnewsComponent implements OnInit {
       position: ['', Validators.compose([
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(8)
+        Validators.maxLength(15)
       ])],
       numberOf: ['', Validators.compose([
         Validators.required,
@@ -133,7 +133,9 @@ export class FormnewsComponent implements OnInit {
     this.myForm.reset();
   }
 
-  
+  redirectListNews(){
+    this.router.navigate(['/admin/listnews']);
+  }
   getAllPolicy(){
     this.policyService.getAll().subscribe(data =>{
       this.policyList = data.listPolicy;
