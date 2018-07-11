@@ -154,7 +154,8 @@ export class DetailnewsComponent implements OnInit {
       console.log(this.newscandidate.point);
     }
     if (status == 'Hợp đồng') {
-      this.newscandidate.point = this.newscandidate.point + this.policy.pointSign + this.policy.pointInterview + this.policy.pointFile;
+      console.log(this.newscandidate.point);
+      this.newscandidate.point = this.newscandidate.point + this.policy.pointSign;
       console.log(this.newscandidate.point);
     }
     console.log(this.newscandidate);
@@ -248,27 +249,8 @@ export class DetailnewsComponent implements OnInit {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
         this.UserSign = data.counterUser;
-        // console.log(this.userFile + '/' + this.userInterView + '/' + this.UserSign);
-        // console.log(this.candidateFile + '/' + this.candidateInterView + '/' + this.candidateSign);
         console.log(this.userFile + '/' + this.userInterView + '/' + this.UserSign);
         console.log(this.candidateFile + '/' + this.candidateInterView + '/' + this.candidateSign);
-        // this.data = {
-        //   labels: ['Hồ sơ', 'Phỏng vấn', 'Hợp đồng'],
-        //   datasets: [
-        //     {
-        //       label: 'Ứng viên',
-        //       backgroundColor: '#42A5F5',
-        //       borderColor: '#1E88E5',
-        //       data: [this.file, this.userInterView, this.UserSign]
-        //     },
-        //     {
-        //       label: 'Ứng tuyển',
-        //       backgroundColor: '#9CCC65',
-        //       borderColor: '#7CB342',
-        //       data: [this.candidateFile, this.candidateInterView, this.candidateSign]
-        //     }
-        //   ]
-        // }
 
       }
     });
@@ -331,7 +313,6 @@ export class DetailnewsComponent implements OnInit {
               backgroundColor: '#42A5F5',
               borderColor: '#1E88E5',
               data: [this.candidateFile, this.candidateInterView, this.candidateSign]
-              // data: [this.userFile, this.userInterView, this.UserSign]
             },
             {
               label: 'Ứng tuyển',
@@ -344,8 +325,6 @@ export class DetailnewsComponent implements OnInit {
         this.dataSource = {
           "chart": {
             "caption": "Thống kê của tin tuyển dụng",
-            // "subCaption": "Top 5 stores in last month by revenue",
-            // "numberprefix": "Người",
             "theme": "fint"
           },
           "data": [
@@ -381,55 +360,5 @@ export class DetailnewsComponent implements OnInit {
     this.countCandidateInNewsByFile(this.currentUrl.id);
     this.countCandidateInNewsByInterview(this.currentUrl.id);
     setTimeout(() => this.countCandidateInNewsBySign(this.currentUrl.id), 2000);
-
-    // this.countCandidateInNewsBySign(this.currentUrl.id);
-
-    // console.log(this.userFile + '/' + this.userInterView + '/' + this.UserSign);
-    // console.log(this.candidateFile + '/' + this.candidateInterView + '/' + this.candidateSign);
-    //   console.log(this.file);
-    //   console.log(this.listtest);
-
-    //   this.data = {
-    //     labels: ['Hồ sơ', 'Phỏng vấn', 'Hợp đồng'],
-    //     datasets: [
-    //       {
-    //         label: 'Ứng viên',
-    //         backgroundColor: '#42A5F5',
-    //         borderColor: '#1E88E5',
-    //         data: [this.file, this.userInterView, this.UserSign]
-    //       },
-    //       {
-    //         label: 'Ứng tuyển',
-    //         backgroundColor: '#9CCC65',
-    //         borderColor: '#7CB342',
-    //         data: [this.candidateFile, this.candidateInterView, this.candidateSign]
-    //       }
-    //     ]
-    //   }
-
-      // this.dataSource = {
-      //   "chart": {
-      //     "caption": "Thống kê ứng viên của tin tuyển dụng",
-      //     // "subCaption": "Top 5 stores in last month by revenue",
-      //     // "numberprefix": "Người",
-      //     "theme": "fint"
-      //   },
-      //   "data": [
-      //     {
-      //       "label": "Hồ sơ",
-      //       "value": this.file
-      //     },
-      //     {
-      //       "label": "Phỏng vấn",
-      //       "value": this.userInterView
-      //     },
-      //     {
-      //       "label": "Hợp đồng",
-      //       "value": this.UserSign
-      //     },
-
-      //   ]
-      // }
-
   }
 }

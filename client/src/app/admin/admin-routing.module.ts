@@ -2,9 +2,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { animate } from '@angular/animations';
-
-
 import { AdminComponent } from './admin.component';
 const routes: Routes = [
     { 
