@@ -5,6 +5,7 @@ import { AuthServiceService } from "../../../service/auth-service.service";
 import { Component, OnInit } from '@angular/core';
 import { News_Candidate } from '../../../models/news_candidate';
 import { Subject } from 'rxjs/Subject';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-listshared',
@@ -56,6 +57,10 @@ export class ListsharedComponent implements OnInit {
       pagingType: 'full_numbers',
     };
     this.getAllNewsCandidate();
+  }
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
 
 }
