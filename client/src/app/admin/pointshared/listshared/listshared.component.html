@@ -11,7 +11,31 @@
           Form danh sách điểm thưởng đã chi
         </div>
         <div class="panel-body">
-          <table datatable [dtOptions]="dtOptions" width="100%" class="table table-striped table-bordered table-hover">
+          <!-- <p-table [value]="listNewsCandidate" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Tên người nhận</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Ngày giới thiệu</th>
+                <th>Tin tuyển dụng tham gia giới thiệu ứng viên</th>
+                <th>Tình trạng ứng viên giới thiệu đạt được</th>
+                <th>Số điểm được nhận</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-newsCanidate>
+              <tr>
+                <td>{{newsCanidate.user.username}}</td>
+                <td>{{newsCanidate.user.email}}</td>
+                <td>{{newsCanidate.user.phone}}</td>
+                <td>{{newsCanidate.create_date | date: 'dd/MM/yyyy'}}</td>
+                <td>{{newsCanidate.news.title}}</td>
+                <td align="center">{{newsCanidate.status}}</td>
+                <td align="center">{{newsCanidate.point}}</td>
+              </tr>
+            </ng-template>
+          </p-table> -->
+          <!-- <table datatable [dtOptions]="dtOptions" width="100%" class="table table-striped table-bordered table-hover">
             <thead>
               <tr>
                 <th>Tên người nhận</th>
@@ -34,7 +58,32 @@
                 <td align="center">{{newsCanidate.point}}</td>
               </tr>
             </tbody>
+          </table> -->
+          <table width="100%" class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Tên người nhận</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Ngày giới thiệu</th>
+                <th>Tin tuyển dụng tham gia giới thiệu ứng viên</th>
+                <th>Tình trạng ứng viên giới thiệu đạt được</th>
+                <th>Số điểm được nhận</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let newsCanidate of listNewsCandidate | paginate: { itemsPerPage:10, currentPage: p}" class="odd gradeX">
+                <td>{{newsCanidate.user.username}}</td>
+                <td>{{newsCanidate.user.email}}</td>
+                <td>{{newsCanidate.user.phone}}</td>
+                <td>{{newsCanidate.create_date | date: 'dd/MM/yyyy'}}</td>
+                <td>{{newsCanidate.news.title}}</td>
+                <td align="center">{{newsCanidate.status}}</td>
+                <td align="center">{{newsCanidate.point}}</td>
+              </tr>
+            </tbody>
           </table>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
       </div>
     </div>
