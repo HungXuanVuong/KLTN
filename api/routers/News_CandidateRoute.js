@@ -1,8 +1,6 @@
 const express = require('express');
-
 const config = require('../config/db');
 const router = express.Router();
-
 const NewsCandidateController = require('../controllers/New_CandidateController');
 
 router.route('/add')
@@ -10,8 +8,6 @@ router.route('/add')
 
 router.route('/getall')
 .get(NewsCandidateController.getAllNewsCandidate);
-
-
 
 router.route('/get5newcandidate')
 .get(NewsCandidateController.get5NewCandidate);

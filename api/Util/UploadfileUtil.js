@@ -28,17 +28,6 @@ const uploadImgUserHandling = function(req, res){
 };
 
 
-// multer storeage tin
-// const storageImgNews = multer.diskStorage({ 
-//     destination: function (req, file, cb) {
-//         cb(null, './client/src/assets/web/img/imgtin/');
-//     },
-//     filename: function (req, file, cb) {
-//         var datetimestamp = Date.now();
-//         cb(null,file.originalname);
-//     }
-// });
-
 const storageImgNews = multer.diskStorage({ 
     destination: function (req, file, cb) {
         cb(null, 'public/images/imgtin/');

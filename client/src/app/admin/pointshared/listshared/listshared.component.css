@@ -15,3 +15,11 @@
           0 20px 20px rgba(0,0,0,.15);
   }
   .ui-widget { font-family:Arial; font-size: 1.1em; }
+
+  table {
+    counter-reset: tableCount;     
+}
+.counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
+}

@@ -397,10 +397,7 @@ const editUser = function (req, res) {
                     user.sex = req.body.sex;
                     user.address = req.body.address;
                     user.phone = req.body.phone;
-                    //user.urlHinh = req.body.urlHinh;
                     user.cvFile = req.body.cvFile;
-                    //user.point = req.body.point;
-                    //user.uvNumber = req.body.uvNumber;
                     user.role = req.body.role;
                     user.save((err) => {
                         if (err) {

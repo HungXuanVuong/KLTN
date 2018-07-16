@@ -33,9 +33,6 @@ import {ChartModule} from 'primeng/chart'
     declarations: [
         DetailnewsComponent,
         DerpPipe
-        // CommonnewsComponent,
-        // HandlingprocessComponent,
-        // CostprocessComponent
     ]
 })
 

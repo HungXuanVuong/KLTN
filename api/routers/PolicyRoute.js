@@ -12,7 +12,6 @@ router.route('/add')
 router.route('/delete')
 .delete(PolicyController.deletePolicy);
 
-
 router.route('/:id')
 .get(PolicyController.getSinglePolicy)
 .put(PolicyController.editPolicy)

@@ -173,8 +173,6 @@ export class DetailnewsComponent implements OnInit {
     });
   }
 
-
-
   getListCandidateByNewsId(id) {
     this.newscandidteService.getCandidteByNewsId(id).subscribe(data => {
       this.news_candidte = data.candidates;
@@ -348,7 +346,7 @@ export class DetailnewsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentUrl = this.activatedRoute.snapshot.params; // get URL paramon page load
+    this.currentUrl = this.activatedRoute.snapshot.params;
     this.getSingleNews(this.currentUrl.id);
     this.getListCandidateByNewsId(this.currentUrl.id);
     this.getListUserByNewsId(this.currentUrl.id);

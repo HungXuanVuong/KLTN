@@ -19,7 +19,6 @@ export class ChitiettinComponent implements OnInit {
 
   message;
   messageClass;
-  
   processing = false;
   currentUrl;
   loading = true;
@@ -27,14 +26,6 @@ export class ChitiettinComponent implements OnInit {
   news = new News();
 
   user = new User();
-
-  // urlHinh;
-  // title;
-  // address;
-  // salary;
-  // position;
-  // create_date;
-  // exp_date;
 
   netImage:any = '/images/imgtin/';
   constructor(
@@ -59,17 +50,13 @@ RedirectUnregister(){
     this.currentUrl = this.activatedRoute.snapshot.params;
     this.newsService.getSingleNews(this.currentUrl.id).subscribe(data =>{
       if (!data.success) {
-        this.messageClass = 'alert alert-danger'; // Set bootstrap error class
-        this.message = data.message; // Set error message
+        this.messageClass = 'alert alert-danger'; 
+        this.message = data.message; 
       } else {
-        this.news = data.news; // Save blog object for use in HTMLxx
-        // this.urlHinh;
-        // this.title;
-        //   //this.xsalary;
-        // this.news.urlHinh = 'hometd3';
+        this.news = data.news; 
         this.netImage += this.news.urlHinh;
         console.log(this.news);
-        this.loading = false; // Allow loading of blog form
+        this.loading = false;
       }
     });
 

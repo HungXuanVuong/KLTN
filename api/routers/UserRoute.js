@@ -8,11 +8,9 @@ const UserController = require('../controllers/UserController');
 
 const UploadFileUtil = require('../Util/UploadfileUtil');
 
-
 router.post('/register', UserController.register);
 
 router.post('/registerwithMail', UserController.registerWithMail);
-
 
 router.get('/checkEmail/:email', UserController.checkEmail);
 router.get('/checkExitsEmail/:email', UserController.checkExitsEmail);
@@ -24,8 +22,6 @@ router.post('/login', UserController.login);
 
 router.post('/upload', UploadFileUtil.uploadImgUserHandling);
 router.post('/uploadcv', UploadFileUtil.uploadCVUserHandling);
-
-
 
 router.route('/user/getall')
       .get(UserController.getAllUsers);
@@ -64,7 +60,6 @@ router.route('/user/edit')
       .put(UserController.editUser);
 
 router.put('/update', UserController.editUser);
-
 
 router.use(UserController.checkToken);
 router.get('/profile', UserController.getUserProfile);

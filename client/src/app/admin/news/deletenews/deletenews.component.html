@@ -1,12 +1,5 @@
 <div [@routerTransition] class="container" style="padding-top:10px;">
 
-  <!-- Custom Success/Error Message -->
-  <!-- <div class="row show-hide-message" *ngIf="message">
-      <div [ngClass]="messageClass">
-        {{ message }}
-      </div>
-    </div> -->
-
   <!-- Modal Confirmation Window -->
   <div class="col-md-6 col-md-push-2" *ngIf="foundNews">
     <!-- Model Outer Layer -->
@@ -60,23 +53,3 @@
 
   </div>
 </div>
-
-<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header modal-header-success" [ngClass]="messageClass">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3>
-          <i class="fa fa-info-circle"></i> Thông báo</h3>
-      </div>
-      <div class="modal-body">
-        <div class="row show-hide-message">
-          <p>{{message}}</p>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" (click)="redirect()" class="btn btn-danger pull-right" data-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
-</div> -->

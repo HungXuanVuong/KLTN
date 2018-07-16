@@ -18,7 +18,7 @@
           </thead>
           <tbody>
             <tr class="odd gradeX" *ngFor="let newsUser of newsUsers">
-              <td>{{newsUser.news.title}}</td>
+              <td><a [routerLink]="['/chitiettin/', newsUser.news._id]">{{newsUser.news.title}}</a></td>
               <td>{{newsUser.news.position}}</td>
               <td>{{newsUser.news.place}}</td>
               <td>{{newsUser.create_date | date:'dd/MM/yyyy'}}</td>

@@ -4,34 +4,6 @@ email = process.env.MAILER_EMAIL_ID || '',
 pass = process.env.MAILER_PASSWORD || '';
 
 
-// var client = nodemailer.createTransport({
-//   service: 'Gmail',
-//   auth: {
-//       user: email, // Your email address
-//       pass: pass // Your password
-//   },
-//   tls: { rejectUnauthorized: false }
-// });
-
-// // Create e-mail object to send to user
-// var email = {
-//   from: 'Admin HKGroup',
-//   to: ['masazukass@gmail.com'],
-//   subject: 'Password',
-//   text: 'Hello'
-//   // html: 'Hello<strong> </strong>,<br><br>Thank you for registering at localhost.com. Please click on the link below to complete your activation:<br><br><a href="http://www.herokutestapp3z24.com/activate/">http://www.herokutestapp3z24.com/activate/</a>'
-// };
-// // Function to send e-mail to the user
-// client.sendMail(email, function(err, info) {
-//   if (err) {
-//       console.log(err); // If error with sending e-mail, log to console/terminal
-//   } else {
-//       console.log(info); // Log success message to console if sent
-//       console.log(user.email); // Display e-mail that it was sent to
-//   }
-// });
-
-
 var generatePassword = require('password-generator');
 
 // var pass = generatePassword(12, false);

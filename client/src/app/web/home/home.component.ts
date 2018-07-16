@@ -114,8 +114,6 @@ export class HomeComponent implements OnInit {
     this.positionName = "0";
     this.createHome();
 
-    // this.checkUserHaveApply('5b2c7483ea925f12acbbd716','5a9160c56e355207e019eb55');
-    // console.log(this.check);
   }
 
 }

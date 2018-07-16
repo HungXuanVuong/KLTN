@@ -46,7 +46,6 @@ export class FormprofileComponent implements OnInit {
   selectedSex: Object = {};
 
   public myDatePickerOptions: IMyDpOptions = {
-    // other options...
     dateFormat: 'dd.mm.yyyy',
   };
   onDateChanged(event: IMyDateModel) {
@@ -56,8 +55,6 @@ export class FormprofileComponent implements OnInit {
 
   uploadAvatar() {
       console.log(this.uploader.queue[0].file.name);
-      // this.userImage += this.uploader.queue[0].file.name
-      //  this.uploader.queue[0].upload();
       let userNew = {
         _id: this.user._id,
         urlHinh: this.uploader.queue[0].file.name
@@ -65,15 +62,13 @@ export class FormprofileComponent implements OnInit {
       console.log(userNew);
       this.authService.editAvatarUser(userNew).subscribe(data => {
         if (!data.success) {
-          this.messageClass = 'alert alert-danger'; // Set error bootstrap class
-          this.message = data.message; // Set error message
-          this.processing = false; // Unlock form fields
+          this.messageClass = 'alert alert-danger'; 
+          this.message = data.message; 
+          this.processing = false; 
         } else {
-          // this.ngOnInit();
           this.uploader.queue[0].upload();
-          this.messageClass = 'alert alert-success'; // Set success bootstrap class
-          this.message = data.message; // Set success message
-          // After two seconds, navigate back to blog page
+          this.messageClass = 'alert alert-success'; 
+          this.message = data.message;
            this.ngOnInit();
         }
       });
@@ -98,9 +93,6 @@ export class FormprofileComponent implements OnInit {
             this.uploaderCV.queue[0].upload();
             this.messageClass = 'alert alert-success'; 
             this.message = data.message; 
-            // setTimeout(() => {
-            //   this.router.navigate(['/profiledetail/5ad0b99a1450f026203e0a69']); 
-            // }, 1000);
           }
     });
   }
@@ -108,12 +100,10 @@ export class FormprofileComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile().subscribe(data => {
       if (!data.success) {
-        this.messageClass = 'alert alert-danger'; // Set bootstrap error class
-        this.message = data.message; // Set error message
+        this.messageClass = 'alert alert-danger'; 
+        this.message = data.message; 
       } else {
         this.user = data.user;
-        //this.userImage += this.user.urlHinh;
-        //console.log(this.userImage);
         var d = new Date(data.user.dateOfBirth);
         this.model = {
           date: {
@@ -126,17 +116,6 @@ export class FormprofileComponent implements OnInit {
       }
 
     });
-
-    // this.currentUrl = this.activatedRoute.snapshot.params;
-    // this.newsService.getSingleNews(this.currentUrl.id).subscribe(data =>{
-    //   if (!data.success) {
-    //     this.messageClass = 'alert alert-danger'; // Set bootstrap error class
-    //     this.message = data.message; // Set error message
-    //   } else {
-    //     this.news = data.news; // Save blog object for use in HTMLxx
-    //     this.loading = false; // Allow loading of blog form
-    //   }
-    // });
   }
 
 }
