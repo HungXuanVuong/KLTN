@@ -99,6 +99,7 @@ export class ListtransactionComponent implements OnInit {
   getAllOrder() {
     this.orderService.getAllOrder().subscribe(data => {
       this.order = data.listOrder;
+      console.log(this.order);
       this.temp_var = true;
     });
   }

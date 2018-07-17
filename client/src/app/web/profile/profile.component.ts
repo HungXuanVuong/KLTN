@@ -76,7 +76,7 @@ export class ProfileComponent implements OnInit {
       this.loading = false;
     });
   }
-  isTrue;
+  isTrue = false;
   checkUserHaveApply() {
     this.currentUrl = this.activatedRoute.snapshot.params;
     let newsuser = {

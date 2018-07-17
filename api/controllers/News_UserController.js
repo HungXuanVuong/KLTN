@@ -73,12 +73,12 @@ const checkUserHaveApply = function (req, res) {
                     for (var u in news) {
                         if (news[u].user == req.body.user) {
                             check = false;
-                            res.json({ success: false, message: 'Bạn đã ứng tuyển vào tin này rồi.' });
+                            res.json({ success: true, message: 'Bạn đã ứng tuyển vào tin này rồi.' });
                             return;
                         }
                     }
                     if (check) {
-                        res.json({ success: true, message: 'Bạn có thể ứng tuyển vào đây !' });
+                        res.json({ success: false, message: 'Bạn có thể ứng tuyển vào đây !' });
                         return;
                     }
                 }

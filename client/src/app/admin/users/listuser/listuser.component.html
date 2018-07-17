@@ -23,8 +23,8 @@
                 <th>Email</th>
                 <th>SĐT</th>
                 <th>Giới tính</th>
-                <!-- <th>Điểm thưởng</th> -->
                 <th>Role</th>
+                <th>Tình trạng</th>
                 <th>Tùy chọn</th>
               </tr>
             </thead>
@@ -41,6 +41,7 @@
                 <td>
                   <a [routerLink]="['/admin/formuser/', userr._id]">{{userr.role}}</a>
                 </td>
+                <td style="text-align: center;">{{userr.status}}</td>
                 <td class="center">
                   <div class="dropdown text-center">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -48,11 +49,11 @@
                       <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                      <li>
+                      <li *ngIf="userr.status=='unlock'">
                         <a (click)="lockUser(userr._id)" data-toggle="modal" data-target="#myModal">
                           <i class="fa fa-lock fa-fw"></i> Lock</a>
                       </li>
-                      <li>
+                      <li *ngIf="userr.status=='lock'">
                         <a (click)="unLockUser(userr._id)" data-toggle="modal" data-target="#myModal">
                           <i class="fa fa-unlock fa-fw"></i> UnLock</a>
                       </li>
